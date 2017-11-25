@@ -237,7 +237,7 @@
                                     <hr>
                                     <div class="row clearfix">
                                         <div class="col-lg-2 col-md-1 col-sm-2 col-xs-3 form-control-label">
-                                            <label for="">LastName</label>
+                                            <label for="">Last Name</label>
                                         </div>
                                         <div class="col-lg-2 col-md-1 col-sm-2 col-xs-3 col-md-3  form-control-label">
                                             <div class="form-group">
@@ -247,7 +247,7 @@
                                             </div>
                                         </div>
                                         <div class="col-lg-1 col-md-1 col-sm-2 col-xs-2  form-control-label">
-                                            <label for="">FirstName</label>
+                                            <label for="">First Name</label>
                                         </div>
                                         <div class="col-lg-2 col-md-1 col-sm-2 col-xs-3">
                                             <div class="form-group">
@@ -257,7 +257,7 @@
                                             </div>
                                         </div>
                                         <div class="col-lg-2 col-md-1 col-sm-2 col-xs-3 form-control-label">
-                                            <label for="">MiddleName</label>
+                                            <label for="">Middle Name</label>
                                         </div>
                                         <div class="col-lg-2 col-md-1 col-sm-2 col-xs-3">
                                             <div class="form-group">
@@ -290,11 +290,11 @@
                                         </div>
 
                                         <div class="col-lg-3 col-md-1 col-sm-2 col-xs-3 form-control-label">
-                                            <label for="email_address_2">gender</label>
+                                            <label for="email_address_2">Gender</label>
                                         </div>
                                         <div class="col-lg-2 col-md-1 col-sm-2 col-xs-3">
                                             <select class="form-control show-tick" id="gender" name="gender" title="<?php echo $fetch['P_Sex']?>" >
-                                                      
+                                        <option value="" selected disabled>Please select: </option>
                                         <option value="Male">Male</option>
                                         <option Value="Female">Female</option>                            
                                             </select>
@@ -324,10 +324,11 @@
                                         </div>
 
                                         <div class="col-lg-2 col-md-1 col-sm-2 col-xs-3 form-control-label">
-                                            <label for="">CivilStatus</label>
+                                            <label for="">Civil Status</label>
                                         </div>
                                         <div class="col-lg-2 col-md-1 col-sm-2 col-xs-3">
                                             <select class="form-control show-tick" name="civilstatus" id="civilstatus" title="<?php echo $fetch['P_CivilStatus']?>" >
+                                        <option value="" selected disabled>Please select: </option>
                                         <option value="Single">Single</option>
                                         <option value="Married">Married</option>
                                         <option value="Divorced">Divorced</option>  

@@ -249,7 +249,7 @@
                                     </div>
                                     <div class="row clearfix">
                                         <div class="col-lg-2 col-md-1 col-sm-2 col-xs-3 form-control-label">
-                                            <label for="">LastName</label>
+                                            <label for="">Last Name</label>
                                         </div>
                                         <div class="col-lg-2 col-md-1 col-sm-2 col-xs-3 col-md-3  form-control-label">
                                             <div class="form-group">
@@ -259,7 +259,7 @@
                                             </div>
                                         </div>
                                         <div class="col-lg-1 col-md-1 col-sm-2 col-xs-2  form-control-label">
-                                            <label for="">FirstName</label>
+                                            <label for="">First Name</label>
                                         </div>
                                         <div class="col-lg-2 col-md-1 col-sm-2 col-xs-3">
                                             <div class="form-group">
@@ -322,7 +322,7 @@
                                             <select class="form-control show-tick" name="position" id="position" title="<?php echo $fetch['position']?>">
                                                 
                                                 <option value="Nurse">Nurse</option>
-                                                 <option value="Technician">Technician</option>
+                                                <option value="Technician">Technician</option>
                                                 <option value="Head Nurse">Head Nurse</option>
                                                
                                                
