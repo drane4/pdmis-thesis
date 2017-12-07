@@ -1,11 +1,19 @@
+<<<<<<< HEAD
 ﻿<?php
 require 'session.php';
 ?>
+=======
+﻿
+
+>>>>>>> 7910d6b5ce1ef2b7056ce8a8681a22100166992c
 <!DOCTYPE html>
 <html>
 
     <head>
+<<<<<<< HEAD
         
+=======
+>>>>>>> 7910d6b5ce1ef2b7056ce8a8681a22100166992c
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=Edge">
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -30,14 +38,21 @@ require 'session.php';
         <link href="../../plugins/morrisjs/morris.css" rel="stylesheet" />
 
         <!-- Custom Css -->
+<<<<<<< HEAD
         <link href="../../css/style2.css" rel="stylesheet">
+=======
+        <link href="../../css/style.css" rel="stylesheet">
+>>>>>>> 7910d6b5ce1ef2b7056ce8a8681a22100166992c
 
         <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
         <link href="../../css/themes/theme-indigo.css" rel="stylesheet" />
     </head>
 
     <body class="theme-indigo">
+<<<<<<< HEAD
        
+=======
+>>>>>>> 7910d6b5ce1ef2b7056ce8a8681a22100166992c
         <!-- Page Loader -->
         <div class="page-loader-wrapper">
             <div class="loader">
@@ -67,12 +82,20 @@ require 'session.php';
                 <div class="navbar-header">
                     <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
                     <a href="javascript:void(0);" class="bars"></a>
+<<<<<<< HEAD
                     <center><a class="navbar-brand" href="index.html"><div class="title">Teresita Jalandoni Provincial Hospital <br> Dialysis Department</div></a>
+=======
+                    <center><a class="navbar-brand" href="index.php"><div class="title">Teresita Jalandoni Provincial Hospital <br> Dialysis Department</div></a>
+>>>>>>> 7910d6b5ce1ef2b7056ce8a8681a22100166992c
                     </center>
 
                 </div>
                 <div class="collapse navbar-collapse" id="navbar-collapse">
+<<<<<<< HEAD
                     
+=======
+
+>>>>>>> 7910d6b5ce1ef2b7056ce8a8681a22100166992c
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Call Search -->
 
@@ -98,8 +121,13 @@ require 'session.php';
                         <img src="../../images/nurse.png" width="48" height="48" alt="User" />
                     </div>
                     <div class="info-container">
+<<<<<<< HEAD
                         <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo $name; ?></div>
                         <div class="email"><?php echo $position; ?></div>
+=======
+                        <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Rhitt Bancaya</div>
+                        <div class="email">Head Nurse</div>
+>>>>>>> 7910d6b5ce1ef2b7056ce8a8681a22100166992c
                         <div class="btn-group user-helper-dropdown">
 
                         
@@ -111,18 +139,28 @@ require 'session.php';
                 <div class="menu">
                     <ul class="list">
                         <li class="header">MAIN NAVIGATION</li>
+<<<<<<< HEAD
                         <li class="active" id="transaction">
+=======
+                        <li class="active">
+>>>>>>> 7910d6b5ce1ef2b7056ce8a8681a22100166992c
                             <a href="transaction.php">
                                 <i class="material-icons">folder</i>
                                 <span>Transaction</span>
                             </a>
                         </li>
+<<<<<<< HEAD
                         <li id="profile">
                             <a href="javascript:void(0);" class="menu-toggle">
+=======
+                        <li>
+                            <a href="javascript:void(0);a" class="menu-toggle">
+>>>>>>> 7910d6b5ce1ef2b7056ce8a8681a22100166992c
                                 <i class="material-icons">people</i>
                                 <span>Profile</span>
                             </a>
                             <ul class="ml-menu">
+<<<<<<< HEAD
                                 <li id="patientprofile">
                                     <a href="PatientProfile.php">Patient Profile</a>
                                 </li>
@@ -136,39 +174,83 @@ require 'session.php';
                                     <a href="P.php">Nephrologist</a>
                                 </li>
                                 <li id="descriptors">
+=======
+                                <li>
+                                    <a href="PP.php">Patient Profile</a>
+                                </li>
+                                <li>
+                                    <a href="EP.php">Employee Profile</a>
+                                </li>
+                                <li>
+                                    <a href="LT.php">Lab Tests</a>
+                                </li>
+                                <li>
+                                    <a href="P.php">Physician</a>
+                                </li>
+                                <li>
+>>>>>>> 7910d6b5ce1ef2b7056ce8a8681a22100166992c
                                     <a href="D.php">Descriptors</a>
                                 </li>
                             </ul>
                         </li>
+<<<<<<< HEAD
                         <li id="maintenance">
+=======
+                        <li>
+>>>>>>> 7910d6b5ce1ef2b7056ce8a8681a22100166992c
 
                             <a href="javascript:void(0);" class="menu-toggle">
                                 <i class="material-icons">settings</i>
                                 <span>Maintenance</span>
                             </a>
                             <ul class="ml-menu">
+<<<<<<< HEAD
                                 <li id="userprofile">
                                     <a href="UserProfile.php">User Profile</a>
                                 </li>
                                 <li id="systemmaintenance">
+=======
+                                <li>
+                                    <a href="UP.php">User Profile</a>
+                                </li>
+                                <li>
+>>>>>>> 7910d6b5ce1ef2b7056ce8a8681a22100166992c
                                     <a href="SM.php">System Maintenance</a>
                                 </li>
                             </ul>
                         </li>
+<<<<<<< HEAD
                         <li id="reports">
+=======
+                        <li>
+>>>>>>> 7910d6b5ce1ef2b7056ce8a8681a22100166992c
                             <a href="R.php">
                                 <i class="material-icons">assignment</i>
                                 <span>Reports</span>
                             </a>
                         </li>
                         <li>
+<<<<<<< HEAD
                            <a href="logout.php">
+=======
+                            <a href="Exit.html">
+>>>>>>> 7910d6b5ce1ef2b7056ce8a8681a22100166992c
                                 <i class="material-icons">input</i>
                                 <span>Exit</span>
                             </a>
                         </li>
 
 
+<<<<<<< HEAD
+=======
+
+
+
+
+
+
+
+>>>>>>> 7910d6b5ce1ef2b7056ce8a8681a22100166992c
                     </ul>
                 </div>
                 <!-- #Menu -->
@@ -191,6 +273,7 @@ require 'session.php';
             </aside>
             <!-- #END# Right Sidebar -->
         </section>
+<<<<<<< HEAD
         
 
         <section class="content">
@@ -420,6 +503,15 @@ require 'session.php';
        
         <script src="../../plugins/jquery/jquery.min.js"></script>
         <script src="../../plugins/jquery/jquery.js"></script>
+=======
+
+        <section class="content">
+
+        </section>
+
+        <!-- Jquery Core Js -->
+        <script src="../../plugins/jquery/jquery.min.js"></script>
+>>>>>>> 7910d6b5ce1ef2b7056ce8a8681a22100166992c
 
         <!-- Bootstrap Core Js -->
         <script src="../../plugins/bootstrap/js/bootstrap.js"></script>
@@ -456,6 +548,7 @@ require 'session.php';
         <!-- Custom Js -->
         <script src="../../js/admin.js"></script>
         <script src="../../js/pages/index.js"></script>
+<<<<<<< HEAD
         
         <!-- Demo Js -->
         <script src="../../js/demo.js"></script>
@@ -537,6 +630,11 @@ require 'session.php';
         
     </script>  
      
+=======
+
+        <!-- Demo Js -->
+        <script src="../../js/demo.js"></script>
+>>>>>>> 7910d6b5ce1ef2b7056ce8a8681a22100166992c
     </body>
 
 </html>
