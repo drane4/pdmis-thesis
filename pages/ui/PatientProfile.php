@@ -45,7 +45,14 @@ include('session.php');
 
         <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
         <link href="../../css/themes/theme-indigo.css" rel="stylesheet" />
+        <style>
+            .unstyled::-webkit-inner-spin-button,
+            .unstyled::-webkit-calendar-picker-indicator {
 
+                -webkit-appearance: none;
+            }
+
+        </style>
 
     </head>
 
@@ -114,8 +121,12 @@ include('session.php');
                         <img src="../../images/nurse.png" width="48" height="48" alt="User" />
                     </div>
                     <div class="info-container">
-                        <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo $name; ?></div>
-                        <div class="email"><?php echo $position; ?></div>
+                        <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <?php echo $name; ?>
+                        </div>
+                        <div class="email">
+                            <?php echo $position; ?>
+                        </div>
                         <div class="btn-group user-helper-dropdown">
 
 
@@ -127,11 +138,26 @@ include('session.php');
                 <div class="menu">
                     <ul class="list">
                         <li class="header">MAIN NAVIGATION</li>
-                        <li class="active" id="transaction">
-                            <a href="transaction.php">
-                                <i class="material-icons">folder</i>
+                        <li id="transaction">
+                            <a href="javascript:void(0);" class="menu-toggle">
+                                 <i class="material-icons">folder</i>
                                 <span>Transaction</span>
                             </a>
+                            <ul class="ml-menu">
+                                <li id="transaction">
+                                    <a href="transaction.php">HemoTreatment</a>
+                                </li>
+                                <li id="Schedule">
+                                    <a href="LT.php">Schedule</a>
+                                </li>
+                                <li id="Immunization">
+                                    <a href="P.php">Immunization</a>
+                                </li>
+                                <li id="PatientMedicalHistory">
+                                    <a href="D.php">Patient Medical History</a>
+                                </li>
+                            </ul>
+
                         </li>
                         <li id="profile" class="active">
                             <a href="javascript:void(0);" class="menu-toggle">
@@ -139,14 +165,13 @@ include('session.php');
                                 <span>Profile</span>
                             </a>
                             <ul class="ml-menu">
-                                <li id="patientprofile" class="active">
+                                <li id="patientprofile">
                                     <a href="PatientProfile.php">Patient Profile</a>
+                                </li>
+                                <li id="patientprofile">
                                 </li>
                                 <li id="employeeprofile">
                                     <a href="EmployeeProfile.php">Employee Profile</a>
-                                </li>
-                                <li id="labtest">
-                                    <a href="LT.php">Lab Tests</a>
                                 </li>
                                 <li id="nephrologist">
                                     <a href="nephrologist.php">Nephrologist</a>
@@ -167,7 +192,7 @@ include('session.php');
                                     <a href="UserProfile.php">User Profile</a>
                                 </li>
                                 <li id="systemmaintenance">
-                                    <a href="SM.php">System Maintenance</a>
+                                    <a href="maintenance.php">System Maintenance</a>
                                 </li>
                             </ul>
                         </li>
@@ -178,7 +203,7 @@ include('session.php');
                             </a>
                         </li>
                         <li>
-                           <a href="logout.php">
+                            <a href="logout.php">
                                 <i class="material-icons">input</i>
                                 <span>Exit</span>
                             </a>
@@ -220,272 +245,289 @@ include('session.php');
 
                             </div>
                             <div class="body">
-                                <form class="form-horizontal page-content" form method="POST" action="savepatient.php">
+                                <div style="padding-bottom:10px;">
+                                    <ul class="nav nav-tabs tab-nav-right" role="tablist">
+                                        <li role="presentation" class="active"><a href="#patientinfo" data-toggle="tab">Patient Info</a></li>
+                                        <li role="presentation" class=""><a href="#treatment" data-toggle="tab">Treatment</a></li>
+                                        <li role="presentation" class=""><a href="#lab" data-toggle="tab">Lab</a></li>
+                                        <li role="presentation" class=""><a href="#physicalexam" data-toggle="tab">Physical Exam</a></li>
+                                         <li role="presentation" class=""><a href="listconfinement" data-toggle="tab">Problem list/confinement</a></li>
+                                        <li role="presentation" class=""><a href="weight" data-toggle="tab">Weight</a></li>
+                                        <li role="presentation" class=""><a href="drug" data-toggle="tab">Drug</a></li>
+                                        <li role="presentation" class=""><a href="hepatitis" data-toggle="tab">Hepatitis</a></li>
+                                        <li role="presentation" class=""><a href="immunization" data-toggle="tab">Immunization</a></li>
+
+                                    </ul>
+                                </div>
 
 
+                                <div class="tab-content">
+                                    <!-- #the 2nd query is to show the content of notes/order of certain patient -->
 
-                                    <div class="row clearfix">
-                                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-3 form-control-label">
-                                            <label for="email_address_2">Hospital ID</label>
-                                        </div>
-                                        <div class="col-lg-2 col-md-2 col-sm-1 col-xs-2 ">
-                                            <div class="form-group">
-                                                <div class="form-line">
-                                                    <input type="text" class="form-control" name="hid" id="hid" onkeyup="capitalize(this.id, this.value);" value="<?php echo $fetch['Hospital_Id']?>" autofocus required>
+                                    <div role="tabpanel" class="tab-pane fade in active" id="patientinfo">
+                                        <form class="form-horizontal page-content" form method="POST" action="savepatient.php">
+                                            <div class="row clearfix">
+                                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-3 form-control-label">
+                                                    <label for="email_address_2">Hospital ID</label>
+                                                </div>
+                                                <div class="col-lg-2 col-md-2 col-sm-1 col-xs-2 ">
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <input type="text" class="form-control" name="hid" id="hid" onkeyup="capitalize(this.id, this.value);" value="<?php echo $fetch['Hospital_Id']?>" autofocus required>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <div class="row clearfix">
-                                        <div class="col-lg-2 col-md-1 col-sm-2 col-xs-3 form-control-label">
-                                            <label for="">Last Name</label>
-                                        </div>
-                                        <div class="col-lg-2 col-md-1 col-sm-2 col-xs-3 col-md-3  form-control-label">
-                                            <div class="form-group">
-                                                <div class="form-line">
-                                                    <input type="text" id="lastname" name="lastname" class="form-control" onkeyup="capitalize(this.id, this.value);" value="<?php echo $fetch['P_Lname']?>" required>
+                                            <hr>
+                                            <div class="row clearfix">
+                                                <div class="col-lg-2 col-md-1 col-sm-2 col-xs-3 form-control-label">
+                                                    <label for="">LastName</label>
+                                                </div>
+                                                <div class="col-lg-2 col-md-1 col-sm-2 col-xs-3 col-md-3  form-control-label">
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <input type="text" id="lastname" name="lastname" class="form-control" onkeyup="capitalize(this.id, this.value);" value="<?php echo $fetch['P_Lname']?>" required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-1 col-md-1 col-sm-2 col-xs-2  form-control-label">
+                                                    <label for="">FirstName</label>
+                                                </div>
+                                                <div class="col-lg-2 col-md-1 col-sm-2 col-xs-3">
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <input type="text" id="firstname" name="firstname" class="form-control" onkeyup="capitalize(this.id, this.value);" value="<?php echo $fetch['P_Fname']?>" required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-2 col-md-1 col-sm-2 col-xs-3 form-control-label">
+                                                    <label for="">MiddleName</label>
+                                                </div>
+                                                <div class="col-lg-2 col-md-1 col-sm-2 col-xs-3">
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <input type="text" id="middlename" name="middlename" class="form-control" onkeyup="capitalize(this.id, this.value);" value="<?php echo $fetch['P_Mname']?>" required>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-lg-1 col-md-1 col-sm-2 col-xs-2  form-control-label">
-                                            <label for="">First Name</label>
-                                        </div>
-                                        <div class="col-lg-2 col-md-1 col-sm-2 col-xs-3">
-                                            <div class="form-group">
-                                                <div class="form-line">
-                                                    <input type="text" id="firstname" name="firstname" class="form-control" onkeyup="capitalize(this.id, this.value);" value="<?php echo $fetch['P_Fname']?>" required>
+                                            <div class="row clearfix demo-masked-input">
+                                                <div class="col-lg-2 col-md-1 col-sm-2 col-xs-3 form-control-label">
+                                                    <label for="">Birthdate</label>
                                                 </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-2 col-md-1 col-sm-2 col-xs-3 form-control-label">
-                                            <label for="">Middle Name</label>
-                                        </div>
-                                        <div class="col-lg-2 col-md-1 col-sm-2 col-xs-3">
-                                            <div class="form-group">
-                                                <div class="form-line">
-                                                    <input type="text" id="middlename" name="middlename" class="form-control" onkeyup="capitalize(this.id, this.value);" value="<?php echo $fetch['P_Mname']?>"required>
+                                                <div class="col-lg-2 col-md-1 col-sm-2 col-xs-3">
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <input type="date" class="form-control unstyled" name="birthdate" id="birthdate" value="<?php echo $fetch['P_BirthDate']?>" style="padding-right:0" required>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row clearfix demo-masked-input">
-                                        <div class="col-lg-2 col-md-1 col-sm-2 col-xs-3 form-control-label">
-                                            <label for="">Birthdate</label>
-                                        </div>
-                                        <div class="col-lg-2 col-md-1 col-sm-2 col-xs-3">
-                                            <div class="form-group">
-                                                <div class="form-line">
-                                                    <input type="text" class="form-control date" name="birthdate" id="birthdate" value="<?php echo $fetch['P_BirthDate']?>" required>
+                                                <div class="col-lg-1 col-md-1 col-sm-2 col-xs-2 form-control-label">
+                                                    <label for="">Age</label>
                                                 </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-1 col-md-1 col-sm-2 col-xs-2 form-control-label">
-                                            <label for="">Age</label>
-                                        </div>
-                                        <div class="col-lg-1 col-md-1 col-sm-2 col-xs-2">
-                                            <div class="form-group">
-                                                <div class="form-line">
-                                                    <input type="number" class="form-control" name="age" id="age" min="0" max="110" step="1" value="<?php echo $fetch['P_Age']?>" required>
+                                                <div class="col-lg-1 col-md-1 col-sm-2 col-xs-2">
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <input type="number" class="form-control" name="age" id="age" min="0" max="110" step="1" value="<?php echo $fetch['P_Age']?>" required>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </div>
 
-                                        <div class="col-lg-3 col-md-1 col-sm-2 col-xs-3 form-control-label">
-                                            <label for="email_address_2">Gender</label>
-                                        </div>
-                                        <div class="col-lg-2 col-md-1 col-sm-2 col-xs-3">
-                                            <select class="form-control show-tick" id="gender" name="gender" title="<?php echo $fetch['P_Sex']?>" >
+                                                <div class="col-lg-3 col-md-1 col-sm-2 col-xs-3 form-control-label">
+                                                    <label for="email_address_2">gender</label>
+                                                </div>
+                                                <div class="col-lg-2 col-md-1 col-sm-2 col-xs-3">
+                                                    <select class="form-control show-tick" id="gender" name="gender" title="&nbsp;">
                                                       
-                                        <option value="Male">Male</option>
-                                        <option Value="Female">Female</option>                            
+                                        <option value="Male" <?php if($fetch['P_Sex']== 'Male') echo "selected"; ?>>Male</option>
+                                        <option Value="Female" <?php if($fetch['P_Sex']== 'Female') echo "selected"; ?>>Female</option>                            
                                             </select>
-                                        </div>
-
-                                    </div>
-                                    <div class="row clearfix">
-                                        <div class="col-lg-2 col-md-1 col-sm-2 col-xs-3 form-control-label">
-                                            <label for="">Nationality</label>
-                                        </div>
-                                        <div class="col-lg-2 col-md-1 col-sm-2 col-xs-3">
-                                            <div class="form-group">
-                                                <div class="form-line">
-                                                    <input type="text" class="form-control" name="nationality" id="nationality" onkeyup="capitalize(this.id, this.value);" value="<?php echo $fetch['P_Nationality']?>" required>
                                                 </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-1 col-md-1 col-sm-2 col-xs-2 form-control-label">
-                                            <label for="">Religion</label>
-                                        </div>
-                                        <div class="col-lg-2 col-md-1 col-sm-2 col-xs-2">
-                                            <div class="form-group">
-                                                <div class="form-line">
-                                                    <input type="text" class="form-control" name="religion" id="religion" onkeyup="capitalize(this.id, this.value);" value="<?php echo $fetch['P_Religion']?>" required>
-                                                </div>
-                                            </div>
-                                        </div>
 
-                                        <div class="col-lg-2 col-md-1 col-sm-2 col-xs-3 form-control-label">
-                                            <label for="">CivilStatus</label>
-                                        </div>
-                                        <div class="col-lg-2 col-md-1 col-sm-2 col-xs-3">
-                                            <select class="form-control show-tick" name="civilstatus" id="civilstatus" title="<?php echo $fetch['P_CivilStatus']?>" >
-                                        <option value="Single">Single</option>
-                                        <option value="Married">Married</option>
-                                        <option value="Divorced">Divorced</option>  
-                                        <option value="Widowed">Widowed</option>  
+                                            </div>
+                                            <div class="row clearfix">
+                                                <div class="col-lg-2 col-md-1 col-sm-2 col-xs-3 form-control-label">
+                                                    <label for="">Nationality</label>
+                                                </div>
+                                                <div class="col-lg-2 col-md-1 col-sm-2 col-xs-3">
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <input type="text" class="form-control" name="nationality" id="nationality" onkeyup="capitalize(this.id, this.value);" value="<?php echo $fetch['P_Nationality']?>" required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-1 col-md-1 col-sm-2 col-xs-2 form-control-label">
+                                                    <label for="">Religion</label>
+                                                </div>
+                                                <div class="col-lg-2 col-md-1 col-sm-2 col-xs-2">
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <input type="text" class="form-control" name="religion" id="religion" onkeyup="capitalize(this.id, this.value);" value="<?php echo $fetch['P_Religion']?>" required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-2 col-md-1 col-sm-2 col-xs-3 form-control-label">
+                                                    <label for="">CivilStatus</label>
+                                                </div>
+                                                <div class="col-lg-2 col-md-1 col-sm-2 col-xs-3">
+                                                    <select class="form-control show-tick" name="civilstatus" id="civilstatus" title="&nbsp;">
+                                        <option value="Single" <?php if($fetch['P_CivilStatus']== 'Single') echo "selected"; ?>>Single</option>
+                                        <option value="Married"  <?php if($fetch['P_CivilStatus']== 'Married') echo "selected"; ?>>Married</option>
+                                        <option value="Divorced"  <?php if($fetch['P_CivilStatus']== 'Divorced') echo "selected"; ?>>Divorced</option>  
+                                        <option value="Widowed"  <?php if($fetch['P_CivilStatus']== 'Widowed') echo "selected"; ?>>Widowed</option>  
                                             </select>
-                                        </div>
-                                    </div>
+                                                </div>
+                                            </div>
 
-                                    <div class="row clearfix">
-                                        <div class="col-lg-2 col-md-1 col-sm-2 col-xs-4 form-control-label">
-                                            <label for="">Permanent Address</label>
-                                        </div>
-                                        <div class="col-lg-9 col-md-1 col-sm-2 col-xs-8">
-                                            <div class="form-group">
-                                                <div class="form-line">
-                                                    <input type="text" class="form-control" name="peraddress" id="peraddress" onkeyup="capitalize(this.id, this.value);" value="<?php echo $fetch['P_PermanentAdd']?>" required>
+                                            <div class="row clearfix">
+                                                <div class="col-lg-2 col-md-1 col-sm-2 col-xs-4 form-control-label">
+                                                    <label for="">Permanent Address</label>
+                                                </div>
+                                                <div class="col-lg-9 col-md-1 col-sm-2 col-xs-8">
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <input type="text" class="form-control" name="peraddress" id="peraddress" onkeyup="capitalize(this.id, this.value);" value="<?php echo $fetch['P_PermanentAdd']?>" required>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="row clearfix demo-masked-input">
-                                        <div class="col-lg-2 col-md-1 col-sm-2 col-xs-4 form-control-label">
-                                            <label for="">Contact Number</label>
-                                        </div>
-                                        <div class="col-lg-3 col-md-1 col-sm-2 col-xs-4">
-                                            <div class="form-group">
-                                                <div class="form-line">
-                                                    <input type="text" class="form-control mobile-phone-number" name="percontactnumber" id="percontactnumber" placeholder="Ex: +00 (000) 000-00-00" value="<?php echo $fetch['P_ConNum1']?>"required>
+                                            <div class="row clearfix demo-masked-input">
+                                                <div class="col-lg-2 col-md-1 col-sm-2 col-xs-4 form-control-label">
+                                                    <label for="">Contact Number</label>
+                                                </div>
+                                                <div class="col-lg-3 col-md-1 col-sm-2 col-xs-4">
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <input type="text" class="form-control" name="percontactnumber" id="percontactnumber" placeholder="Ex: +00 (000) 000-00-00" value="<?php echo $fetch['P_ConNum1']?>" required>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="row clearfix">
-                                        <div class="col-lg-2 col-md-1 col-sm-2 col-xs-4 form-control-label">
-                                            <label for="">Present Address</label>
-                                        </div>
-                                        <div class="col-lg-9 col-md-1 col-sm-2 col-xs-8">
-                                            <div class="form-group">
-                                                <div class="form-line">
-                                                    <input type="text" class="form-control" name="preaddress" id="preaddress" onkeyup="capitalize(this.id, this.value);" value="<?php echo $fetch['P_PresentAdd']?>">
+                                            <div class="row clearfix">
+                                                <div class="col-lg-2 col-md-1 col-sm-2 col-xs-4 form-control-label">
+                                                    <label for="">Present Address</label>
+                                                </div>
+                                                <div class="col-lg-9 col-md-1 col-sm-2 col-xs-8">
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <input type="text" class="form-control" name="preaddress" id="preaddress" onkeyup="capitalize(this.id, this.value);" value="<?php echo $fetch['P_PresentAdd']?>">
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="row clearfix demo-masked-input">
-                                        <div class="col-lg-2 col-md-1 col-sm-2 col-xs-4 form-control-label">
-                                            <label for="">Contact Number</label>
-                                        </div>
-                                        <div class="col-lg-3 col-md-1 col-sm-2 col-xs-4">
-                                            <div class="form-group">
-                                                <div class="form-line">
-                                                    <input type="text" class="form-control mobile-phone-number" name="precontactnumber" id="precontactnumber" placeholder="Ex: +00 (000) 000-00-00" value="<?php echo $fetch['P_ConNum2']?>">
+                                            <div class="row clearfix demo-masked-input">
+                                                <div class="col-lg-2 col-md-1 col-sm-2 col-xs-4 form-control-label">
+                                                    <label for="">Contact Number</label>
+                                                </div>
+                                                <div class="col-lg-3 col-md-1 col-sm-2 col-xs-4">
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <input type="text" class="form-control" name="precontactnumber" id="precontactnumber" placeholder="Ex: +00 (000) 000-00-00" value="<?php echo $fetch['P_ConNum2']?>">
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
 
-                                    <hr>
-                                    <div class="row clearfix">
-                                        <div class="col-lg-4 col-md-1 col-sm-2 col-xs-6 form-control-label">
-                                            <label for="">Name of Relative Not Living with Patient</label>
-                                        </div>
-                                        <div class="col-lg-7 col-md-1 col-sm-2 col-xs-6">
-                                            <div class="form-group">
-                                                <div class="form-line">
-                                                    <input type="text" class="form-control" name="relative" id="relative" onkeyup="capitalize(this.id, this.value);" value="<?php echo $fetch['P_Relative']?>"required>
+                                            <hr>
+                                            <div class="row clearfix">
+                                                <div class="col-lg-4 col-md-1 col-sm-2 col-xs-6 form-control-label">
+                                                    <label for="">Name of Relative Not Living with Patient</label>
+                                                </div>
+                                                <div class="col-lg-7 col-md-1 col-sm-2 col-xs-6">
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <input type="text" class="form-control" name="relative" id="relative" onkeyup="capitalize(this.id, this.value);" value="<?php echo $fetch['P_Relative']?>" required>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="row clearfix">
-                                        <div class="col-lg-2 col-md-1 col-sm-2 col-xs-4 form-control-label">
-                                            <label for="">Present Address</label>
-                                        </div>
-                                        <div class="col-lg-9 col-md-1 col-sm-2 col-xs-8">
-                                            <div class="form-group">
-                                                <div class="form-line">
-                                                    <input type="text" class="form-control" name="relativeadd" id="relativeadd" onkeyup="capitalize(this.id, this.value);" value="<?php echo $fetch['P_RelativeAdd']?>" required>
+                                            <div class="row clearfix">
+                                                <div class="col-lg-2 col-md-1 col-sm-2 col-xs-4 form-control-label">
+                                                    <label for="">Present Address</label>
+                                                </div>
+                                                <div class="col-lg-9 col-md-1 col-sm-2 col-xs-8">
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <input type="text" class="form-control" name="relativeadd" id="relativeadd" onkeyup="capitalize(this.id, this.value);" value="<?php echo $fetch['P_RelativeAdd']?>" required>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="row clearfix demo-masked-input">
-                                        <div class="col-lg-2 col-md-1 col-sm-2 col-xs-4 form-control-label">
-                                            <label for="">Contact Number</label>
-                                        </div>
-                                        <div class="col-lg-3 col-md-1 col-sm-2 col-xs-4">
-                                            <div class="form-group">
-                                                <div class="form-line">
-                                                    <input type="text" class="form-control mobile-phone-number" name="relativecon" id="relativecon" placeholder="Ex: +00 (000) 000-00-00" value="<?php echo $fetch['P_RelativeConNum']?>" required>
+                                            <div class="row clearfix demo-masked-input">
+                                                <div class="col-lg-2 col-md-1 col-sm-2 col-xs-4 form-control-label">
+                                                    <label for="">Contact Number</label>
+                                                </div>
+                                                <div class="col-lg-3 col-md-1 col-sm-2 col-xs-4">
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <input type="text" class="form-control" name="relativecon" id="relativecon" placeholder="Ex: +00 (000) 000-00-00" value="<?php echo $fetch['P_RelativeConNum']?>" required>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <div class="row clearfix  demo-masked-input">
-                                        <div class="col-lg-4 col-md-1 col-sm-2 col-xs-5 form-control-label">
-                                            <label for="">Date of Initial Dialysis was Started</label>
-                                        </div>
-                                        <div class="col-lg-2 col-md-1 col-sm-2 col-xs-4">
-                                            <div class="form-group">
-                                                <div class="form-line">
-                                                    <input type="text" class="form-control date" name="DIDS" id="DIDS" placeholder="YYYY/MM/DD" value="<?php echo $fetch['P_InDial']?>" required>
+                                            <hr>
+                                            <div class="row clearfix  demo-masked-input">
+                                                <div class="col-lg-4 col-md-1 col-sm-2 col-xs-5 form-control-label">
+                                                    <label for="">Date of Initial Dialysis was Started</label>
+                                                </div>
+                                                <div class="col-lg-2 col-md-1 col-sm-2 col-xs-4">
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <input type="date" class="form-control unstyled" name="DIDS" id="DIDS" placeholder="YYYY/MM/DD" style="padding-right:0" value="<?php echo $fetch['P_InDial']?>" required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-3 col-md-1 col-sm-2 col-xs-5 form-control-label">
+                                                    <label for="">Age When first Dialysis Started</label>
+                                                </div>
+                                                <div class="col-lg-1 col-md-1 col-sm-2 col-xs-2">
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <input type="number" class="form-control" name="fdage" id="fdage" min="0" max="110" step="1" value="<?php echo $fetch['P_AgeFD']?>" required>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                            <div class="row clearfix ">
+                                                <div class="col-lg-4 col-md-1 col-sm-2 col-xs-6 form-control-label">
+                                                    <label>Type of Dialysis when First Started</label>
+                                                </div>
 
-                                        <div class="col-lg-3 col-md-1 col-sm-2 col-xs-5 form-control-label">
-                                            <label for="">Age When first Dialysis Started</label>
-                                        </div>
-                                        <div class="col-lg-1 col-md-1 col-sm-2 col-xs-2">
-                                            <div class="form-group">
-                                                <div class="form-line">
-                                                    <input type="number" class="form-control" name="fdage" id="fdage" min="0" max="110" step="1" value="<?php echo $fetch['P_AgeFD']?>" required>
+                                                <div class="form-group demo-radio-button">
+
+                                                    <input name="type1" type="radio" class="with-gap" id="radio_3" value="0" <?php if ($fetch[ 'dialysistype']==0 ){?> checked="active"
+                                                    <?php } ?>/>
+                                                    <label for="radio_3">HemoDialysis</label>
+                                                    <input name="type1" type="radio" id="radio_4" class="with-gap" value="1" <?php if ($fetch[ 'dialysistype']==1 ){?> checked="active"
+                                                    <?php } ?>/>
+                                                    <label for="radio_4">Peritoneal Dialysis</label>
+
+
+                                                </div>
+
+                                            </div>
+                                            <div class="row clearfix">
+                                                <div class="col-lg-2 col-md-1 col-sm-2 col-xs-3 form-control-label">
+                                                    <label for="">Erythropoetin</label>
+                                                </div>
+                                                <div class="col-lg-6 col-md-1 col-sm-2 col-xs-8">
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <input type="text" class="form-control" name="erythropoetin" id="erythropoetin" onkeyup="capitalize(this.id, this.value);" value="<?php echo $fetch['P_Erythropoetin']?>" required>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="row clearfix ">
-                                        <div class="col-lg-4 col-md-1 col-sm-2 col-xs-6 form-control-label">
-                                            <label>Type of Dialysis when First Started</label>
-                                        </div>
-
-                                        <div class="form-group demo-radio-button">
-
-                                            <input name="type1" type="radio" class="with-gap" id="radio_3" value="0"
-                                                   <?php if ($fetch[ 'dialysistype']==0 ){?> checked="active"<?php } ?>/>
-                                            <label for="radio_3">HemoDialysis</label>
-                                            <input name="type1" type="radio" id="radio_4" class="with-gap" value="1"
-                                                    <?php if ($fetch[ 'dialysistype']==1 ){?> checked="active"<?php } ?>/>
-                                            <label for="radio_4">Peritoneal Dialysis</label>
-
-
-                                        </div>
-
-                                    </div>
-                                    <div class="row clearfix">
-                                        <div class="col-lg-2 col-md-1 col-sm-2 col-xs-3 form-control-label">
-                                            <label for="">Erythropoetin</label>
-                                        </div>
-                                        <div class="col-lg-6 col-md-1 col-sm-2 col-xs-8">
-                                            <div class="form-group">
-                                                <div class="form-line">
-                                                    <input type="text" class="form-control" name="erythropoetin" id="erythropoetin" onkeyup="capitalize(this.id, this.value);" value="<?php echo $fetch['P_Erythropoetin']?>" required>
+                                            <div class="row clearfix">
+                                                <div class="col-lg-2 col-md-1 col-sm-2 col-xs-3 form-control-label">
+                                                    <label for="">Nephrologist</label>
                                                 </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row clearfix">
-                                        <div class="col-lg-2 col-md-1 col-sm-2 col-xs-3 form-control-label">
-                                            <label for="">Nephrologist</label>
-                                        </div>
-                                        <div class="col-lg-3 col-md-1 col-sm-2 col-xs-4">
-                                            <div class="form-group">
-                                                <div class="form-line">
-                                                      <select class="form-control show-tick" name="nephrologist" id="nephrologist" title="&nbsp" required>
+                                                <div class="col-lg-3 col-md-1 col-sm-2 col-xs-4">
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <select class="form-control show-tick" name="nephrologist" id="nephrologist" title="&nbsp" required>
                                          
                                                         <?php 
 
@@ -507,78 +549,115 @@ include('session.php');
                                                         }
                                                     ?>
                                             </select>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="row clearfix">
-                                        <div class="col-lg-2 col-md-1 col-sm-2 col-xs-3 form-control-label">
-                                            <label for="">Diagnosis</label>
-                                        </div>
-                                        <div class="col-lg-8 col-md-1 col-sm-2 col-xs-8">
-                                            <div class="form-group">
-                                                <div class="form-line">
-                                                    <input type="text" class="form-control" name="diagnosis" id="diagnosis" onkeyup="capitalize(this.id, this.value);" value="<?php echo $fetch['P_Diagnosis']?>" required>
+                                            <div class="row clearfix">
+                                                <div class="col-lg-2 col-md-1 col-sm-2 col-xs-3 form-control-label">
+                                                    <label for="">Diagnosis</label>
+                                                </div>
+                                                <div class="col-lg-8 col-md-1 col-sm-2 col-xs-8">
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <input type="text" class="form-control" name="diagnosis" id="diagnosis" onkeyup="capitalize(this.id, this.value);" value="<?php echo $fetch['P_Diagnosis']?>" required>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="row clearfix">
-                                        <div class="col-lg-2 col-md-1 col-sm-2 col-xs-4 form-control-label">
-                                            <label for="">PhilHealth Number</label>
-                                        </div>
-                                        <div class="col-lg-3 col-md-1 col-sm-2 col-xs-4">
-                                            <div class="form-group">
-                                                <div class="form-line">
-                                                    <input type="text" class="form-control" name="phnum" id="phnum" onkeyup="capitalize(this.id, this.value);" value="<?php echo $fetch['P_PhilHealthNum']?>">
+                                            <div class="row clearfix">
+                                                <div class="col-lg-2 col-md-1 col-sm-2 col-xs-4 form-control-label">
+                                                    <label for="">PhilHealth Number</label>
+                                                </div>
+                                                <div class="col-lg-3 col-md-1 col-sm-2 col-xs-4">
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <input type="text" class="form-control" name="phnum" id="phnum" onkeyup="capitalize(this.id, this.value);" value="<?php echo $fetch['P_PhilHealthNum']?>">
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="row clearfix">
-                                        <div class="col-lg-2 col-md-1 col-sm-2 col-xs-4 form-control-label">
-                                            <label for="">Data Furnished By</label>
-                                        </div>
-                                        <div class="col-lg-3 col-md-1 col-sm-2 col-xs-4">
-                                            <div class="form-group">
-                                                <div class="form-line">
-                                                    <input type="text" class="form-control" name="dfb" id="dfb" onkeyup="capitalize(this.id, this.value);" value="<?php echo $fetch['P_DFBName']?>" required>
+                                            <div class="row clearfix">
+                                                <div class="col-lg-2 col-md-1 col-sm-2 col-xs-4 form-control-label">
+                                                    <label for="">Data Furnished By</label>
                                                 </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-1 col-md-1 col-sm-2 col-xs-2 form-control-label">
-                                            <label for="">Relation</label>
-                                        </div>
-                                        <div class="col-lg-2 col-md-1 col-sm-2 col-xs-4">
-                                            <div class="form-group">
-                                                <div class="form-line">
-                                                    <input type="text" class="form-control" name="relation" id="relation" onkeyup="capitalize(this.id, this.value);" value="<?php echo $fetch['P_DFBRelation']?>" required>
+                                                <div class="col-lg-3 col-md-1 col-sm-2 col-xs-4">
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <input type="text" class="form-control" name="dfb" id="dfb" onkeyup="capitalize(this.id, this.value);" value="<?php echo $fetch['P_DFBName']?>" required>
+                                                        </div>
+                                                    </div>
                                                 </div>
+                                                <div class="col-lg-1 col-md-1 col-sm-2 col-xs-2 form-control-label">
+                                                    <label for="">Relation</label>
+                                                </div>
+
+                                                <div class="col-lg-2 col-md-1 col-sm-2 col-xs-4">
+                                                    <select class="form-control show-tick" id="relation" name="relation" title="&nbsp;">
+                                 
+                                        <option value="Parent" <?php if($fetch['P_DFBRelation']== 'Parent') echo "selected"; ?>>Parent</option>
+                                        <option Value="Sibling" <?php if($fetch['P_DFBRelation']== 'Daughter') echo "selected"; ?>>Sibling</option> 
+                                        <option Value="Cousin" <?php if($fetch['P_DFBRelation']== 'Cousin') echo "selected"; ?>>Cousin</option>    
+                                        <option Value="Guardian" <?php if($fetch['P_DFBRelation']== 'Guardian') echo "selected"; ?>>Guardian</option>
+                                         <option Value="Wife" <?php if($fetch['P_DFBRelation']== 'Wife') echo "selected"; ?>>Wife</option>
+                                        <option Value="Self" <?php if($fetch['P_DFBRelation']== 'Self') echo "selected"; ?>>Self</option>
+                                        <option Value="Aunt" <?php if($fetch['P_DFBRelation']== 'Aunt') echo "selected"; ?>>Aunt</option>        
+                                            </select>
+                                                </div>
+
                                             </div>
-                                        </div>
+                                            <hr>
+
+                                            <div class="row clearfix">
+                                                <div class="col-lg-offset-7 col-xs-offset-4">
+                                                    <button type="button" class="btn btn-primary m-t-15 waves-effect" onclick="ClearFields();"> <i class="material-icons">description</i>New</button> &nbsp;
+                                                    <button type="submit" class="btn btn-primary m-t-15 waves-effect" button name="submit"><i class="material-icons">save</i>Save</button> &nbsp;
+                                                    <button type="button" class="btn btn-primary m-t-15 waves-effect" data-toggle="modal" data-target="#defaultModal"><i class="material-icons">find_in_page</i>Find</button>&nbsp;
+                                                    <button type="button" class="btn btn-primary m-t-15 waves-effect" data-toggle="modal" data-target="#employeelist"><i class="material-icons">list</i>List   </button>
+
+                                                </div>
 
 
-
-
-
+                                            </div>
+                                        </form>
                                     </div>
-                                    <hr>
-
-                                    <div class="row clearfix">
-                                        <div class="col-lg-offset-7 col-xs-offset-4">
-                                            <button type="button" class="btn btn-primary m-t-15 waves-effect" onclick="ClearFields();"> <i class="material-icons">description</i>New</button> &nbsp;
-                                            <button type="submit" class="btn btn-primary m-t-15 waves-effect" button name="submit"><i class="material-icons">save</i>Save</button> &nbsp;
-                                            <button type="button" class="btn btn-primary m-t-15 waves-effect" data-toggle="modal" data-target="#defaultModal"><i class="material-icons">find_in_page</i>Find</button>&nbsp;
-                                            <button type="button" class="btn btn-primary m-t-15 waves-effect" data-toggle="modal" data-target="#employeelist"><i class="material-icons">list</i>List   </button>
-
-                                        </div>
-
-
+                                     <div role="tabpanel" class="tab-pane fade in active" id="treatment">
+                                         
                                     </div>
-                                </form>
+                                    <div role="tabpanel" class="tab-pane fade in active" id="lab">
+                                         
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane fade in active" id="physicalexam">
+                                         
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane fade in active" id="listconfinement">
+                                         
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane fade in active" id="weight">
+                                         
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane fade in active" id="Drug">
+                                         
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane fade in active" id="hepatitis">
+                                         
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane fade in active" id="immunization">
+                                         
+                                    </div>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                </div>
                             </div>
-
-
                         </div>
                     </div>
                 </div>
@@ -592,7 +671,7 @@ include('session.php');
                                     <div class="card">
                                         <div class="header bg-indigo">
                                             <h2>
-                                                List of Employees
+                                                List of Patients
 
                                                 <a href=""><i class="material-icons pull-right" data-dismiss="modal">clear</i></a>
                                             </h2>
@@ -733,7 +812,7 @@ include('session.php');
                 document.getElementById("middlename").value = "";
                 document.getElementById("birthdate").value = "";
                 document.getElementById("age").value = "";
-                document.getElementById("gender").value = "";
+                document.getElementById("gender").title = "&nbsp;";
                 document.getElementById("nationality").value = "";
                 document.getElementById("religion").value = "";
                 document.getElementById("civilstatus").value = "";
@@ -753,9 +832,7 @@ include('session.php');
                 document.getElementById("phnum").value = "";
                 document.getElementById("dfb").value = "";
                 document.getElementById("relation").value = "";
-               
-                
-                
+                $('#gender').prop('selectedIndex', 0);
             }
 
 
@@ -816,82 +893,72 @@ include('session.php');
         <!-- Demo Js -->
         <script src="../../js/demo.js"></script>
         <script>
-        $( window ).load(function(){
-        var module ='<?php echo $transaction_a; ?>';
-        var module1 ='<?php echo $patientprofile_a; ?>';
-        var module2 ='<?php echo $employeeprofile_a; ?>';
-        var module3 ='<?php echo $labtest_a; ?>';
-        var module4 ='<?php echo $nephrologist_a; ?>';
-        var module5 ='<?php echo $descriptors_a; ?>';
-        var module6 ='<?php echo $userprofile_a; ?>';
-        var module7 ='<?php echo $maintenance_a; ?>';
-        var module8 ='<?php echo $reports_a; ?>';
-        
-        if(module == '0') 
-        {                       
-            $('#transaction').hide(); 
-            
-        }
+            $(window).load(function() {
+                var module = '<?php echo $transaction_a; ?>';
+                var module1 = '<?php echo $patientprofile_a; ?>';
+                var module2 = '<?php echo $employeeprofile_a; ?>';
+                var module3 = '<?php echo $labtest_a; ?>';
+                var module4 = '<?php echo $nephrologist_a; ?>';
+                var module5 = '<?php echo $descriptors_a; ?>';
+                var module6 = '<?php echo $userprofile_a; ?>';
+                var module7 = '<?php echo $maintenance_a; ?>';
+                var module8 = '<?php echo $reports_a; ?>';
 
-         if(module1 == '0') 
-        {                       
-            $('#patientprofile').hide(); 
-            
-        }
-       
-         if(module2 == '0') 
-        {                       
-            $('#employeeprofile').hide(); 
-            
-        }
-       
-         if(module3 == '0') 
-        {                       
-            $('#labtest').hide(); 
-            
-        }
-       
-         if(module4 == '0') 
-        {                       
-            $('#nephrologist').hide(); 
-            
-        }
-      
-         if(module5 == '0') 
-        {                       
-            $('#descriptors').hide(); 
-            
-        }
-   
-         if(module6 == '0') 
-        {                       
-            $('#userprofile').hide(); 
-            
-        }
-    
-         if(module7 == '0') 
-        {                       
-            $('#systemmaintenance').hide(); 
-            
-        }
-      
-         if(module8 == '0') 
-        {                       
-            $('#reports').hide(); 
-            
-        }
-         if(module1 == '0' && module2 == '0' && module3 == '0' && module4 == '0' && module5 == '0'){
-              $('#profile').hide(); 
-           
-         }  
-        if(module6 == '0' && module7 == '0'){
-              $('#maintenance').hide(); 
-           
-         } 
-        });
-        
-        
-    </script>  
+                if (module == '0') {
+                    $('#transaction').hide();
+
+                }
+
+                if (module1 == '0') {
+                    $('#patientprofile').hide();
+
+                }
+
+                if (module2 == '0') {
+                    $('#employeeprofile').hide();
+
+                }
+
+                if (module3 == '0') {
+                    $('#labtest').hide();
+
+                }
+
+                if (module4 == '0') {
+                    $('#nephrologist').hide();
+
+                }
+
+                if (module5 == '0') {
+                    $('#descriptors').hide();
+
+                }
+
+                if (module6 == '0') {
+                    $('#userprofile').hide();
+
+                }
+
+                if (module7 == '0') {
+                    $('#systemmaintenance').hide();
+
+                }
+
+                if (module8 == '0') {
+                    $('#reports').hide();
+
+                }
+                if (module1 == '0' && module2 == '0' && module3 == '0' && module4 == '0' && module5 == '0') {
+                    $('#profile').hide();
+
+                }
+                if (module6 == '0' && module7 == '0') {
+                    $('#maintenance').hide();
+
+                }
+            });
+
+        </script>
     </body>
 
     </html>
