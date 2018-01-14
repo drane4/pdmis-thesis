@@ -1,14 +1,11 @@
 <?php
 $pageid = $_GET[id];
-list($H_id ,$id2) = explode("|", $pageid);
 
-
-
-
+list($H_id ,$id2) = explode(" | ", $pageid);
 
 if(ISSET($_POST['NephroNO'])){
-  
-   
+  date_default_timezone_set('Asia/Manila');
+    $nephrologistid = $_POST['nephrologistid'];
     $notes = $_POST['p_notes'];
     $order = $_POST['p_order'];
     $date = date("Y-m-d");
@@ -25,18 +22,12 @@ if(ISSET($_POST['NephroNO'])){
   
     if($check > 0){
      $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
- $query = $conn->query("UPDATE `nephronotesorder` SET `nephro_notes` = '$notes', `nephro_order` = '$order' WHERE `nephronotesorder`.`notes_order_Id` = '$id2' && `Hospital_Id` = '$H_id'") or die(mysqli_error());
+ $query = $conn->query("UPDATE `nephronotesorder` SET `nephrologistid` = '$nephrologistid', `nephro_notes` = '$notes', `nephro_order` = '$order' WHERE `nephronotesorder`.`notes_order_Id` = '$id2'") or die(mysqli_error());
     
     }
     else{
         
-        
-         $query = $conn->query("SELECT `nephrologistid` FROM `patientprofile` WHERE `Hospital_Id` = '$H_id'") or die(mysqli_error());
-         $fetch = $query ->fetch_array();
-         $N_id = $fetch['nephrologistid'];
-        
-        
-        $conn->query ("INSERT INTO `nephronotesorder` VALUES ('$N_id', '$notes', '$order', '$date', '', '$H_id')") or die(mysqli_error());
+        $conn->query ("INSERT INTO `nephronotesorder` VALUES ('$nephrologistid', '$notes', '$order', '$date', '', '$H_id')") or die(mysqli_error());
       
         echo "<script type='text/javascript'> alert ('notes/order saved!');</script>";
       
@@ -45,7 +36,7 @@ if(ISSET($_POST['NephroNO'])){
 }
 if(ISSET($_POST['NurseNO'])){
   
-
+date_default_timezone_set('Asia/Manila');
     $focus = $_POST['focus'];
     $data = $_POST['data'];
     $action = $_POST['action'];
@@ -165,6 +156,46 @@ if(ISSET($_POST['MResult'])){
       
     
     }
-}header("location: Transaction.php?id=$H_id");
+}
+if(ISSET($_POST['treatment_infos'])){
+    require 'session.php';
+    date_default_timezone_set('Asia/Manila');
+    $pageid = $_GET[id];
+    list($H_id,$id2) = explode("|", $pageid);
+    $weight = $_POST['weight'];    
+    $duration = $_POST['duration'];
+    $bfr = $_POST['bfr'];
+    $dialyzer = $_POST['dialyzer'];
+    $access = $_POST['access'];
+    $dialyzeruse = $_POST['dialyzeruse'];
+    $heparin = $_POST['heparin'];
+    $machinenum = $_POST['machinenum'];
+    $technician = $_POST['technician'];
+    $date = date("Y-m-d");
+
+    $conn = new mysqli("localhost", 'root', '', 'pdmis') or die(mysqli_error());
+   $q1 = $conn->query ("SELECT * FROM `treatment` WHERE BINARY `Hospital_Id` = '$H_id' && `treatment_date` = '$date'") or die(mysqli_error());
+    $f1 = $q1->fetch_array();
+    $check = $q1->num_rows;
+   
+  
+    if($check > 0){
+    $conn->query ("UPDATE `treatment` SET `treatment_duration` = '$duration', `BFR` = '$bfr', `dialyzer` = '$dialyzer', `dialyzer_user` = '$dialyzeruse', `access` = '$access', `heparin` = '$heparin', `machine_num` = '$machinenum', `weight` = '$weight', `technicianid` = '$technician' WHERE `treatment`.`Hospital_Id` = '$H_id' && `treatment_date` = '$date'") or die(mysqli_error());
+        
+   
+    }
+    else{
+        
+    
+        $conn->query ("INSERT INTO `treatment` VALUES ('', '$date', '$duration', '$bfr', '$dialyzer', '$dialyzeruse', '$access', '$heparin', '$machinenum', '$H_id', '$weight', '$id', '$technician')") or die(mysqli_error());
+      
+        echo "<script type='text/javascript'> alert ('notes/order saved!');</script>";
+      
+    
+    }
+}
+
+
+header("location: Transaction.php?id=$H_id");
 
 ?>

@@ -129,11 +129,26 @@
                 <div class="menu">
                     <ul class="list">
                         <li class="header">MAIN NAVIGATION</li>
-                        <li id="transaction">
-                            <a href="transaction.php">
-                                <i class="material-icons">folder</i>
+                            <li id="transaction">
+                            <a href="javascript:void(0);" class="menu-toggle">
+                                 <i class="material-icons">folder</i>
                                 <span>Transaction</span>
                             </a>
+                             <ul class="ml-menu">
+                                <li id="transaction">
+                                    <a href="transaction.php">HemoTreatment</a>
+                                </li>
+                                <li id="Schedule">
+                                    <a href="LT.php">Schedule</a>
+                                </li>
+                                <li id="Immunization">
+                                    <a href="P.php">Immunization</a>
+                                </li>
+                                <li id="PatientMedicalHistory">
+                                    <a href="D.php">Patient Medical History</a>
+                                </li>
+                            </ul>
+                        
                         </li>
                         <li id="profile">
                             <a href="javascript:void(0);" class="menu-toggle">
@@ -169,7 +184,7 @@
                                     <a href="UserProfile.php">User Profile</a>
                                 </li>
                                 <li id="systemmaintenance">
-                                    <a href="SM.php">System Maintenance</a>
+                                    <a href="maintenance.php">System Maintenance</a>
                                 </li>
                             </ul>
                         </li>
@@ -227,15 +242,25 @@
                                         <div class="col-md-3 col-sm-5 col-xs-4 form-control-label">
                                             <label>Employee ID</label>
                                         </div>
-                                          <div class="col-lg-2 col-md-1 col-sm-1 col-xs-1 ">
-                                            <div class="form-group">
-
+                                          <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3 ">
+                                            <div class="input-group">
                                                 <div class="form-line">
-                                                    <input type="text" class="form-control" name="employeeid" value="<?php echo $fetch['employeeid']?>" id="employeeid" readonly>
+                                                    <input type="text" class="form-control" name="employeeid" value="<?php echo $fetch['employeeid']?>" id="employeeid" style="padding-right:0px;" readonly required> 
                                                 </div>
+                                             <span class="input-group-addon">
+                                                 <button style="color:blue" type="button" class="btn btn-xs" data-toggle="modal" data-target="#smallModal">...</button>
+                                                 
+                                            </span>
                                             </div>
+                                             
                                         </div>
+                                       
+                                                                            
+                                       
+
+                                        
                                     </div>
+                                   
                                     <div class="row clearfix">
                                         <div class="col-lg-3 col-md-1 col-sm-2 col-xs-3 form-control-label">
                                             <label for="">Username</label>
@@ -243,7 +268,9 @@
                                         <div class="col-lg-3 col-md-1 col-sm-2 col-xs-3 col-md-3  form-control-label">
                                             <div class="form-group">
                                                 <div class="form-line">
-                                                    <input type="text" id="username" name="username" class="form-control" placeholder="" value="<?php echo $fetch['username']?>" autofocus required>
+                                                    <input type="text" id="username" name="username" class="form-control" placeholder="" value="<?php echo $fetch['username']?>"
+                                                    <?php if ($fetch[ 'employeeid'] !='' ){?> required<?php } ?>
+                                                           autofocus >
                                                 </div>
                                             </div>
                                         </div>
@@ -269,7 +296,7 @@
                                         <div class="col-lg-3 col-md-1 col-sm-2 col-xs-3 col-md-3  form-control-label">
                                             <div class="form-group">
                                                 <div class="form-line">
-                                                    <input type="password" id="password" name="password" class="form-control" placeholder="" value="<?php echo $fetch['password']?>" required>
+                                                    <input type="password" id="password" name="password" class="form-control" placeholder="" value="<?php echo $fetch['password']?>" <?php if ($fetch[ 'employeeid'] !='' ){?> required<?php } ?>>
                                                 </div>
                                             </div>
                                         </div>
@@ -279,7 +306,7 @@
                                         <div class="col-lg-3 col-md-1 col-sm-2 col-xs-3 col-md-3  form-control-label">
                                             <div class="form-group">
                                                 <div class="form-line">
-                                                    <input type="password" id="password" name="lastname" class="form-control" placeholder="" value="<?php echo $fetch['password']?>" required>
+                                                    <input type="password" id="password" name="lastname" class="form-control" placeholder="" value="<?php echo $fetch['password']?>" <?php if ($fetch[ 'employeeid'] !='' ){?> required<?php } ?>>
                                                 </div>
                                             </div>
                                         </div>
@@ -287,31 +314,24 @@
 
                                     <div class="row clearfix ">
                                         <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
-                                            <label>Position</label>
+                                            <label>Account</label>
                                         </div>
                                         <div class="demo-radio-button col-lg-offset-2 col-md-offset-2 col-sm-offset-3 col-xs-offset-4 " >
 
-                                            <input name="type1" type="radio" class="with-gap" id="radio_3" <?php if ($fetch[ 'position']=='Nurse' ){?> checked="active"
-                                            <?php } ?> <?php if ($fetch[ 'position']!='Nurse' ){?> disabled="disabled"
-                                            <?php } ?> />
-                                            <label for="radio_3">Nurse</label>
-                                            <input name="type1" type="radio" id="radio_4" class="with-gap" <?php if ($fetch[ 'position']=='Head Nurse' ){?> checked="active"
-                                            <?php } ?> <?php if ($fetch[ 'position']!='Head Nurse' ){?> disabled="disabled"
-                                            <?php } ?>/>
-                                            <label for="radio_4">Head Nurse</label>
-                                            <input name="type1" type="radio" id="radio_5" class="with-gap" <?php if ($fetch[ 'position']=='Technician' ){?> checked="active"
-                                            <?php } ?> <?php if ($fetch[ 'position']!='Technician' ){?> disabled="disabled"
-                                            <?php } ?>/>
-                                            <label for="radio_5">Technician</label>
+                                            <input name="type1" type="radio" class="with-gap" id="radio_3" value="a" <?php if ($fetch[ 'account']==a && $_GET[id]!='' ){?> checked="checked"<?php } ?> <?php if ($fetch[ 'account']!=a && $_GET[id]!='' && $fetch[ 'account']!=''){?> disabled<?php } ?> />
+                                            <label for="radio_3">Regular User</label>
+                                            <input name="type1" type="radio" id="radio_4" class="with-gap" value="b" <?php if ($fetch[ 'account']==b && $_GET[id]!='' ){?> checked="checked"<?php } ?> <?php if ($fetch[ 'account']!=b && $_GET[id]!='' && $fetch[ 'account']!='' ){?> disabled<?php } ?> />
+                                            <label for="radio_4">Administrator</label>
+                                        
                                         </div>
                                         <hr>
 
                                     </div>
-                                    <div class="row clearfix">
-                                        <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
+                                  <div class="row clearfix ">
+                                        <div class="col-lg-12 col-md-12 col-sm-13 col-xs-12">
+                                           <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">   
                                             <label>Transaction</label>
-                                        </div>
-                                        <div class="col-lg-2 col-md-2 col-sm-1 col-xs-1">
+                                       
                                             <div class="form-group input-group">
                                                 <span class="input-group-addon">
                                             <input type="checkbox" id="transaction_a" name="transaction_a" class="filled-in" value="1"
@@ -320,65 +340,52 @@
                                                    </span>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="row clearfix">
-                                        <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
-                                            <label>Profile</label>
-                                        </div>
-                                        <div class="col-lg-2 col-md-2 col-sm-1 col-xs-1">
+
+                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                            <label style="margin-left:-20px;">Profile</label>
+                                       
                                             <div class="form-group input-group">
-                                                <span class="input-group-addon">
                                             <input type="checkbox" id="patientprofile_a" name="patientprofile_a" class="filled-in" value="1"
                                                    <?php if ($fetch[ 'patientprofile_a']==1 ){?> checked="checked"<?php } ?>/>
-                                            <label for="patientprofile_a">PatientProfile</label>
-                                                   </span>
-                                                <span class="input-group-addon">
-                                            <input type="checkbox" id="employeeprofile_a" name="employeeprofile_a" class="filled-in" value="1"
+                                            <label for="patientprofile_a">Patient Profile</label>         
+                                            </div>
+                                            <div class="form-group input-group">       
+                                          <input type="checkbox" id="employeeprofile_a" name="employeeprofile_a" class="filled-in" value="1"
                                                    <?php if ($fetch[ 'employeeprofile_a']==1 ){?> checked="checked"<?php } ?>/>
-                                            <label for="employeeprofile_a">EmployeeProfile</label>
-                                                   </span>
-                                                <span class="input-group-addon">
+                                            <label for="employeeprofile_a">Employee Profile</label>   
+                                            </div>
+                                              <div class="form-group input-group">  
                                             <input type="checkbox" id="labtest_a" name="labtest_a" class="filled-in" value="1"
                                                    <?php if ($fetch[ 'labtest_a']==1 ){?> checked="checked"<?php } ?>/>
-                                            <label for="labtest_a">LabTest</label>
-                                                   </span>
-                                                <span class="input-group-addon">
-                                            <input type="checkbox" id="nephrologist_a" name="nephrologist_a" class="filled-in" value="1"
+                                            <label for="labtest_a">Lab Test</label>        
+                                            </div>
+                                              <div class="form-group input-group">
+                                         <input type="checkbox" id="nephrologist_a" name="nephrologist_a" class="filled-in" value="1"
                                                    <?php if ($fetch[ 'nephrologist_a']==1 ){?> checked="checked"<?php } ?>/>
-                                            <label for="nephrologist_a">Nephrologist</label>
-                                                   </span>
-                                                <span class="input-group-addon">
+                                            <label for="nephrologist_a">Nephrologist</label>   
+                                            </div>
+                                              <div class="form-group input-group"> 
                                             <input type="checkbox" id="descriptors_a" name="descriptors_a" class="filled-in" value="1"
                                                    <?php if ($fetch[ 'descriptors_a']==1 ){?> checked="checked"<?php } ?>/>
                                             <label for="descriptors_a">Descriptors</label>
-                                                   </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row clearfix">
-                                        <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
-                                            <label>Maintenance</label>
-                                        </div>
-                                        <div class="col-lg-2 col-md-2 col-sm-1 col-xs-1">
-                                            <div class="form-group input-group">
-                                                <span class="input-group-addon">
+                                    </div>                                 
+                                        </div>                 
+                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                            <label style="margin-left:-20px;">Maintenance</label>                            
+                                            <div class="form-group input-group">                                            
                                             <input type="checkbox" id="userprofile_a" name="userprofile_a" class="filled-in" value="1"
                                                    <?php if ($fetch[ 'userprofile_a']==1 ){?> checked="checked"<?php } ?>/>
-                                            <label for="userprofile_a">UserProfile</label>
-                                                   </span>
-                                                <span class="input-group-addon">
+                                            <label for="userprofile_a">UserProfile</label>                                         
+                                                </div>
+                                              <div class="form-group input-group">                                  
                                             <input type="checkbox" id="maintenance_a" name="maintenance_a" class="filled-in" value="1"
                                                    <?php if ($fetch[ 'maintenance_a']==1 ){?> checked="checked"<?php } ?>/>
-                                            <label for="maintenance_a">SystemMaintenance</label>
-                                                   </span>
+                                            <label for="maintenance_a">SystemMaintenance</label>                                              
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="row clearfix">
-                                        <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
-                                            <label>Reports</label>
-                                        </div>
-                                        <div class="col-lg-2 col-md-2 col-sm-1 col-xs-1">
+                                        </div>                                    
+                                   <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
+                                            <label style="margin-left:-20px;">Reports</label>
+                                
                                             <div class="form-group input-group">
                                                 <span class="input-group-addon">
                                             <input type="checkbox" id="reports_a" name="reports_a" class="filled-in" value="1"
@@ -387,11 +394,14 @@
                                                    </span>
                                             </div>
                                         </div>
+                                      
+                                      
+                                      
+                                      </div>
                                     </div>
-
                                     <div class="row clearfix">
-                                        <div class="col-lg-offset-5 col-xs-offset-5">
-                                            <button type="button" class="btn btn-primary m-t-15 waves-effect" data-toggle="modal" data-target="#smallModal"> <i class="material-icons">add</i>Add</button> &nbsp;
+                                        <div class="col-lg-offset-6 col-xs-offset-5">
+                                            
                                             <button type="button" class="btn btn-primary m-t-15 waves-effect" onclick="ClearFields();"> <i class="material-icons">description</i>New</button> &nbsp;
                                             <button type="button" class="btn btn-primary m-t-15 waves-effect" data-toggle="modal" data-target="#defaultModal"> <i class="material-icons">search</i>Find</button> &nbsp;
                                              <button type="delete" name="delete" class="btn btn-primary m-t-15 waves-effect"> <i class="material-icons">delete</i>Delete</button> &nbsp;
@@ -510,7 +520,7 @@
             </div>
            
         </section>
-
+  
 
 
 
@@ -577,28 +587,6 @@
 
         <!-- Demo Js -->
         <script src="../../js/demo.js"></script>
-        <script>
-        $(document).ready(function() {
-            var position = '<?php echo $fetch['position'] ?>';  
-             if (position == 'Head Nurse') {
-                 
-                 document.getElementById("transaction_a").checked = "true";
-                 document.getElementById("patientprofile_a").checked = "active";
-                 document.getElementById("employeeprofile_a").checked = "active";
-                 document.getElementById("employeeprofile_a").checked = "active";
-                 document.getElementById("labtest_a").checked = "active";
-                 document.getElementById("nephrologist_a").checked = "active";
-                 document.getElementById("descriptors_a").checked = "active";
-                 document.getElementById("userprofile_a").checked = "active";
-                 document.getElementById("maintenance_a").checked = "active";
-                 document.getElementById("reports_a").checked = "active";
-                 
-               
-
-             }
-        });
-        
-        </script>
         <script>
             $(window).load(function() {
 
@@ -667,7 +655,33 @@
             });
 
         </script>
-   
+  <script>
+    jQuery('#radio_3').click(function(){
+    jQuery('#transaction_a').prop('checked', true);
+    jQuery('#patientprofile_a').prop('checked', true);
+    jQuery('#labtest_a').prop('checked', true);
+    jQuery('#nephrologist_a').prop('checked', true);
+    jQuery('#descriptors_a').prop('checked', true);
+    jQuery('#reports_a').prop('checked', true);
+    jQuery('#userprofile_a').prop('checked', false);
+    jQuery('#maintenance_a').prop('checked', false);
+     jQuery('#employeeprofile_a').prop('checked', false);
+});
+    jQuery('#radio_4').click(function(){
+    jQuery('#transaction_a').prop('checked', true);
+    jQuery('#patientprofile_a').prop('checked', true);
+    jQuery('#employeeprofile_a').prop('checked', true);
+    jQuery('#labtest_a').prop('checked', true);
+    jQuery('#nephrologist_a').prop('checked', true);
+    jQuery('#descriptors_a').prop('checked', true);
+    jQuery('#reports_a').prop('checked', true);
+    jQuery('#userprofile_a').prop('checked', true);
+    jQuery('#maintenance_a').prop('checked', true);
+    
+
+});
+
+        </script>
 
     </body>
 

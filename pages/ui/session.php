@@ -9,7 +9,7 @@ $user_check=$_SESSION['username'];
 $ses_sql= $conn->query("SELECT * FROM `employeeprofile` WHERE `username`='$user_check'");
 
  $fetch = $ses_sql ->fetch_array();
- 
+$id = $fetch['employeeid'];
 $username = $fetch['username'];
 $name = $fetch['firstname'] ." ". $fetch['lastname'];
 $position =$fetch['position'];
@@ -29,7 +29,11 @@ $row = mysqli_fetch_assoc($rowSQL);
 $largestUID = $row['maxid'] + 1; 
 $Eid = 'E000' . $largestUID;
 
-
+   $conn = new mysqli("localhost", 'root', '', 'pdmis') or die(mysqli_error());
+    $rowSQL = mysqli_query($conn, "SELECT MAX(nephrologistnum) AS maxid FROM nephrologist"); 
+    $row = mysqli_fetch_assoc($rowSQL); 
+    $largestUID = $row['maxid'] + 1; 
+    $Nid = 'N000' . $largestUID;
 
 
 
