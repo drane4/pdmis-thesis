@@ -29,17 +29,27 @@ if(ISSET($_POST['submit'])){
     }
     else{
         $conn = new mysqli("localhost", 'root', '', 'pdmis') or die(mysqli_error());
-        $rowSQL = mysqli_query($conn, "SELECT MAX(nephrologist) AS maxid FROM nephrologist"); 
+        $rowSQL = mysqli_query($conn, "SELECT MAX(nephrologistnum) AS maxid FROM nephrologist"); 
         $row = mysqli_fetch_assoc($rowSQL); 
         $largestUID = $row['maxid'] + 1; 
-        $id = 'E000' . $largestUID;
+        $id = 'N000' . $largestUID;
         
-        $conn->query ("INSERT INTO `nephrologist` VALUES('', '$id', '$n_lname', '$n_fname', '$n_mname', '$n_telephone', '$n_mobile')") or die(mysqli_error());
+        $conn->query ("INSERT INTO `nephrologist` VALUES('', '$id', '$n_lname', '$n_fname', '$n_mname', '$n_telephone', '$n_mobile', '$address')") or die(mysqli_error());
         
         echo "<script type='text/javascript'> alert ('Account registered successfully!');</script>";
       
     
     }
+}
+if(ISSET($_POST['delete'])){
+  
+     $nephrologistid = $_POST['nephrologistid'];
+  
+    
+    $conn = new mysqli("localhost", 'root', '', 'pdmis') or die(mysqli_error());
+        
+            $conn->query ("DELETE FROM `nephrologist` WHERE `nephrologist`.`nephrologistid` = '$nephrologistid';") or die(mysqli_error());
+    
 }
 header("location: nephrologist.php");
 

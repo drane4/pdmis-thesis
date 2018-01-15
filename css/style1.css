@@ -15,24 +15,13 @@
   top: 0;
   left: 0;
   z-index: 12;
-<<<<<<< HEAD
   width: 100%; }
-=======
-  width: 100%; 
-}
->>>>>>> 7910d6b5ce1ef2b7056ce8a8681a22100166992c
   .navbar .navbar-brand {
     white-space: nowrap;
     -ms-text-overflow: ellipsis;
     -o-text-overflow: ellipsis;
     text-overflow: ellipsis;
-<<<<<<< HEAD
     overflow: hidden; }
-=======
-    overflow: hidden; 
-        background-image: url(../images/silaylogo.png);
-    }
->>>>>>> 7910d6b5ce1ef2b7056ce8a8681a22100166992c
   .navbar .navbar-custom-right-menu {
     float: right; }
   .navbar .navbar-toggle {
@@ -2382,18 +2371,10 @@ body {
   -o-transition: all 0.5s;
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
-<<<<<<< HEAD
   font-family: 'Roboto', Arial, Tahoma, sans-serif; }
     background-image: url("../images/hemo.jpg");
     background-repeat: no-repeat;
     background-size: cover;
-=======
-  font-family: 'Roboto', Arial, Tahoma, sans-serif; 
-     background-image: url("../images/hemo.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-}
->>>>>>> 7910d6b5ce1ef2b7056ce8a8681a22100166992c
 
 h1,
 h2,
@@ -2856,12 +2837,7 @@ section.content {
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
   -ms-border-radius: 2px;
-<<<<<<< HEAD
   border-radius: 2px; }
-=======
-  border-radius: 2px; 
-}
->>>>>>> 7910d6b5ce1ef2b7056ce8a8681a22100166992c
   .card .card-inside-title {
     margin-top: 25px;
     margin-bottom: 15px;
@@ -7764,13 +7740,7 @@ fieldset[disabled] .form-control {
     text-decoration: none;
     color: #00BCD4; }
   .login-page .login-box .logo {
-<<<<<<< HEAD
     margin-bottom: 20px; }
-=======
-    margin-bottom: 20px;
-      text-shadow: 2px 2px 4px #000000;
-    }
->>>>>>> 7910d6b5ce1ef2b7056ce8a8681a22100166992c
     .login-page .login-box .logo a {
       font-size: 36px;
       display: block;
@@ -8089,10 +8059,7 @@ html.ie11 .bs-searchbox .form-control {
   background: -o-linear-gradient(red, yellow, indigo); /* For Opera 11.1 to 12.0 */
   background: -moz-linear-gradient(red, yellow, indigo); /* For Firefox 3.6 to 15 */
   background: linear-gradient(red, yellow, indigo); /* Standard syntax */
-<<<<<<< HEAD
 }
 .user-profile-container{
     padding-left: 20px;
-=======
->>>>>>> 7910d6b5ce1ef2b7056ce8a8681a22100166992c
 }

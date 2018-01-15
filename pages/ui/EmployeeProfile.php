@@ -38,7 +38,7 @@ include('session.php');
         <link href="../../plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
 
         <!-- Custom Css -->
-        <link href="../../css/style2.css" rel="stylesheet">
+        <link href="../../css/style3.css" rel="stylesheet">
 
         <!-- mytable Css -->
         <link href="../../css/table.css" rel="stylesheet">
@@ -81,7 +81,7 @@ include('session.php');
                     <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
                     <a href="javascript:void(0);" class="bars"></a>
                     <center>
-                        <a class="navbar-brand" href="index.html">
+                        <a class="navbar-brand" href="transaction.php">
                             <div class="title">Teresita Jalandoni Provincial Hospital <br> Dialysis Department</div>
                         </a>
                     </center>
@@ -127,11 +127,26 @@ include('session.php');
                  <div class="menu">
                     <ul class="list">
                         <li class="header">MAIN NAVIGATION</li>
-                        <li id="transaction">
-                            <a href="transaction.php">
-                                <i class="material-icons">folder</i>
+                         <li id="transaction">
+                            <a href="javascript:void(0);" class="menu-toggle">
+                                 <i class="material-icons">folder</i>
                                 <span>Transaction</span>
                             </a>
+                             <ul class="ml-menu">
+                                <li id="transaction">
+                                    <a href="transaction.php">HemoTreatment</a>
+                                </li>
+                                <li id="Schedule">
+                                    <a href="LT.php">Schedule</a>
+                                </li>
+                                <li id="Immunization">
+                                    <a href="P.php">Immunization</a>
+                                </li>
+                                <li id="PatientMedicalHistory">
+                                    <a href="D.php">Patient Medical History</a>
+                                </li>
+                            </ul>
+                        
                         </li>
                         <li class="active" id="profile">
                             <a href="javascript:void(0);" class="menu-toggle">
@@ -167,12 +182,12 @@ include('session.php');
                                     <a href="UserProfile.php">User Profile</a>
                                 </li>
                                 <li id="systemmaintenance">
-                                    <a href="SM.php">System Maintenance</a>
+                                    <a href="maintenance.php">System Maintenance</a>
                                 </li>
                             </ul>
                         </li>
                         <li id="reports">
-                            <a href="R.php">
+                            <a href="reports.php">
                                 <i class="material-icons">assignment</i>
                                 <span>Reports</span>
                             </a>
@@ -180,7 +195,7 @@ include('session.php');
                         <li>
                            <a href="logout.php">
                                 <i class="material-icons">input</i>
-                                <span>Exit</span>
+                                <span>Logout</span>
                             </a>
                         </li>
 
@@ -227,12 +242,12 @@ include('session.php');
 
                                     <div class="row clearfix">
                                         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-3 form-control-label">
-                                            <label for="email_address_2">Employee ID</label>
+                                            <label for="email_address_2">Employee ID :</label>
                                         </div>
                                         <div class="col-lg-2 col-md-1 col-sm-1 col-xs-1 ">
                                             <div class="form-group">
 
-                                                <div class="form-line">
+                                                <div class="">
                                                     <input type="text" class="form-control" name="employeeid" value="<?php echo $fetch['employeeid']?>" id="employeeid" placeholder="<?php echo $Eid; ?>" readonly>
                                                 </div>
                                             </div>
@@ -241,8 +256,8 @@ include('session.php');
                                         <div class="col-lg-1 col-md-1 col-sm-2 col-xs-3">
                                             <div class="form-group input-group">
                                                 <span class="input-group-addon">
-                                            <input type="checkbox" id="status" name="status" class="filled-in" value="1" placeholder="checked"
-                                                   <?php if ($fetch[ 'status']==1 ){?> checked="checked"<?php } ?>/>
+                                            <input type="checkbox" id="status" name="status" value="1"
+                                                   <?php if ($fetch[ 'status']==1 ){?> checked="checked"<?php } ?><?php if ($_GET[id]=='' ){?> checked="checked"<?php } ?>>
                                         
                                             <label for="status">Active</label>
                                                    </span>
@@ -436,7 +451,7 @@ include('session.php');
                                         </div>
                                         <div class="body">
                                             <div class="table-responsive">
-                                                <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                                                <table class="table table-bordered table-striped table-hover js-exportable dataTable">
                                                     <thead>
                                                         <tr>
 
@@ -499,7 +514,7 @@ include('session.php');
 
         <script>
             function ClearFields() {
-                
+                document.getElementById("status").checked = "checked";
                 document.getElementById("employeeid").value = "";
                 document.getElementById("lastname").focus();
                 document.getElementById("lastname").value = "";
@@ -508,7 +523,6 @@ include('session.php');
                 document.getElementById("address").value = "";
                 document.getElementById("telnum").value = "";
                 document.getElementById("monum").value = "";
-                document.getElementById("status").title = '#';
                 document.getElementById("position").value = "";
                 document.getElementById("employeeid").active = "";
                 $("#position").val("&nbsp;").change();
@@ -528,6 +542,8 @@ include('session.php');
                 }
                 document.getElementById(textboxid).value = str;
             }
+            
+
 
         </script>
 

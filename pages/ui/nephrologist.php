@@ -128,13 +128,28 @@
                  <div class="menu">
                     <ul class="list">
                         <li class="header">MAIN NAVIGATION</li>
-                        <li class="active" id="transaction">
-                            <a href="transaction.php">
-                                <i class="material-icons">folder</i>
+                          <li id="transaction">
+                            <a href="javascript:void(0);" class="menu-toggle">
+                                 <i class="material-icons">folder</i>
                                 <span>Transaction</span>
                             </a>
+                             <ul class="ml-menu">
+                                <li id="transaction">
+                                    <a href="transaction.php">HemoTreatment</a>
+                                </li>
+                                <li id="Schedule">
+                                    <a href="LT.php">Schedule</a>
+                                </li>
+                                <li id="Immunization">
+                                    <a href="P.php">Immunization</a>
+                                </li>
+                                <li id="PatientMedicalHistory">
+                                    <a href="D.php">Patient Medical History</a>
+                                </li>
+                            </ul>
+                        
                         </li>
-                        <li id="profile">
+                        <li class="active" id="profile">
                             <a href="javascript:void(0);" class="menu-toggle">
                                 <i class="material-icons">people</i>
                                 <span>Profile</span>
@@ -149,7 +164,7 @@
                                 <li id="labtest">
                                     <a href="LT.php">Lab Tests</a>
                                 </li>
-                                <li id="nephrologist">
+                                <li class="active" id="nephrologist">
                                     <a href="nephrologist.php">Nephrologist</a>
                                 </li>
                                 <li id="descriptors">
@@ -168,12 +183,12 @@
                                     <a href="UserProfile.php">User Profile</a>
                                 </li>
                                 <li id="systemmaintenance">
-                                    <a href="SM.php">System Maintenance</a>
+                                    <a href="maintenance.php">System Maintenance</a>
                                 </li>
                             </ul>
                         </li>
                         <li id="reports">
-                            <a href="R.php">
+                            <a href="reports.php">
                                 <i class="material-icons">assignment</i>
                                 <span>Reports</span>
                             </a>
@@ -234,7 +249,7 @@
                                             <div class="form-group">
 
                                                 <div class="form-line">
-                                                    <input type="text" class="form-control" name="nephrologistid" value="<?php echo $fetch['nephrologistid']?>" id="nephrologistid" readonly>
+                                                    <input type="text" class="form-control" name="nephrologistid" value="<?php echo $fetch['nephrologistid']?>" placeholder="<?php echo $Nid; ?>" id="nephrologistid" readonly>
                                                 </div>
                                             </div>
                                         </div>
@@ -301,7 +316,7 @@
                                         <div class="col-lg-2 col-md-1 col-sm-2 col-xs-3">
                                             <div class="form-group">
                                                 <div class="form-line">
-                                                    <input type="text" class="form-control mobile-phone-number" id="n_mobile" name="n_mobile" value="<?php echo $fetch['n_mobile']?>" required>
+                                                    <input type="text" class="form-control mobile-phone-number" id="n_mobile" name="n_mobile" value="<?php echo $fetch['n_mobile']?>">
                                                 </div>
                                             </div>
                                         </div>
@@ -407,7 +422,7 @@
                                         </div>
                                         <div class="body">
                                             <div class="table-responsive">
-                                                <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                                                <table class="table table-bordered table-striped table-hover  js-exportable dataTable">
                                                     <thead>
                                                         <tr>
 

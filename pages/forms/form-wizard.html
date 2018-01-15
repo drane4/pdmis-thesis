@@ -819,53 +819,698 @@
                             </ul>
                         </div>
                         <div class="body">
-                            <div id="wizard_horizontal">
-                                <h2>First Step</h2>
-                                <section>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ut nulla nunc. Maecenas
-                                        arcu sem, hendrerit a tempor quis, sagittis accumsan tellus. In hac habitasse platea
-                                        dictumst. Donec a semper dui. Nunc eget quam libero. Nam at felis metus. Nam tellus
-                                        dolor, tristique ac tempus nec, iaculis quis nisi.
-                                    </p>
-                                </section>
+                           <div class="bs-component">
+                        <ul class="nav nav-tabs">
 
-                                <h2>Second Step</h2>
-                                <section>
-                                    <p>
-                                        Donec mi sapien, hendrerit nec egestas a, rutrum vitae dolor. Nullam venenatis diam ac
-                                        ligula elementum pellentesque. In lobortis sollicitudin felis non eleifend. Morbi
-                                        tristique tellus est, sed tempor elit. Morbi varius, nulla quis condimentum dictum,
-                                        nisi elit condimentum magna, nec venenatis urna quam in nisi. Integer hendrerit sapien
-                                        a diam adipiscing consectetur. In euismod augue ullamcorper leo dignissim quis elementum
-                                        arcu porta. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum leo
-                                        velit, blandit ac tempor nec, ultrices id diam. Donec metus lacus, rhoncus sagittis
-                                        iaculis nec, malesuada a diam. Donec non pulvinar urna. Aliquam id velit lacus.
-                                    </p>
-                                </section>
+                            <li class="active"> <a href="#labresult" data-toggle="tab">Laboratory result</a></li>
+                            <li> <a href="#physicalExam" data-toggle="tab">Physical Examination</a> </li>
+                            <li> <a href="#PC" data-toggle="tab">Problem List &nbsp; /  &nbsp;     Confinement</a> </li>
+                            <li> <a href="#weighthistory" data-toggle="tab">Weight History</a> </li>
 
-                                <h2>Third Step</h2>
-                                <section>
-                                    <p>
-                                        Morbi ornare tellus at elit ultrices id dignissim lorem elementum. Sed eget nisl at justo
-                                        condimentum dapibus. Fusce eros justo, pellentesque non euismod ac, rutrum sed quam.
-                                        Ut non mi tortor. Vestibulum eleifend varius ullamcorper. Aliquam erat volutpat.
-                                        Donec diam massa, porta vel dictum sit amet, iaculis ac massa. Sed elementum dui
-                                        commodo lectus sollicitudin in auctor mauris venenatis.
-                                    </p>
-                                </section>
 
-                                <h2>Forth Step</h2>
-                                <section>
-                                    <p>
-                                        Quisque at sem turpis, id sagittis diam. Suspendisse malesuada eros posuere mauris vehicula
-                                        vulputate. Aliquam sed sem tortor. Quisque sed felis ut mauris feugiat iaculis nec
-                                        ac lectus. Sed consequat vestibulum purus, imperdiet varius est pellentesque vitae.
-                                        Suspendisse consequat cursus eros, vitae tempus enim euismod non. Nullam ut commodo
-                                        tortor.
-                                    </p>
-                                </section>
+
+
+                            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Profile forms<span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li> <a href="#" data-toggle="tab">Drug Profile</a> </li>
+                                    <li> <a href="#" data-toggle="tab">Hepatitis Profile</a> </li>
+                                    <li> <a href="#" data-toggle="tab">Immunization Profile</a> </li>
+                                </ul>
+                            </li>
+                        </ul>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <div class="tab-content" id="myTabContent">
+                            
+                            <div class="tab-pane fade active in" id="labresult">
+                                <div class="row">
+     <div class="col-md-4">
+            <div class="card">
+                <form class="form-inline">
+              <h3 class="card-title">Blood Chemistry</h3>
+                <div class="card-body">
+                    <div>
+                    <div class="form-group col-sm-5">
+                       <label class="control-label">Creatinine</label> </div>      
+                        <input class="form-control input-sm" class="inputSmall" type="number" placeholder="0"></div>
+                   <br>
+                    <div>
+                    <div class="form-group col-sm-5">
+                       <label class="control-label">BUN</label> </div>      
+                        <input class="form-control input-sm" class="inputSmall" type="number" placeholder="0">
+                    </div>
+                     <br>
+                    <div>
+                    <div class="form-group col-sm-5">
+                       <label class="control-label">Magnesium</label> </div>      
+                        <input class="form-control input-sm" class="inputSmall" type="number" placeholder="0">
+                    </div>
+                     <br>
+                    <div>
+                    <div class="form-group col-sm-5">
+                       <label class="control-label">Calcium</label> </div>      
+                        <input class="form-control input-sm" class="inputSmall" type="number" placeholder="0">
+                    </div>
+                     <br>
+                    <div>
+                    <div class="form-group col-sm-5">
+                       <label class="control-label">Phosphorus</label> </div>      
+                        <input class="form-control input-sm" class="inputSmall" type="number" placeholder="0">
+                    </div> 
+                     <br>
+                    <div>
+                    <div class="form-group col-sm-5">
+                       <label class="control-label">Potassium</label> </div>      
+                        <input class="form-control input-sm" class="inputSmall" type="number" placeholder="0">
+                    </div>
+                     <br>
+                    <div>
+                    <div class="form-group col-sm-5">
+                       <label class="control-label">Sodium</label> </div>      
+                        <input class="form-control input-sm" class="inputSmall" type="number" placeholder="0">
+                    </div>
+                     <br>
+                    <div>
+                    <div class="form-group col-sm-5">
+                       <label class="control-label">T. Cholesterol</label> </div>      
+                        <input class="form-control input-sm" class="inputSmall" type="number" placeholder="0">
+                    </div>
+                     <br>
+                    <div>
+                    <div class="form-group col-sm-5">
+                       <label class="control-label">Triglycerides</label> </div>      
+                        <input class="form-control input-sm" class="inputSmall" type="number" placeholder="0">
+                    </div>
+                     <br>
+                    <div>
+                    <div class="form-group col-sm-5">
+                       <label class="control-label">HDL</label> </div>      
+                        <input class="form-control input-sm" class="inputSmall" type="number" placeholder="0">
+                    </div>
+                     <br>
+                    <div>
+                    <div class="form-group col-sm-5">
+                       <label class="control-label">LDL</label> </div>      
+                        <input class="form-control input-sm" class="inputSmall" type="number" placeholder="0">
+                    </div>
+                     <br>
+                    <div>
+                    <div class="form-group col-sm-5">
+                       <label class="control-label">FBS</label> </div>      
+                        <input class="form-control input-sm" class="inputSmall" type="number" placeholder="0">
+                    </div>
+                     <br>
+                    <div>
+                    <div class="form-group col-sm-5">
+                       <label class="control-label">RBS</label> </div>      
+                        <input class="form-control input-sm" class="inputSmall" type="number" placeholder="0">
+                    </div>
+                     <br>
+                    <div>
+                    <div class="form-group col-sm-5">
+                       <label class="control-label">Uric Acid</label> </div>      
+                        <input class="form-control input-sm" class="inputSmall" type="number" placeholder="0">
+                    </div>
+                   
+               
+                  
+                </div>
+                  
+                </form>
+                 <div class="card-footer">
+                                <div class="row">
+                                    <div class="pull-right info">
+                                        <button class="btn btn-primary icon-btn btn-xs" type="button"><i class="fa fa-fw fa-lg fa-check-circle"></i>Save</button>&nbsp;&nbsp;&nbsp;<a class="btn btn-default icon-btn btn-xs" href="#"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancel</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    </div>
+                                </div>
+                                </div>
+         </div>
+            </div>
+               <div class="col-md-4">
+            <div class="card">
+                <form class="form-inline">
+                <h3 class="card-title">Blood Count</h3>
+                <div class="card-body">
+                  <div>
+                    <div class="form-group col-sm-5">
+                       <label class="control-label">RBC</label> </div>      
+                        <input class="form-control input-sm" class="inputSmall" type="number" placeholder="0">
+                    </div>
+                    <br>
+                    <div>
+                    <div class="form-group col-sm-5">
+                       <label class="control-label">WBC </label></div>      
+                        <input class="form-control input-sm" class="inputSmall" type="number" placeholder="0">
+                    </div>  
+                    <br>
+                    <div>
+                    <div class="form-group col-sm-5">
+                       <label class="control-label">Hemoglobin</label> </div>      
+                        <input class="form-control input-sm" class="inputSmall" type="number" placeholder="0">
+                    </div>   
+                    <br>
+                    <div>
+                    <div class="form-group col-sm-5">
+                       <label class="control-label">Hematocrit</label> </div>      
+                        <input class="form-control input-sm" class="inputSmall" type="number" placeholder="0">
+                    </div>   
+                    <br>
+                    <div>
+                    <div class="form-group col-sm-5">
+                       <label class="control-label">Platelet Count</label> </div>      
+                        <input class="form-control input-sm" class="inputSmall" type="number" placeholder="0">
+                    </div>   
+                    <br>
+                    <div>
+                    <div class="form-group col-sm-5">
+                       <label class="control-label">Polys</label> </div>      
+                        <input class="form-control input-sm" class="inputSmall" type="number" placeholder="0">
+                    </div>   
+                    <br>
+                    <div>
+                    <div class="form-group col-sm-5">
+                       <label class="control-label">Lymph</label> </div>      
+                        <input class="form-control input-sm" class="inputSmall" type="number" placeholder="0">
+                    </div>   
+                    <br>
+                    <div>
+                    <div class="form-group col-sm-5">
+                       <label class="control-label">Eosinophil</label> </div>      
+                        <input class="form-control input-sm" class="inputSmall" type="number" placeholder="0">
+                    </div>   
+                    <br>
+                    <div>
+                    <div class="form-group col-sm-5">
+                       <label class="control-label">Monocytes</label> </div>      
+                        <input class="form-control input-sm" class="inputSmall" type="number" placeholder="0">
+                    </div>   
+                    <br>
+                    <div>
+                    <div class="form-group col-sm-5">
+                       <label class="control-label">Basophil</label> </div>      
+                        <input class="form-control input-sm" class="inputSmall" type="number" placeholder="0">
+                    </div>   
+                </div>
+                </form>
+                
+                             <div class="card-footer">
+                                <div class="row">
+                                    <div class="pull-right info">
+                                        <button class="btn btn-primary icon-btn btn-xs" type="button"><i class="fa fa-fw fa-lg fa-check-circle"></i>Save</button>&nbsp;&nbsp;&nbsp;<a class="btn btn-default icon-btn btn-xs" href="#"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancel</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    </div>
+                                </div>
+                                </div>
+
+              
+         </div>
+            </div>
+               <div class="col-md-4">
+            <div class="card">
+               <form class="form-inline">
+              <h3 class="card-title">Urinalysis</h3>
+                <div class="card-body">
+                
+                    <div>
+                    <div class="form-group col-sm-5">
+                       <label class="control-label">pH</label> </div>      
+                        <input class="form-control input-sm" class="inputSmall" type="number" placeholder="0">
+                    </div> 
+                    <br>
+                    <div>
+                    <div class="form-group col-sm-5">
+                       <label class="control-label">Sp. Gravity</label> </div>      
+                        <input class="form-control input-sm" class="inputSmall" type="number" placeholder="0">
+                    </div> <br>
+                    <div>
+                    <div class="form-group col-sm-5">
+                       <label class="control-label">Albumin</label> </div>      
+                        <input class="form-control input-sm" class="inputSmall" type="number" placeholder="0">
+                    </div> <br>
+                    <div>
+                    <div class="form-group col-sm-5">
+                       <label class="control-label">Sugar</label> </div>      
+                        <input class="form-control input-sm" class="inputSmall" type="number" placeholder="0">
+                    </div>  <br>
+                    <div>
+                    <div class="form-group col-sm-5">
+                       <label class="control-label">Pus Cells</label> </div>      
+                        <input class="form-control input-sm" class="inputSmall" type="number" placeholder="0">
+                    </div>  <br>
+                    <div>
+                    <div class="form-group col-sm-5">
+                       <label class="control-label">RBC</label> </div>      
+                        <input class="form-control input-sm" class="inputSmall" type="number" placeholder="0">
+                    </div> 
+                    
+               
+                  
+                        </div>
+                  
+                </form>
+                
+                            
+                                <div class="card-footer">
+                                <div class="row">
+                                    <div class="pull-right info">
+                                        <button class="btn btn-primary icon-btn btn-xs" type="button"><i class="fa fa-fw fa-lg fa-check-circle"></i>Save</button>&nbsp;&nbsp;&nbsp;<a class="btn btn-default icon-btn btn-xs" href="#"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancel</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    </div>
+                                </div>
+                                </div>
+                          
+
+                   </div>
+                   
+            </div>
+
+        </div>
+
+
+
+
                             </div>
+                            <div class="tab-pane fade" id="physicalExam">
+                                <div class="col-md-12">
+                                    <div class="card">
+                                        <h3 class="card-title">Physical Examination</h3>
+                                        <div class="card-body">
+                                            <form class="form-horizontal">
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-2">Blood Pressure</label>
+                                                    <div class="col-md-2">
+                                                        <input class="form-control" type="number" placeholder="0">
+                                                    </div>
+                                                    <label class="control-label col-md-2">Cardiac Rate</label>
+                                                    <div class="col-md-2">
+                                                        <input class="form-control" type="number" placeholder="0">
+                                                    </div>
+                                                    <label class="control-label col-md-2">Repulsive Rate</label>
+                                                    <div class="col-md-2">
+                                                        <input class="form-control" type="number" placeholder="0">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-2">Skin</label>
+                                                    <div class="col-md-10">
+                                                        <input class="form-control" type="text" placeholder="">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-2">Heent</label>
+                                                    <div class="col-md-10">
+                                                        <input class="form-control" type="text" placeholder="">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-2">Chest&nbsp;/&nbsp;Lungs</label>
+                                                    <div class="col-md-10">
+                                                        <input class="form-control" type="text" placeholder="">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-2">Chest&nbsp;/&nbsp;Lungs</label>
+                                                    <div class="col-md-10">
+                                                        <input class="form-control" type="text" placeholder="">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-2">Cardiovascular</label>
+                                                    <div class="col-md-10">
+                                                        <input class="form-control" type="text" placeholder="">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-2">Abdomen</label>
+                                                    <div class="col-md-10">
+                                                        <input class="form-control" type="text" placeholder="">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-2">Rectal</label>
+                                                    <div class="col-md-10">
+                                                        <input class="form-control" type="text" placeholder="">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-2">Extremities</label>
+                                                    <div class="col-md-10">
+                                                        <input class="form-control" type="text" placeholder="">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-2">Neurological</label>
+                                                    <div class="col-md-10">
+                                                        <input class="form-control" type="text" placeholder="">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-2">History By</label>
+                                                    <div class="col-md-10">
+                                                        <input class="form-control" type="text" placeholder="">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-2">Done on</label>
+                                                    <div class="col-md-10">
+                                                        <input class="form-control" id="demoDate" type="text" placeholder="Select Date">
+                                                    </div>
+                                                </div>
+
+                                            </form>
+                                        </div>
+                                        <div class="card-footer">
+                                            <div class="row">
+                                                <div class="col-md-8 col-md-offset-3">
+                                                    <button class="btn btn-primary icon-btn" type="button"><i class="fa fa-fw fa-lg fa-check-circle"></i>Register</button>&nbsp;&nbsp;&nbsp;<a class="btn btn-default icon-btn" href="#"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancel</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                            <div class="tab-pane fade" id="weighthistory">
+                                <div class="col-md-12">
+                                    <div class="card">
+                                        <h3 class="card-title">Weight History</h3>
+                                        <div class="card-body">
+                                            <form class="form-horizontal">
+                                                <br>
+                                                <h4>A. History</h4><br> 1. Dietary Intake change relative to normal
+
+                                                <div class="form-group">
+                                                    <label class="col-lg-3 control-label">Dietary Changes</label>
+                                                    <div class="col-lg-9">
+                                                        <div class="radio">
+                                                            <label>
+                                                                <input id="optionsRadios1" type="radio" name="optionsRadios" value="option1" checked=""> No changes
+                                                            </label>
+
+                                                            <label>
+                                                                <input id="optionsRadios2" type="radio" name="optionsRadios" value="option2">Changes
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-3">Duration</label>
+                                                    <div class="col-md-3">
+                                                        <input class="form-control" type="number" placeholder="">
+                                                    </div>
+                                                    <label class="control-label col-md-2">Weeks</label>
+                                                    <div class="col-md-3">
+                                                        <input class="form-control" type="number" placeholder="">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-3">Type: Sub-Optimal Solid Diet</label>
+                                                    <div class="col-md-3">
+                                                        <input class="form-control" type="number" placeholder="">
+                                                    </div>
+                                                    <label class="control-label col-md-2">Full Liquid Diet</label>
+                                                    <div class="col-md-3">
+                                                        <input class="form-control" type="number" placeholder="">
+                                                    </div>
+                                                </div>
+
+
+
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-3">Hypocaloric Liquid</label>
+                                                    <div class="col-md-3">
+                                                        <input class="form-control" type="number" placeholder="">
+                                                    </div>
+                                                    <label class="control-label col-md-2">Starvation</label>
+                                                    <div class="col-md-3">
+                                                        <input class="form-control" type="number" placeholder="">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="col-lg-12">
+                                                        <div class="radio">
+                                                            <hr> 2. Gastrointestinal Symtoms(Persisted for 2 Weeks): &nbsp; &nbsp;
+
+
+                                                            <label>
+                                                                <input id="optionsRadios1" type="radio" name="optionsRadios" value="option1" checked="" > None
+                                                            </label>
+
+                                                            <label>
+                                                                <input id="optionsRadios2" type="radio" name="optionsRadios" value="option2">Nausea
+                                                            </label>
+                                                            <label>
+                                                                <input id="optionsRadios2" type="radio" name="optionsRadios" value="option2">Vomiting
+                                                            </label>
+                                                            <label>
+                                                                <input id="optionsRadios2" type="radio" name="optionsRadios" value="option2">Diarrhea
+                                                            </label>
+                                                            <label>
+                                                                <input id="optionsRadios2" type="radio" name="optionsRadios" value="option2">Anorexia
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-3">Hypocaloric Liquid</label>
+                                                    <div class="col-md-3">
+                                                        <input class="form-control" type="number" placeholder="">
+                                                    </div>
+                                                    <label class="control-label col-md-2">Starvation</label>
+                                                    <div class="col-md-3">
+                                                        <input class="form-control" type="number" placeholder="">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="col-lg-12">
+                                                        <div class="radio">
+                                                            <hr> 3. Functional Capacity: &nbsp; &nbsp;
+
+
+                                                            <label>
+                                                                <input id="optionsRadios1" type="radio" name="optionsRadios" value="option1" checked="" > No Dysfunction
+                                                            </label>
+
+                                                            <label>
+                                                                <input id="optionsRadios2" type="radio" name="optionsRadios" value="option2">Dysfunction
+                                                             </label>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-3">Duration</label>
+                                                            <div class="col-md-3">
+                                                                <input class="form-control" type="text" placeholder="">
+                                                            </div>
+                                                            <label class="control-label col-md-2">Weeks</label>
+                                                            <div class="col-md-3">
+                                                                <input class="form-control" type="text" placeholder="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+
+                                                            <label class="control-label col-md-3">Type: &nbsp; Working Sub-Optimally </label>
+                                                            <div class="col-md-3">
+                                                                <input class="form-control" type="text" placeholder="">
+                                                            </div>
+                                                            <label class="control-label col-md-2">Ambulatory</label>
+                                                            <div class="col-md-3">
+                                                                <input class="form-control" type="text" placeholder="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+
+                                                            <label class="control-label col-md-3">Bedridden </label>
+                                                            <div class="col-md-3">
+                                                                <input class="form-control" type="text" placeholder="">
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <div class="col-lg-12">
+
+                                                        <hr> 4. Disease And It's Relationship to Nutritional Requirements: &nbsp; &nbsp;
+                                                        <div class="form-group">
+
+                                                            <label class="control-label col-md-3">Type: &nbsp; Primary Diagnosis </label>
+                                                            <div class="col-md-3">
+                                                                <input class="form-control" type="text" placeholder="">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label class="col-lg-3 control-label">Dietary Changes</label>
+                                                            <div class="col-lg-9">
+                                                                <div class="radio">
+                                                                    <label>
+                                                                <input id="optionsRadios1" type="radio" name="optionsRadios" value="option1" checked=""> No
+                                                            </label>
+
+                                                                    <label>
+                                                                <input id="optionsRadios2" type="radio" name="optionsRadios" value="option2">Low
+                                                            </label>
+                                                                    <label>
+                                                                <input id="optionsRadios2" type="radio" name="optionsRadios" value="option2">Moderate
+                                                            </label>
+                                                                    <label>
+                                                                <input id="optionsRadios2" type="radio" name="optionsRadios" value="option2">High
+                                                            </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <h4>B. Physical (For Each Specify: 0=Normal, 1=Mild, 2=Moderate, 3=Severe) </h4><br>
+
+
+                                                <div class="form-group">
+
+                                                    <label class="control-label col-md-3">Loss of Subcutaneous Fat(Triceps/Chest)</label>
+                                                    <div class="col-md-1">
+                                                        <input class="form-control" type="number" placeholder="">
+                                                    </div>
+                                                    <label class="control-label col-md-2">Muscle Wasting(Quaricepts)</label>
+                                                    <div class="col-md-1">
+                                                        <input class="form-control" type="text" placeholder="">
+                                                    </div>
+                                                    <label class="control-label col-md-2">Ancle Edema</label>
+                                                    <div class="col-md-1">
+                                                        <input class="form-control" type="number" placeholder="">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+
+                                                    <label class="control-label col-md-3">Sacral Edema</label>
+                                                    <div class="col-md-1">
+                                                        <input class="form-control" type="text" placeholder="">
+                                                    </div>
+
+
+                                                    <label class="control-label col-md-2">Ascites</label>
+                                                    <div class="col-md-1">
+                                                        <input class="form-control" type="number" placeholder="">
+                                                    </div>
+                                                </div>
+
+                                                <br>
+                                                <h4>C. Subjective Global Assessment Rating </h4><br>
+                                                <div class="form-group">
+                                                    <div class="col-lg-12">
+                                                        <div class="radio">
+
+
+
+
+                                                            <label>
+                                                                <input id="optionsRadios1" type="radio" name="optionsRadios" value="option1" checked="" > Well Nourished A.
+                                                            </label>
+
+                                                            <label>
+                                                                <input id="optionsRadios2" type="radio" name="optionsRadios" value="option2">Suspected or Moderately Malnourished B.
+                                                            </label>
+                                                            <label>
+                                                                <input id="optionsRadios2" type="radio" name="optionsRadios" value="option2">Severe Malnourished
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="card-footer">
+                                                    <button class="btn btn-primary icon-btn" type="button"><i class="fa fa-fw fa-lg fa-check-circle">                                          </i>Save</button>&nbsp;&nbsp;&nbsp;<a class="btn btn-default icon-btn" href="#"><i class="fa fa-fw fa-lg fa-times-circle">                                      </i>Cancel</a>
+                                                </div>
+
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+                            <div class="tab-pane fade" id="PC">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="card">
+                                            <h3 class="card-title">Problem List</h3>
+                                            <div class="card-body">
+
+                                                <form>
+                                                    <div class="form-group">
+                                                        <label class="control-label">Name of Hospital</label>
+                                                        <input class="form-control" type="text" placeholder="">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="control-label">Date of Confinement</label>
+                                                        <input class="form-control" id="demoDate" type="text" placeholder="Select Date">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="control-label">Reason of confinement</label>
+                                                        <input class="form-control" type="text" placeholder="">
+                                                    </div>
+                                                    <div class="card-footer">
+                                                        <button class="btn btn-primary icon-btn" type="button"><i class="fa fa-fw fa-lg fa-check-circle">                                          </i>Save</button>&nbsp;&nbsp;&nbsp;<a class="btn btn-default icon-btn" href="#"><i class="fa fa-fw fa-lg fa-times-circle">                                      </i>Cancel</a>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="card">
+                                            <h3 class="card-title">Confinement</h3>
+                                            <div class="card-body">
+                                                <form>
+                                                    <div class="form-group">
+                                                        <label class="control-label">Problem List</label>
+                                                        <input class="form-control" type="text" placeholder="">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="control-label">Date Noted</label>
+                                                        <input class="form-control" id="demoDate2" type="text" placeholder="Select Date">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="control-label">Date Resolved</label>
+                                                        <input class="form-control" id="demoDate3" type="text" placeholder="Select Date">
+                                                    </div>
+                                                    <div class="card-footer">
+                                                        <button class="btn btn-primary icon-btn" type="button"><i class="fa fa-fw fa-lg fa-check-circle">                                          </i>Save</button>&nbsp;&nbsp;&nbsp;<a class="btn btn-default icon-btn" href="#"><i class="fa fa-fw fa-lg fa-times-circle">                                      </i>Cancel</a>
+                                                    </div>
+
+
+
+
+
+
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+
+
+
+
+
+
+                                </div>
+                            </div>
+                            <!----END DIV                           ------>
+                        </div>
+                    </div>
                         </div>
                     </div>
                 </div>

@@ -6665,13 +6665,16 @@ fieldset[disabled] .form-control {
   top: 0;
   left: 0;
   z-index: 12;
-  width: 100%; }
+  width: 100%; 
+    
+}
   .navbar .navbar-brand {
     white-space: nowrap;
     -ms-text-overflow: ellipsis;
     -o-text-overflow: ellipsis;
     text-overflow: ellipsis;
-    overflow: hidden; }
+    overflow: hidden; 
+       }
   .navbar .navbar-custom-right-menu {
     float: right; }
   .navbar .navbar-toggle {
