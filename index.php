@@ -28,7 +28,7 @@ header("location: pages/ui/transaction.php");
     <link href="plugins/animate-css/animate.css" rel="stylesheet" />
 
     <!-- Custom Css -->
-    <link href="css/style3.css" rel="stylesheet">
+    <link href="css/style2.css" rel="stylesheet">
 </head>
 
 <body class="login-page">

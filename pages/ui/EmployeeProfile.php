@@ -38,7 +38,7 @@ include('session.php');
         <link href="../../plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
 
         <!-- Custom Css -->
-        <link href="../../css/style3.css" rel="stylesheet">
+        <link href="../../css/style2.css" rel="stylesheet">
 
         <!-- mytable Css -->
         <link href="../../css/table.css" rel="stylesheet">
@@ -81,7 +81,7 @@ include('session.php');
                     <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
                     <a href="javascript:void(0);" class="bars"></a>
                     <center>
-                        <a class="navbar-brand" href="transaction.php">
+                        <a class="navbar-brand" href="index.html">
                             <div class="title">Teresita Jalandoni Provincial Hospital <br> Dialysis Department</div>
                         </a>
                     </center>
@@ -136,15 +136,7 @@ include('session.php');
                                 <li id="transaction">
                                     <a href="transaction.php">HemoTreatment</a>
                                 </li>
-                                <li id="Schedule">
-                                    <a href="LT.php">Schedule</a>
-                                </li>
-                                <li id="Immunization">
-                                    <a href="P.php">Immunization</a>
-                                </li>
-                                <li id="PatientMedicalHistory">
-                                    <a href="D.php">Patient Medical History</a>
-                                </li>
+                              
                             </ul>
                         
                         </li>
@@ -160,14 +152,23 @@ include('session.php');
                                 <li class="active" id="employeeprofile">
                                     <a href="EmployeeProfile.php">Employee Profile</a>
                                 </li>
-                                <li id="labtest">
-                                    <a href="LT.php">Lab Tests</a>
-                                </li>
-                                <li id="nephrologist">
+                                <li class="" id="nephrologist">
                                     <a href="nephrologist.php">Nephrologist</a>
                                 </li>
+                                
+                            <li id="schedule">
+                            <a href="javascript:void(0);" class="menu-toggle">
+                                <span>Schedule</span>
+                            </a>
+                            <ul class="ml-menu">
+                                 <li id="descriptors">
+                                    <a href="patientschedule.php">Patient</a>
+                                </li>
                                 <li id="descriptors">
-                                    <a href="D.php">Descriptors</a>
+                                    <a href="nephroschedule.php">Nephrologist</a>
+                                </li>
+                                
+                                </ul>
                                 </li>
                             </ul>
                         </li>
@@ -181,13 +182,16 @@ include('session.php');
                                 <li id="userprofile">
                                     <a href="UserProfile.php">User Profile</a>
                                 </li>
+                                <li id="descriptors">
+                                    <a href="D.php">Descriptors</a>
+                                </li>
                                 <li id="systemmaintenance">
                                     <a href="maintenance.php">System Maintenance</a>
                                 </li>
                             </ul>
                         </li>
                         <li id="reports">
-                            <a href="reports.php">
+                            <a href="R.php">
                                 <i class="material-icons">assignment</i>
                                 <span>Reports</span>
                             </a>
@@ -195,7 +199,7 @@ include('session.php');
                         <li>
                            <a href="logout.php">
                                 <i class="material-icons">input</i>
-                                <span>Logout</span>
+                                <span>Exit</span>
                             </a>
                         </li>
 

@@ -16,6 +16,9 @@
   left: 0;
   z-index: 12;
   width: 100%; 
+    background-image: url(../images/facade.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
   .navbar .navbar-brand {
     white-space: nowrap;
@@ -2375,6 +2378,9 @@ body {
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
   font-family: 'Roboto', Arial, Tahoma, sans-serif; 
+     background-image: url("../images/hemo.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
     
 }
 
@@ -4032,6 +4038,10 @@ section.content {
 .dtp table.dtp-picker-days tr td a.selected {
   background: #007d72;
   color: #fff; }
+
+
+
+
 
 /* Bootstrap Select ============================ */
 .bootstrap-select {
@@ -5960,8 +5970,8 @@ fieldset[disabled] .form-control {
 .tabcontrol > .steps .current-info,
 .wizard > .content > .title,
 .tabcontrol > .content > .title {
-  position: relative;
-  left: 500em; }
+  position: absolute;
+  left: -999em; }
 
 .wizard > .steps {
   position: relative;
@@ -6663,18 +6673,13 @@ fieldset[disabled] .form-control {
   top: 0;
   left: 0;
   z-index: 12;
-  width: 100%; 
-    
-}
+  width: 100%; }
   .navbar .navbar-brand {
     white-space: nowrap;
     -ms-text-overflow: ellipsis;
     -o-text-overflow: ellipsis;
     text-overflow: ellipsis;
-    overflow: hidden; 
-    background-image: url(../images/facade.jpg);    
-     background-repeat: no-repeat;
-}
+    overflow: hidden; }
   .navbar .navbar-custom-right-menu {
     float: right; }
   .navbar .navbar-toggle {
@@ -8071,3 +8076,4 @@ html.ie11 .bs-searchbox .form-control {
   background: -moz-linear-gradient(red, yellow, indigo); /* For Firefox 3.6 to 15 */
   background: linear-gradient(red, yellow, indigo); /* Standard syntax */
 }
+

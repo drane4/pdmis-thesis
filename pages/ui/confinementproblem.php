@@ -255,7 +255,7 @@ require 'session.php';
                         <div class="card">
                             <div class="header bg-indigo">
                                 <h2>
-                                    Dietary Assessment, Updates and Progress Notes
+                                    Confinement Record and Problem List
                                 </h2>
 
                             </div>
@@ -311,11 +311,11 @@ require 'session.php';
                                                 </div>
                                             </div>
                                         </div>
-                                    <div class="row clearfix">
-                                        <div class="col-md-2 col-sm-5 col-xs-4 form-control-label">
+                                        <div class="row clearfix">
+                                        <div class="col-md-2 col-sm-5 col-xs-4 form-control-label" style="margin-left: 22px;">
                                             <label>Diagnosis:</label>
                                         </div>
-                                        <div class="col-lg-9 col-md-2 col-sm-1 col-xs-1 ">
+                                        <div class="col-lg-9 col-md-2 col-sm-1 col-xs-1" style="margin-left: 15px;">
                                             <div class="form-group">
                                                 <div class="form-line">
                                                     <input type="text" class="form-control" name="employeeid" value="" id="employeeid" required>
@@ -434,8 +434,10 @@ require 'session.php';
                                             <button type="button" class="btn btn-primary m-t-15 waves-effect" data-toggle="modal" data-target="#employeelist"><i class="material-icons">list</i>List   </button>
 
                                         </div>
-
-
+                                             </div>
+                                            </div>
+                                         </div>
+                                        </div>
                                     </div>
                                 </form>
                             </div>
@@ -445,7 +447,7 @@ require 'session.php';
                     </div>
                 </div>
 
-      
+           </div>
 
 
 

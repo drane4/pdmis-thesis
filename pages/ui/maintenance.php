@@ -163,11 +163,25 @@ include('session.php');
                                 <li id="labtest">
                                     <a href="LT.php">Lab Tests</a>
                                 </li>
-                                <li id="nephrologist">
+                                <li class="" id="nephrologist">
                                     <a href="nephrologist.php">Nephrologist</a>
                                 </li>
                                 <li id="descriptors">
                                     <a href="D.php">Descriptors</a>
+                                </li>
+                            <li id="schedule">
+                            <a href="javascript:void(0);" class="menu-toggle">
+                                <span>Schedule</span>
+                            </a>
+                            <ul class="ml-menu">
+                                 <li id="descriptors">
+                                    <a href="patientschedule.php">Patient</a>
+                                </li>
+                                <li id="descriptors">
+                                    <a href="nephroschedule.php">Nephrologist</a>
+                                </li>
+                                
+                                </ul>
                                 </li>
                             </ul>
                         </li>
@@ -179,7 +193,7 @@ include('session.php');
                             </a>
                             <ul class="ml-menu">
                                 <li id="userprofile">
-                                    <a href="UserProfile.php">User Account</a>
+                                    <a href="UserProfile.php">User Profile</a>
                                 </li>
                                 <li  class="active" id="systemmaintenance">
                                     <a href="maintenance.php">System Maintenance</a>
@@ -187,7 +201,7 @@ include('session.php');
                             </ul>
                         </li>
                         <li id="reports">
-                            <a href="reports.php">
+                            <a href="R.php">
                                 <i class="material-icons">assignment</i>
                                 <span>Reports</span>
                             </a>
@@ -195,7 +209,7 @@ include('session.php');
                         <li>
                            <a href="logout.php">
                                 <i class="material-icons">input</i>
-                                <span>Logout</span>
+                                <span>Exit</span>
                             </a>
                         </li>
 

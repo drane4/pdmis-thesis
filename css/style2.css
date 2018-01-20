@@ -4035,6 +4035,10 @@ section.content {
   background: #007d72;
   color: #fff; }
 
+
+
+
+
 /* Bootstrap Select ============================ */
 .bootstrap-select {
   box-shadow: none !important;
@@ -6665,16 +6669,13 @@ fieldset[disabled] .form-control {
   top: 0;
   left: 0;
   z-index: 12;
-  width: 100%; 
-    
-}
+  width: 100%; }
   .navbar .navbar-brand {
     white-space: nowrap;
     -ms-text-overflow: ellipsis;
     -o-text-overflow: ellipsis;
     text-overflow: ellipsis;
-    overflow: hidden; 
-       }
+    overflow: hidden; }
   .navbar .navbar-custom-right-menu {
     float: right; }
   .navbar .navbar-toggle {
@@ -8071,3 +8072,4 @@ html.ie11 .bs-searchbox .form-control {
   background: -moz-linear-gradient(red, yellow, indigo); /* For Firefox 3.6 to 15 */
   background: linear-gradient(red, yellow, indigo); /* Standard syntax */
 }
+

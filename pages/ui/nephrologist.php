@@ -137,19 +137,11 @@
                                 <li id="transaction">
                                     <a href="transaction.php">HemoTreatment</a>
                                 </li>
-                                <li id="Schedule">
-                                    <a href="LT.php">Schedule</a>
-                                </li>
-                                <li id="Immunization">
-                                    <a href="P.php">Immunization</a>
-                                </li>
-                                <li id="PatientMedicalHistory">
-                                    <a href="D.php">Patient Medical History</a>
-                                </li>
+                               
                             </ul>
                         
                         </li>
-                        <li class="active" id="profile">
+                         <li class="active" id="profile">
                             <a href="javascript:void(0);" class="menu-toggle">
                                 <i class="material-icons">people</i>
                                 <span>Profile</span>
@@ -161,14 +153,23 @@
                                 <li id="employeeprofile">
                                     <a href="EmployeeProfile.php">Employee Profile</a>
                                 </li>
-                                <li id="labtest">
-                                    <a href="LT.php">Lab Tests</a>
-                                </li>
                                 <li class="active" id="nephrologist">
                                     <a href="nephrologist.php">Nephrologist</a>
                                 </li>
+                                
+                            <li class="" id="schedule">
+                            <a href="javascript:void(0);" class="menu-toggle">
+                                <span>Schedule</span>
+                            </a>
+                            <ul class="ml-menu">
+                                 <li id="descriptors">
+                                    <a href="patientschedule.php">Patient</a>
+                                </li>
                                 <li id="descriptors">
-                                    <a href="D.php">Descriptors</a>
+                                    <a href="nephroschedule.php">Nephrologist</a>
+                                </li>
+                                
+                                </ul>
                                 </li>
                             </ul>
                         </li>
@@ -182,13 +183,16 @@
                                 <li id="userprofile">
                                     <a href="UserProfile.php">User Profile</a>
                                 </li>
+                                <li id="descriptors">
+                                    <a href="D.php">Descriptors</a>
+                                </li>
                                 <li id="systemmaintenance">
                                     <a href="maintenance.php">System Maintenance</a>
                                 </li>
                             </ul>
                         </li>
                         <li id="reports">
-                            <a href="reports.php">
+                            <a href="R.php">
                                 <i class="material-icons">assignment</i>
                                 <span>Reports</span>
                             </a>
@@ -248,7 +252,7 @@
                                         <div class="col-lg-2 col-md-1 col-sm-1 col-xs-1 ">
                                             <div class="form-group">
 
-                                                <div class="form-line">
+                                                <div class="">
                                                     <input type="text" class="form-control" name="nephrologistid" value="<?php echo $fetch['nephrologistid']?>" placeholder="<?php echo $Nid; ?>" id="nephrologistid" readonly>
                                                 </div>
                                             </div>
@@ -282,7 +286,7 @@
                                         <div class="col-lg-1 col-md-1 col-sm-2 col-xs-3">
                                             <div class="form-group">
                                                 <div class="form-line">
-                                                    <input type="text" id="n_mname" name="n_mname" class="form-control" placeholder="" value="<?php echo $fetch['n_mname']?>" onkeyup="capitalize(this.id, this.value);" required>
+                                                    <input type="text" id="n_mname" name="n_mname" class="form-control" placeholder="" value="<?php echo $fetch['n_mname']?>" onkeyup="capitalize(this.id, this.value);" >
                                                 </div>
                                             </div>
                                         </div>
@@ -294,7 +298,7 @@
                                         <div class="col-lg-9 col-md-1 col-sm-2 col-xs-8">
                                             <div class="form-group">
                                                 <div class="form-line">
-                                                    <input type="text" class="form-control" name="n_address" id="n_address" value="<?php echo $fetch['n_address']?>" onkeyup="capitalize(this.id, this.value);" required>
+                                                    <input type="text" class="form-control" name="n_address" id="n_address" value="<?php echo $fetch['n_address']?>" onkeyup="capitalize(this.id, this.value);">
                                                 </div>
                                             </div>
                                         </div>

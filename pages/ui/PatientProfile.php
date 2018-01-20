@@ -38,7 +38,7 @@ include('session.php');
         <link href="../../plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
 
         <!-- Custom Css -->
-        <link href="../../css/style2.css" rel="stylesheet">
+        <link href="../../css/style3.css" rel="stylesheet">
 
         <!-- mytable Css -->
         <link href="../../css/table.css" rel="stylesheet">
@@ -147,37 +147,38 @@ include('session.php');
                                 <li id="transaction">
                                     <a href="transaction.php">HemoTreatment</a>
                                 </li>
-                                <li id="Schedule">
-                                    <a href="LT.php">Schedule</a>
-                                </li>
-                                <li id="Immunization">
-                                    <a href="P.php">Immunization</a>
-                                </li>
-                                <li id="PatientMedicalHistory">
-                                    <a href="D.php">Patient Medical History</a>
-                                </li>
+                            
                             </ul>
 
                         </li>
-                        <li id="profile" class="active">
+                         <li class="active" id="profile">
                             <a href="javascript:void(0);" class="menu-toggle">
                                 <i class="material-icons">people</i>
                                 <span>Profile</span>
                             </a>
                             <ul class="ml-menu">
-                                <li id="patientprofile" class="active">
+                                <li class="active" id="patientprofile">
                                     <a href="PatientProfile.php">Patient Profile</a>
-                                </li>
-                                <li id="patientprofile">
                                 </li>
                                 <li id="employeeprofile">
                                     <a href="EmployeeProfile.php">Employee Profile</a>
                                 </li>
-                                <li id="nephrologist">
+                                <li class="" id="nephrologist">
                                     <a href="nephrologist.php">Nephrologist</a>
                                 </li>
+                            <li class="" id="schedule">
+                            <a href="javascript:void(0);" class="menu-toggle">
+                                <span>Schedule</span>
+                            </a>
+                            <ul class="ml-menu">
+                                 <li id="descriptors">
+                                    <a href="patientschedule.php">Patient</a>
+                                </li>
                                 <li id="descriptors">
-                                    <a href="D.php">Descriptors</a>
+                                    <a href="nephroschedule.php">Nephrologist</a>
+                                </li>
+                                
+                                </ul>
                                 </li>
                             </ul>
                         </li>
@@ -191,17 +192,33 @@ include('session.php');
                                 <li id="userprofile">
                                     <a href="UserProfile.php">User Profile</a>
                                 </li>
+                                <li id="descriptors">
+                                    <a href="D.php">Descriptors</a>
+                                </li>
                                 <li id="systemmaintenance">
                                     <a href="maintenance.php">System Maintenance</a>
                                 </li>
                             </ul>
                         </li>
-                        <li id="reports">
-                            <a href="R.php">
+                         <li id="reports">
+                            <a href="javascript:void(0);" class="menu-toggle">
                                 <i class="material-icons">assignment</i>
                                 <span>Reports</span>
                             </a>
+                            <ul class="ml-menu">
+                                <li id="">
+                                    <a href="report1.php">Agreement</a>
+                                </li>
+                                <li id="">
+                                    <a href="report2.php">Statistics</a>
+                                </li>
+                                <li id="">
+                                    <a href="report3.php">Patient Progress Statistics</a>
+                                </li>
+
+                            </ul>   
                         </li>
+    
                         <li>
                             <a href="logout.php">
                                 <i class="material-icons">input</i>
@@ -248,14 +265,14 @@ include('session.php');
                                 <div style="padding-bottom:10px;">
                                     <ul class="nav nav-tabs tab-nav-right" role="tablist">
                                         <li role="presentation" class="active"><a href="#patientinfo" data-toggle="tab">Patient Info</a></li>
-                                        <li role="presentation" class=""><a href="#treatment" data-toggle="tab">Treatment</a></li>
+                                        <li role="presentation" class=""><a href="#hemoorder" data-toggle="tab">Hemodialysis Order</a></li>
                                         <li role="presentation" class=""><a href="#lab" data-toggle="tab">Lab</a></li>
                                         <li role="presentation" class=""><a href="#physicalexam" data-toggle="tab">Physical Exam</a></li>
-                                         <li role="presentation" class=""><a href="listconfinement" data-toggle="tab">Problem list/confinement</a></li>
-                                        <li role="presentation" class=""><a href="weight" data-toggle="tab">Weight</a></li>
-                                        <li role="presentation" class=""><a href="drug" data-toggle="tab">Drug</a></li>
-                                        <li role="presentation" class=""><a href="hepatitis" data-toggle="tab">Hepatitis</a></li>
-                                        <li role="presentation" class=""><a href="immunization" data-toggle="tab">Immunization</a></li>
+                                         <li role="presentation" class=""><a href="#listconfinement" data-toggle="tab">Problem list/Confinement</a></li>
+                                        <li role="presentation" class=""><a href="#weight" data-toggle="tab">Dietary Assessment</a></li>
+                                        <li role="presentation" class=""><a href="#drug" data-toggle="tab">Drug</a></li>
+                                        <li role="presentation" class=""><a href="#hepatitis" data-toggle="tab">Hepatitis</a></li>
+                                        <li role="presentation" class=""><a href="#immunization" data-toggle="tab">Immunization</a></li>
 
                                     </ul>
                                 </div>
@@ -334,11 +351,11 @@ include('session.php');
                                                 </div>
 
                                                 <div class="col-lg-3 col-md-1 col-sm-2 col-xs-3 form-control-label">
-                                                    <label for="email_address_2">gender</label>
+                                                    <label for="email_address_2">Gender</label>
                                                 </div>
                                                 <div class="col-lg-2 col-md-1 col-sm-2 col-xs-3">
-                                                    <select class="form-control show-tick" id="gender" name="gender" title="&nbsp;">
-                                                      
+                                                    <select required class="form-control show-tick" id="gender" name="gender" title="&nbsp;">
+                                        <option value="" disabled selected hidden>Select: </option>           
                                         <option value="Male" <?php if($fetch['P_Sex']== 'Male') echo "selected"; ?>>Male</option>
                                         <option Value="Female" <?php if($fetch['P_Sex']== 'Female') echo "selected"; ?>>Female</option>                            
                                             </select>
@@ -368,10 +385,11 @@ include('session.php');
                                                 </div>
 
                                                 <div class="col-lg-2 col-md-1 col-sm-2 col-xs-3 form-control-label">
-                                                    <label for="">CivilStatus</label>
+                                                    <label for="">Civil Status</label>
                                                 </div>
                                                 <div class="col-lg-2 col-md-1 col-sm-2 col-xs-3">
                                                     <select class="form-control show-tick" name="civilstatus" id="civilstatus" title="&nbsp;">
+                                        <option value="" disabled selected hidden>Select: </option>   
                                         <option value="Single" <?php if($fetch['P_CivilStatus']== 'Single') echo "selected"; ?>>Single</option>
                                         <option value="Married"  <?php if($fetch['P_CivilStatus']== 'Married') echo "selected"; ?>>Married</option>
                                         <option value="Divorced"  <?php if($fetch['P_CivilStatus']== 'Divorced') echo "selected"; ?>>Divorced</option>  
@@ -593,16 +611,20 @@ include('session.php');
                                                 </div>
 
                                                 <div class="col-lg-2 col-md-1 col-sm-2 col-xs-4">
-                                                    <select class="form-control show-tick" id="relation" name="relation" title="&nbsp;">
-                                 
-                                        <option value="Parent" <?php if($fetch['P_DFBRelation']== 'Parent') echo "selected"; ?>>Parent</option>
-                                        <option Value="Sibling" <?php if($fetch['P_DFBRelation']== 'Daughter') echo "selected"; ?>>Sibling</option> 
-                                        <option Value="Cousin" <?php if($fetch['P_DFBRelation']== 'Cousin') echo "selected"; ?>>Cousin</option>    
-                                        <option Value="Guardian" <?php if($fetch['P_DFBRelation']== 'Guardian') echo "selected"; ?>>Guardian</option>
-                                         <option Value="Wife" <?php if($fetch['P_DFBRelation']== 'Wife') echo "selected"; ?>>Wife</option>
-                                        <option Value="Self" <?php if($fetch['P_DFBRelation']== 'Self') echo "selected"; ?>>Self</option>
-                                        <option Value="Aunt" <?php if($fetch['P_DFBRelation']== 'Aunt') echo "selected"; ?>>Aunt</option>        
-                                            </select>
+                                                <select class="form-control show-tick" id="relation" name="relation" data-live-search="true" required title="&nbsp;">
+                                                        <option value="" disabled selected hidden>Select: </option> 
+                                                        <option Value="Guardian" <?php if($fetch['P_DFBRelation']== 'Guardian') echo "selected"; ?>>Guardian</option>
+                                                        <option value="Parent" <?php if($fetch['P_DFBRelation']== 'Parent') echo "selected"; ?>>Parent</option>
+                                                        <option Value="Child" <?php if($fetch['P_DFBRelation']== 'Child') echo "selected"; ?>>Child</option>
+                                                        <option Value="Sibling" <?php if($fetch['P_DFBRelation']== 'Sibling') echo "selected"; ?>>Sibling</option> 
+                                                        <option Value="Cousin" <?php if($fetch['P_DFBRelation']== 'Cousin') echo "selected"; ?>>Cousin</option>    
+                                                        <option Value="Spouse" <?php if($fetch['P_DFBRelation']== 'Spouse') echo "selected"; ?>>Spouse</option>
+                                                        <option Value="Self" <?php if($fetch['P_DFBRelation']== 'Self') echo "selected"; ?>>Self</option>
+                                                        <option Value="Aunt" <?php if($fetch['P_DFBRelation']== 'Aunt') echo "selected"; ?>>Aunt</option> 
+                                                        <option Value="Uncle" <?php if($fetch['P_DFBRelation']== 'Uncle') echo "selected"; ?>>Uncle</option>
+                                                        <option Value="Niece" <?php if($fetch['P_DFBRelation']== 'Niece') echo "selected"; ?>>Niece</option>
+                                                       <option Value="Nephew" <?php if($fetch['P_DFBRelation']== 'Nephew') echo "selected"; ?>>Nephew</option>
+                                                </select>
                                                 </div>
 
                                             </div>
@@ -621,28 +643,872 @@ include('session.php');
                                             </div>
                                         </form>
                                     </div>
-                                     <div role="tabpanel" class="tab-pane fade in active" id="treatment">
+                                    <div role="tabpanel" class="tab-pane fade in" id="hemoorder">
+                                    <form class="form-horizontal" form method="POST" action="saveuser.php">
+                                
+                                    <div class="col-lg-3 col-md-1 col-sm-2 col-xs-3 form-control-label" style="margin-left: -90px;">
+                                            <label for="email_address_2">Cause of ESRD</label>
+                                    </div>
+                                    <div class="col-lg-3 col-md-1 col-sm-2 col-xs-3" style="margin-left: -14px;">
+                                            <select class="form-control show-tick" id="gender" name="gender" title="&nbsp">
+                                                <option value="" disabled selected hidden>Select: </option>    
+                                        <option value="once" <?php if($fetch['O_Frequency']== 'once') echo "selected"; ?>>Diabetic Nephropathy</option>
+                                        <option Value="twice" <?php if($fetch['O_Frequency']== 'twice') echo "selected"; ?>>Chronic Gromerulonephritis</option>  
+                                        <option Value="thrice" <?php if($fetch['O_Frequency']== 'thrice') echo "selected"; ?>>Hypertensive Nephrosclorosis</option> 
+                                        <option Value="others" <?php if($fetch['O_Frequency']== 'others') echo "selected"; ?>>Others, Specify</option> 
+                                            </select>
+                                        </div>
+                                    <div class="col-lg-3 col-md-1 col-sm-2 col-xs-3 form-control-label" style="margin-left: -135px;">
+                                        <label for="email_address_2">Frequency</label>
+                                    </div>
+                                    <div class="col-lg-2 col-md-1 col-sm-2 col-xs-3" style="margin-left: -13px;">
+                                            <select class="form-control show-tick" id="gender" name="gender" title="&nbsp;">
+                                        <option value="" disabled selected hidden>Select: </option>    
+                                        <option value="once" <?php if($fetch['O_Frequency']== 'once') echo "selected"; ?>>1x a week</option>
+                                        <option Value="twice" <?php if($fetch['O_Frequency']== 'twice') echo "selected"; ?>>2x a week</option>  
+                                        <option Value="thrice" <?php if($fetch['O_Frequency']== 'thrice') echo "selected"; ?>>3x a week</option> 
+                                        <option Value="others" <?php if($fetch['O_Frequency']== 'others') echo "selected"; ?>>Others, Specify</option> 
+                                            </select>
+                                        </div>
+                                        <div class="col-lg-3 col-md-1 col-sm-2 col-xs-3 form-control-label" style="margin-left: -75px;">
+                                            <label for="email_address_2">Duration</label>
+                                        </div>
+                                        <div class="col-lg-2 col-md-1 col-sm-2 col-xs-3" style="margin-left: -14px;">
+                                            <select class="form-control show-tick" id="gender" name="gender" title="&nbsp;"> 
+                                        <option value="" disabled selected hidden>Select: </option>    
+                                        <option value="three" <?php if($fetch['O_Frequency']== 'three') echo "selected"; ?>>3 hrs</option>
+                                        <option Value="threefive" <?php if($fetch['O_Frequency']== 'threefive') echo "selected"; ?>>3.5 hrs</option>  
+                                        <option Value="four" <?php if($fetch['O_Frequency']== 'four') echo "selected"; ?>>4 hrs</option> 
+                                        <option Value="fourfive" <?php if($fetch['O_Frequency']== 'fourfive') echo "selected"; ?>>4.5 hrs</option> 
+                                        <option Value="others" <?php if($fetch['O_Frequency']== 'others') echo "selected"; ?>>Others, Specify</option> 
+                                            </select>
+                                        </div>
+                                        <div class="col-lg-3 col-md-1 col-sm-2 col-xs-3 form-control-label" style="margin-left: -90px;">
+                                            <label for="email_address_2">Hepatitis Status</label>
+                                        </div>
+                                        <div class="col-lg-2 col-md-1 col-sm-2 col-xs-3" style="margin-left: -14px;">
+                                            <select class="form-control show-tick" id="gender" name="gender" title="&nbsp;">
+                                        <option value="" disabled selected hidden>Select: </option>              
+                                        <option value="AV" <?php if($fetch['O_Frequency']== 'AV') echo "selected"; ?>>AV fistula</option>
+                                        <option Value="PTFE" <?php if($fetch['O_Frequency']== 'PTFE') echo "selected"; ?>>PTFE</option>  
+                                            </select>
+                                        </div>
+                                        <div class="col-lg-3 col-md-1 col-sm-2 col-xs-3 form-control-label" style="margin-left: -58px;">
+                                            <label for="email_address_2">Unknown</label>
+                                        </div>
+                                        <div class="col-lg-2 col-md-1 col-sm-2 col-xs-3" style="margin-left: -14px;">
+                                            <select class="form-control show-tick" id="gender" name="gender" title="&nbsp;">
+                                                      
+                                        <option value="pos" <?php if($fetch['O_Frequency']== 'pos') echo "selected"; ?>>Positive</option>
+                                        <option Value="neg" <?php if($fetch['O_Frequency']== 'neg') echo "selected"; ?>>Negative</option>  
+                                            </select>
+                                        </div>
+                                        <div class="col-lg-3 col-md-1 col-sm-2 col-xs-3 form-control-label" style="margin-left: -72px;">
+                                            <label for="email_address_2">Date</label>
+                                        </div>
+                                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-3 form-control-label"style="margin-left:0px;" >
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="date" class="form-control unstyled" name="birthdate" id="birthdate" value="" style="padding-right:0" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-1 col-sm-2 col-xs-3 form-control-label" style="margin-left: -90px;">
+                                            <label for="email_address_2">Access</label>
+                                        </div>
+                                        <div class="col-lg-2 col-md-1 col-sm-2 col-xs-3" style="margin-left: -14px;">
+                                            <select class="form-control show-tick" id="gender" name="gender" title="&nbsp;">
+                                        <option value="" disabled selected hidden>Select: </option>    
+                                        <option value="AV" <?php if($fetch['O_Frequency']== 'AV') echo "selected"; ?>>Dialysis Catheter</option>
+                                        <option Value="PTFE" <?php if($fetch['O_Frequency']== 'PTFE') echo "selected"; ?>>Subclavian</option>  
+                                        <option Value="PTFE" <?php if($fetch['O_Frequency']== 'PTFE') echo "selected"; ?>>Internal Jugular</option>  
+                                        <option Value="PTFE" <?php if($fetch['O_Frequency']== 'PTFE') echo "selected"; ?>>Subclavian</option>  
+                                            </select>
+                                    </div>
+                                     <div class="col-lg-3 col-md-1 col-sm-2 col-xs-3 form-control-label" style="margin-left: -58px;">
+                                            <label for="email_address_2">Surgeon</label>
+                                        </div>
+                                        <div class="col-lg-3 col-md-1 col-sm-2 col-xs-3">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control" name="surgeon" id="surgeon" onkeyup="capitalize(this.id, this.value);" value="" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-1 col-sm-2 col-xs-3 form-control-label" style="margin-left: -166px;">
+                                            <label for="email_address_2">Date Inserted</label>
+                                        </div>
+                                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-3 form-control-label"style="margin-left:0px;" >
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="date" class="form-control unstyled" name="birthdate" id="birthdate" value="" style="padding-right:0" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                     <div class="col-lg-3 col-md-1 col-sm-2 col-xs-3 form-control-label" style="margin-left: -88px;">
+                                            <label for="email_address_2">Dialyzer</label>
+                                        </div>
+                                        <div class="col-lg-3 col-md-1 col-sm-2 col-xs-3">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control" name="dialyzer" id="dialyzer" onkeyup="capitalize(this.id, this.value);" value="" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <div class="col-lg-3 col-md-1 col-sm-2 col-xs-3 form-control-label" style="margin-left: -152px;">
+                                            <label for="email_address_2">Re-use?</label>
+                                        </div>
+                                        <div class="col-lg-2 col-md-1 col-sm-2 col-xs-3" style="margin-left: -14px;">
+                                            <select class="form-control show-tick" id="gender" name="gender" title="&nbsp;">
+                                                      <option value="" disabled selected hidden>Select: </option>    
+                                        <option value="yes" <?php if($fetch['O_Frequency']== 'yes') echo "selected"; ?>>Yes</option>
+                                        <option Value="no" <?php if($fetch['O_Frequency']== 'no') echo "selected"; ?>>No</option>  
+                                            </select>
+                                    </div>
+                                        <div class="col-lg-3 col-md-1 col-sm-2 col-xs-3 form-control-label" style="margin-left: -73px;">
+                                            <label for="email_address_2">Dialysate Bath</label>
+                                        </div>
+                                        <div class="col-lg-2 col-md-1 col-sm-2 col-xs-3" style="margin-left: -15px;">
+                                            <select class="form-control show-tick" id="gender" name="gender" title="&nbsp;">   
+                                                <option value="" disabled selected hidden>Select: </option>    
+                                        <option value="bi" <?php if($fetch['O_Frequency']== 'bi') echo "selected"; ?>>Bicarbonate</option>
+                                        <option Value="ac" <?php if($fetch['O_Frequency']== 'ac') echo "selected"; ?>>Acetate</option>
+                                            </select>
+                                        </div>
+                                    
+
+                                    <div class="row clearfix">
+                                        <div class="col-lg-offset-7 col-xs-offset-4">
+                                            <button type="button" class="btn btn-primary m-t-15 waves-effect" onclick="ClearFields();"> <i class="material-icons">description</i>New</button> &nbsp;
+                                            <button type="submit" class="btn btn-primary m-t-15 waves-effect" button name="submit"><i class="material-icons">save</i>Save</button> &nbsp;
+                                            <button type="button" class="btn btn-primary m-t-15 waves-effect" data-toggle="modal" data-target="#defaultModal"><i class="material-icons">find_in_page</i>Find</button>&nbsp;
+                                            <button type="button" class="btn btn-primary m-t-15 waves-effect" data-toggle="modal" data-target="#employeelist"><i class="material-icons">list</i>List   </button>
+
+                                        </div>
+
+
+                                    </div>
+                                </form>
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane fade in" id="lab">
+                                    <form class="form-horizontal" form method="POST" action="saveuser.php">
+                                 
+                                         
+                                               
+                                             <div class="row clearfix">
+                                                <div class="col-md-2 col-sm-5 col-xs-4 form-control-label">
+                                                    <label>Rm#</label>
+                                                 </div>
+                                                <div class="col-lg-1 col-md-2 col-sm-1 col-xs-1 ">
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <input type="text" class="form-control" name="employeeid" value="" id="employeeid" readonly>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row clearfix">
+                                                <div class="col-md-2 col-sm-5 col-xs-4 form-control-label">
+                                                    <label>Doctor</label>
+                                                </div>
+                                                <div class="col-lg-3 col-md-4 col-sm-1 col-xs-1 ">
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                           <input type="text" class="form-control" value=" <?php echo $fetch['n_fname'].' '.$fetch['n_mname'].' '.$fetch['n_lname']?>" name="employeeid" value="" id="employeeid" readonly>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row clearfix">
+                                                <div class="col-md-2 col-sm-5 col-xs-4 form-control-label">
+                                                    <label>HIV</label>
+                                                </div>
+                                                <div class="col-lg-2 col-md-2 col-sm-1 col-xs-1 ">
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <input type="text" class="form-control" name="employeeid" value="" id="employeeid" readonly>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1 col-sm-5 col-xs-4 form-control-label">
+                                                    <label>HbAg</label>
+                                                </div>
+                                                <div class="col-lg-2 col-md-2 col-sm-1 col-xs-1 ">
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <input type="text" class="form-control" name="employeeid" value="" id="employeeid" readonly>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2 col-sm-5 col-xs-4 form-control-label">
+                                                    <label>AntiHBV</label>
+                                                </div>
+                                                <div class="col-lg-2 col-md-2 col-sm-1 col-xs-1 ">
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <input type="text" class="form-control" name="employeeid" value="" id="employeeid" readonly>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row clearfix">
+                                                <div class="col-md-2 col-sm-5 col-xs-4 form-control-label">
+                                                    <label>HCV</label>
+                                                </div>
+                                                <div class="col-lg-2 col-md-2 col-sm-1 col-xs-1 ">
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <input type="text" class="form-control" name="employeeid" value="" id="employeeid" readonly>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1 col-sm-5 col-xs-4 form-control-label">
+                                                    <label>Blood Type</label>
+                                                </div>
+                                                <div class="col-lg-2 col-md-2 col-sm-1 col-xs-1 ">
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <input type="text" class="form-control" name="employeeid" value="" id="employeeid" readonly>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2 col-sm-5 col-xs-4 form-control-label">
+                                                    <label>RhFactor</label>
+                                                </div>
+                                                <div class="col-lg-2 col-md-2 col-sm-1 col-xs-1 ">
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <input type="text" class="form-control" name="employeeid" value="" id="employeeid" readonly>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="row clearfix">
+                                                <div class="col-lg-offset-7 col-xs-offset-7">
+                                                    <button type="button" class="btn btn-primary m-t-15 waves-effect" onclick="ClearFields();"> <i class="material-icons">description</i>New</button> &nbsp;
+                                                    <button type="delete" name="delete" class="btn btn-primary m-t-15 waves-effect"> <i class="material-icons">delete</i>Delete</button> &nbsp;
+                                                    <button type="submit" class="btn btn-primary m-t-15 waves-effect" name="submit"><i class="material-icons">save</i>Save</button> &nbsp;
+                                                </div>
+                                            </div> 
+                                                </div>
+                                  
+                                        </form>
+                                        </div>
+                                    <div role="tabpanel" class="tab-pane fade in " id="physicalexam">
                                          
                                     </div>
-                                    <div role="tabpanel" class="tab-pane fade in active" id="lab">
-                                         
+                                    <div role="tabpanel" class="tab-pane fade in " id="listconfinement">
+                                        <form class="form-horizontal" form method="POST" action="saveuser.php">
+                                           
+                                      
+                                           
+                                               
+                                                <div class="row clearfix">
+                                                <div class="col-md-2 col-sm-5 col-xs-4 form-control-label" style="margin-left: 22px;">
+                                                    <label>Diagnosis:</label>
+                                                </div>
+                                                <div class="col-lg-9 col-md-2 col-sm-1 col-xs-1" style="margin-left: 15px;">
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <input type="text" class="form-control" name="employeeid" value="" id="employeeid" required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row ">
+
+                                                <div class="col-md-7 col-lg-7 col-sm-7 col-xs-7" >
+
+
+                                                    <table id="mainTable" class="table table-bordered" style="margin-left: 185px;">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Problem List</th>
+                                                                <th>Date Noted</th>
+                                                                <th>Date Resolved</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <?php
+                                                                    $date = date("Y-m-d");
+                                                                    $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
+                                                                   $query = $conn->query("SELECT * FROM `initialtestresult` WHERE `Hospital_Id` = '$_GET[id]' && `initialtest_date` = '$date' ORDER BY `initialtestresult_id`") or die(mysqli_error());
+                                                                   $id = $fetch['Hospital_Id'];
+
+                                                                   while($fetch = $query ->fetch_array()){
+                                                                ?>
+                                                                <tr>
+                                                                    <td>
+                                                                         <a href="#editInitialtest" data-toggle="modal" data-target="#editInitialtest" style="color: black;">
+                                                                        <?php echo $fetch['problemlist']?>
+                                                                        </a>
+                                                                    </td>
+                                                                    <td>
+                                                                         <a href="#editInitialtest" data-toggle="modal" data-target="#editInitialtest" style="color: black;">
+                                                                        <?php echo $fetch['datenoted']?>
+                                                                        </a>
+                                                                    </td>
+                                                                    <td>
+                                                                         <a href="#editInitialtest" data-toggle="modal" data-target="#editInitialtest" style="color: black;">
+                                                                        <?php echo $fetch['dateresolved']?>
+                                                                        </a>
+                                                                    </td>
+
+
+                                                                </tr>
+                                                                <?php
+                                                                   }
+
+                                                                ?>
+
+                                                        </tbody>
+
+                                                    </table>
+
+                                                </div>
+                                                <div class="row ">
+
+                                                <div class="col-md-5 col-lg-7 col-sm-7 col-xs-7" >
+                                                    <table id="mainTable" class="table table-bordered" style="margin-left: 185px;">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Name of Hospital</th>
+                                                                <th>Date of Confinement</th>
+                                                                <th>Reason of Confinement</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <?php
+
+                                                                    $date = date("Y-m-d");
+                                                                    $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
+                                                                   $query = $conn->query("SELECT * FROM `machineresult` WHERE `Hospital_Id` = '$_GET[id]' && `m_date` = '$date' ORDER BY `machineresult_id`") or die(mysqli_error());
+                                                                   $id = $fetch['Hospital_Id'];
+
+                                                                   while($fetch = $query ->fetch_array()){
+                                                                ?>
+                                                               <tr>
+                                                                    <td>
+                                                                         <a href="#editInitialtest" data-toggle="modal" data-target="#editInitialtest" style="color: black;">
+                                                                        <?php echo $fetch['problemlist']?>
+                                                                        </a>
+                                                                    </td>
+                                                                    <td>
+                                                                         <a href="#editInitialtest" data-toggle="modal" data-target="#editInitialtest" style="color: black;">
+                                                                        <?php echo $fetch['datenoted']?>
+                                                                        </a>
+                                                                    </td>
+                                                                    <td>
+                                                                         <a href="#editInitialtest" data-toggle="modal" data-target="#editInitialtest" style="color: black;">
+                                                                        <?php echo $fetch['dateresolved']?>
+                                                                        </a>
+                                                                    </td>
+
+
+                                                                </tr>
+                                                                <?php
+                                                                   }
+
+                                                                ?>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+
+
+                                                                <div class="row clearfix">
+                                                                    <div class="col-lg-offset-7 col-xs-offset-4">
+                                                                        <button type="button" class="btn btn-primary m-t-15 waves-effect" onclick="ClearFields();"> <i class="material-icons">description</i>New</button> &nbsp;
+                                                                        <button type="submit" class="btn btn-primary m-t-15 waves-effect" button name="submit"><i class="material-icons">save</i>Save</button> &nbsp;
+                                                                        <button type="button" class="btn btn-primary m-t-15 waves-effect" data-toggle="modal" data-target="#defaultModal"><i class="material-icons">find_in_page</i>Find</button>&nbsp;
+                                                                        <button type="button" class="btn btn-primary m-t-15 waves-effect" data-toggle="modal" data-target="#employeelist"><i class="material-icons">list</i>List   </button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                             
+                                        </form>
                                     </div>
-                                    <div role="tabpanel" class="tab-pane fade in active" id="physicalexam">
+                                    <div role="tabpanel" class="tab-pane fade in " id="weight">
+                                            <form class="form-horizontal" form method="POST" action="saveuser.php">
+                                           
                                          
+                                            <div class="row clearfix">
+                                               
+                                             <div class="row clearfix">
+                                                <div class="col-md-1 col-sm-5 col-xs-4 form-control-label">
+                                                    <label>Ward</label>
+                                                 </div>
+                                                <div class="col-lg-2 col-md-3 col-sm-1 col-xs-1 ">
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <input type="text" class="form-control" name="employeeid" value="" id="employeeid" readonly>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row clearfix">
+                                                    <div class="col-md-2 col-sm-5 col-xs-4 form-control-label">
+                                                        <label>A. History</label>
+                                                    </div>
+
+                                                 </div>
+                                            <div class="row clearfix">
+                                                <div class="col-md-2 col-sm-5 col-xs-4 form-control-label">
+                                                    <label>Present Complaint:</label>
+                                                </div>
+                                                <div class="col-lg-9 col-md-2 col-sm-1 col-xs-1 ">
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <input type="text" class="form-control" name="employeeid" value="" id="employeeid" readonly>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row clearfix ">
+                                                <div class="col-lg-4 col-md-1 col-sm-1 col-xs-4 form-control-label">
+                                                    <label>Past History (Previous Illness & Operationg):</label>
+                                                </div>
+
+                                                <div class="form-group demo-radio-button">
+
+                                                    <input name="type1" type="radio" class="with-gap" id="radio_3" value="0" <?php if ($fetch[ 'pasthistory']==0 ){?> checked="active"
+                                                    <?php } ?>/>
+                                                    <label for="radio_3">DM</label>
+                                                    <input name="type1" type="radio" id="radio_4" class="with-gap" value="1" <?php if ($fetch[ 'dialysistype']==1 ){?> checked="active"
+                                                    <?php } ?>/>
+                                                    <label for="radio_4">HPN</label>
+                                                    <input name="type1" type="radio" id="radio_4" class="with-gap" value="2" <?php if ($fetch[ 'dialysistype']==1 ){?> checked="active"
+                                                    <?php } ?>/>
+                                                    <label for="radio_4">PTB</label>
+                                                    <input name="type1" type="radio" id="radio_4" class="with-gap" value="1" <?php if ($fetch[ 'dialysistype']==1 ){?> checked="active"
+                                                    <?php } ?>/>
+                                                    <label for="radio_4">Cancer</label>
+                                                    <input name="type1" type="radio" id="radio_4" class="with-gap" value="1" <?php if ($fetch[ 'dialysistype']==1 ){?> checked="active"
+                                                    <?php } ?>/>
+                                                    <label for="radio_4">Asthma</label>
+                                                    <input name="type1" type="radio" id="radio_4" class="with-gap" value="1" <?php if ($fetch[ 'dialysistype']==1 ){?> checked="active"
+                                                    <?php } ?>/>
+                                                    <label for="radio_4">Others</label>
+
+                                                    </div>
+                                                </div>
+                                                </div>
+                                                 </div>
+                                                    <div class="row clearfix ">   
+                                                    <div class="col-lg-3 col-md-1 col-sm-1 col-xs-4 form-control-label">
+                                                        <label>Personal/Social History:</label>
+                                                    </div>
+                                                        <div class="form-group demo-radio-button">
+                                                            <input name="type1" type="radio" class="with-gap" id="radio_3" value="0" <?php if ($fetch[ 'pasthistory']==0 ){?> checked="active"
+                                                            <?php } ?>/>
+                                                            <label for="radio_3">Alcohol Intake</label>
+                                                            <input name="type1" type="radio" id="radio_4" class="with-gap" value="1" <?php if ($fetch[ 'dialysistype']==1 ){?> checked="active"
+                                                            <?php } ?>/>
+                                                            <label for="radio_4">Smoking History</label>
+                                                            <input name="type1" type="radio" id="radio_4" class="with-gap" value="2" <?php if ($fetch[ 'dialysistype']==1 ){?> checked="active"
+                                                            <?php } ?>/>
+                                                            <label for="radio_4">Drug Allergies</label>
+                                                            <input name="type1" type="radio" id="radio_4" class="with-gap" value="1" <?php if ($fetch[ 'dialysistype']==1 ){?> checked="active"
+                                                            <?php } ?>/>
+                                                            <label for="radio_4">Food Allergies</label>
+                                                            <input name="type1" type="radio" id="radio_4" class="with-gap" value="1" <?php if ($fetch[ 'dialysistype']==1 ){?> checked="active"
+                                                            <?php } ?>/>
+                                                            <label for="radio_4">Others</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            <div class="row clearfix">
+                                                <div class="col-md-2 col-sm-5 col-xs-4 form-control-label">
+                                                    <label>BP</label>
+                                                </div>
+                                                <div class="col-lg-2 col-md-2 col-sm-1 col-xs-1 ">
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <input type="text" class="form-control" name="employeeid" value="" id="employeeid" readonly>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1 col-sm-5 col-xs-4 form-control-label">
+                                                    <label>CR</label>
+                                                </div>
+                                                <div class="col-lg-2 col-md-2 col-sm-1 col-xs-1 ">
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <input type="text" class="form-control" name="employeeid" value="" id="employeeid" readonly>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2 col-sm-5 col-xs-4 form-control-label">
+                                                    <label>RR</label>
+                                                </div>
+                                                <div class="col-lg-2 col-md-2 col-sm-1 col-xs-1 ">
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <input type="text" class="form-control" name="employeeid" value="" id="employeeid" readonly>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row clearfix">
+                                                <div class="col-md-2 col-sm-5 col-xs-4 form-control-label">
+                                                    <label>Skin:</label>
+                                                </div>
+                                                <div class="col-lg-9 col-md-2 col-sm-1 col-xs-1 ">
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <input type="text" class="form-control" name="employeeid" value="" id="employeeid" readonly>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row clearfix">
+                                                <div class="col-md-2 col-sm-5 col-xs-4 form-control-label">
+                                                    <label>Heent:</label>
+                                                </div>
+                                                <div class="col-lg-9 col-md-2 col-sm-1 col-xs-1 ">
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <input type="text" class="form-control" name="employeeid" value="" id="employeeid" readonly>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row clearfix">
+                                                <div class="col-md-2 col-sm-5 col-xs-4 form-control-label">
+                                                    <label>Chest/Lungs:</label>
+                                                </div>
+                                                <div class="col-lg-9 col-md-2 col-sm-1 col-xs-1 ">
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <input type="text" class="form-control" name="employeeid" value="" id="employeeid" readonly>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>     
+                                          <div class="row clearfix">
+                                                <div class="col-md-2 col-sm-5 col-xs-4 form-control-label">
+                                                    <label>Cardiovascular:</label>
+                                                </div>
+                                                <div class="col-lg-9 col-md-2 col-sm-1 col-xs-1 ">
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <input type="text" class="form-control" name="employeeid" value="" id="employeeid" readonly>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>    
+                                          <div class="row clearfix">
+                                                <div class="col-md-2 col-sm-5 col-xs-4 form-control-label">
+                                                    <label>Abdomen:</label>
+                                                </div>
+                                                <div class="col-lg-9 col-md-2 col-sm-1 col-xs-1 ">
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <input type="text" class="form-control" name="employeeid" value="" id="employeeid" readonly>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>  
+                                          <div class="row clearfix">
+                                                <div class="col-md-2 col-sm-5 col-xs-4 form-control-label">
+                                                    <label>Rectal:</label>
+                                                </div>
+                                                <div class="col-lg-9 col-md-2 col-sm-1 col-xs-1 ">
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <input type="text" class="form-control" name="employeeid" value="" id="employeeid" readonly>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>    
+                                          <div class="row clearfix">
+                                                <div class="col-md-2 col-sm-5 col-xs-4 form-control-label">
+                                                    <label>Extremeties:</label>
+                                                </div>
+                                                <div class="col-lg-9 col-md-2 col-sm-1 col-xs-1 ">
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <input type="text" class="form-control" name="employeeid" value="" id="employeeid" readonly>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>    
+                                          <div class="row clearfix">
+                                                <div class="col-md-2 col-sm-5 col-xs-4 form-control-label">
+                                                    <label>Neurological</label>
+                                                </div>
+                                                <div class="col-lg-9 col-md-2 col-sm-1 col-xs-1 ">
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <input type="text" class="form-control" name="employeeid" value="" id="employeeid" readonly>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                        </div>  
+                                          <div class="row clearfix">
+                                                <div class="col-md-2 col-sm-5 col-xs-4 form-control-label">
+                                                    <label>Diagnosis:</label>
+                                                </div>
+                                                <div class="col-lg-9 col-md-2 col-sm-1 col-xs-1 ">
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <input type="text" class="form-control" name="employeeid" value="" id="employeeid" readonly>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>    
+                                              <div class="row clearfix">
+                                                <div class="col-md-2 col-sm-5 col-xs-4 form-control-label">
+                                                    <label>History By:</label>
+                                                </div>
+                                                <div class="col-lg-9 col-md-2 col-sm-1 col-xs-1 ">
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <input type="text" class="form-control" name="employeeid" value="" id="employeeid" readonly>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                          <div class="row clearfix">
+                                                <div class="col-md-2 col-sm-5 col-xs-4 form-control-label">
+                                                    <label>Done On:</label>
+                                                </div>
+                                                <div class="col-lg-9 col-md-2 col-sm-1 col-xs-1 ">
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <input type="text" class="form-control" name="employeeid" value="" id="employeeid" readonly>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>    
+                                                <div class="row clearfix">
+                                                    <div class="col-lg-offset-8 col-xs-offset-7">
+                                                        <button type="button" class="btn btn-primary m-t-15 waves-effect" onclick="ClearFields();"> <i class="material-icons">description</i>New</button> &nbsp;
+                                                        <button type="delete" name="delete" class="btn btn-primary m-t-15 waves-effect"> <i class="material-icons">delete</i>Delete</button> &nbsp;
+                                                        <button type="submit" class="btn btn-primary m-t-15 waves-effect" name="submit"><i class="material-icons">save</i>Save</button> &nbsp;
+                                                    </div>
+                                                </div>
+                                            </form>
                                     </div>
-                                    <div role="tabpanel" class="tab-pane fade in active" id="listconfinement">
-                                         
+                                    <div role="tabpanel" class="tab-pane fade in " id="drug">
+                                         <form class="form-horizontal" form method="POST" action="saveuser.php">
+                                   
+                                  
+
+
+                                  
+                                      
+                                        <div class="row clearfix">
+                                       
+                                    <div class="row clearfix">
+                                        <div class="col-md-1 col-sm-5 col-xs-4 form-control-label">
+                                            <label>Bed No.</label>
+                                        </div>
+                                        <div class="col-lg-1 col-md-2 col-sm-1 col-xs-1 ">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control" name="employeeid" value="" id="employeeid" >
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-1 col-sm-5 col-xs-4 form-control-label">
+                                            <label>Ward</label>
+                                        </div>
+                                        <div class="col-lg-2 col-md-2 col-sm-1 col-xs-1 ">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control" name="employeeid" value="" id="employeeid">
+                                                </div>
+                                            </div>
+                                        </div>
+                                            </div>              
+                                         <div class="row">
+                                        <div class="col-md-2 col-sm-5 col-xs-4 form-control-label" style="margin-left:17px;">
+                                            <label>Address</label>
+                                        </div>
+                                        <div class="col-lg-7 col-md-2 col-sm-1 col-xs-1" style="margin-left:3px;">
+                                            <div class="form-group">
+                                               <div class="form-line">
+                                                    <input type="text" class="form-control" name="employeeid" value="<?php echo $fetch['P_peradress']?>" id="employeeid" readonly>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div role="tabpanel" class="tab-pane fade in active" id="weight">
-                                         
+                                  
+                                        <div class="col-md-2 col-sm-5 col-xs-4 form-control-label" style="margin-left:8px;">
+                                            <label>Provisional Diagnosis/Chief Complaint</label>
+                                        </div>
+                                        <div class="col-lg-2 col-md-2 col-sm-1 col-xs-1" style="margin-left:3px;">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control" name="employeeid" value="" id="employeeid">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 col-sm-5 col-xs-4 form-control-label" style="margin-left:-50px;">
+                                            <label>Final Diagnosis</label>
+                                        </div>
+                                        <div class="col-lg-2 col-md-2 col-sm-1 col-xs-1 ">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control" name="employeeid" value="" id="employeeid">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 col-sm-5 col-xs-4 form-control-label" style="margin-left:-27px;">
+                                            <label>Allergies (to Drugs and Food) </label>
+                                        </div>
+                                        <div class="col-lg-2 col-md-2 col-sm-1 col-xs-1 ">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control" name="employeeid" value="" id="employeeid">
+                                                </div>
+                                            </div>
+                                        </div>
+                                   
+                                    
+                                    <hr>
+
+                                    <div class="row">
+
+                                        <div class="col-lg-6 col-md-7 col-sm-7 col-xs-7">
+            
+
+
+                                            <table id="mainTable" class="table table-bordered" style="margin-left: 170px;">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Drug & Strength</th>
+                                                        <th>Dosage</th>
+                                                        <th>Freq.</th>
+                                                        <th>Route of Admin.</th>
+                                                        <th>Date Ordered</th>
+                                                        <th>Date Disc.</th>
+                                                        <th>PRN</th>
+                                                        <th>REMARKS</th>
+                                                        <th>Physician</th>
+                                                    </tr>
+                                                </thead>
+                                               
+                                            </table>
+
+                                        </div>
+                                            </div>
+   
+                                    <div class="row clearfix">
+                                        <div class="col-lg-offset-8 col-xs-offset-7">
+                                            <button type="button" class="btn btn-primary m-t-15 waves-effect" onclick="ClearFields();"> <i class="material-icons">description</i>New</button> &nbsp;
+                                            <button type="delete" name="delete" class="btn btn-primary m-t-15 waves-effect"> <i class="material-icons">delete</i>Delete</button> &nbsp;
+                                            <button type="submit" class="btn btn-primary m-t-15 waves-effect" name="submit"><i class="material-icons">save</i>Save</button> &nbsp;
+                                        </div>
+                                        </div>
+                               
+                                </form>
+                                
                                     </div>
-                                    <div role="tabpanel" class="tab-pane fade in active" id="Drug">
-                                         
+                                    <div role="tabpanel" class="tab-pane fade in" id="hepatitis">
+                                    <form class="form-horizontal" form method="POST" action="saveuser.php">
+             
+                                    <div class="row clearfix">
+                                       
+                                        <div class="col-md-2 col-sm-5 col-xs-4 form-control-label" style="margin-left:0px; margin-top:40px;">
+                                            <label>Hepatitis Profile</label>
+                                        </div>
+                                         <div class="col-md-2 col-sm-5 col-xs-4 form-control-label" style="margin-left:-580px; margin-top:90px;">
+                                             <label>HBsAg:</label>
+                                        </div>
+                                         <div class="col-lg-1 col-md-1 col-sm-2 col-xs-5 form-control-label"style="margin-left:-280px; margin-top:90px;">
+                                            <label for="">Date</label>
+                                        </div>
+                                        <div class="col-lg-2 col-md-1 col-sm-2 col-xs-3" style="margin-left:-200px; margin-top:90px;">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="date" class="form-control unstyled" name="birthdate" id="birthdate" value="" style="padding-right:0" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-1 col-sm-2 col-xs-3 form-control-label" style="margin-left:-100px; margin-top:90px;">
+                                            <label for="email_address_2">Result</label>
+                                        </div>
+                                        <div class="col-lg-2 col-md-1 col-sm-2 col-xs-3" style="margin-left: -14px; margin-top:90px;">
+                                            <select class="form-control show-tick" id="gender" name="gender" title="&nbsp;">
+                                                      
+                                        <option value="R" <?php if($fetch['O_Frequency']== 'R') echo "selected"; ?>>R</option>
+                                        <option Value="NR" <?php if($fetch['O_Frequency']== 'NR') echo "selected"; ?>>NR</option>  
+                                            </select>
+                                        </div>
+                                         <div class="col-md-2 col-sm-5 col-xs-4 form-control-label" style="margin-left:-874px; margin-top:150px;">
+                                             <label>Anti-HBs:</label>
+                                        </div>
+                                         <div class="col-lg-1 col-md-1 col-sm-2 col-xs-5 form-control-label"style="margin-left:-575px; margin-top:150px;">
+                                            <label for="">Date</label>
+                                        </div>
+                                        <div class="col-lg-2 col-md-1 col-sm-2 col-xs-3" style="margin-left:-495px; margin-top:150px;">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="date" class="form-control unstyled" name="birthdate" id="birthdate" value="" style="padding-right:0" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-1 col-sm-2 col-xs-3 form-control-label" style="margin-left:-393px; margin-top:150px;">
+                                            <label for="email_address_2">Result</label>
+                                        </div>
+                                        <div class="col-lg-2 col-md-1 col-sm-2 col-xs-3" style="margin-left: -14px; margin-top:3px;">
+                                            <select class="form-control show-tick" id="gender" name="gender" title="&nbsp;">
+                                                      
+                                        <option value="R" <?php if($fetch['O_Frequency']== 'R') echo "selected"; ?>>R</option>
+                                        <option Value="NR" <?php if($fetch['O_Frequency']== 'NR') echo "selected"; ?>>NR</option>  
+                                            </select>
+                                        </div>
+                                        <div class="col-md-2 col-sm-5 col-xs-4 form-control-label" style="margin-left:-874px; margin-top:65px;">
+                                            <label>HCV:</label>
+                                        </div>
+                                         <div class="col-lg-1 col-md-1 col-sm-2 col-xs-5 form-control-label"style="margin-left:-576px; margin-top:65px;">
+                                            <label for="">Date</label>
+                                        </div>
+                                        <div class="col-lg-2 col-md-1 col-sm-2 col-xs-3" style="margin-left:-495px; margin-top:65px;">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="date" class="form-control unstyled" name="birthdate" id="birthdate" value="" style="padding-right:0" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-1 col-sm-2 col-xs-3 form-control-label" style="margin-left:-393px; margin-top:65px;">
+                                            <label for="email_address_2">Result</label>
+                                        </div>
+                                        <div class="col-lg-2 col-md-1 col-sm-2 col-xs-3" style="margin-left: -14px; margin-top:12px;">
+                                            <select class="form-control show-tick" id="gender" name="gender" title="&nbsp;">
+                                                      
+                                        <option value="R" <?php if($fetch['O_Frequency']== 'R') echo "selected"; ?>>R</option>
+                                        <option Value="NR" <?php if($fetch['O_Frequency']== 'NR') echo "selected"; ?>>NR</option>  
+                                            </select>
+                                        </div>
+                                        <div class="col-md-2 col-sm-5 col-xs-4 form-control-label" style="margin-left:-874px; margin-top:75px;">
+                                            <label>HIV:</label>
+                                        </div>
+                                         <div class="col-lg-1 col-md-1 col-sm-2 col-xs-5 form-control-label"style="margin-left:-576px; margin-top:75px;">
+                                            <label for="">Date</label>
+                                        </div>
+                                        <div class="col-lg-2 col-md-1 col-sm-2 col-xs-3" style="margin-left:-500px; margin-top:75px;">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="date" class="form-control unstyled" name="birthdate" id="birthdate" value="" style="padding-right:0" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-1 col-sm-2 col-xs-3 form-control-label" style="margin-left:-393px; margin-top:75px;">
+                                            <label for="email_address_2">Result</label>
+                                        </div>
+                                        <div class="col-lg-2 col-md-1 col-sm-2 col-xs-3" style="margin-left: -14px; margin-top:12px;">
+                                            <select class="form-control show-tick" id="gender" name="gender" title="&nbsp;">
+                                                      
+                                        <option value="R" <?php if($fetch['O_Frequency']== 'R') echo "selected"; ?>>R</option>
+                                        <option Value="NR" <?php if($fetch['O_Frequency']== 'NR') echo "selected"; ?>>NR</option>  
+                                            </select>
+                                        </div>
                                     </div>
-                                    <div role="tabpanel" class="tab-pane fade in active" id="hepatitis">
-                                         
-                                    </div>
-                                    <div role="tabpanel" class="tab-pane fade in active" id="immunization">
+                                    </form>
+                                    <div role="tabpanel" class="tab-pane fade in" id="immunization">
                                          
                                     </div>
                                     
@@ -671,7 +1537,7 @@ include('session.php');
                                     <div class="card">
                                         <div class="header bg-indigo">
                                             <h2>
-                                                List of Patients
+                                                Find Patient
 
                                                 <a href=""><i class="material-icons pull-right" data-dismiss="modal">clear</i></a>
                                             </h2>
@@ -736,7 +1602,7 @@ include('session.php');
                                     <div class="card">
                                         <div class="header bg-indigo">
                                             <h2>
-                                                List of Employees
+                                                List of Patients
 
                                                 <a href=""><i class="material-icons pull-right" data-dismiss="modal">clear</i></a>
                                             </h2>
@@ -797,8 +1663,7 @@ include('session.php');
                     </div>
                 </div>
 
-
-
+                </div>
             </div>
         </section>
 
@@ -892,6 +1757,7 @@ include('session.php');
 
         <!-- Demo Js -->
         <script src="../../js/demo.js"></script>
+        
         <script>
             $(window).load(function() {
                 var module = '<?php echo $transaction_a; ?>';

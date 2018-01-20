@@ -151,6 +151,7 @@
                         
                         </li>
                         <li id="profile">
+                         <li id="profile">
                             <a href="javascript:void(0);" class="menu-toggle">
                                 <i class="material-icons">people</i>
                                 <span>Profile</span>
@@ -165,11 +166,25 @@
                                 <li id="labtest">
                                     <a href="LT.php">Lab Tests</a>
                                 </li>
-                                <li id="nephrologist">
+                                <li class="" id="nephrologist">
                                     <a href="nephrologist.php">Nephrologist</a>
                                 </li>
                                 <li id="descriptors">
                                     <a href="D.php">Descriptors</a>
+                                </li>
+                            <li id="profile">
+                            <a href="javascript:void(0);" class="menu-toggle">
+                                <span>Schedule</span>
+                            </a>
+                            <ul class="ml-menu">
+                                 <li id="descriptors">
+                                    <a href="patientschedule.php">Patient</a>
+                                </li>
+                                <li id="descriptors">
+                                    <a href="nephroschedule.php">Nephrologist</a>
+                                </li>
+                                
+                                </ul>
                                 </li>
                             </ul>
                         </li>
@@ -189,7 +204,7 @@
                             </ul>
                         </li>
                         <li id="reports">
-                            <a href="reports.php">
+                            <a href="R.php">
                                 <i class="material-icons">assignment</i>
                                 <span>Reports</span>
                             </a>
@@ -197,7 +212,7 @@
                         <li>
                             <a href="logout.php">
                                 <i class="material-icons">input</i>
-                                <span>Logout</span>
+                                <span>Exit</span>
                             </a>
                         </li>
 
@@ -248,7 +263,7 @@
                                                     <input type="text" class="form-control" name="employeeid" value="<?php echo $fetch['employeeid']?>" id="employeeid" style="padding-right:0px;" readonly required> 
                                                 </div>
                                              <span class="input-group-addon">
-                                                 <button style="color:blue" type="button" class="btn btn-xs" data-toggle="modal" data-target="#smallModal">. . .</button>
+                                                 <button style="color:blue" type="button" class="btn btn-xs" data-toggle="modal" data-target="#smallModal">...</button>
                                                  
                                             </span>
                                             </div>
