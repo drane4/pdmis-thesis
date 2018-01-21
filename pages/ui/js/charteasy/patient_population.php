@@ -63,16 +63,15 @@ $f10 = $q10->fetch_array();
                     type: "column", 
                     toolTipContent: "{label}: {y}", 
                     dataPoints: [ 
-                        { label: "10 years old", y: <?php echo $f1['total']?> },
-                         { label: "20 years old", y: <?php echo $f2['total']?> },
-                        { label: "30 years old", y: <?php echo $f3['total']?> },
-                         { label: "40 years old", y: <?php echo $f4['total']?> },
-                        { label: "50 years old", y: <?php echo $f5['total']?> },
-                         { label: "60 years old", y: <?php echo $f6['total']?> },
-                        { label: "70 years old", y: <?php echo $f7['total']?> },
-                         { label: "80 years old", y: <?php echo $f8['total']?> },
-                        { label: "90 years old", y: <?php echo $f9['total']?> },
-                         { label: "100 years old", y: <?php echo $f10['total']?> }
+                         { label: "10-19 years old", y: <?php echo $f2['total']?> },
+                        { label: "20-29 years old", y: <?php echo $f3['total']?> },
+                         { label: "30-39 years old", y: <?php echo $f4['total']?> },
+                        { label: "40-49 years old", y: <?php echo $f5['total']?> },
+                         { label: "50-59 years old", y: <?php echo $f6['total']?> },
+                        { label: "60-69 years old", y: <?php echo $f7['total']?> },
+                         { label: "70-79 years old", y: <?php echo $f8['total']?> },
+                        { label: "80-89 years old", y: <?php echo $f9['total']?> },
+                         { label: "90-100 years old", y: <?php echo $f10['total']?> }
                     ] 
                 }, { 
                     type: "line", 
