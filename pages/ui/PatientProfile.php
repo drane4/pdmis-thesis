@@ -53,7 +53,17 @@ include('session.php');
             }
 
         </style>
+        <script type="text/javascript">
 
+            function getAge(){
+            var birthdate = document.getElementById('birthdate').value;
+            birthdate = new Date(birthdate);
+            var today = new Date();
+            var age = Math.floor((today-birthdate) / (365.25 * 24 * 60 * 60 * 1000));
+            document.getElementById('age').value=age;
+        }
+
+</script>
     </head>
 
     <body class="theme-indigo">
@@ -334,7 +344,7 @@ include('session.php');
                                                 <div class="col-lg-2 col-md-1 col-sm-2 col-xs-3">
                                                     <div class="form-group">
                                                         <div class="form-line">
-                                                            <input type="date" class="form-control unstyled" name="birthdate" id="birthdate" value="<?php echo $fetch['P_BirthDate']?>" style="padding-right:0" required>
+                                                            <input type="date" class="form-control unstyled" name="birthdate" id="birthdate" onblur="getAge();" value="<?php echo $fetch['P_BirthDate']?>" style="padding-right:0" required>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -344,7 +354,7 @@ include('session.php');
                                                 <div class="col-lg-1 col-md-1 col-sm-2 col-xs-2">
                                                     <div class="form-group">
                                                         <div class="form-line">
-                                                            <input type="number" class="form-control" name="age" id="age" min="0" max="110" step="1" value="<?php echo $fetch['P_Age']?>" required>
+                                                            <input type="number" class="form-control" min="1" max="110" name="age" id="age"  value="<?php echo $fetch['P_Age']?>" required>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1664,7 +1674,7 @@ include('session.php');
                 </div>
 
                 </div>
-            </div>
+                </div></div>
         </section>
 
         <script>

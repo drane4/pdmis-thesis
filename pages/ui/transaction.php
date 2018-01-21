@@ -415,7 +415,7 @@ require 'queries/treatment_query.php'
                                     <hr>
                                     <div class="row clearfix">
                                         <div class="col-md-2 col-sm-5 col-xs-4 form-control-label">
-                                            <label>FullName</label>
+                                            <label>Full Name</label>
                                         </div>
                                         <div class="col-lg-5 col-md-5 col-sm-1 col-xs-1 ">
                                             <div class="form-group">
@@ -499,7 +499,7 @@ require 'queries/treatment_query.php'
                                         <div class="col-lg-2 col-md-2 col-sm-1 col-xs-1 ">
                                             <div class="form-group">
                                                 <div class="form-line">
-                                                    <input type="text" class="form-control" name="weightgain" value=" <?php if($fetch2['weight'] != 0) echo $fetch2['weight']-$fetch3['weight']; ?>" id="weightgain" placehoylder="haha" readonly>   
+                                                    <input type="text" class="form-control" name="weightgain" value=" <?php if($fetch2['weight'] != 0) echo $fetch2['weight']-$fetch3['weight']; ?>" id="weightgain" placeholder="haha" readonly>   
                                                 </div>
                                             </div>
                                         </div>
