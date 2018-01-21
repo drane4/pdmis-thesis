@@ -202,15 +202,15 @@
                                 <li id="">
                                     <a href="report2.php">Trend Statistics</a>
                                 </li>
-                                <li id="">
+                                <!--<li id="">
                                     <a href="report3.php">Patient Progress Statistics</a>
-                                </li>
+                                </li>-->
                             </ul>
                         </li>
                         <li>
                             <a href="logout.php">
                                 <i class="material-icons">input</i>
-                                <span>Exit</span>
+                                <span>Logout</span>
                             </a>
                         </li>
 

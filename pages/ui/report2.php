@@ -204,9 +204,9 @@ require 'session.php';
                                 <li class="active" id="">
                                     <a href="report2.php" class="active">Trend Statistics</a>
                                 </li>
-                                <li id="">
+                                <!--<li id="">
                                     <a href="report3.php">Patient Progress Statistics</a>
-                                </li>
+                                </li>-->
 
                             </ul>
                         </li>
@@ -268,7 +268,7 @@ require 'session.php';
                                                   <div role="tabpanel" class="tab-pane fade in active" id="agestat">
                                                 <div id="patient_population" style="width: 100%; height: 400px"></div>
                                                 </div>
-                                                <div role="tabpanel" class="tab-pane fade in" id="genderstat">
+                                                <div role="tabpanel" class="tab-pane fade in active" id="genderstat">
                                                 <div id="patient_gender" style="width: 100%; height: 400px"></div>
                                                 </div>
                                                 
@@ -408,8 +408,8 @@ require 'session.php';
 
         </script>
         <script src="js/jquery.canvasjs.min.js"></script>
-        <?php require 'js/charteasy/patient_population.php'?>
-       
+        <?php require 'js/charteasy/patient_population.php' ?>
+    
         <!-- Jquery Core Js -->
         <script>
             $(document).ready(function() {

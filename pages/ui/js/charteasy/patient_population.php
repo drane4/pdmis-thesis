@@ -27,14 +27,6 @@ $f10 = $q10->fetch_array();
 
 ?>
 
-
-                                                      
-                                              
-
-
-
-
-
 <script type="text/javascript"> 
     window.onload = function(){ 
         $("#patient_population").CanvasJSChart({

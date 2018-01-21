@@ -201,9 +201,9 @@ include('session.php');
                                 <li id="">
                                     <a href="report2.php">Trend Statistics</a>
                                 </li>
-                                <li id="">
+                              <!--  <li id="">
                                     <a href="report3.php">Patient Progress Statistics</a>
-                                </li>
+                                </li>-->
 
                             </ul>
                         </li>

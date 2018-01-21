@@ -197,9 +197,9 @@
                                 <li id="">
                                     <a href="report2.php">Trend Statistics</a>
                                 </li>
-                                <li id="">
+                             <!--   <li id="">
                                     <a href="report3.php">Patient Progress Statistics</a>
-                                </li>
+                                </li>-->
 
                             </ul>
                         </li>
@@ -277,7 +277,7 @@
                                                 </thead>
                                                 <tbody>
                                                     <?php
-                                                            $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
+                                                        $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
                                                            $query = $conn->query("SELECT `patientprofile`.`P_Fname`,`patientprofile`.`P_Mname`,`patientprofile`.`P_Lname`,`patientprofile`.`Hospital_Id`,`patientschedule`.`treatment_day`,`patientschedule`.`treatment_time`,`patientschedule`.`treatment_status`
                                                            FROM `patientprofile` INNER JOIN `patientschedule` ON `patientprofile`.`Hospital_Id` = `patientschedule`.`Hospital_Id` WHERE `patientschedule`.`treatment_status` = 1") or die(mysqli_error());
                                                   

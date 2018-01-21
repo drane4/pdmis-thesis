@@ -200,15 +200,15 @@ include('session.php');
                                 <li id="">
                                     <a href="report2.php">Trend Statistics</a>
                                 </li>
-                                <li id="">
-                                    <a href="report3.php">Patient Progress Statistics</a>
-                                </li>
+                               <!-- <li id="">
+                                        <a href="report3.php">Patient Progress Statistics</a>
+                                    </li>-->
                             </ul>
                         </li>
                         <li>
-                           <a href="logout.php">
+                           <a href="logout.php" onclick="return confirm('Are you sure to logout?')">
                                 <i class="material-icons">input</i>
-                                <span>Exit</span>
+                                <span>Logout</span>
                             </a>
                         </li>
 

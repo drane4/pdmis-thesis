@@ -38,11 +38,11 @@ $f2 = $q2->fetch_array();
                     dataPoints: [ 
                         { label: "Male",  y: 
                          <?php
-    if($f1 == ""){
-        echo 0;
-    }else{
-        echo $f1['total'];
-    }	
+                        if($f1 == ""){
+                            echo 0;
+                        }else{
+                            echo $f1['total'];
+                        }	
                          ?>, legendText: "Male"},
 
                         { label: "Female",  y: 
