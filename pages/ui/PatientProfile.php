@@ -62,6 +62,13 @@ include('session.php');
             var age = Math.floor((today-birthdate) / (365.25 * 24 * 60 * 60 * 1000));
             document.getElementById('age').value=age;
         }
+            function getHDAge(){
+            var hdDate = document.getElementById('hdDate').value;
+            hdDate = new Date(hdDate);
+            var today = new Date();
+            var age = Math.floor((birthdate-hdDate) / (365.25 * 24 * 60 * 60 * 1000));
+            document.getElementById('fdage').value=fdage;
+        }
 
 </script>
     </head>
@@ -501,7 +508,7 @@ include('session.php');
                                                 <div class="col-lg-2 col-md-1 col-sm-2 col-xs-4">
                                                     <div class="form-group">
                                                         <div class="form-line">
-                                                            <input type="date" class="form-control unstyled" name="DIDS" id="DIDS" placeholder="YYYY/MM/DD" style="padding-right:0" value="<?php echo $fetch['P_InDial']?>" required>
+                                                            <input type="date" class="form-control unstyled" onblur="getHDAge();" name="DIDS" id="DIDS" placeholder="YYYY/MM/DD" style="padding-right:0" value="<?php echo $fetch['P_InDial']?>" required>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -512,7 +519,7 @@ include('session.php');
                                                 <div class="col-lg-1 col-md-1 col-sm-2 col-xs-2">
                                                     <div class="form-group">
                                                         <div class="form-line">
-                                                            <input type="number" class="form-control" name="fdage" id="fdage" min="0" max="110" step="1" value="<?php echo $fetch['P_AgeFD']?>" required>
+                                                            <input type="number" class="form-control" name="fdage" id="fdage" min="1" max="110" step="1" value="<?php echo $fetch['P_AgeFD']?>" required>
                                                         </div>
                                                     </div>
                                                 </div>

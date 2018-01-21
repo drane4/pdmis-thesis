@@ -5,21 +5,21 @@ $year = date('Y');
 $conn = new mysqli("localhost", "root", "", "pdmis") or die(mysqli_error());
 $q1 = $conn->query("SELECT COUNT(*) as total FROM `patientprofile` WHERE `P_Age` <= 10") or die(mysqli_error());
 $f1 = $q1->fetch_array();
-$q2 = $conn->query("SELECT COUNT(*) as total FROM `patientprofile` WHERE `P_Age` >= 10 && `P_Age` <= 20") or die(mysqli_error());
+$q2 = $conn->query("SELECT COUNT(*) as total FROM `patientprofile` WHERE `P_Age` >= 10 && `P_Age` <= 19") or die(mysqli_error());
 $f2 = $q2->fetch_array();
-$q3 = $conn->query("SELECT COUNT(*) as total FROM `patientprofile` WHERE `P_Age` >= 20 && `P_Age` <= 30") or die(mysqli_error());
+$q3 = $conn->query("SELECT COUNT(*) as total FROM `patientprofile` WHERE `P_Age` >= 20 && `P_Age` <= 29") or die(mysqli_error());
 $f3 = $q3->fetch_array();
-$q4 = $conn->query("SELECT COUNT(*) as total FROM `patientprofile` WHERE `P_Age` >= 30 && `P_Age` <= 40") or die(mysqli_error());
+$q4 = $conn->query("SELECT COUNT(*) as total FROM `patientprofile` WHERE `P_Age` >= 30 && `P_Age` <= 39") or die(mysqli_error());
 $f4 = $q4->fetch_array();
-$q5 = $conn->query("SELECT COUNT(*) as total FROM `patientprofile` WHERE `P_Age` >= 40 && `P_Age` <= 50") or die(mysqli_error());
+$q5 = $conn->query("SELECT COUNT(*) as total FROM `patientprofile` WHERE `P_Age` >= 40 && `P_Age` <= 49") or die(mysqli_error());
 $f5 = $q5->fetch_array();
-$q6 = $conn->query("SELECT COUNT(*) as total FROM `patientprofile` WHERE `P_Age` >= 50 && `P_Age` <= 60") or die(mysqli_error());
+$q6 = $conn->query("SELECT COUNT(*) as total FROM `patientprofile` WHERE `P_Age` >= 50 && `P_Age` <= 59") or die(mysqli_error());
 $f6 = $q6->fetch_array();
-$q7 = $conn->query("SELECT COUNT(*) as total FROM `patientprofile` WHERE `P_Age` >= 60 && `P_Age` <= 70") or die(mysqli_error());
+$q7 = $conn->query("SELECT COUNT(*) as total FROM `patientprofile` WHERE `P_Age` >= 60 && `P_Age` <= 69") or die(mysqli_error());
 $f7 = $q7->fetch_array();
-$q8 = $conn->query("SELECT COUNT(*) as total FROM `patientprofile` WHERE `P_Age` >= 70 && `P_Age` <= 80") or die(mysqli_error());
+$q8 = $conn->query("SELECT COUNT(*) as total FROM `patientprofile` WHERE `P_Age` >= 70 && `P_Age` <= 79") or die(mysqli_error());
 $f8 = $q8->fetch_array();
-$q9 = $conn->query("SELECT COUNT(*) as total FROM `patientprofile` WHERE `P_Age` >= 80 && `P_Age` <= 90") or die(mysqli_error());
+$q9 = $conn->query("SELECT COUNT(*) as total FROM `patientprofile` WHERE `P_Age` >= 80 && `P_Age` <= 89") or die(mysqli_error());
 $f9 = $q9->fetch_array();
 $q10 = $conn->query("SELECT COUNT(*) as total FROM `patientprofile` WHERE `P_Age` >= 90 && `P_Age` <= 100") or die(mysqli_error());
 $f10 = $q10->fetch_array();
@@ -78,16 +78,15 @@ $f10 = $q10->fetch_array();
                     type: "line", 
                     toolTipContent: "{label}: {y}", 
                     dataPoints: [ 
-                        { label: "10 years old", y: <?php echo $f1['total']?> },
-                         { label: "20 years old", y: <?php echo $f2['total']?> },
-                        { label: "30 years old", y: <?php echo $f3['total']?> },
-                         { label: "40 years old", y: <?php echo $f4['total']?> },
-                        { label: "50 years old", y: <?php echo $f5['total']?> },
-                         { label: "60 years old", y: <?php echo $f6['total']?> },
-                        { label: "70 years old", y: <?php echo $f7['total']?> },
-                         { label: "80 years old", y: <?php echo $f8['total']?> },
-                        { label: "90 years old", y: <?php echo $f9['total']?> },
-                         { label: "100 years old", y: <?php echo $f10['total']?> }
+                         { label: "10-19 years old", y: <?php echo $f2['total']?> },
+                        { label: "20-29 years old", y: <?php echo $f3['total']?> },
+                         { label: "30-39 years old", y: <?php echo $f4['total']?> },
+                        { label: "40-49 years old", y: <?php echo $f5['total']?> },
+                         { label: "50-59 years old", y: <?php echo $f6['total']?> },
+                        { label: "60-69 years old", y: <?php echo $f7['total']?> },
+                         { label: "70-79 years old", y: <?php echo $f8['total']?> },
+                        { label: "80-89 years old", y: <?php echo $f9['total']?> },
+                         { label: "90-100 years old", y: <?php echo $f10['total']?> }
                     ] 
                 }
                 
