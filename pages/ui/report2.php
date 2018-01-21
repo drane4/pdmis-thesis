@@ -141,15 +141,6 @@ require 'session.php';
                                 <li id="transaction">
                                     <a href="transaction.php">HemoTreatment</a>
                                 </li>
-                                <li id="Schedule">
-                                    <a href="LT.php">Schedule</a>
-                                </li>
-                                <li id="Immunization">
-                                    <a href="P.php">Immunization</a>
-                                </li>
-                                <li id="PatientMedicalHistory">
-                                    <a href="D.php">Patient Medical History</a>
-                                </li>
                             </ul>
 
                         </li>
@@ -165,9 +156,7 @@ require 'session.php';
                                 <li id="employeeprofile">
                                     <a href="EmployeeProfile.php">Employee Profile</a>
                                 </li>
-                                <li id="labtest">
-                                    <a href="LT.php">Lab Tests</a>
-                                </li>
+                               
                                 <li class="" id="nephrologist">
                                     <a href="nephrologist.php">Nephrologist</a>
                                 </li>
@@ -212,11 +201,8 @@ require 'session.php';
                                 <span>Reports</span>
                             </a>
                             <ul class="ml-menu">
-                                <li id="">
-                                    <a href="report1.php">Agreement</a>
-                                </li>
-                                <li id="">
-                                    <a href="report2.php" class="active">Statistics</a>
+                                <li class="active" id="">
+                                    <a href="report2.php" class="active">Trend Statistics</a>
                                 </li>
                                 <li id="">
                                     <a href="report3.php">Patient Progress Statistics</a>

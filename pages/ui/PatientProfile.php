@@ -89,7 +89,7 @@ include('session.php');
                     <a href="javascript:void(0);" class="bars"></a>
                     <center>
                         <a class="navbar-brand" href="index.html">
-                            <div class="title">Teresita Jalandoni Provincial Hospital <br> Dialysis Department</div>
+                            <div class="title"></div>
                         </a>
                     </center>
 
@@ -137,36 +137,38 @@ include('session.php');
                 <!-- Menu -->
                 <div class="menu">
                     <ul class="list">
+
                         <li class="header">MAIN NAVIGATION</li>
-                        <li id="transaction">
+
+                        <li  id="transaction">
                             <a href="javascript:void(0);" class="menu-toggle">
-                                 <i class="material-icons">folder</i>
+                                <i class="material-icons">folder</i>
                                 <span>Transaction</span>
                             </a>
                             <ul class="ml-menu">
-                                <li id="transaction">
+                                <li id="transaction" >
                                     <a href="transaction.php">HemoTreatment</a>
                                 </li>
-                            
                             </ul>
 
                         </li>
-                         <li class="active" id="profile">
+                        <li id="profile" class="active">
                             <a href="javascript:void(0);" class="menu-toggle">
                                 <i class="material-icons">people</i>
                                 <span>Profile</span>
                             </a>
-                            <ul class="ml-menu">
-                                <li class="active" id="patientprofile">
+                            <ul class="ml-menu" >
+                                <li id="patientprofile" class="active">
                                     <a href="PatientProfile.php">Patient Profile</a>
                                 </li>
                                 <li id="employeeprofile">
                                     <a href="EmployeeProfile.php">Employee Profile</a>
                                 </li>
+                                
                                 <li class="" id="nephrologist">
                                     <a href="nephrologist.php">Nephrologist</a>
                                 </li>
-                            <li class="" id="schedule">
+                            <li id="profile">
                             <a href="javascript:void(0);" class="menu-toggle">
                                 <span>Schedule</span>
                             </a>
@@ -177,7 +179,7 @@ include('session.php');
                                 <li id="descriptors">
                                     <a href="nephroschedule.php">Nephrologist</a>
                                 </li>
-                                
+                                    
                                 </ul>
                                 </li>
                             </ul>
@@ -200,29 +202,26 @@ include('session.php');
                                 </li>
                             </ul>
                         </li>
-                         <li id="reports">
+
+                        <li id="reports">
                             <a href="javascript:void(0);" class="menu-toggle">
                                 <i class="material-icons">assignment</i>
                                 <span>Reports</span>
                             </a>
                             <ul class="ml-menu">
                                 <li id="">
-                                    <a href="report1.php">Agreement</a>
-                                </li>
-                                <li id="">
-                                    <a href="report2.php">Statistics</a>
+                                    <a href="report2.php">Trend Statistics</a>
                                 </li>
                                 <li id="">
                                     <a href="report3.php">Patient Progress Statistics</a>
                                 </li>
 
-                            </ul>   
+                            </ul>
                         </li>
-    
                         <li>
                             <a href="logout.php">
                                 <i class="material-icons">input</i>
-                                <span>Exit</span>
+                                <span>Logout</span>
                             </a>
                         </li>
 
@@ -417,7 +416,7 @@ include('session.php');
                                                 <div class="col-lg-3 col-md-1 col-sm-2 col-xs-4">
                                                     <div class="form-group">
                                                         <div class="form-line">
-                                                            <input type="text" class="form-control" name="percontactnumber" id="percontactnumber" placeholder="Ex: +00 (000) 000-00-00" value="<?php echo $fetch['P_ConNum1']?>" required>
+                                                            <input type="text" class="form-control mobile-phone-number" name="percontactnumber"  id="percontactnumber" placeholder="Ex: +63 (912) 345-67-89" value="<?php echo $fetch['P_ConNum1']?>" required>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -441,7 +440,7 @@ include('session.php');
                                                 <div class="col-lg-3 col-md-1 col-sm-2 col-xs-4">
                                                     <div class="form-group">
                                                         <div class="form-line">
-                                                            <input type="text" class="form-control" name="precontactnumber" id="precontactnumber" placeholder="Ex: +00 (000) 000-00-00" value="<?php echo $fetch['P_ConNum2']?>">
+                                                            <input type="text" class="form-control mobile-phone-number" name="precontactnumber" id="precontactnumber" placeholder="Ex: +63 (912) 345-67-89" value="<?php echo $fetch['P_ConNum2']?>">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -479,7 +478,7 @@ include('session.php');
                                                 <div class="col-lg-3 col-md-1 col-sm-2 col-xs-4">
                                                     <div class="form-group">
                                                         <div class="form-line">
-                                                            <input type="text" class="form-control" name="relativecon" id="relativecon" placeholder="Ex: +00 (000) 000-00-00" value="<?php echo $fetch['P_RelativeConNum']?>" required>
+                                                            <input type="text" class="form-control mobile-phone-number" name="relativecon" id="relativecon" placeholder="Ex: +63 (912) 345-67-89" value="<?php echo $fetch['P_RelativeConNum']?>" required>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -555,6 +554,7 @@ include('session.php');
                                                         while ($row = $query->fetch_array()){
 
                                                         ?>
+                                                        <option value="" disabled selected hidden>Select: </option> 
                                                         <option value="<?php echo $row['nephrologistid']; ?>" 
                                                         <?php if($fetch['nephrologistid']==$row['nephrologistid']) echo "selected"; ?>>
                                                         <?php echo $row['n_fname']." ".$row['n_mname']." ".$row['n_lname'] ?>
@@ -590,7 +590,7 @@ include('session.php');
                                                 <div class="col-lg-3 col-md-1 col-sm-2 col-xs-4">
                                                     <div class="form-group">
                                                         <div class="form-line">
-                                                            <input type="text" class="form-control" name="phnum" id="phnum" onkeyup="capitalize(this.id, this.value);" value="<?php echo $fetch['P_PhilHealthNum']?>">
+                                                            <input type="number" class="form-control" name="phnum" id="phnum" onkeyup="capitalize(this.id, this.value);" value="<?php echo $fetch['P_PhilHealthNum']?>">
                                                         </div>
                                                     </div>
                                                 </div>

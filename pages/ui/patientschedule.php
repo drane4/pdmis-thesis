@@ -122,51 +122,49 @@
                 <!-- Menu -->
                  <div class="menu">
                     <ul class="list">
+
                         <li class="header">MAIN NAVIGATION</li>
-                          <li id="transaction">
+
+                        <li  id="transaction">
                             <a href="javascript:void(0);" class="menu-toggle">
-                                 <i class="material-icons">folder</i>
+                                <i class="material-icons">folder</i>
                                 <span>Transaction</span>
                             </a>
-                             <ul class="ml-menu">
-                                <li id="transaction">
+                            <ul class="ml-menu">
+                                <li id="transaction" >
                                     <a href="transaction.php">HemoTreatment</a>
                                 </li>
-                            
                             </ul>
-                        
+
                         </li>
-                        <li class="active" id="profile">
+                        <li id="profile" class="active" >
                             <a href="javascript:void(0);" class="menu-toggle">
                                 <i class="material-icons">people</i>
                                 <span>Profile</span>
                             </a>
-                            <ul class="ml-menu">
-                                <li id="patientprofile">
+                            <ul class="ml-menu" >
+                                <li id="patientprofile" >
                                     <a href="PatientProfile.php">Patient Profile</a>
                                 </li>
-                                <li id="employeeprofile">
+                                <li id="employeeprofile" >
                                     <a href="EmployeeProfile.php">Employee Profile</a>
                                 </li>
-                            
-                                <li class="" id="nephrologist">
+                                
+                                <li id="nephrologist" >
                                     <a href="nephrologist.php">Nephrologist</a>
                                 </li>
-                                <li id="descriptors">
-                                    <a href="D.php">Descriptors</a>
-                                </li>
-                            <li class="active" id="profile">
+                            <li id="profile" class="active">
                             <a href="javascript:void(0);" class="menu-toggle">
                                 <span>Schedule</span>
                             </a>
                             <ul class="ml-menu">
-                                 <li class="active" id="descriptors">
+                                 <li id="descriptors" class="active">
                                     <a href="patientschedule.php">Patient</a>
                                 </li>
-                                <li id="descriptors">
+                              <!--  <li id="descriptors">
                                     <a href="nephroschedule.php">Nephrologist</a>
-                                </li>
-                                
+                                </li>-->
+                                    
                                 </ul>
                                 </li>
                             </ul>
@@ -189,16 +187,26 @@
                                 </li>
                             </ul>
                         </li>
+
                         <li id="reports">
-                            <a href="R.php">
+                            <a href="javascript:void(0);" class="menu-toggle">
                                 <i class="material-icons">assignment</i>
                                 <span>Reports</span>
                             </a>
+                            <ul class="ml-menu">
+                                <li id="">
+                                    <a href="report2.php">Trend Statistics</a>
+                                </li>
+                                <li id="">
+                                    <a href="report3.php">Patient Progress Statistics</a>
+                                </li>
+
+                            </ul>
                         </li>
                         <li>
-                           <a href="logout.php">
+                            <a href="logout.php">
                                 <i class="material-icons">input</i>
-                                <span>Exit</span>
+                                <span>Logout</span>
                             </a>
                         </li>
 

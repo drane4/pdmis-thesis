@@ -36,7 +36,7 @@ require 'queries/treatment_query.php'
         <link href="../../plugins/morrisjs/morris.css" rel="stylesheet" />
 
         <!-- Custom Css -->
-        <link href="../../css/style2.css" rel="stylesheet">
+        <link href="../../css/style3.css" rel="stylesheet">
 
         <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
         <link href="../../css/themes/theme-indigo.css" rel="stylesheet" />
@@ -75,7 +75,7 @@ require 'queries/treatment_query.php'
                     <a href="javascript:void(0);" class="bars"></a>
                     <center>
                         <a class="navbar-brand" href="index.html">
-                            <div class="title">Teresita Jalandoni Provincial Hospital <br> Dialysis Department</div>
+                            <div class="title"></div>
                         </a>
                     </center>
 
@@ -312,10 +312,7 @@ require 'queries/treatment_query.php'
                             </a>
                             <ul class="ml-menu">
                                 <li id="">
-                                    <a href="report1.php">Agreement</a>
-                                </li>
-                                <li id="">
-                                    <a href="report2.php">Statistics</a>
+                                    <a href="report2.php">Trend Statistics</a>
                                 </li>
                                 <li id="">
                                     <a href="report3.php">Patient Progress Statistics</a>

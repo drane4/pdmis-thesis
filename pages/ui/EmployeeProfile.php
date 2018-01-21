@@ -38,7 +38,7 @@ include('session.php');
         <link href="../../plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
 
         <!-- Custom Css -->
-        <link href="../../css/style2.css" rel="stylesheet">
+        <link href="../../css/style3.css" rel="stylesheet">
 
         <!-- mytable Css -->
         <link href="../../css/table.css" rel="stylesheet">
@@ -82,7 +82,7 @@ include('session.php');
                     <a href="javascript:void(0);" class="bars"></a>
                     <center>
                         <a class="navbar-brand" href="index.html">
-                            <div class="title">Teresita Jalandoni Provincial Hospital <br> Dialysis Department</div>
+                            <div class="title"></div>
                         </a>
                     </center>
 
@@ -126,37 +126,38 @@ include('session.php');
                 <!-- Menu -->
                  <div class="menu">
                     <ul class="list">
+
                         <li class="header">MAIN NAVIGATION</li>
-                         <li id="transaction">
+
+                        <li  id="transaction">
                             <a href="javascript:void(0);" class="menu-toggle">
-                                 <i class="material-icons">folder</i>
+                                <i class="material-icons">folder</i>
                                 <span>Transaction</span>
                             </a>
-                             <ul class="ml-menu">
-                                <li id="transaction">
+                            <ul class="ml-menu">
+                                <li id="transaction" >
                                     <a href="transaction.php">HemoTreatment</a>
                                 </li>
-                              
                             </ul>
-                        
+
                         </li>
-                        <li class="active" id="profile">
+                        <li id="profile" class="active">
                             <a href="javascript:void(0);" class="menu-toggle">
                                 <i class="material-icons">people</i>
                                 <span>Profile</span>
                             </a>
-                            <ul class="ml-menu">
-                                <li id="patientprofile">
+                            <ul class="ml-menu" >
+                                <li id="patientprofile" >
                                     <a href="PatientProfile.php">Patient Profile</a>
                                 </li>
-                                <li class="active" id="employeeprofile">
+                                <li id="employeeprofile" class="active">
                                     <a href="EmployeeProfile.php">Employee Profile</a>
                                 </li>
+                                
                                 <li class="" id="nephrologist">
                                     <a href="nephrologist.php">Nephrologist</a>
                                 </li>
-                                
-                            <li id="schedule">
+                            <li id="profile">
                             <a href="javascript:void(0);" class="menu-toggle">
                                 <span>Schedule</span>
                             </a>
@@ -167,7 +168,7 @@ include('session.php');
                                 <li id="descriptors">
                                     <a href="nephroschedule.php">Nephrologist</a>
                                 </li>
-                                
+                                    
                                 </ul>
                                 </li>
                             </ul>
@@ -190,16 +191,26 @@ include('session.php');
                                 </li>
                             </ul>
                         </li>
+
                         <li id="reports">
-                            <a href="R.php">
+                            <a href="javascript:void(0);" class="menu-toggle">
                                 <i class="material-icons">assignment</i>
                                 <span>Reports</span>
                             </a>
+                            <ul class="ml-menu">
+                                <li id="">
+                                    <a href="report2.php">Trend Statistics</a>
+                                </li>
+                                <li id="">
+                                    <a href="report3.php">Patient Progress Statistics</a>
+                                </li>
+
+                            </ul>
                         </li>
                         <li>
-                           <a href="logout.php">
+                            <a href="logout.php">
                                 <i class="material-icons">input</i>
-                                <span>Exit</span>
+                                <span>Logout</span>
                             </a>
                         </li>
 
@@ -341,8 +352,8 @@ include('session.php');
                                         </div>
                                         <div class="col-lg-2 col-md-1 col-sm-2 col-xs-3">
 
-                                            <select class="form-control show-tick" name="position" id="position" title="&nbsp;" >
-                                                <option value="#">&nbsp;</option>
+                                            <select class="form-control show-tick" name="position" id="position" title="&nbsp;" required>
+                                             <option value="" disabled selected hidden>Select: </option> 
                                                 <option value="Nurse" <?php if($fetch['position']== 'Nurse') echo "selected"; ?>
                                                         >Nurse</option>
                                                  <option value="Technician"   <?php if($fetch['position']== 'Technician') echo "selected"; ?>

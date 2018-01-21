@@ -135,15 +135,6 @@ require 'queries/treatment_query.php'
                                 <li id="transaction" class="active">
                                     <a href="transaction.php">HemoTreatment</a>
                                 </li>
-                                <li id="Schedule">
-                                    <a href="LT.php">Schedule</a>
-                                </li>
-                                <li id="Immunization">
-                                    <a href="P.php">Immunization</a>
-                                </li>
-                                <li id="PatientMedicalHistory">
-                                    <a href="D.php">Patient Medical History</a>
-                                </li>
                             </ul>
 
                         </li>
@@ -159,14 +150,23 @@ require 'queries/treatment_query.php'
                                 <li id="employeeprofile">
                                     <a href="EmployeeProfile.php">Employee Profile</a>
                                 </li>
-                                <li id="labtest">
-                                    <a href="LT.php">Lab Tests</a>
+                                
+                                <li class="" id="nephrologist">
+                                    <a href="nephrologist.php">Nephrologist</a>
                                 </li>
-                                <li id="nephrologist">
-                                    <a href="P.php">Nephrologist</a>
+                            <li id="profile">
+                            <a href="javascript:void(0);" class="menu-toggle">
+                                <span>Schedule</span>
+                            </a>
+                            <ul class="ml-menu">
+                                 <li id="descriptors">
+                                    <a href="patientschedule.php">Patient</a>
                                 </li>
                                 <li id="descriptors">
-                                    <a href="D.php">Descriptors</a>
+                                    <a href="nephroschedule.php">Nephrologist</a>
+                                </li>
+                                    
+                                </ul>
                                 </li>
                             </ul>
                         </li>
@@ -180,21 +180,34 @@ require 'queries/treatment_query.php'
                                 <li id="userprofile">
                                     <a href="UserProfile.php">User Profile</a>
                                 </li>
+                                <li id="descriptors">
+                                    <a href="D.php">Descriptors</a>
+                                </li>
                                 <li id="systemmaintenance">
                                     <a href="maintenance.php">System Maintenance</a>
                                 </li>
                             </ul>
                         </li>
+
                         <li id="reports">
-                            <a href="R.php">
+                            <a href="javascript:void(0);" class="menu-toggle">
                                 <i class="material-icons">assignment</i>
                                 <span>Reports</span>
                             </a>
+                            <ul class="ml-menu">
+                                <li id="">
+                                    <a href="report2.php">Trend Statistics</a>
+                                </li>
+                                <li id="">
+                                    <a href="report3.php">Patient Progress Statistics</a>
+                                </li>
+
+                            </ul>
                         </li>
                         <li>
                             <a href="logout.php">
                                 <i class="material-icons">input</i>
-                                <span>Exit</span>
+                                <span>Logout</span>
                             </a>
                         </li>
 
