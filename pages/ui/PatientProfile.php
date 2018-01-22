@@ -38,7 +38,7 @@ include('session.php');
         <link href="../../plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
 
         <!-- Custom Css -->
-        <link href="../../css/style3.css" rel="stylesheet">
+        <link href="../../css/style4.css" rel="stylesheet">
 
         <!-- mytable Css -->
         <link href="../../css/table.css" rel="stylesheet">
