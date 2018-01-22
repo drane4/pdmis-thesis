@@ -80,11 +80,7 @@
     "inputFile": "scss/themes/theme-yellow.scss"
   },
   {
-<<<<<<< HEAD
     "outputFile": "css/style.css",
-=======
-    "outputFile": "css/style1.css",
->>>>>>> 7910d6b5ce1ef2b7056ce8a8681a22100166992c
     "inputFile": "scss/style.scss"
   }
 ]

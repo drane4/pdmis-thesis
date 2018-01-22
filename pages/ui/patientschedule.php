@@ -34,7 +34,7 @@
         <link href="../../plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
 
         <!-- Custom Css -->
-        <link href="../../css/style2.css" rel="stylesheet">
+        <link href="../../css/style3.css" rel="stylesheet">
 
         <!-- mytable Css -->
         <link href="../../css/table.css" rel="stylesheet">
@@ -122,58 +122,49 @@
                 <!-- Menu -->
                  <div class="menu">
                     <ul class="list">
+
                         <li class="header">MAIN NAVIGATION</li>
-                          <li id="transaction">
+
+                        <li  id="transaction">
                             <a href="javascript:void(0);" class="menu-toggle">
-                                 <i class="material-icons">folder</i>
+                                <i class="material-icons">folder</i>
                                 <span>Transaction</span>
                             </a>
-                             <ul class="ml-menu">
-                                <li id="transaction">
+                            <ul class="ml-menu">
+                                <li id="transaction" >
                                     <a href="transaction.php">HemoTreatment</a>
                                 </li>
-                                <li id="Immunization">
-                                    <a href="P.php">Immunization</a>
-                                </li>
-                                <li id="PatientMedicalHistory">
-                                    <a href="D.php">Patient Medical History</a>
-                                </li>
                             </ul>
-                        
+
                         </li>
-                        <li class="active" id="profile">
+                        <li id="profile" class="active" >
                             <a href="javascript:void(0);" class="menu-toggle">
                                 <i class="material-icons">people</i>
                                 <span>Profile</span>
                             </a>
-                            <ul class="ml-menu">
-                                <li id="patientprofile">
+                            <ul class="ml-menu" >
+                                <li id="patientprofile" >
                                     <a href="PatientProfile.php">Patient Profile</a>
                                 </li>
-                                <li id="employeeprofile">
+                                <li id="employeeprofile" >
                                     <a href="EmployeeProfile.php">Employee Profile</a>
                                 </li>
-                                <li id="labtest">
-                                    <a href="LT.php">Lab Tests</a>
-                                </li>
-                                <li class="" id="nephrologist">
+                                
+                                <li id="nephrologist" >
                                     <a href="nephrologist.php">Nephrologist</a>
                                 </li>
-                                <li id="descriptors">
-                                    <a href="D.php">Descriptors</a>
-                                </li>
-                            <li class="active" id="profile">
+                            <li id="profile" class="active">
                             <a href="javascript:void(0);" class="menu-toggle">
                                 <span>Schedule</span>
                             </a>
                             <ul class="ml-menu">
-                                 <li id="descriptors">
+                                 <li id="descriptors" class="active">
                                     <a href="patientschedule.php">Patient</a>
                                 </li>
-                                <li id="descriptors">
-                                    <a href="D.php">Nephrologist</a>
-                                </li>
-                                
+                              <!--  <li id="descriptors">
+                                    <a href="nephroschedule.php">Nephrologist</a>
+                                </li>-->
+                                    
                                 </ul>
                                 </li>
                             </ul>
@@ -188,21 +179,34 @@
                                 <li id="userprofile">
                                     <a href="UserProfile.php">User Profile</a>
                                 </li>
+                                <li id="descriptors">
+                                    <a href="D.php">Descriptors</a>
+                                </li>
                                 <li id="systemmaintenance">
                                     <a href="maintenance.php">System Maintenance</a>
                                 </li>
                             </ul>
                         </li>
+
                         <li id="reports">
-                            <a href="R.php">
+                            <a href="javascript:void(0);" class="menu-toggle">
                                 <i class="material-icons">assignment</i>
                                 <span>Reports</span>
                             </a>
+                            <ul class="ml-menu">
+                                <li id="">
+                                    <a href="report2.php">Trend Statistics</a>
+                                </li>
+                             <!--   <li id="">
+                                    <a href="report3.php">Patient Progress Statistics</a>
+                                </li>-->
+
+                            </ul>
                         </li>
                         <li>
-                           <a href="logout.php">
+                            <a href="logout.php">
                                 <i class="material-icons">input</i>
-                                <span>Exit</span>
+                                <span>Logout</span>
                             </a>
                         </li>
 
@@ -257,7 +261,7 @@
 
                             <!-- Tab panes -->
                             <div class="tab-content">
-                                <div role="tabpanel" class="tab-pane fade in active" id="All">
+                                <div role="tabpanel" class="tab-pane fade in" id="All">
                             
                                      <table id="mainTable" class="table table-bordered table-striped table-hover js-exportable dataTable">
                                                 <thead>
@@ -273,7 +277,7 @@
                                                 </thead>
                                                 <tbody>
                                                     <?php
-                                                            $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
+                                                        $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
                                                            $query = $conn->query("SELECT `patientprofile`.`P_Fname`,`patientprofile`.`P_Mname`,`patientprofile`.`P_Lname`,`patientprofile`.`Hospital_Id`,`patientschedule`.`treatment_day`,`patientschedule`.`treatment_time`,`patientschedule`.`treatment_status`
                                                            FROM `patientprofile` INNER JOIN `patientschedule` ON `patientprofile`.`Hospital_Id` = `patientschedule`.`Hospital_Id` WHERE `patientschedule`.`treatment_status` = 1") or die(mysqli_error());
                                                   
@@ -306,7 +310,9 @@
                                             <button type="button" class="btn btn-primary m-t-15 waves-effect" data-toggle="modal" data-target="#patients"> <i class="material-icons">date_range</i> Manage</button> &nbsp;
                                     </div>
                                 </div>
-                                  <div role="tabpanel" class="tab-pane fade in" id="Monday">
+                                  <div role="tabpanel" 
+                                       <?php if(date("l") =='Monday' ) {?> class="tab-pane fade in active"<?php }  ?>
+                                        <?php if(date("l") !='Monday' ) {?> class="tab-pane fade in"<?php }  ?>                                       id="Monday">
                             
                                      <table id="mainTable" class="table table-bordered table-striped table-hover js-exportable dataTable">
                                                 <thead>
@@ -357,7 +363,8 @@
                                             <button type="button" class="btn btn-primary m-t-15 waves-effect" data-toggle="modal" data-target="#patients"> <i class="material-icons">date_range</i> Manage</button> &nbsp;
                                     </div>
                                 </div>
-                                <div role="tabpanel" class="tab-pane fade in" id="Tuesday">
+                                <div role="tabpanel" <?php if(date("l") =='Tuesday' ) {?> class="tab-pane fade in active"<?php }  ?>
+                                        <?php if(date("l") !='Tuesday' ) {?> class="tab-pane fade in"<?php }  ?>                                        id="Tuesday">
                             
                                      <table id="mainTable" class="table table-bordered table-striped table-hover js-exportable dataTable">
                                                 <thead>
@@ -405,7 +412,8 @@
                                             <button type="button" class="btn btn-primary m-t-15 waves-effect" data-toggle="modal" data-target="#patients"> <i class="material-icons">date_range</i> Manage</button> &nbsp;
                                     </div>
                                 </div>
-                                <div role="tabpanel" class="tab-pane fade in" id="Wednesday">
+                                <div role="tabpanel" <?php if(date("l") =='Wednesday' ) {?> class="tab-pane fade in active"<?php }  ?>
+                                        <?php if(date("l") !='Wednesday' ) {?> class="tab-pane fade in"<?php }  ?>                                        id="Wednesday">
                             
                                      <table id="mainTable" class="table table-bordered table-striped table-hover js-exportable dataTable">
                                                 <thead>
@@ -455,7 +463,8 @@
                                             <button type="button" class="btn btn-primary m-t-15 waves-effect" data-toggle="modal" data-target="#patients"> <i class="material-icons">date_range</i> Manage</button> &nbsp;
                                     </div>
                                 </div>
-                                <div role="tabpanel" class="tab-pane fade in" id="Thursday">
+                                <div role="tabpanel" <?php if(date("l") =='Thursday' ) {?> class="tab-pane fade in active"<?php }  ?>
+                                        <?php if(date("l") !='Thursday' ) {?> class="tab-pane fade in"<?php }  ?>                                        id="Thursday">
                             
                                      <table id="mainTable" class="table table-bordered table-striped table-hover js-exportable dataTable">
                                                 <thead>
@@ -508,7 +517,8 @@
                                             <button type="button" class="btn btn-primary m-t-15 waves-effect" data-toggle="modal" data-target="#patients"> <i class="material-icons">date_range</i> Manage</button> &nbsp;
                                     </div>
                                 </div>
-                                <div role="tabpanel" class="tab-pane fade in" id="Friday">
+                                <div role="tabpanel" <?php if(date("l") =='Friday' ) {?> class="tab-pane fade in active"<?php }  ?>
+                                        <?php if(date("l") !='Friday' ) {?> class="tab-pane fade in"<?php }  ?>                                        id="Friday">
                             
                                      <table id="mainTable" class="table table-bordered table-striped table-hover js-exportable dataTable">
                                                 <thead>
@@ -641,15 +651,15 @@
 
                                             <select class="form-control show-tick" name="day_S" id="day_S" title="&nbsp;" >
                                                 <option value="#">&nbsp;</option>
-                                                <option value="monday" <?php if($fetch['']== 'monday') echo "selected"; ?>
+                                                <option value="Monday" <?php if($fetch['']== 'monday') echo "selected"; ?>
                                                         >Monday</option>
-                                                 <option value="tuesday" <?php if($fetch['']== 'tuesday') echo "selected"; ?>
+                                                 <option value="Tuesday" <?php if($fetch['']== 'tuesday') echo "selected"; ?>
                                                         >Tuesday</option>
-                                                 <option value="wednesday" <?php if($fetch['']== 'wednesday') echo "selected"; ?>
+                                                 <option value="Wednesday" <?php if($fetch['']== 'wednesday') echo "selected"; ?>
                                                         >Wednesday</option>
-                                                 <option value="thursday" <?php if($fetch['']== 'thursday') echo "selected"; ?>
+                                                 <option value="Thursday" <?php if($fetch['']== 'thursday') echo "selected"; ?>
                                                         >Thursday</option>
-                                                 <option value="friday" <?php if($fetch['']== 'friday') echo "selected"; ?>
+                                                 <option value="Friday" <?php if($fetch['']== 'friday') echo "selected"; ?>
                                                         >Friday</option>
                                             </select>
                                         </div>

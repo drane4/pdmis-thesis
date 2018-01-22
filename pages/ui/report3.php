@@ -151,7 +151,7 @@ require 'session.php';
                             </ul>
 
                         </li>
-                        <li id="profile">
+                         <li id="profile">
                             <a href="javascript:void(0);" class="menu-toggle">
                                 <i class="material-icons">people</i>
                                 <span>Profile</span>
@@ -166,11 +166,25 @@ require 'session.php';
                                 <li id="labtest">
                                     <a href="LT.php">Lab Tests</a>
                                 </li>
-                                <li id="nephrologist">
-                                    <a href="P.php">Nephrologist</a>
+                                <li class="" id="nephrologist">
+                                    <a href="nephrologist.php">Nephrologist</a>
                                 </li>
                                 <li id="descriptors">
                                     <a href="D.php">Descriptors</a>
+                                </li>
+                            <li id="profile">
+                            <a href="javascript:void(0);" class="menu-toggle">
+                                <span>Schedule</span>
+                            </a>
+                            <ul class="ml-menu">
+                                 <li id="descriptors">
+                                    <a href="patientschedule.php">Patient</a>
+                                </li>
+                                <li id="descriptors">
+                                    <a href="nephroschedule.php">Nephrologist</a>
+                                </li>
+                                
+                                </ul>
                                 </li>
                             </ul>
                         </li>

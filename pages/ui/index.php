@@ -7,6 +7,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <script src="js/jquery.min.js"></script>
         <script src = "js/jquery.canvasjs.min.js"></script>
+        
         <?php require 'js/charteasy/patient_population.php'?>
     </head>
     <body>

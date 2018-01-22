@@ -40,7 +40,7 @@ require 'session.php';
         <link href="../../plugins/morrisjs/morris.css" rel="stylesheet" />
 
         <!-- Custom Css -->
-        <link href="../../css/style2.css" rel="stylesheet">
+        <link href="../../css/style3.css" rel="stylesheet">
 
         <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
         <link href="../../css/themes/theme-indigo.css" rel="stylesheet" />
@@ -141,15 +141,6 @@ require 'session.php';
                                 <li id="transaction">
                                     <a href="transaction.php">HemoTreatment</a>
                                 </li>
-                                <li id="Schedule">
-                                    <a href="LT.php">Schedule</a>
-                                </li>
-                                <li id="Immunization">
-                                    <a href="P.php">Immunization</a>
-                                </li>
-                                <li id="PatientMedicalHistory">
-                                    <a href="D.php">Patient Medical History</a>
-                                </li>
                             </ul>
 
                         </li>
@@ -165,14 +156,26 @@ require 'session.php';
                                 <li id="employeeprofile">
                                     <a href="EmployeeProfile.php">Employee Profile</a>
                                 </li>
-                                <li id="labtest">
-                                    <a href="LT.php">Lab Tests</a>
-                                </li>
-                                <li id="nephrologist">
-                                    <a href="P.php">Nephrologist</a>
+                               
+                                <li class="" id="nephrologist">
+                                    <a href="nephrologist.php">Nephrologist</a>
                                 </li>
                                 <li id="descriptors">
-                                    <a href="D.php">Descriptors</a>
+                                    <a href="nephroschedule.php">Descriptors</a>
+                                </li>
+                            <li id="profile">
+                            <a href="javascript:void(0);" class="menu-toggle">
+                                <span>Schedule</span>
+                            </a>
+                            <ul class="ml-menu">
+                                 <li id="descriptors">
+                                    <a href="patientschedule.php">Patient</a>
+                                </li>
+                                <li id="descriptors">
+                                    <a href="D.php">Nephrologist</a>
+                                </li>
+                                
+                                </ul>
                                 </li>
                             </ul>
                         </li>
@@ -198,15 +201,12 @@ require 'session.php';
                                 <span>Reports</span>
                             </a>
                             <ul class="ml-menu">
-                                <li id="">
-                                    <a href="report1.php">Agreement</a>
+                                <li class="active" id="">
+                                    <a href="report2.php" class="active">Trend Statistics</a>
                                 </li>
-                                <li id="">
-                                    <a href="report2.php" class="active">Statistics</a>
-                                </li>
-                                <li id="">
+                                <!--<li id="">
                                     <a href="report3.php">Patient Progress Statistics</a>
-                                </li>
+                                </li>-->
 
                             </ul>
                         </li>
@@ -258,17 +258,20 @@ require 'session.php';
                                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                         <ul class="nav nav-tabs tab-nav-right" role="tablist">
                                             <li role="presentation" class="active"><a href="#agestat" data-toggle="tab">Age Statistics</a></li>
-                                            <li role="presentation"><a href="#nurses" data-toggle="tab">Gender Statistics</a></li>
+                                            <li role="presentation"><a href="#genderstat" data-toggle="tab">Gender Statistics</a></li>
 
                                         </ul>
 
                                         <!-- Tab panes -->
                                         <div class="tab-content">
                                             <div id="printableArea">
-                                                
+                                                  <div role="tabpanel" class="tab-pane fade in active" id="agestat">
                                                 <div id="patient_population" style="width: 100%; height: 400px"></div>
+                                                </div>
+                                                <div role="tabpanel" class="tab-pane fade in active" id="genderstat">
+                                                <div id="patient_gender" style="width: 100%; height: 400px"></div>
+                                                </div>
                                                 
-                                               
                                             </div>
                                         </div>
                                     </div>
@@ -405,7 +408,8 @@ require 'session.php';
 
         </script>
         <script src="js/jquery.canvasjs.min.js"></script>
-        <?php require 'js/charteasy/patient_population.php'?>
+        <?php require 'js/charteasy/patient_population.php' ?>
+    
         <!-- Jquery Core Js -->
         <script>
             $(document).ready(function() {
