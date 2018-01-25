@@ -1,6 +1,6 @@
 <?php
 include('session.php');  
-require 'queries/treatment_query1.php';
+require 'queries/treatment_query.php';
                                     ini_set('display_errors', 0);
                                     $pageid = $_GET[id];
                                     list($H_id ,$id2) = explode(" | ", $pageid);
@@ -8,7 +8,8 @@ require 'queries/treatment_query1.php';
                                     $query = $conn->query("SELECT * FROM `patientprofile` where `Hospital_Id` = '$H_id' ") or die(mysqli_error());
                                     $fetch = $query ->fetch_array();
                                     $id = $fetch['Hospital_Id'];
-
+                        
+                             
 ?>
    
     <html>
@@ -17,7 +18,7 @@ require 'queries/treatment_query1.php';
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=Edge">
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-        <title>PDMIS</title>
+        <title>PDMIS | Patient Profile</title>
         <!-- Favicon-->
         <!-- Favicon-->
         <link rel="icon" href="../../favicon.ico" type="image/x-icon">
@@ -41,7 +42,7 @@ require 'queries/treatment_query1.php';
         <link href="../../plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
 
         <!-- Custom Css -->
-        <link href="../../css/style2.css" rel="stylesheet">
+        <link href="../../css/style4.css" rel="stylesheet">
 
         <!-- mytable Css -->
         <link href="../../css/table.css" rel="stylesheet">
@@ -56,7 +57,30 @@ require 'queries/treatment_query1.php';
             }
 
         </style>
-
+        <script type="text/javascript">
+            
+         
+                 function getAge(){
+                    var birthdate = document.getElementById('birthdate').value;
+                    birthdate = new Date(birthdate);
+                    var today = new Date();
+                    var age = Math.floor((today-birthdate) / (365.25 * 24 * 60 * 60 * 1000));
+                    document.getElementById('age').value=age;
+                 }
+            
+               function getDAge(){
+                    var DIDS = document.getElementById('DIDS').value;
+                    var age = document.getElementById('age').value;
+                    DIDS = new Date(DIDS);
+                    var today = new Date();
+                    var dialysisage = Math.floor((today-DIDS) / (365.25 * 24 * 60 * 60 * 1000));
+                    document.getElementById('fdage').value=age-dialysisage;
+                 }  
+            
+           
+        </script>
+        
+       
     </head>
 
     <body class="theme-indigo">
@@ -92,7 +116,7 @@ require 'queries/treatment_query1.php';
                     <a href="javascript:void(0);" class="bars"></a>
                     <center>
                         <a class="navbar-brand" href="index.html">
-                            <div class="title">Teresita Jalandoni Provincial Hospital <br> Dialysis Department</div>
+                            <div class="title"></div>
                         </a>
                     </center>
 
@@ -232,7 +256,7 @@ require 'queries/treatment_query1.php';
                         <li>
                             <a href="logout.php">
                                 <i class="material-icons">input</i>
-                                <span>Exit</span>
+                                <span>Logout</span>
                             </a>
                         </li>
 
@@ -361,7 +385,7 @@ require 'queries/treatment_query1.php';
                                                 <div class="col-lg-2 col-md-1 col-sm-2 col-xs-3">
                                                     <div class="form-group">
                                                         <div class="form-line">
-                                                            <input type="date" class="form-control unstyled" name="birthdate" id="birthdate" value="<?php echo $fetch['P_BirthDate']?>" style="padding-right:0" required>
+                                                            <input type="date" class="form-control unstyled" name="birthdate" id="birthdate" onblur="getAge();" value="<?php echo $fetch['P_BirthDate']?>" style="padding-right:0" required>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -518,7 +542,7 @@ require 'queries/treatment_query1.php';
                                                 <div class="col-lg-2 col-md-1 col-sm-2 col-xs-4">
                                                     <div class="form-group">
                                                         <div class="form-line">
-                                                            <input type="date" class="form-control unstyled" name="DIDS" id="DIDS" placeholder="YYYY/MM/DD" style="padding-right:0" value="<?php echo $fetch['P_InDial']?>" required>
+                                                            <input type="date" class="form-control unstyled" name="DIDS" id="DIDS" onblur="getDAge();" placeholder="YYYY/MM/DD" style="padding-right:0" value="<?php echo $fetch['P_InDial']?>" required>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -662,11 +686,9 @@ require 'queries/treatment_query1.php';
                                                     <button type="submit" class="btn btn-primary m-t-15 waves-effect" button name="submit"><i class="material-icons">save</i>Save</button> &nbsp;
                                                     <button type="button" class="btn btn-primary m-t-15 waves-effect" data-toggle="modal" data-target="#defaultModal"><i class="material-icons">find_in_page</i>Find</button>&nbsp;
                                                     <button type="button" class="btn btn-primary m-t-15 waves-effect" data-toggle="modal" data-target="#patientlist"><i class="material-icons">list</i>List   </button>
-
                                                 </div>
-
-
                                             </div>
+                                            
                                         </form>
                                     </div>
                                     <div role="tabpanel" class="tab-pane fade in <?php if ($id2 == 'hemotreatment' )echo active ?>" id="hemotreatment">
@@ -1741,7 +1763,7 @@ require 'queries/treatment_query1.php';
                                                             <?php
                                                                     $date = date("Y-m-d");
                                                                     $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
-                                                                   $query = $conn->query("SELECT * FROM `initialtestresult` WHERE `Hospital_Id` = '$_GET[id]' && `initialtest_date` = '$date' ORDER BY `initialtestresult_id`") or die(mysqli_error());
+                                                                   $query = $conn->query("SELECT * FROM `hepatitisprofile` WHERE `Hospital_Id` = '$_GET[id]' && `hepatitisdate` = '$date' ORDER BY `hepatitisprofile_id`") or die(mysqli_error());
                                                                    $id = $fetch['Hospital_Id'];
                                                                    while($fetch = $query ->fetch_array()){
                                                                 ?>
@@ -1777,15 +1799,162 @@ require 'queries/treatment_query1.php';
                                                             </div>  
                                         
                                                                 <div class="row clearfix">
-                                                                    <div class="col-lg-offset-7 col-xs-offset-4">
-                                                                        
-                                                                    </div>
-                                                                </div>
+                                                                    <div class="col-lg-offset-10 col-xs-offset-10 ">
+                                                                    <button type="button" class="btn btn-primary m-t-15 waves-effect" data-toggle="modal" data-target="#hepa_modal"><i class="material-icons">edit</i>Update</button>&nbsp;
+                                            </div>
+                                        </div>
                                     </div>
+                        
                                     <div role="tabpanel" class="tab-pane fade in" id="immunization">
 
                                     </div>
 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal fade" id="hepa_modal" tabindex="-1" role="dialog">
+                        <div class="modal-dialog modal-default" role="document">
+
+                            <div class="modal-content">
+                                <div class="row clearfix">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="card">
+                                            <div class="header bg-indigo">
+                                                <h2>
+                                                    Update Hepatitis Profile
+
+                                                    <a href=""><i class="material-icons pull-right" data-dismiss="modal">clear</i></a>
+                                                </h2>
+
+                                            </div>
+                                            <div class="body">
+                                                <form class="form-horizontal page-content" form method="POST" action="save/savedrugprofile.php?id=<?php echo $H_id ?>">
+                                                    <div class="row clearfix">
+                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label">
+                                                            <label for="email_address_2">Date Ordered</label>
+                                                        </div>
+                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style=" height: 16px;padding-right: 0px;">
+                                                            <div class="form-group">
+                                                                <div class="form-line">
+                                                                    <input type="date" class="form-control unstyled" name="dateordered" id="dateordered" value="<?php echo $fetch['hepatitisdate']?>" style="padding-right:0" required>
+                                                                </div>
+                                                            </div>
+                                                        </div> 
+                                                        
+                                                    </div>
+                                                    <div class="row clearfix">
+                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label">
+                                                            <label for="email_address_2">HBsAg</label>
+                                                        </div>
+                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ">
+                                                            <div class="form-group">
+                                                                <div class="form-line">
+                                                                    <input type="text" class="form-control" name="hbsag" id="hbsag" value="<?php echo $fetch['HBsAg']?>" required>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="row clearfix">
+                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label">
+                                                            <label for="email_address_2">Anti-HBs</label>
+                                                        </div>
+                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ">
+                                                            <div class="form-group">
+                                                                <div class="form-line">
+                                                                    <input type="text" class="form-control" name="antihbs" id="antihbs" value="<?php echo $fetch['AntiHBs']?>" required>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        
+
+                                                    </div>
+                                                    <div class="row clearfix">
+                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label">
+                                                            <label for="email_address_2">HCV</label>
+                                                        </div>
+                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ">
+                                                            <div class="form-group">
+                                                                <div class="form-line">
+                                                                    <input type="text" class="form-control" name="hcv" id="hcv" value="<?php echo $fetch['HCV']?>" required>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label">
+                                                            <label for="email_address_2">HIV</label>
+                                                        </div>
+                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ">
+                                                            <div class="form-group">
+                                                                <div class="form-line">
+                                                                    <input type="text" class="form-control" name="hiv" id="hiv" value="<?php echo $fetch['HIV']?>" required>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row clearfix">
+                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label">
+                                                            <label for="email_address_2">Date Description</label>
+                                                        </div>
+                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ">
+                                                            <div class="form-group">
+                                                                <div class="form-line">
+                                                                    <input type="text" class="form-control" name="datedesc" id="datedesc" value="<?php echo $fetch['']?>" required>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label">
+                                                            <label for="email_address_2">PRN</label>
+                                                        </div>
+                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ">
+                                                            <div class="form-group">
+                                                                <div class="form-line">
+                                                                    <input type="text" class="form-control" name="PRN" id="PRN" value="<?php echo $fetch['']?>" required>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="row clearfix">
+                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label">
+                                                            <label for="email_address_2">Physician</label>
+                                                        </div>
+                                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 ">
+                                                            <select class="form-control show-tick" name="nephrologistid" id="nephrologistid" title="&nbsp" data-live-search="true" required>
+                                         
+                                                        <?php 
+
+                                                          $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
+                                                          $query = $conn->query("SELECT * FROM `nephrologist`") or die(mysqli_error());
+                                                    
+                                                        while ($row = $query->fetch_array()){
+
+                                                        ?>
+                                                        <option value="<?php echo $row['nephrologistid']; ?>" 
+                                                        <?php if($fetch4['nephrologistid']==$row['nephrologistid']) echo "selected"; ?>>
+                                                        <?php echo $row['n_fname']." ".$row['n_mname']." ".$row['n_lname'] ?>
+
+
+                                                        </option>
+
+                                                        <?php
+                                                        
+                                                        }
+                                                    ?>
+                                            </select>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="row clearfix">
+                                                        <div class="col-lg-offset-7 col-xs-offset-4">
+                                                            <button type="submit" class="btn btn-primary m-t-15 waves-effect" name="drug"><i class="material-icons">save</i>Save</button> &nbsp;
+                                                        </div>
+                                                    </div>
+                                                </form>
+
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
