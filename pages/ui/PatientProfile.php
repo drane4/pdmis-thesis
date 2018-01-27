@@ -1832,7 +1832,7 @@ require 'queries/treatment_query.php';
                                                 <form class="form-horizontal page-content" form method="POST" action="save/savedrugprofile.php?id=<?php echo $H_id ?>">
                                                     <div class="row clearfix">
                                                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label">
-                                                            <label for="email_address_2">Date Ordered</label>
+                                                            <label for="email_address_2">Date</label>
                                                         </div>
                                                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style=" height: 16px;padding-right: 0px;">
                                                             <div class="form-group">
@@ -1854,9 +1854,6 @@ require 'queries/treatment_query.php';
                                                                 </div>
                                                             </div>
                                                         </div>
-
-                                                    </div>
-                                                    <div class="row clearfix">
                                                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label">
                                                             <label for="email_address_2">Anti-HBs</label>
                                                         </div>
@@ -1867,6 +1864,10 @@ require 'queries/treatment_query.php';
                                                                 </div>
                                                             </div>
                                                         </div>
+
+                                                    </div>
+                                                    <div class="row clearfix">
+                                                        
                                                         
 
                                                     </div>
@@ -1892,59 +1893,8 @@ require 'queries/treatment_query.php';
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="row clearfix">
-                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label">
-                                                            <label for="email_address_2">Date Description</label>
-                                                        </div>
-                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ">
-                                                            <div class="form-group">
-                                                                <div class="form-line">
-                                                                    <input type="text" class="form-control" name="datedesc" id="datedesc" value="<?php echo $fetch['']?>" required>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label">
-                                                            <label for="email_address_2">PRN</label>
-                                                        </div>
-                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ">
-                                                            <div class="form-group">
-                                                                <div class="form-line">
-                                                                    <input type="text" class="form-control" name="PRN" id="PRN" value="<?php echo $fetch['']?>" required>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                    <div class="row clearfix">
-                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label">
-                                                            <label for="email_address_2">Physician</label>
-                                                        </div>
-                                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 ">
-                                                            <select class="form-control show-tick" name="nephrologistid" id="nephrologistid" title="&nbsp" data-live-search="true" required>
-                                         
-                                                        <?php 
-
-                                                          $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
-                                                          $query = $conn->query("SELECT * FROM `nephrologist`") or die(mysqli_error());
                                                     
-                                                        while ($row = $query->fetch_array()){
-
-                                                        ?>
-                                                        <option value="<?php echo $row['nephrologistid']; ?>" 
-                                                        <?php if($fetch4['nephrologistid']==$row['nephrologistid']) echo "selected"; ?>>
-                                                        <?php echo $row['n_fname']." ".$row['n_mname']." ".$row['n_lname'] ?>
-
-
-                                                        </option>
-
-                                                        <?php
-                                                        
-                                                        }
-                                                    ?>
-                                            </select>
-                                                        </div>
-
-                                                    </div>
+                                                    
                                                     <div class="row clearfix">
                                                         <div class="col-lg-offset-7 col-xs-offset-4">
                                                             <button type="submit" class="btn btn-primary m-t-15 waves-effect" name="drug"><i class="material-icons">save</i>Save</button> &nbsp;
