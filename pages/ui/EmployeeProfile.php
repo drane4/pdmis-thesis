@@ -331,7 +331,7 @@ include('session.php');
                                         <div class="col-lg-2 col-md-1 col-sm-2 col-xs-3">
                                             <div class="form-group">
                                                 <div class="form-line ">
-                                                    <input type="text" class="form-control" name="telnum" id="telnum" value="<?php echo $fetch['telephone']?>" placeholder="Optional">
+                                                    <input type="text" class="form-control" name="telnum" id="telnum" value="<?php echo $fetch['telephone']?>" placeholder="Optional" onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="7">
                                                 </div>
                                             </div>
                                         </div>
@@ -341,7 +341,7 @@ include('session.php');
                                         <div class="col-lg-2 col-md-1 col-sm-2 col-xs-3">
                                             <div class="form-group">
                                                 <div class="form-line">
-                                                    <input type="text" class="form-control mobile-phone-number" id="monum" name="monum" value="<?php echo $fetch['mobile']?>" required>
+                                                    <input type="text" class="form-control" id="monum" name="monum" value="<?php echo $fetch['mobile']?>" required maxlength="11" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
                                                 </div>
                                             </div>
                                         </div>

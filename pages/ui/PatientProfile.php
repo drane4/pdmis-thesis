@@ -340,7 +340,7 @@ require 'queries/treatment_query.php';
                                                 <div class="col-lg-2 col-md-2 col-sm-1 col-xs-2 ">
                                                     <div class="form-group">
                                                         <div class="form-line">
-                                                            <input type="text" class="form-control" name="hid" id="hid" onkeyup="capitalize(this.id, this.value);" value="<?php echo $fetch['Hospital_Id']?>" autofocus required>
+                                                            <input type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' class="form-control" name="hid" id="hid" onkeyup="capitalize(this.id, this.value);" value="<?php echo $fetch['Hospital_Id']?>" autofocus required maxlength="8" onChange="HIDFORMAT()"/>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -395,7 +395,7 @@ require 'queries/treatment_query.php';
                                                 <div class="col-lg-1 col-md-1 col-sm-2 col-xs-2">
                                                     <div class="form-group">
                                                         <div class="form-line">
-                                                            <input type="number" class="form-control" name="age" id="age" min="0" max="110" step="1" value="<?php echo $fetch['P_Age']?>" required>
+                                                            <input type="number" class="form-control" name="age" id="age" min="0" max="110" step="1" value="<?php echo $fetch['P_Age']?>" readonly required>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -405,7 +405,7 @@ require 'queries/treatment_query.php';
                                                 </div>
                                                 <div class="col-lg-2 col-md-1 col-sm-2 col-xs-3">
                                                     <select required class="form-control show-tick" id="gender" name="gender" title="&nbsp;">
-                                        <option value="" disabled selected hidden>Select: </option>           
+                                        <option value="" selected="selected" disabled selected hidden>Select: </option>           
                                         <option value="Male" <?php if($fetch['P_Sex']== 'Male') echo "selected"; ?>>Male</option>
                                         <option Value="Female" <?php if($fetch['P_Sex']== 'Female') echo "selected"; ?>>Female</option>                            
                                             </select>
@@ -553,7 +553,7 @@ require 'queries/treatment_query.php';
                                                 <div class="col-lg-1 col-md-1 col-sm-2 col-xs-2">
                                                     <div class="form-group">
                                                         <div class="form-line">
-                                                            <input type="number" class="form-control" name="fdage" id="fdage" min="0" max="110" step="1" value="<?php echo $fetch['P_AgeFD']?>" required>
+                                                            <input type="number" class="form-control" name="fdage" id="fdage" min="0" max="110" step="1" value="<?php echo $fetch['P_AgeFD']?>" required readonly>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -2276,10 +2276,13 @@ require 'queries/treatment_query.php';
      document.body.innerHTML = originalContents;
 }
         </script>
-
         <script>
+            
+        </script>
+        
+        <script>
+            
             function ClearFields() {
-
                 document.getElementById("hid").value = "";
                 document.getElementById("hid").focus();
                 document.getElementById("lastname").value = "";
@@ -2310,6 +2313,11 @@ require 'queries/treatment_query.php';
                 $('#gender').prop('selectedIndex', 0);
             }
 
+            
+                document.on('click', 'button', function(e) {
+                var opt = $('select').val(0).children('option').filter(function(i){ return this.hasAttribute('selected') });
+                opt.prop('selected', 'selected');    
+            });
 
             function capitalize(textboxid, str) {
                 // string with alteast one character
@@ -2319,6 +2327,14 @@ require 'queries/treatment_query.php';
                     str = firstChar.toUpperCase() + remainingStr;
                 }
                 document.getElementById(textboxid).value = str;
+            }
+            function HIDFORMAT(){
+                var cleave = new Cleave('.input-element', {
+                    delimiters: ['-'],
+                    blocks: [2, 2, 2],
+                    uppercase: true
+                });
+     
             }
 
         </script>
@@ -2346,6 +2362,7 @@ require 'queries/treatment_query.php';
         <script src="../../plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
 
         <script src="../../plugins/jquery-inputmask/jquery.inputmask.bundle.js"></script>
+        <script src="../../plugins/cleavejs/cleave.min.js"></script>
 
 
 
