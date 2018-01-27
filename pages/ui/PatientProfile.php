@@ -467,7 +467,7 @@ require 'queries/treatment_query.php';
                                                 <div class="col-lg-3 col-md-1 col-sm-2 col-xs-4">
                                                     <div class="form-group">
                                                         <div class="form-line">
-                                                            <input type="text" class="form-control" name="percontactnumber" id="percontactnumber" placeholder="Ex: +00 (000) 000-00-00" value="<?php echo $fetch['P_ConNum1']?>" required>
+                                                            <input type="text" class="form-control" name="percontactnumber" id="percontactnumber" placeholder="Optional" value="<?php echo $fetch['P_ConNum1']?>" maxlength="11" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -491,7 +491,7 @@ require 'queries/treatment_query.php';
                                                 <div class="col-lg-3 col-md-1 col-sm-2 col-xs-4">
                                                     <div class="form-group">
                                                         <div class="form-line">
-                                                            <input type="text" class="form-control" name="precontactnumber" id="precontactnumber" placeholder="Ex: +00 (000) 000-00-00" value="<?php echo $fetch['P_ConNum2']?>">
+                                                            <input type="text" class="form-control" name="precontactnumber" id="precontactnumber" placeholder="" value="<?php echo $fetch['P_ConNum2']?>" required maxlength="11" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -529,7 +529,7 @@ require 'queries/treatment_query.php';
                                                 <div class="col-lg-3 col-md-1 col-sm-2 col-xs-4">
                                                     <div class="form-group">
                                                         <div class="form-line">
-                                                            <input type="text" class="form-control" name="relativecon" id="relativecon" placeholder="Ex: +00 (000) 000-00-00" value="<?php echo $fetch['P_RelativeConNum']?>" required>
+                                                            <input type="text" class="form-control" name="relativecon" id="relativecon" placeholder="" value="<?php echo $fetch['P_RelativeConNum']?>" required required maxlength="11" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
                                                         </div>
                                                     </div>
                                                 </div>
