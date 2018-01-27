@@ -529,7 +529,7 @@ require 'queries/treatment_query.php';
                                                 <div class="col-lg-3 col-md-1 col-sm-2 col-xs-4">
                                                     <div class="form-group">
                                                         <div class="form-line">
-                                                            <input type="text" class="form-control" name="relativecon" id="relativecon" placeholder="" value="<?php echo $fetch['P_RelativeConNum']?>" required required maxlength="11" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+                                                            <input type="text" class="form-control" name="relativecon" id="relativecon" placeholder="" value="<?php echo $fetch['P_RelativeConNum']?>" required maxlength="11" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
                                                         </div>
                                                     </div>
                                                 </div>
