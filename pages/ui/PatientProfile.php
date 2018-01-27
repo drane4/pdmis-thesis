@@ -1796,9 +1796,9 @@ require 'queries/treatment_query.php';
 
                                                 </div>
                                                
-                                                            </div>  
+                                            </div>  
                                         
-                                                                <div class="row clearfix">
+                                        <div class="row clearfix">
                                                                     <div class="col-lg-offset-10 col-xs-offset-10 ">
                                                                     <button type="button" class="btn btn-primary m-t-15 waves-effect" data-toggle="modal" data-target="#hepa_modal"><i class="material-icons">edit</i>Update</button>&nbsp;
                                             </div>
@@ -1806,7 +1806,64 @@ require 'queries/treatment_query.php';
                                     </div>
                         
                                     <div role="tabpanel" class="tab-pane fade in" id="immunization">
+                                        <div class="row clearfix">
+                                            <center><h3>Immunization Profile</h3></center>
+                                                <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
 
+
+                                                    <table id="mainTable" class="table table-bordered">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Date</th>
+                                                                <th>HBsAg</th>
+                                                                <th>Anti-HBs</th>
+                                                                <th>HCV</th>
+                                                                <th>HIV</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <?php
+                                                                    $date = date("Y-m-d");
+                                                                    $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
+                                                                   $query = $conn->query("SELECT * FROM `hepatitisprofile` WHERE `Hospital_Id` = '$_GET[id]' && `hepatitisdate` = '$date' ORDER BY `hepatitisprofile_id`") or die(mysqli_error());
+                                                                   $id = $fetch['Hospital_Id'];
+                                                                   while($fetch = $query ->fetch_array()){
+                                                                ?>
+                                                                <tr>
+                                                                    <td>
+                                                                         <a href="#editInitialtest" data-toggle="modal" data-target="#editInitialtest" style="color: black;">
+                                                                        <?php echo $fetch['problemlist']?>
+                                                                        </a>
+                                                                    </td>
+                                                                    <td>
+                                                                         <a href="#editInitialtest" data-toggle="modal" data-target="#editInitialtest" style="color: black;">
+                                                                        <?php echo $fetch['datenoted']?>
+                                                                        </a>
+                                                                    </td>
+                                                                    <td>
+                                                                         <a href="#editInitialtest" data-toggle="modal" data-target="#editInitialtest" style="color: black;">
+                                                                        <?php echo $fetch['dateresolved']?>
+                                                                        </a>
+                                                                    </td>
+
+
+                                                                </tr>
+                                                                <?php
+                                                                   }
+                                                                ?>
+
+                                                        </tbody>
+
+                                                    </table>
+
+                                                </div>
+                                               
+                                                </div>
+                                            <div class="row clearfix">
+                                                                    <div class="col-lg-offset-10 col-xs-offset-10 ">
+                                                                    <button type="button" class="btn btn-primary m-t-15 waves-effect" data-toggle="modal" data-target="#hepa_modal"><i class="material-icons">edit</i>Update</button>&nbsp;
+                                            </div>
+                                        </div>
                                     </div>
 
                                 </div>
