@@ -340,7 +340,7 @@ require 'queries/treatment_query.php';
                                                 <div class="col-lg-2 col-md-2 col-sm-1 col-xs-2 ">
                                                     <div class="form-group">
                                                         <div class="form-line">
-                                                            <input type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' class="form-control" name="hid" id="hid" onkeyup="capitalize(this.id, this.value);" value="<?php echo $fetch['Hospital_Id']?>" autofocus required maxlength="8" onChange="HIDFORMAT()"/>
+                                                            <input type="text" class="form-control" name="hid" id="hid" onkeyup="capitalize(this.id, this.value);" value="<?php echo $fetch['Hospital_Id']?>" autofocus required maxlength="8" onChange="HIDFORMAT()"/>
                                                         </div>
                                                     </div>
                                                 </div>
