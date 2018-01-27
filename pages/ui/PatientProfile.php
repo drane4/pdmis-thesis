@@ -1848,27 +1848,22 @@ require 'queries/treatment_query.php';
                                                             <label for="email_address_2">HBsAg</label>
                                                         </div>
                                                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ">
-                                                            <div class="form-group">
-                                                                <div class="form-line">
-                                                                    <input type="text" class="form-control" name="hbsag" id="hbsag" value="<?php echo $fetch['HBsAg']?>" required>
-                                                                </div>
-                                                            </div>
+                                                            <select class="form-control show-tick" name="hbsag" id="hbsag" value="<?php echo $fetch['HBsAg']?>" >
+                                                                    <option value="" disabled selected hidden>Select: </option> 
+                                                                    <option Value="r">R</option>
+                                                                    <option Value="nr">NR</option>    
+                                                            </select>
                                                         </div>
                                                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label">
                                                             <label for="email_address_2">Anti-HBs</label>
                                                         </div>
                                                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ">
-                                                            <div class="form-group">
-                                                                <div class="form-line">
-                                                                    <input type="text" class="form-control" name="antihbs" id="antihbs" value="<?php echo $fetch['AntiHBs']?>" required>
-                                                                </div>
-                                                            </div>
+                                                            <select class="form-control show-tick" name="antihbs" id="antihbs" value="<?php echo $fetch['AntiHBs']?>">
+                                                                    <option value="" disabled selected hidden>Select: </option> 
+                                                                    <option Value="r">R</option>
+                                                                    <option Value="nr">NR</option>    
+                                                            </select>
                                                         </div>
-
-                                                    </div>
-                                                    <div class="row clearfix">
-                                                        
-                                                        
 
                                                     </div>
                                                     <div class="row clearfix">
@@ -1876,21 +1871,21 @@ require 'queries/treatment_query.php';
                                                             <label for="email_address_2">HCV</label>
                                                         </div>
                                                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ">
-                                                            <div class="form-group">
-                                                                <div class="form-line">
-                                                                    <input type="text" class="form-control" name="hcv" id="hcv" value="<?php echo $fetch['HCV']?>" required>
-                                                                </div>
-                                                            </div>
+                                                            <select class="form-control show-tick" name="hcv" id="hcv" value="<?php echo $fetch['HCV']?>">
+                                                                    <option value="" disabled selected hidden>Select: </option> 
+                                                                    <option Value="r">R</option>
+                                                                    <option Value="nr">NR</option>    
+                                                            </select>
                                                         </div>
                                                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label">
                                                             <label for="email_address_2">HIV</label>
                                                         </div>
                                                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ">
-                                                            <div class="form-group">
-                                                                <div class="form-line">
-                                                                    <input type="text" class="form-control" name="hiv" id="hiv" value="<?php echo $fetch['HIV']?>" required>
-                                                                </div>
-                                                            </div>
+                                                            <select class="form-control show-tick" name="hiv" id="hiv" value="<?php echo $fetch['HIV']?>">
+                                                                    <option value="" disabled selected hidden>Select: </option> 
+                                                                    <option Value="r">R</option>
+                                                                    <option Value="nr">NR</option>    
+                                                            </select>
                                                         </div>
                                                     </div>
                                                     
