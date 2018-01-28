@@ -43,6 +43,8 @@ require 'queries/treatment_query.php';
 
         <!-- Custom Css -->
         <link href="../../css/style4.css" rel="stylesheet">
+        <!-- Sweetalert Css -->
+        <link href="../../plugins/sweetalert/sweetalert.css" rel="stylesheet" />
 
         <!-- mytable Css -->
         <link href="../../css/table.css" rel="stylesheet">
@@ -303,7 +305,7 @@ require 'queries/treatment_query.php';
                                             <?php if ($id2 == '' && H_id == '' ){?> class="active"
                                             <?php } ?>><a href="#patientinfo" data-toggle="tab">Patient Info</a></li>
                                         <li role="presentation" <?php if ($id2=='hemotreatment' ){?> class="active"
-                                            <?php } ?>><a href="#hemotreatment" data-toggle="tab">treatment</a></li>
+                                            <?php } ?>><a href="#hemotreatment" data-toggle="tab">Treatment</a></li>
                                         <!--<li role="presentation" class=""><a href="#treatment" data-toggle="tab">Treatment</a></li>-->
                                          <li role="presentation" <?php if ($id2=='order' ){?> class="active"
                                             <?php } ?>><a href="#order" data-toggle="tab">Order</a></li>
@@ -438,7 +440,7 @@ require 'queries/treatment_query.php';
                                                     <label for="">Civil Status</label>
                                                 </div>
                                                 <div class="col-lg-2 col-md-1 col-sm-2 col-xs-3">
-                                                    <select class="form-control show-tick" name="civilstatus" id="civilstatus" title="&nbsp;">
+                                                    <select required class="form-control show-tick" name="civilstatus" id="civilstatus" title="&nbsp;">
                                         <option value="" disabled selected hidden>Select: </option>   
                                         <option value="Single" <?php if($fetch['P_CivilStatus']== 'Single') echo "selected"; ?>>Single</option>
                                         <option value="Married"  <?php if($fetch['P_CivilStatus']== 'Married') echo "selected"; ?>>Married</option>
@@ -553,7 +555,7 @@ require 'queries/treatment_query.php';
                                                 <div class="col-lg-1 col-md-1 col-sm-2 col-xs-2">
                                                     <div class="form-group">
                                                         <div class="form-line">
-                                                            <input type="number" class="form-control" name="fdage" id="fdage" min="0" max="110" step="1" value="<?php echo $fetch['P_AgeFD']?>" required readonly>
+                                                            <input type="number" class="form-control" name="fdage" id="fdage" min="1" max="110" step="1" value="<?php echo $fetch['P_AgeFD']?>" required readonly>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -680,10 +682,10 @@ require 'queries/treatment_query.php';
                                             </div>
                                             <hr>
 
-                                            <div class="row clearfix">
+                                            <div class="row clearfix" js-sweetalert>
                                                 <div class="col-lg-offset-7 col-xs-offset-4">
                                                     <button type="button" class="btn btn-primary m-t-15 waves-effect" onclick="ClearFields();"> <i class="material-icons">description</i>New</button> &nbsp;
-                                                    <button type="submit" class="btn btn-primary m-t-15 waves-effect" button name="submit"><i class="material-icons">save</i>Save</button> &nbsp;
+                                                    <button type="submit" class="btn btn-primary m-t-15 waves-effect" button name="submit"  data-type="success"><i class="material-icons">save</i>Save</button> &nbsp;
                                                     <button type="button" class="btn btn-primary m-t-15 waves-effect" data-toggle="modal" data-target="#defaultModal"><i class="material-icons">find_in_page</i>Find</button>&nbsp;
                                                     <button type="button" class="btn btn-primary m-t-15 waves-effect" data-toggle="modal" data-target="#patientlist"><i class="material-icons">list</i>List   </button>
                                                 </div>
@@ -1048,7 +1050,7 @@ require 'queries/treatment_query.php';
                                             <label for="email_address_2">Cause of ESRD</label>
                                         </div>
                                     <div class="col-lg-3 col-md-1 col-sm-2 col-xs-3" style="margin-left: -14px;">
-                                            <select class="form-control show-tick" id="gender" name="gender" title="&nbsp">
+                                            <select class="form-control show-tick" id="gender" name="gender" title="&nbsp" >
                                         <option value="once" <?php if($fetch['O_Frequency']== 'once') echo "selected"; ?>>Diabetic Nephropathy</option>
                                         <option Value="twice" <?php if($fetch['O_Frequency']== 'twice') echo "selected"; ?>>Chronic Gromerulonephritis</option>  
                                         <option Value="thrice" <?php if($fetch['O_Frequency']== 'thrice') echo "selected"; ?>>Hypertensive Nephrosclorosis</option> 
@@ -1812,14 +1814,91 @@ require 'queries/treatment_query.php';
 
 
                                                     <table id="mainTable" class="table table-bordered">
+                                                        <h3>Hepatitis B Vaccine</h3>
+                                                     <thead><tr>
+                                                            <th rowspan="2"style="
+                                                                padding-right: 10px;
+                                                                width: 172px;
+                                                                "></th>
+                                                        </tr>
+                                                        <tr>
+                                
+                                                        <th>1st Dose</th>
+                                                        <th>2nd Dose</th>
+                                                        <th>3rd Dose</th>
+                                                        <th>Booster Dose</th>
+                                                        </tr>  
+                                                            
+                                                        <tr>
+                                                            <th>Administered by:</th>
+                                                            <td></td><td></td><td></td><td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Next dose due on:</th>
+                                                            <td></td><td></td><td></td><td></td>
+                                                        </tr>
+                                                        </thead>
+                                                        
+                                                    
+                                                        <tbody>
+                                                            <?php
+                                                                    $date = date("Y-m-d");
+                                                                    $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
+                                                                   $query = $conn->query("SELECT * FROM `hepatitisprofile` WHERE `Hospital_Id` = '$_GET[id]' && `hepatitisdate` = '$date' ORDER BY `hepatitisprofile_id`") or die(mysqli_error());
+                                                                   $id = $fetch['Hospital_Id'];
+                                                                   while($fetch = $query ->fetch_array()){
+                                                                ?>
+                                                                <tr>
+                                                                    <td>
+                                                                         <a href="#editInitialtest" data-toggle="modal" data-target="#editInitialtest" style="color: black;">
+                                                                        <?php echo $fetch['problemlist']?>
+                                                                        </a>
+                                                                    </td>
+                                                                    <td>
+                                                                         <a href="#editInitialtest" data-toggle="modal" data-target="#editInitialtest" style="color: black;">
+                                                                        <?php echo $fetch['datenoted']?>
+                                                                        </a>
+                                                                    </td>
+                                                                    <td>
+                                                                         <a href="#editInitialtest" data-toggle="modal" data-target="#editInitialtest" style="color: black;">
+                                                                        <?php echo $fetch['dateresolved']?>
+                                                                        </a>
+                                                                    </td>
+
+
+                                                                </tr>
+                                                                <?php
+                                                                   }
+                                                                ?>
+
+                                                        </tbody>
+
+                                                    </table>
+                                                    <table id="mainTable" class="table table-bordered">
+                                                        <h3>Influenza Vaccine</h3>
                                                         <thead>
                                                             <tr>
-                                                                <th>Date</th>
-                                                                <th>HBsAg</th>
-                                                                <th>Anti-HBs</th>
-                                                                <th>HCV</th>
-                                                                <th>HIV</th>
-                                                            </tr>
+                                                            <th rowspan="2"style="
+                                                                padding-right: 10px;
+                                                                width: 172px;
+                                                                "></th>
+                                                        </tr>
+                                                        <tr>
+                                
+                                                        <th>Date Received</th>
+                                                        <th>Date Received</th>
+                                                        <th>Date Received</th>
+                                                        <th>Date Received</th>
+                                                        </tr>  
+                                                            
+                                                        <tr>
+                                                            <th>Administered by:</th>
+                                                            <td></td><td></td><td></td><td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Next dose due on:</th>
+                                                            <td></td><td></td><td></td><td></td>
+                                                        </tr>
                                                         </thead>
                                                         <tbody>
                                                             <?php
@@ -1855,17 +1934,171 @@ require 'queries/treatment_query.php';
                                                         </tbody>
 
                                                     </table>
+                                                    <table id="mainTable" class="table table-bordered">
+                                                        <h3>Pneumococcal Vaccine</h3>
+                                                        <thead>
+                                                            <tr>
+                                                            <th rowspan="2"style="
+                                                                padding-right: 10px;
+                                                                width: 172px;
+                                                                "></th>
+                                                        </tr>
+                                                        <tr>
+                                
+                                                        <th>Date Received</th>
+                                                        <th>Date Received</th>
+                                                        <th>Date Received</th>
+                                                        <th>Date Received</th>
+                                                        </tr>  
+                                                            
+                                                        <tr>
+                                                            <th>Administered by:</th>
+                                                            <td></td><td></td><td></td><td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Next dose due on:</th>
+                                                            <td></td><td></td><td></td><td></td>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <?php
+                                                                    $date = date("Y-m-d");
+                                                                    $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
+                                                                   $query = $conn->query("SELECT * FROM `hepatitisprofile` WHERE `Hospital_Id` = '$_GET[id]' && `hepatitisdate` = '$date' ORDER BY `hepatitisprofile_id`") or die(mysqli_error());
+                                                                   $id = $fetch['Hospital_Id'];
+                                                                   while($fetch = $query ->fetch_array()){
+                                                                ?>
+                                                                <tr>
+                                                                         
+                                                                    <td>
+                                                                         <a href="#editInitialtest" data-toggle="modal" data-target="#editInitialtest" style="color: black;">
+                                                                        <?php echo $fetch['problemlist']?>
+                                                                        
+                                                                        </a>
+                                                                    </td>
+                                                                    <td>
+                                                                         <a href="#editInitialtest" data-toggle="modal" data-target="#editInitialtest" style="color: black;">
+                                                                        <?php echo $fetch['datenoted']?>
+                                                                        </a>
+                                                                    </td>
+                                                                    <td>
+                                                                         <a href="#editInitialtest" data-toggle="modal" data-target="#editInitialtest" style="color: black;">
+                                                                        <?php echo $fetch['dateresolved']?>
+                                                                        </a>
+                                                                    </td>
+
+
+                                                                </tr>
+                                                                <?php
+                                                                   }
+                                                                ?>
+
+                                                        </tbody>
+
+                                                    </table>
+
 
                                                 </div>
                                                
                                                 </div>
                                             <div class="row clearfix">
                                                                     <div class="col-lg-offset-10 col-xs-offset-10 ">
-                                                                    <button type="button" class="btn btn-primary m-t-15 waves-effect" data-toggle="modal" data-target="#hepa_modal"><i class="material-icons">edit</i>Update</button>&nbsp;
+                                                                    <button type="button" class="btn btn-primary m-t-15 waves-effect" data-toggle="modal" data-target="#immun_modal"><i class="material-icons">edit</i>Update</button>&nbsp;
                                             </div>
                                         </div>
                                     </div>
 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal fade" id="immun_modal" tabindex="-1" role="dialog">
+                        <div class="modal-dialog modal-default" role="document">
+
+                            <div class="modal-content">
+                                <div class="row clearfix">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="card">
+                                            <div class="header bg-indigo">
+                                                <h2>
+                                                    Update Immunization Profile
+
+                                                    <a href=""><i class="material-icons pull-right" data-dismiss="modal">clear</i></a>
+                                                </h2>
+
+                                            </div>
+                                            <div class="body">
+                                                <form class="form-horizontal page-content" form method="POST" action="save/savedrugprofile.php?id=<?php echo $H_id ?>">
+                                                    <div class="row clearfix">
+                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label">
+                                                            <label for="email_address_2">Date</label>
+                                                        </div>
+                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style=" height: 16px;padding-right: 0px;">
+                                                            <div class="form-group">
+                                                                <div class="form-line">
+                                                                    <input type="date" class="form-control unstyled" name="dateordered" id="dateordered" value="<?php echo $fetch['hepatitisdate']?>" style="padding-right:0" required>
+                                                                </div>
+                                                            </div>
+                                                        </div> 
+                                                        
+                                                    </div>
+                                                    <div class="row clearfix">
+                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label">
+                                                            <label for="email_address_2">HBsAg</label>
+                                                        </div>
+                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ">
+                                                            <select class="form-control show-tick" name="hbsag" id="hbsag" value="<?php echo $fetch['HBsAg']?>" >
+                                                                    <option value="" disabled selected hidden>Select: </option> 
+                                                                    <option Value="r">R</option>
+                                                                    <option Value="nr">NR</option>    
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label">
+                                                            <label for="email_address_2">Anti-HBs</label>
+                                                        </div>
+                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ">
+                                                            <select class="form-control show-tick" name="antihbs" id="antihbs" value="<?php echo $fetch['AntiHBs']?>">
+                                                                    <option value="" disabled selected hidden>Select: </option> 
+                                                                    <option Value="r">R</option>
+                                                                    <option Value="nr">NR</option>    
+                                                            </select>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="row clearfix">
+                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label">
+                                                            <label for="email_address_2">HCV</label>
+                                                        </div>
+                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ">
+                                                            <select class="form-control show-tick" name="hcv" id="hcv" value="<?php echo $fetch['HCV']?>">
+                                                                    <option value="" disabled selected hidden>Select: </option> 
+                                                                    <option Value="r">R</option>
+                                                                    <option Value="nr">NR</option>    
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label">
+                                                            <label for="email_address_2">HIV</label>
+                                                        </div>
+                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ">
+                                                            <select class="form-control show-tick" name="hiv" id="hiv" value="<?php echo $fetch['HIV']?>">
+                                                                    <option value="" disabled selected hidden>Select: </option> 
+                                                                    <option Value="r">R</option>
+                                                                    <option Value="nr">NR</option>    
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    
+                                                    <div class="row clearfix">
+                                                        <div class="col-lg-offset-7 col-xs-offset-4">
+                                                            <button type="submit" class="btn btn-primary m-t-15 waves-effect" name="drug"><i class="material-icons">save</i>Save</button> &nbsp;
+                                                        </div>
+                                                    </div>
+                                                </form>
+
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -2365,7 +2598,8 @@ require 'queries/treatment_query.php';
         <script src="../../plugins/cleavejs/cleave.min.js"></script>
 
 
-
+        <!-- SweetAlert Plugin Js -->
+        <script src="../../plugins/sweetalert/sweetalert.min.js"></script>
         <!-- Jquery DataTable Plugin Js -->
         <script src="../../plugins/jquery-datatable/jquery.dataTables.js"></script>
         <script src="../../plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>

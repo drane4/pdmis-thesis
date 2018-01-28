@@ -309,7 +309,7 @@
                                         <div class="col-lg-9 col-md-1 col-sm-2 col-xs-8">
                                             <div class="form-group">
                                                 <div class="form-line">
-                                                    <input type="text" class="form-control" name="n_address" id="n_address" value="<?php echo $fetch['n_address']?>" onkeyup="capitalize(this.id, this.value);">
+                                                    <input type="text" class="form-control" name="n_address" id="n_address" placeholder="Optional" value="<?php echo $fetch['n_address']?>" onkeyup="capitalize(this.id, this.value);">
                                                 </div>
                                             </div>
                                         </div>
