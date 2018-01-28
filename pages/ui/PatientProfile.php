@@ -597,7 +597,7 @@ require 'queries/treatment_query.php';
                                                 <div class="col-lg-3 col-md-1 col-sm-2 col-xs-4">
                                                     <div class="form-group">
                                                         <div class="form-line">
-                                                            <select class="form-control show-tick" name="nephrologist" id="nephrologist" title="&nbsp" required>
+                                                            <select class="form-control show-tick" name="nephrologist" id="nephrologist" title="&nbsp" data-live-search="true" required>
                                          
                                                         <?php 
 
