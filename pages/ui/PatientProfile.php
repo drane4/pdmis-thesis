@@ -1759,34 +1759,43 @@ require 'queries/treatment_query.php';
                                                                 <th>Anti-HBs</th>
                                                                 <th>HCV</th>
                                                                 <th>HIV</th>
+                                                                
                                                             </tr>
                                                         </thead>
                                                         <tbody>
                                                             <?php
                                                                     $date = date("Y-m-d");
                                                                     $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
-                                                                   $query = $conn->query("SELECT * FROM `hepatitisprofile` WHERE `Hospital_Id` = '$_GET[id]' && `hepatitisdate` = '$date' ORDER BY `hepatitisprofile_id`") or die(mysqli_error());
+                                                                   $query = $conn->query("SELECT * FROM `hepatitisprofile` WHERE `Hospital_Id` = '$H_id' ORDER BY `hepatitisprofile_id`") or die(mysqli_error());
                                                                    $id = $fetch['Hospital_Id'];
                                                                    while($fetch = $query ->fetch_array()){
                                                                 ?>
                                                                 <tr>
                                                                     <td>
-                                                                         <a href="#editInitialtest" data-toggle="modal" data-target="#editInitialtest" style="color: black;">
-                                                                        <?php echo $fetch['problemlist']?>
+                                                                         <a href="#hepa_modal" data-toggle="modal" data-target="#hepa_modal" style="color: black;">
+                                                                        <?php echo $fetch['hepatitisdate']?>
                                                                         </a>
                                                                     </td>
                                                                     <td>
-                                                                         <a href="#editInitialtest" data-toggle="modal" data-target="#editInitialtest" style="color: black;">
-                                                                        <?php echo $fetch['datenoted']?>
+                                                                         <a href="#hepa_modal" data-toggle="modal" data-target="#hepa_modal" style="color: black;">
+                                                                        <?php echo $fetch['HbsAg']?>
                                                                         </a>
                                                                     </td>
                                                                     <td>
-                                                                         <a href="#editInitialtest" data-toggle="modal" data-target="#editInitialtest" style="color: black;">
-                                                                        <?php echo $fetch['dateresolved']?>
+                                                                         <a href="#hepa_modal" data-toggle="modal" data-target="#hepa_modal" style="color: black;">
+                                                                        <?php echo $fetch['AntiHBs']?>
                                                                         </a>
                                                                     </td>
-
-
+                                                                    <td>
+                                                                         <a href="#hepa_modal" data-toggle="modal" data-target="#hepa_modal" style="color: black;">
+                                                                        <?php echo $fetch['HCV']?>
+                                                                        </a>
+                                                                    </td>
+                                                                    <td>
+                                                                         <a href="#hepa_modal" data-toggle="modal" data-target="#hepa_modal" style="color: black;">
+                                                                        <?php echo $fetch['HIV']?>
+                                                                        </a>
+                                                                    </td>
                                                                 </tr>
                                                                 <?php
                                                                    }
@@ -1828,7 +1837,11 @@ require 'queries/treatment_query.php';
                                                         <th>3rd Dose</th>
                                                         <th>Booster Dose</th>
                                                         </tr>  
-                                                            
+                                                        
+                                                        <tr>
+                                                            <th>Date done:</th>
+                                                            <td></td><td></td><td></td><td></td>
+                                                        </tr>
                                                         <tr>
                                                             <th>Administered by:</th>
                                                             <td></td><td></td><td></td><td></td>
@@ -1872,8 +1885,14 @@ require 'queries/treatment_query.php';
                                                                 ?>
 
                                                         </tbody>
+                                                        
 
                                                     </table>
+                                                    <div class="row clearfix">
+                                                                    <div class="col-lg-offset-10 col-xs-offset-10 ">
+                                                                    <button type="button" class="btn btn-primary m-t-15 waves-effect" data-toggle="modal" data-target="#hepab_modal"><i class="material-icons">edit</i>Hepatitis B</button>&nbsp;
+                                                                    </div>
+                                                    </div>
                                                     <table id="mainTable" class="table table-bordered">
                                                         <h3>Influenza Vaccine</h3>
                                                         <thead>
@@ -1891,6 +1910,10 @@ require 'queries/treatment_query.php';
                                                         <th>Date Received</th>
                                                         </tr>  
                                                             
+                                                        <tr>
+                                                            <th>Date done:</th>
+                                                            <td></td><td></td><td></td><td></td>
+                                                        </tr>
                                                         <tr>
                                                             <th>Administered by:</th>
                                                             <td></td><td></td><td></td><td></td>
@@ -1934,6 +1957,11 @@ require 'queries/treatment_query.php';
                                                         </tbody>
 
                                                     </table>
+                                                    <div class="row clearfix">
+                                                                    <div class="col-lg-offset-10 col-xs-offset-10 ">
+                                                                    <button type="button" class="btn btn-primary m-t-15 waves-effect" data-toggle="modal" data-target="#influ_modal"><i class="material-icons">edit</i>Influenza</button>&nbsp;
+                                                                    </div>
+                                                    </div>
                                                     <table id="mainTable" class="table table-bordered">
                                                         <h3>Pneumococcal Vaccine</h3>
                                                         <thead>
@@ -1950,7 +1978,11 @@ require 'queries/treatment_query.php';
                                                         <th>Date Received</th>
                                                         <th>Date Received</th>
                                                         </tr>  
-                                                            
+                                                        
+                                                        <tr>
+                                                            <th>Date done:</th>
+                                                            <td></td><td></td><td></td><td></td>
+                                                        </tr>
                                                         <tr>
                                                             <th>Administered by:</th>
                                                             <td></td><td></td><td></td><td></td>
@@ -1996,23 +2028,23 @@ require 'queries/treatment_query.php';
                                                         </tbody>
 
                                                     </table>
-
+                                                     <div class="col-lg-offset-10 col-xs-offset-10 ">
+                                                                    <button type="button" class="btn btn-primary m-t-15 waves-effect" data-toggle="modal" data-target="#pneum_modal"><i class="material-icons">edit</i>Pneumococcal</button>&nbsp;
+                                                                    </div>
 
                                                 </div>
                                                
                                                 </div>
                                             <div class="row clearfix">
-                                                                    <div class="col-lg-offset-10 col-xs-offset-10 ">
-                                                                    <button type="button" class="btn btn-primary m-t-15 waves-effect" data-toggle="modal" data-target="#immun_modal"><i class="material-icons">edit</i>Update</button>&nbsp;
+                                                                   
                                             </div>
-                                        </div>
                                     </div>
 
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="modal fade" id="immun_modal" tabindex="-1" role="dialog">
+                    <div class="modal fade" id="hepab_modal" tabindex="-1" role="dialog">
                         <div class="modal-dialog modal-default" role="document">
 
                             <div class="modal-content">
@@ -2021,7 +2053,197 @@ require 'queries/treatment_query.php';
                                         <div class="card">
                                             <div class="header bg-indigo">
                                                 <h2>
-                                                    Update Immunization Profile
+                                                    Update Hepatitis B
+                                                    <a href=""><i class="material-icons pull-right" data-dismiss="modal">clear</i></a>
+                                                </h2>
+
+                                            </div>
+                                            <div class="body">
+                                                <form class="form-horizontal page-content" form method="POST" action="save/savehepab.php?id=<?php echo $H_id ?>">
+                                                
+                                                    <div class="row clearfix">
+                                                    <div class="modal-header" style="
+                                                                padding-top: 5px;
+                                                                padding-bottom: 15px;">
+                                                        <h3 class="modal-title" id="defaultModalLabel">1st Dose</h3>
+                                                    </div>
+                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label">
+                                                            <label for="email_address_2">Date done: </label>
+                                                        </div>
+                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style=" height: 16px;padding-right: 0px;">
+                                                            <div class="form-group">
+                                                                <div class="form-line">
+                                                                    <input type="date" class="form-control unstyled" name="datedone" id="datedone" value="<?php echo $fetch['datedone']?>" style="padding-right:0" required>
+                                                                </div>
+                                                            </div>
+                                                        </div> 
+                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label">
+                                                            <label for="email_address_2">Next dose due on: </label>
+                                                        </div>
+                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style=" height: 16px;padding-right: 0px;">
+                                                            <div class="form-group">
+                                                                <div class="form-line">
+                                                                    <input type="date" class="form-control unstyled" name="dosedue" id="dosedue" value="<?php echo $fetch['dosedue']?>" style="padding-right:0" required>
+                                                                </div>
+                                                            </div>
+                                                        </div> 
+                                                    </div>
+                                                    <div class="row clearfix">
+                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label">
+                                                            <label for="email_address_2">Administered by: </label>
+                                                        </div>
+                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ">
+                                                             <div class="form-group">
+                                                                <div class="form-line">
+                                                                    <input type="text" class="form-control" name="administerby" id="administerby" value="<?php echo $fetch['administerby']?>" style="padding-right:0" required>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row clearfix">
+                                                        <div class="modal-header" style="
+                                                                padding-top: 5px;
+                                                                padding-bottom: 15px;">
+                                                        <h3 class="modal-title" id="defaultModalLabel">2nd Dose</h3>
+                                                    </div>
+                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label">
+                                                            <label for="email_address_2">Date done: </label>
+                                                        </div>
+                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style=" height: 16px;padding-right: 0px;">
+                                                            <div class="form-group">
+                                                                <div class="form-line">
+                                                                    <input type="date" class="form-control unstyled" name="datedone" id="datedone" value="<?php echo $fetch['datedone']?>" style="padding-right:0" >
+                                                                </div>
+                                                            </div>
+                                                        </div> 
+                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label">
+                                                            <label for="email_address_2">Next dose due on: </label>
+                                                        </div>
+                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style=" height: 16px;padding-right: 0px;">
+                                                            <div class="form-group">
+                                                                <div class="form-line">
+                                                                    <input type="date" class="form-control unstyled" name="dosedue" id="dosedue" value="<?php echo $fetch['dosedue']?>" style="padding-right:0" >
+                                                                </div>
+                                                            </div>
+                                                        </div> 
+                                                    </div>
+                                                    <div class="row clearfix">
+                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label">
+                                                            <label for="email_address_2">Administered by: </label>
+                                                        </div>
+                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ">
+                                                             <div class="form-group">
+                                                                <div class="form-line">
+                                                                    <input type="text" class="form-control" name="administerby" id="administerby" value="<?php echo $fetch['administerby']?>" style="padding-right:0" required>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                              
+                                                    <div class="row clearfix">
+                                                       <div class="modal-header" style="
+                                                                padding-top: 5px;
+                                                                padding-bottom: 15px;">
+                                                        <h3 class="modal-title" id="defaultModalLabel">3rd Dose</h3>
+                                                    </div>
+                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label">
+                                                            <label for="email_address_2">Date done: </label>
+                                                        </div>
+                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style=" height: 16px;padding-right: 0px;">
+                                                            <div class="form-group">
+                                                                <div class="form-line">
+                                                                    <input type="date" class="form-control unstyled" name="datedone" id="datedone" value="<?php echo $fetch['datedone']?>" style="padding-right:0" required>
+                                                                </div>
+                                                            </div>
+                                                        </div> 
+                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label">
+                                                            <label for="email_address_2">Next dose due on: </label>
+                                                        </div>
+                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style=" height: 16px;padding-right: 0px;">
+                                                            <div class="form-group">
+                                                                <div class="form-line">
+                                                                    <input type="date" class="form-control unstyled" name="dosedue" id="dosedue" value="<?php echo $fetch['dosedue']?>" style="padding-right:0" required>
+                                                                </div>
+                                                            </div>
+                                                        </div> 
+                                                    </div>
+                                                    <div class="row clearfix">
+                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label">
+                                                            <label for="email_address_2">Administered by: </label>
+                                                        </div>
+                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ">
+                                                             <div class="form-group">
+                                                                <div class="form-line">
+                                                                    <input type="text" class="form-control" name="administerby" id="administerby" value="<?php echo $fetch['administerby']?>" style="padding-right:0" required>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                
+                                                    <div class="row clearfix">
+                                                       <div class="modal-header" style="
+                                                                padding-top: 5px;
+                                                                padding-bottom: 15px;">
+                                                        <h3 class="modal-title" id="defaultModalLabel">Booster Dose</h3>
+                                                    </div>
+                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label">
+                                                            <label for="email_address_2">Date done: </label>
+                                                        </div>
+                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style=" height: 16px;padding-right: 0px;">
+                                                            <div class="form-group">
+                                                                <div class="form-line">
+                                                                    <input type="date" class="form-control unstyled" name="datedone" id="datedone" value="<?php echo $fetch['datedone']?>" style="padding-right:0" required>
+                                                                </div>
+                                                            </div>
+                                                        </div> 
+                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label">
+                                                            <label for="email_address_2">Next dose due on: </label>
+                                                        </div>
+                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style=" height: 16px;padding-right: 0px;">
+                                                            <div class="form-group">
+                                                                <div class="form-line">
+                                                                    <input type="date" class="form-control unstyled" name="dosedue" id="dosedue" value="<?php echo $fetch['dosedue']?>" style="padding-right:0" required>
+                                                                </div>
+                                                            </div>
+                                                        </div> 
+                                                    </div>
+                                                    <div class="row clearfix">
+                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label">
+                                                            <label for="email_address_2">Administered by: </label>
+                                                        </div>
+                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ">
+                                                             <div class="form-group">
+                                                                <div class="form-line">
+                                                                    <input type="text" class="form-control" name="administerby" id="administerby" value="<?php echo $fetch['administerby']?>" style="padding-right:0" required>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="row clearfix">
+                                                        <div class="col-lg-offset-10 col-xs-offset-4">
+                                                             <button type="submit" class="btn btn-primary m-t-15 waves-effect" name="drug"><i class="material-icons">save</i>Save</button> &nbsp;
+                                                        </div>
+                                                    </div>
+                                                </form>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal fade" id="influ_modal" tabindex="-1" role="dialog">
+                        <div class="modal-dialog modal-default" role="document">
+
+                            <div class="modal-content">
+                                <div class="row clearfix">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="card">
+                                            <div class="header bg-indigo">
+                                                <h2>
+                                                    Update Influenza
 
                                                     <a href=""><i class="material-icons pull-right" data-dismiss="modal">clear</i></a>
                                                 </h2>
@@ -2031,66 +2253,108 @@ require 'queries/treatment_query.php';
                                                 <form class="form-horizontal page-content" form method="POST" action="save/savedrugprofile.php?id=<?php echo $H_id ?>">
                                                     <div class="row clearfix">
                                                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label">
-                                                            <label for="email_address_2">Date</label>
+                                                            <label for="email_address_2">Date done: </label>
                                                         </div>
                                                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style=" height: 16px;padding-right: 0px;">
                                                             <div class="form-group">
                                                                 <div class="form-line">
-                                                                    <input type="date" class="form-control unstyled" name="dateordered" id="dateordered" value="<?php echo $fetch['hepatitisdate']?>" style="padding-right:0" required>
+                                                                    <input type="date" class="form-control unstyled" name="datedone" id="datedone" value="<?php echo $fetch['datedone']?>" style="padding-right:0" required>
                                                                 </div>
                                                             </div>
                                                         </div> 
-                                                        
+                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label">
+                                                            <label for="email_address_2">Next dose due on: </label>
+                                                        </div>
+                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style=" height: 16px;padding-right: 0px;">
+                                                            <div class="form-group">
+                                                                <div class="form-line">
+                                                                    <input type="date" class="form-control unstyled" name="dosedue" id="dosedue" value="<?php echo $fetch['dosedue']?>" style="padding-right:0" required>
+                                                                </div>
+                                                            </div>
+                                                        </div> 
                                                     </div>
                                                     <div class="row clearfix">
                                                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label">
-                                                            <label for="email_address_2">HBsAg</label>
+                                                            <label for="email_address_2">Administered by: </label>
                                                         </div>
                                                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ">
-                                                            <select class="form-control show-tick" name="hbsag" id="hbsag" value="<?php echo $fetch['HBsAg']?>" >
-                                                                    <option value="" disabled selected hidden>Select: </option> 
-                                                                    <option Value="r">R</option>
-                                                                    <option Value="nr">NR</option>    
-                                                            </select>
+                                                             <div class="form-group">
+                                                                <div class="form-line">
+                                                                    <input type="text" class="form-control" name="administerby" id="administerby" value="<?php echo $fetch['administerby']?>" style="padding-right:0" required>
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label">
-                                                            <label for="email_address_2">Anti-HBs</label>
+                                                    </div>                                    
+      
+                                                    <div class="row clearfix">
+                                                        <div class="col-lg-offset-10 col-xs-offset-4">
+                                                            <button type="submit" class="btn btn-primary m-t-15 waves-effect" name="drug"><i class="material-icons">save</i>Save</button> &nbsp;
                                                         </div>
-                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ">
-                                                            <select class="form-control show-tick" name="antihbs" id="antihbs" value="<?php echo $fetch['AntiHBs']?>">
-                                                                    <option value="" disabled selected hidden>Select: </option> 
-                                                                    <option Value="r">R</option>
-                                                                    <option Value="nr">NR</option>    
-                                                            </select>
-                                                        </div>
+                                                    </div>
+                                                </form>
 
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal fade" id="pneum_modal" tabindex="-1" role="dialog">
+                        <div class="modal-dialog modal-default" role="document">
+
+                            <div class="modal-content">
+                                <div class="row clearfix">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="card">
+                                            <div class="header bg-indigo">
+                                                <h2>
+                                                    Update Pneumococcal 
+
+                                                    <a href=""><i class="material-icons pull-right" data-dismiss="modal">clear</i></a>
+                                                </h2>
+
+                                            </div>
+                                            <div class="body">
+                                                <form class="form-horizontal page-content" form method="POST" action="save/savedrugprofile.php?id=<?php echo $H_id ?>">
+                                                    <div class="row clearfix">
+                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label">
+                                                            <label for="email_address_2">Date done: </label>
+                                                        </div>
+                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style=" height: 16px;padding-right: 0px;">
+                                                            <div class="form-group">
+                                                                <div class="form-line">
+                                                                    <input type="date" class="form-control unstyled" name="datedone" id="datedone" value="<?php echo $fetch['datedone']?>" style="padding-right:0" required>
+                                                                </div>
+                                                            </div>
+                                                        </div> 
+                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label">
+                                                            <label for="email_address_2">Next dose due on: </label>
+                                                        </div>
+                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style=" height: 16px;padding-right: 0px;">
+                                                            <div class="form-group">
+                                                                <div class="form-line">
+                                                                    <input type="date" class="form-control unstyled" name="dosedue" id="dosedue" value="<?php echo $fetch['dosedue']?>" style="padding-right:0" required>
+                                                                </div>
+                                                            </div>
+                                                        </div> 
                                                     </div>
                                                     <div class="row clearfix">
                                                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label">
-                                                            <label for="email_address_2">HCV</label>
+                                                            <label for="email_address_2">Administered by: </label>
                                                         </div>
                                                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ">
-                                                            <select class="form-control show-tick" name="hcv" id="hcv" value="<?php echo $fetch['HCV']?>">
-                                                                    <option value="" disabled selected hidden>Select: </option> 
-                                                                    <option Value="r">R</option>
-                                                                    <option Value="nr">NR</option>    
-                                                            </select>
-                                                        </div>
-                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label">
-                                                            <label for="email_address_2">HIV</label>
-                                                        </div>
-                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ">
-                                                            <select class="form-control show-tick" name="hiv" id="hiv" value="<?php echo $fetch['HIV']?>">
-                                                                    <option value="" disabled selected hidden>Select: </option> 
-                                                                    <option Value="r">R</option>
-                                                                    <option Value="nr">NR</option>    
-                                                            </select>
+                                                             <div class="form-group">
+                                                                <div class="form-line">
+                                                                    <input type="text" class="form-control" name="administerby" id="administerby" value="<?php echo $fetch['administerby']?>" style="padding-right:0" required>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     
                                                     
                                                     <div class="row clearfix">
-                                                        <div class="col-lg-offset-7 col-xs-offset-4">
+                                                        <div class="col-lg-offset-10 col-xs-offset-4">
                                                             <button type="submit" class="btn btn-primary m-t-15 waves-effect" name="drug"><i class="material-icons">save</i>Save</button> &nbsp;
                                                         </div>
                                                     </div>
@@ -2119,12 +2383,12 @@ require 'queries/treatment_query.php';
 
                                             </div>
                                             <div class="body">
-                                                <form class="form-horizontal page-content" form method="POST" action="save/savedrugprofile.php?id=<?php echo $H_id ?>">
+                                                <form class="form-horizontal page-content" form method="POST" action="save/savehepaprofile.php?id=<?php echo $H_id ?>">
                                                     <div class="row clearfix">
                                                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label">
                                                             <label for="email_address_2">Date</label>
                                                         </div>
-                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style=" height: 16px;padding-right: 0px;">
+                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="height: 16px;padding-right: 0px;">
                                                             <div class="form-group">
                                                                 <div class="form-line">
                                                                     <input type="date" class="form-control unstyled" name="dateordered" id="dateordered" value="<?php echo $fetch['hepatitisdate']?>" style="padding-right:0" required>
@@ -2182,7 +2446,7 @@ require 'queries/treatment_query.php';
                                                     
                                                     <div class="row clearfix">
                                                         <div class="col-lg-offset-7 col-xs-offset-4">
-                                                            <button type="submit" class="btn btn-primary m-t-15 waves-effect" name="drug"><i class="material-icons">save</i>Save</button> &nbsp;
+                                                            <button type="submit" class="btn btn-primary m-t-15 waves-effect" name="submit"><i class="material-icons">save</i>Save</button> &nbsp;
                                                         </div>
                                                     </div>
                                                 </form>
