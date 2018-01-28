@@ -2250,7 +2250,7 @@ require 'queries/treatment_query.php';
 
                                             </div>
                                             <div class="body">
-                                                <form class="form-horizontal page-content" form method="POST" action="save/savedrugprofile.php?id=<?php echo $H_id ?>">
+                                                <form class="form-horizontal page-content" form method="POST" action="save/saveinfluenza.php?id=<?php echo $H_id ?>">
                                                     <div class="row clearfix">
                                                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label">
                                                             <label for="email_address_2">Date done: </label>
@@ -2316,7 +2316,7 @@ require 'queries/treatment_query.php';
 
                                             </div>
                                             <div class="body">
-                                                <form class="form-horizontal page-content" form method="POST" action="save/savedrugprofile.php?id=<?php echo $H_id ?>">
+                                                <form class="form-horizontal page-content" form method="POST" action="save/savepneumo.php?id=<?php echo $H_id ?>">
                                                     <div class="row clearfix">
                                                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label">
                                                             <label for="email_address_2">Date done: </label>
