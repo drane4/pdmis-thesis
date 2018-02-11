@@ -133,18 +133,7 @@ require 'session.php';
 
                         <li class="header">MAIN NAVIGATION</li>
 
-                        <li id="transaction">
-                            <a href="javascript:void(0);" class="menu-toggle">
-                                <i class="material-icons">folder</i>
-                                <span>Transaction</span>
-                            </a>
-                            <ul class="ml-menu">
-                                <li id="transaction" >
-                                    <a href="transaction.php">HemoTreatment</a>
-                                </li>
-                            </ul>
-
-                        </li>
+                        
                         <li id="profile">
                             <a href="javascript:void(0);" class="menu-toggle">
                                 <i class="material-icons">people</i>
@@ -178,6 +167,18 @@ require 'session.php';
                                 </li>
                             </ul>
                         </li>
+                       <li id="transaction">
+                            <a href="javascript:void(0);" class="menu-toggle">
+                                <i class="material-icons">folder</i>
+                                <span>Transaction</span>
+                            </a>
+                            <ul class="ml-menu">
+                                <li id="transaction" >
+                                    <a href="transaction.php">HemoTreatment</a>
+                                </li>
+                            </ul>
+
+                        </li>
                         <li id="maintenance">
 
                             <a href="javascript:void(0);" class="menu-toggle">
@@ -188,9 +189,7 @@ require 'session.php';
                                 <li id="userprofile">
                                     <a href="UserProfile.php">User Profile</a>
                                 </li>
-                                <li id="descriptors">
-                                    <a href="D.php">Descriptors</a>
-                                </li>
+                               
                                 <li id="systemmaintenance">
                                     <a href="maintenance.php">System Maintenance</a>
                                 </li>
@@ -234,7 +233,7 @@ require 'session.php';
                         <li>
                             <a href="logout.php">
                                 <i class="material-icons">input</i>
-                                <span>Exit</span>
+                                <span>Logout</span>
                             </a>
                         </li>
 

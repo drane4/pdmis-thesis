@@ -132,18 +132,7 @@ require 'session.php';
 
                         <li class="header">MAIN NAVIGATION</li>
 
-                        <li id="transaction">
-                            <a href="javascript:void(0);" class="menu-toggle">
-                                <i class="material-icons">folder</i>
-                                <span>Transaction</span>
-                            </a>
-                            <ul class="ml-menu">
-                                <li id="transaction">
-                                    <a href="transaction.php">HemoTreatment</a>
-                                </li>
-                            </ul>
-
-                        </li>
+                        
                         <li id="profile">
                             <a href="javascript:void(0);" class="menu-toggle">
                                 <i class="material-icons">people</i>
@@ -177,6 +166,19 @@ require 'session.php';
                                 </li>
                             </ul>
                         </li>
+                      <li id="transaction">
+                            <a href="javascript:void(0);" class="menu-toggle">
+                                <i class="material-icons">folder</i>
+                                <span>Transaction</span>
+                            </a>
+                            <ul class="ml-menu">
+                                <li id="transaction">
+                                    <a href="transaction.php">HemoTreatment</a>
+                                </li>
+                            </ul>
+
+                        </li>
+                    
                         <li id="maintenance">
 
                             <a href="javascript:void(0);" class="menu-toggle">
