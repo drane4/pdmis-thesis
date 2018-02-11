@@ -1,6 +1,6 @@
 <?php
  include('session.php'); 
-                                   
+  require 'queries/schedule_query.php'                                 
                                   
 ?>
 
@@ -34,7 +34,7 @@
         <link href="../../plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
 
         <!-- Custom Css -->
-        <link href="../../css/style3.css" rel="stylesheet">
+        <link href="../../css/style4.css" rel="stylesheet">
 
         <!-- mytable Css -->
         <link href="../../css/table.css" rel="stylesheet">
@@ -78,7 +78,7 @@
                     <a href="javascript:void(0);" class="bars"></a>
                     <center>
                         <a class="navbar-brand" href="index.html">
-                            <div class="title">Teresita Jalandoni Provincial Hospital <br> Dialysis Department</div>
+                            <div class="title"></div>
                         </a>
                     </center>
 
@@ -122,49 +122,51 @@
                 <!-- Menu -->
                  <div class="menu">
                     <ul class="list">
-
                         <li class="header">MAIN NAVIGATION</li>
-
-                        <li  id="transaction">
+                          <li id="transaction">
                             <a href="javascript:void(0);" class="menu-toggle">
-                                <i class="material-icons">folder</i>
+                                 <i class="material-icons">folder</i>
                                 <span>Transaction</span>
                             </a>
-                            <ul class="ml-menu">
-                                <li id="transaction" >
+                             <ul class="ml-menu">
+                                <li id="transaction">
                                     <a href="transaction.php">HemoTreatment</a>
                                 </li>
+                            
                             </ul>
-
+                        
                         </li>
-                        <li id="profile" class="active" >
+                        <li class="active" id="profile">
                             <a href="javascript:void(0);" class="menu-toggle">
                                 <i class="material-icons">people</i>
                                 <span>Profile</span>
                             </a>
-                            <ul class="ml-menu" >
-                                <li id="patientprofile" >
+                            <ul class="ml-menu">
+                                <li id="patientprofile">
                                     <a href="PatientProfile.php">Patient Profile</a>
                                 </li>
-                                <li id="employeeprofile" >
+                                <li id="employeeprofile">
                                     <a href="EmployeeProfile.php">Employee Profile</a>
                                 </li>
-                                
-                                <li id="nephrologist" >
+                            
+                                <li class="" id="nephrologist">
                                     <a href="nephrologist.php">Nephrologist</a>
                                 </li>
-                            <li id="profile" class="active">
+                                <li id="descriptors">
+                                    <a href="D.php">Descriptors</a>
+                                </li>
+                            <li class="active" id="profile">
                             <a href="javascript:void(0);" class="menu-toggle">
                                 <span>Schedule</span>
                             </a>
                             <ul class="ml-menu">
-                                 <li id="descriptors" class="active">
+                                 <li class="active" id="descriptors">
                                     <a href="patientschedule.php">Patient</a>
                                 </li>
-                              <!--  <li id="descriptors">
+                                <li id="descriptors">
                                     <a href="nephroschedule.php">Nephrologist</a>
-                                </li>-->
-                                    
+                                </li>
+                                
                                 </ul>
                                 </li>
                             </ul>
@@ -179,34 +181,45 @@
                                 <li id="userprofile">
                                     <a href="UserProfile.php">User Profile</a>
                                 </li>
-                                <li id="descriptors">
-                                    <a href="D.php">Descriptors</a>
-                                </li>
                                 <li id="systemmaintenance">
                                     <a href="maintenance.php">System Maintenance</a>
                                 </li>
                             </ul>
                         </li>
-
-                        <li id="reports">
+                          <li id="reports">
                             <a href="javascript:void(0);" class="menu-toggle">
                                 <i class="material-icons">assignment</i>
                                 <span>Reports</span>
                             </a>
                             <ul class="ml-menu">
-                                <li id="">
-                                    <a href="report2.php">Trend Statistics</a>
+                                <li id="statistics">
+                            <a href="javascript:void(0);" class="menu-toggle">
+                                <span>Statistics</span>
+                            </a>
+                            <ul class="ml-menu">
+                                 <li id="genderstat">
+                                    <a href="report1.php">Gender Statistics</a>
                                 </li>
-                             <!--   <li id="">
-                                    <a href="report3.php">Patient Progress Statistics</a>
-                                </li>-->
-
+                                <li id="agestat">
+                                    <a href="report2.php">Age Statistics</a>
+                                </li>
+                                 <li id="dialysisstat">
+                                    <a href="report3.php">Dialysis Statistics</a>
+                                </li>
+                                </ul>
+                                </li>
+                                <li  id="progressstat">
+                                    <a href="report4.php">Patient Progress Statistics</a>
+                                </li>
+                                <li id="">
+                                    <a href="report5.php">Employee Performance</a>
+                                </li>
                             </ul>
                         </li>
                         <li>
-                            <a href="logout.php">
+                           <a href="logout.php">
                                 <i class="material-icons">input</i>
-                                <span>Logout</span>
+                                <span>Exit</span>
                             </a>
                         </li>
 
@@ -277,9 +290,9 @@
                                                 </thead>
                                                 <tbody>
                                                     <?php
-                                                        $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
-                                                           $query = $conn->query("SELECT `patientprofile`.`P_Fname`,`patientprofile`.`P_Mname`,`patientprofile`.`P_Lname`,`patientprofile`.`Hospital_Id`,`patientschedule`.`treatment_day`,`patientschedule`.`treatment_time`,`patientschedule`.`treatment_status`
-                                                           FROM `patientprofile` INNER JOIN `patientschedule` ON `patientprofile`.`Hospital_Id` = `patientschedule`.`Hospital_Id` WHERE `patientschedule`.`treatment_status` = 1") or die(mysqli_error());
+                                                            $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
+                                                           $query = $conn->query("SELECT `patientprofile`.`P_Fname`,`patientprofile`.`P_Mname`,`patientprofile`.`P_Lname`,`patientprofile`.`Hospital_Id`,`patientschedule`.`treatment_day`,`patientschedule`.`treatment_time`,`patientprofile`.`P_Status`
+                                                           FROM `patientprofile` INNER JOIN `patientschedule` ON `patientprofile`.`Hospital_Id` = `patientschedule`.`Hospital_Id` WHERE `patientprofile`.`P_Status` = 1") or die(mysqli_error());
                                                   
                                                            while($fetch = $query ->fetch_array()){        
                                                         ?>
@@ -298,8 +311,8 @@
                                                              <?php echo $fetch['treatment_time'] ?>
                                                         </td>
                                                         <td>
-                                                            <?php if($fetch['treatment_status'] == 1) echo "active" ?>
-                                                            <?php if($fetch['treatment_status'] == 0) echo "Not Active" ?>
+                                                            <?php if($fetch['P_Status'] == 1) echo "active" ?>
+                                                            <?php if($fetch['P_Status'] == 0) echo "Not Active" ?>
                                                         </td>
                                                     </tr>
                                                     <?php } ?>
@@ -307,7 +320,7 @@
                                             </table>
                                
                                         <div class="col-lg-offset-10 col-xs-offset-3">
-                                            <button type="button" class="btn btn-primary m-t-15 waves-effect" data-toggle="modal" data-target="#patients"> <i class="material-icons">date_range</i> Manage</button> &nbsp;
+                                            <button type="button" class="btn btn-primary m-t-15 waves-effect" data-toggle="modal" data-target="#manageschedule"> <i class="material-icons">date_range</i> Manage</button> &nbsp;
                                     </div>
                                 </div>
                                   <div role="tabpanel" 
@@ -329,15 +342,15 @@
                                                 <tbody>
                                                     <?php
                                                             $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
-                                                           $query = $conn->query("SELECT `patientprofile`.`P_Fname`,`patientprofile`.`P_Mname`,`patientprofile`.`P_Lname`,`patientprofile`.`Hospital_Id`,`patientschedule`.`treatment_day`,`patientschedule`.`treatment_time`,`patientschedule`.`treatment_status`
-                                                    
-                                                           FROM `patientprofile` INNER JOIN `patientschedule` ON `patientprofile`.`Hospital_Id` = `patientschedule`.`Hospital_Id` WHERE `patientschedule`.`treatment_day` = 'monday' && `patientschedule`.`treatment_status` = 1") or die(mysqli_error());
+                                                           $query = $conn->query("SELECT * FROM `patientprofile` INNER JOIN `patientschedule` ON `patientprofile`.`Hospital_Id` = `patientschedule`.`Hospital_Id` WHERE `patientschedule`.`treatment_day` = 'monday' && `patientprofile`.`P_Status` = 1") or die(mysqli_error());
                                                   
                                                            while($fetch = $query ->fetch_array()){        
                                                         ?>
                                                     <tr>
                                                          <td>
+                                                              <a href="#manageschedule<?php echo $fetch['Hospital_Id'];?>" data-toggle="modal" data-target="#manageschedule<?php echo $fetch['Hospital_Id'];?>" style="color: black;">
                                                              <?php echo $fetch['Hospital_Id'] ?>
+                                                             </a>
                                                         </td>
                                                           <td>
                                                               <?php echo $fetch['P_Fname'].' '.$fetch['P_Mname'].' '.$fetch['P_Lname']?>
@@ -350,8 +363,8 @@
                                                              <?php echo $fetch['treatment_time'] ?>
                                                         </td>
                                                         <td>
-                                                            <?php if($fetch['treatment_status'] == 1) echo "active" ?>
-                                                            <?php if($fetch['treatment_status'] == 0) echo "Not Active" ?>
+                                                            <?php if($fetch['P_Status'] == 1) echo "active" ?>
+                                                            <?php if($fetch['P_Status'] == 0) echo "Not Active" ?>
                                                         </td>
                                                     </tr>
                                                     <?php } ?>       
@@ -360,7 +373,7 @@
                                             </table>
                                
                                         <div class="col-lg-offset-10 col-xs-offset-3">
-                                            <button type="button" class="btn btn-primary m-t-15 waves-effect" data-toggle="modal" data-target="#patients"> <i class="material-icons">date_range</i> Manage</button> &nbsp;
+                                            <button type="button" class="btn btn-primary m-t-15 waves-effect" data-toggle="modal" data-target="#manageschedule"> <i class="material-icons">date_range</i> Manage</button> &nbsp;
                                     </div>
                                 </div>
                                 <div role="tabpanel" <?php if(date("l") =='Tuesday' ) {?> class="tab-pane fade in active"<?php }  ?>
@@ -381,8 +394,8 @@
                                                 <tbody>
                                                     <?php
                                                             $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
-                                                           $query = $conn->query("SELECT `patientprofile`.`P_Fname`,`patientprofile`.`P_Mname`,`patientprofile`.`P_Lname`,`patientprofile`.`Hospital_Id`,`patientschedule`.`treatment_day`,`patientschedule`.`treatment_time`,`patientschedule`.`treatment_status`
-                                                           FROM `patientprofile` INNER JOIN `patientschedule` ON `patientprofile`.`Hospital_Id` = `patientschedule`.`Hospital_Id` WHERE `patientschedule`.`treatment_day` = 'tuesday' && `patientschedule`.`treatment_status` = 1") or die(mysqli_error());
+                                                           $query = $conn->query("SELECT `patientprofile`.`P_Fname`,`patientprofile`.`P_Mname`,`patientprofile`.`P_Lname`,`patientprofile`.`Hospital_Id`,`patientschedule`.`treatment_day`,`patientschedule`.`treatment_time`,`patientprofile`.`P_Status`
+                                                           FROM `patientprofile` INNER JOIN `patientschedule` ON `patientprofile`.`Hospital_Id` = `patientschedule`.`Hospital_Id` WHERE `patientschedule`.`treatment_day` = 'tuesday' && `patientprofile`.`P_Status` = 1") or die(mysqli_error());
                                                   
                                                            while($fetch = $query ->fetch_array()){        
                                                         ?>
@@ -401,15 +414,15 @@
                                                              <?php echo $fetch['treatment_time'] ?>
                                                         </td>
                                                         <td>
-                                                            <?php if($fetch['treatment_status'] == 1) echo "active" ?>
-                                                            <?php if($fetch['treatment_status'] == 0) echo "Not Active" ?>
+                                                            <?php if($fetch['P_Status'] == 1) echo "active" ?>
+                                                            <?php if($fetch['P_Status'] == 0) echo "Not Active" ?>
                                                         </td>
                                                     </tr>       
                                                     <?php } ?>
                                                 </tbody>
                                             </table>
                                         <div class="col-lg-offset-10 col-xs-offset-3">
-                                            <button type="button" class="btn btn-primary m-t-15 waves-effect" data-toggle="modal" data-target="#patients"> <i class="material-icons">date_range</i> Manage</button> &nbsp;
+                                            <button type="button" class="btn btn-primary m-t-15 waves-effect" data-toggle="modal" data-target="#manageschedule"> <i class="material-icons">date_range</i> Manage</button> &nbsp;
                                     </div>
                                 </div>
                                 <div role="tabpanel" <?php if(date("l") =='Wednesday' ) {?> class="tab-pane fade in active"<?php }  ?>
@@ -430,8 +443,8 @@
                                                 <tbody>
                                                     <?php
                                                             $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
-                                                           $query = $conn->query("SELECT `patientprofile`.`P_Fname`,`patientprofile`.`P_Mname`,`patientprofile`.`P_Lname`,`patientprofile`.`Hospital_Id`,`patientschedule`.`treatment_day`,`patientschedule`.`treatment_time`,`patientschedule`.`treatment_status`
-                                                            FROM `patientprofile` INNER JOIN `patientschedule` ON `patientprofile`.`Hospital_Id` = `patientschedule`.`Hospital_Id` WHERE `patientschedule`.`treatment_day` = 'wednesday' && `patientschedule`.`treatment_status` = 1") or die(mysqli_error());
+                                                           $query = $conn->query("SELECT `patientprofile`.`P_Fname`,`patientprofile`.`P_Mname`,`patientprofile`.`P_Lname`,`patientprofile`.`Hospital_Id`,`patientschedule`.`treatment_day`,`patientschedule`.`treatment_time`,`patientprofile`.`P_Status`
+                                                            FROM `patientprofile` INNER JOIN `patientschedule` ON `patientprofile`.`Hospital_Id` = `patientschedule`.`Hospital_Id` WHERE `patientschedule`.`treatment_day` = 'wednesday' && `patientprofile`.`P_Status` = 1") or die(mysqli_error());
                                                   
                                                            while($fetch = $query ->fetch_array()){        
                                                         ?>
@@ -450,8 +463,8 @@
                                                              <?php echo $fetch['treatment_time'] ?>
                                                         </td>
                                                         <td>
-                                                            <?php if($fetch['treatment_status'] == 1) echo "active" ?>
-                                                            <?php if($fetch['treatment_status'] == 0) echo "Not Active" ?>
+                                                            <?php if($fetch['P_Status'] == 1) echo "active" ?>
+                                                            <?php if($fetch['P_Status'] == 0) echo "Not Active" ?>
                                                         </td>
                                                     </tr>
                                                     <?php } ?>
@@ -460,7 +473,7 @@
                                             </table>
                                
                                         <div class="col-lg-offset-10 col-xs-offset-3">
-                                            <button type="button" class="btn btn-primary m-t-15 waves-effect" data-toggle="modal" data-target="#patients"> <i class="material-icons">date_range</i> Manage</button> &nbsp;
+                                            <button type="button" class="btn btn-primary m-t-15 waves-effect" data-toggle="modal" data-target="#manageschedule"> <i class="material-icons">date_range</i> Manage</button> &nbsp;
                                     </div>
                                 </div>
                                 <div role="tabpanel" <?php if(date("l") =='Thursday' ) {?> class="tab-pane fade in active"<?php }  ?>
@@ -481,8 +494,8 @@
                                                 <tbody>
                                                     <?php
                                                             $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
-                                                           $query = $conn->query("SELECT `patientprofile`.`P_Fname`,`patientprofile`.`P_Mname`,`patientprofile`.`P_Lname`,`patientprofile`.`Hospital_Id`,`patientschedule`.`treatment_day`,`patientschedule`.`treatment_time`,`patientschedule`.`treatment_status`
-                                                           FROM `patientprofile` INNER JOIN `patientschedule` ON `patientprofile`.`Hospital_Id` = `patientschedule`.`Hospital_Id` WHERE `patientschedule`.`treatment_day` = 'thursday' && `patientschedule`.`treatment_status` = 1") or die(mysqli_error());
+                                                           $query = $conn->query("SELECT `patientprofile`.`P_Fname`,`patientprofile`.`P_Mname`,`patientprofile`.`P_Lname`,`patientprofile`.`Hospital_Id`,`patientschedule`.`treatment_day`,`patientschedule`.`treatment_time`,`patientprofile`.`P_Status`
+                                                           FROM `patientprofile` INNER JOIN `patientschedule` ON `patientprofile`.`Hospital_Id` = `patientschedule`.`Hospital_Id` WHERE `patientschedule`.`treatment_day` = 'thursday' && `patientprofile`.`P_Status` = 1") or die(mysqli_error());
                                                   
                                                            while($fetch = $query ->fetch_array()){        
                                                         ?>
@@ -501,8 +514,8 @@
                                                              <?php echo $fetch['treatment_time'] ?>
                                                         </td>
                                                         <td>
-                                                            <?php if($fetch['treatment_status'] == 1) echo "active" ?>
-                                                            <?php if($fetch['treatment_status'] == 0) echo "Not Active" ?>
+                                                            <?php if($fetch['P_Status'] == 1) echo "active" ?>
+                                                            <?php if($fetch['P_Status'] == 0) echo "Not Active" ?>
                                                         </td>
                                                     </tr>
                                                     <?php } ?>
@@ -514,7 +527,7 @@
                                             </table>
                                
                                         <div class="col-lg-offset-10 col-xs-offset-3">
-                                            <button type="button" class="btn btn-primary m-t-15 waves-effect" data-toggle="modal" data-target="#patients"> <i class="material-icons">date_range</i> Manage</button> &nbsp;
+                                            <button type="button" class="btn btn-primary m-t-15 waves-effect" data-toggle="modal" data-target="#manageschedule"> <i class="material-icons">date_range</i> Manage</button> &nbsp;
                                     </div>
                                 </div>
                                 <div role="tabpanel" <?php if(date("l") =='Friday' ) {?> class="tab-pane fade in active"<?php }  ?>
@@ -535,8 +548,7 @@
                                                 <tbody>
                                                     <?php
                                                             $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
-                                                           $query = $conn->query("SELECT `patientprofile`.`P_Fname`,`patientprofile`.`P_Mname`,`patientprofile`.`P_Lname`,`patientprofile`.`Hospital_Id`,`patientschedule`.`treatment_day`,`patientschedule`.`treatment_time`,`patientschedule`.`treatment_status`
-                                                           FROM `patientprofile` INNER JOIN `patientschedule` ON `patientprofile`.`Hospital_Id` = `patientschedule`.`Hospital_Id` WHERE `patientschedule`.`treatment_day` = 'friday' && `patientschedule`.`treatment_status` = 1") or die(mysqli_error());
+                                                           $query = $conn->query("SELECT * FROM `patientprofile` INNER JOIN `patientschedule` ON `patientprofile`.`Hospital_Id` = `patientschedule`.`Hospital_Id` WHERE `patientschedule`.`treatment_day` = 'friday' && `patientprofile`.`P_Status` = 1") or die(mysqli_error());
                                                   
                                                            while($fetch = $query ->fetch_array()){        
                                                         ?>
@@ -555,8 +567,8 @@
                                                              <?php echo $fetch['treatment_time'] ?>
                                                         </td>
                                                         <td>
-                                                            <?php if($fetch['treatment_status'] == 1) echo "active" ?>
-                                                            <?php if($fetch['treatment_status'] == 0) echo "Not Active" ?>
+                                                            <?php if($fetch['P_Status'] == 1) echo "active" ?>
+                                                            <?php if($fetch['P_Status'] == 0) echo "Not Active" ?>
                                                         </td>
                                                     </tr>
                                                     <?php } ?>
@@ -568,7 +580,7 @@
                                             </table>
                                
                                         <div class="col-lg-offset-10 col-xs-offset-3">
-                                            <button type="button" class="btn btn-primary m-t-15 waves-effect" data-toggle="modal" data-target="#patients"> <i class="material-icons">date_range</i> Manage</button> &nbsp;
+                                            <button type="button" class="btn btn-primary m-t-15 waves-effect" data-toggle="modal" data-target="#manageschedule"> <i class="material-icons">date_range</i> Manage</button> &nbsp;
                                     </div>
                                 </div>
                                 
@@ -583,7 +595,112 @@
                     </div>
                 </div>
             </div>
-           <div class="modal fade" id="patients" tabindex="-1" role="dialog">
+            
+                                                    <?php
+                                                            $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
+                                                           $query = $conn->query("SELECT * FROM `patientprofile` INNER JOIN `patientschedule` ON `patientprofile`.`Hospital_Id` = `patientschedule`.`Hospital_Id`") or die(mysqli_error());
+                                                  
+                                                           while($fetch = $query ->fetch_array()){        
+                                                        ?>
+            
+           <div class="modal fade" id="manageschedule<?php echo $fetch['Hospital_Id'];?>" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-default" role="document">
+
+                        <div class="modal-content">
+                            <div class="row clearfix">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="card">
+                                        <div class="header bg-indigo">
+                                            <h2>
+                                                Manage Schedule
+
+                                                <a href=""><i class="material-icons pull-right" data-dismiss="modal">clear</i></a>
+                                            </h2>
+
+                                        </div>
+                                        <div class="body">  
+                                       
+                                          <form class="form-horizontal" form method="POST" action="save/saveschedule.php">
+                                            <div class="row clearfix">
+                                            
+                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label">
+                                            <label for="email_address_2">Patient Name</label>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                           <div class="input-group">
+                                                <div class="form-line">
+                                                <input type="text" id="status" name="" value="<?php echo $fetch['P_Fname']." ".$fetch['P_Mname']." ".$fetch['P_Lname']; ?>" readonly>
+                                            </div>
+                                            </div>
+                                            </div>
+                                         
+                  
+                                    </div>
+                                              <div class="row clearfix">
+                                        <div class="col-lg-3 col-md-1 col-sm-2 col-xs-3 form-control-label">
+                                            <label for="email_address_2">Day</label>
+                                        </div>
+                                        <div class="col-lg-3 col-md-1 col-sm-2 col-xs-3">
+
+                                            <select class="form-control show-tick" name="day_S" id="day_S" title="&nbsp;" >
+                                                <option value="#">&nbsp;</option>
+                                                <option value="Monday" <?php if($fetch['']== 'monday') echo "selected"; ?>
+                                                        >Monday</option>
+                                                 <option value="Tuesday" <?php if($fetch['']== 'tuesday') echo "selected"; ?>
+                                                        >Tuesday</option>
+                                                 <option value="Wednesday" <?php if($fetch['']== 'wednesday') echo "selected"; ?>
+                                                        >Wednesday</option>
+                                                 <option value="Thursday" <?php if($fetch['']== 'thursday') echo "selected"; ?>
+                                                        >Thursday</option>
+                                                 <option value="Friday" <?php if($fetch['']== 'friday') echo "selected"; ?>
+                                                        >Friday</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                         <div class="row clearfix">
+                                        <div class="col-lg-3 col-md-1 col-sm-2 col-xs-3 form-control-label">
+                                            <label for="email_address_2">Time</label>
+                                        </div>
+                                        <div class="col-lg-3 col-md-1 col-sm-2 col-xs-3">
+
+                                            <select class="form-control show-tick" name="time_S" id="time_S" title="&nbsp;" >
+                                                <option value="#">&nbsp;</option>
+                                                <option value="morning" <?php if($fetch['']== 'morning') echo "selected"; ?>
+                                                        >Morning</option>
+                                                 <option value="afternoon" <?php if($fetch['']== 'afternoon') echo "selected"; ?>
+                                                        >Afternoon</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                              
+                                              
+                                              <div class="row clearfix">
+                                        <div class="col-lg-offset-6 col-xs-offset-3">
+                                          
+                                            <button type="submit" class="btn btn-primary m-t-15 waves-effect" button name="submit"><i class="material-icons">save</i>Save</button> &nbsp;
+                                           
+                                        </div>
+
+
+                                    </div>
+                                              
+                                              
+                                              
+                                            </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    
+            </div>
+          <?php
+        }
+        $conn->close();
+        ?>
+                      
+            <div class="modal fade" id="manageschedule" tabindex="-1" role="dialog">
                 <div class="modal-dialog modal-default" role="document">
 
                         <div class="modal-content">
@@ -608,11 +725,11 @@
                                         </div>
                                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                                             <select class="form-control show-tick" name="patient_S" id="patient_S" title="&nbsp" data-live-search="true" required>
-                                         
+                                                        
                                                         <?php 
 
                                                           $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
-                                                          $query = $conn->query("SELECT * FROM `patientprofile`") or die(mysqli_error());
+                                                          $query = $conn->query("SELECT * FROM `patientprofile` WHERE `P_Status` = '1'") or die(mysqli_error());
                                                     
                                                         while ($row = $query->fetch_array()){
 
@@ -620,8 +737,6 @@
                                                         <option value="<?php echo $row['Hospital_Id']; ?>" 
                                                         <?php if($fetch['Hospital_Id']==$row['Hospital_Id']) echo "selected"; ?>>
                                                         <?php echo $row['P_Fname']." ".$row['P_Lname']?>
-
-
                                                         </option>
 
                                                         <?php
@@ -631,16 +746,7 @@
                                             </select>
                                         </div>
                                          
-                                        <div class="col-lg-1 col-md-1 col-sm-2 col-xs-3">
-                                            <div class="form-group input-group">
-                                                <span class="input-group-addon">
-                                            <input type="checkbox" id="status" name="status" value="1"
-                                                  <?php if ($fetch['status']==1 ){?> checked="checked"<?php } ?>
-                                                   <?php if ($fetch['Hospital_Id']=='' ){?> checked="checked"<?php } ?>>
-                                            <label for="status">Active</label>
-                                                   </span>
-                                            </div>
-                                        </div>       
+                                             
           
                                     </div>
                                               <div class="row clearfix">
@@ -702,7 +808,6 @@
                         </div>
                     
             </div>
-        
         
         </section>
 

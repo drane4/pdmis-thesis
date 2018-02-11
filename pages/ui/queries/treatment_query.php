@@ -15,9 +15,13 @@
   $q2 = $conn->query("SELECT * FROM `treatment` WHERE `Hospital_Id` = '$_GET[id]' && `treatment_date` = '$date'") or die(mysqli_error());
   $fetch2 = $q2 ->fetch_array();
 
-  $q3 = $conn->query("SELECT `weight` FROM `treatment` WHERE `Hospital_Id` = '$_GET[id]' && `treatment_date` != '$date' ORDER BY `treatment_id` DESC") or die(mysqli_error());
-   $fetch3 = $q3 ->fetch_array();
 
+//---------
+  $q3 = $conn->query("SELECT * FROM `hemo_order` WHERE `Hospital_Id` = '$_GET[id]' ORDER BY `order_id` DESC") or die(mysqli_error());
+  $fetch3 = $q3 ->fetch_array();
+  
+
+  
 //display tables area
 //nephrologist notes   
   $date = date("Y-m-d");                
@@ -31,10 +35,12 @@
   $itest_id = $fetch5[initialtestresult_id];
     
 //fetch schedule
-  $q6 = $conn->query("SELECT * FROM `patientschedule` WHERE `Hospital_Id` = '$_GET[id]'") or die(mysqli_error());
+ //fetch schedule
+  $q6 = $conn->query("SELECT * FROM `patientschedule` INNER JOIN `patientprofile` ON `patientschedule`.`Hospital_Id` = `patientprofile`.`Hospital_Id` WHERE `patientprofile`.`Hospital_Id` = '$_GET[id]'") or die(mysqli_error());
   $fetch6 = $q6 ->fetch_array();
+//INNERJOIN
  $day = $fetch6['treatment_day'];
-$status = $fetch6['treatment_status'];     
+$status = $fetch6['P_Status'];     
 
 
 //--------------------------------->end transaction    

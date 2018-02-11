@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 4.7.4
+-- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 27, 2018 at 05:01 PM
--- Server version: 10.1.19-MariaDB
--- PHP Version: 7.0.13
+-- Generation Time: Feb 11, 2018 at 11:56 AM
+-- Server version: 10.1.28-MariaDB
+-- PHP Version: 7.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -27,12 +29,23 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `confinement` (
-  `hospitalname` int(11) NOT NULL,
-  `confinementdate` int(11) NOT NULL,
-  `confinementreason` int(11) NOT NULL,
-  `Hospital_Id` int(11) NOT NULL,
-  `confinement_id` int(11) NOT NULL
+  `hospitalname` varchar(30) NOT NULL,
+  `confinementdate` date NOT NULL,
+  `confinementreason` varchar(100) NOT NULL,
+  `Hospital_Id` varchar(30) NOT NULL,
+  `confinement_id` int(11) NOT NULL,
+  `confinement_monthyear` char(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `confinement`
+--
+
+INSERT INTO `confinement` (`hospitalname`, `confinementdate`, `confinementreason`, `Hospital_Id`, `confinement_id`, `confinement_monthyear`) VALUES
+('Doctors', '2015-12-15', 'Car accident', '86-89-17', 1, ''),
+('asda', '2018-02-14', 'asd', '01-26-22', 2, '2018, February'),
+('sample', '2018-02-10', 'wala', '01-26-22', 3, '2018, February'),
+('cebs', '2018-01-18', 'wla', '01-26-22', 4, '2018, January');
 
 -- --------------------------------------------------------
 
@@ -63,10 +76,18 @@ CREATE TABLE `diagnostic/examination` (
   `Neurological` varchar(50) NOT NULL,
   `Diagnosis` varchar(50) NOT NULL,
   `Historyby` varchar(30) NOT NULL,
-  `Doneon` date NOT NULL,
+  `Doneon` datetime NOT NULL,
   `Hospital_Id` varchar(30) NOT NULL,
   `diagnostic/examination_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `diagnostic/examination`
+--
+
+INSERT INTO `diagnostic/examination` (`DM`, `HPN`, `PTB`, `Cancer`, `Asthma`, `Alcoholintake`, `SmokingHistory`, `DrugAllergy`, `FoodAllergy`, `BP`, `CR`, `RR`, `Skin`, `Heent`, `Chest/lungs`, `Cardiovascular`, `Abdomen`, `Rectal`, `Extremeties`, `Neurological`, `Diagnosis`, `Historyby`, `Doneon`, `Hospital_Id`, `diagnostic/examination_id`) VALUES
+(1, 1, 1, 1, 1, 1, 1, 1, 1, '151/90', '42', '53', 'sample diagnostics', 'sample diagnostics', 'sample diagnostics', 'sa', 'sample', 'sample diagnostics', 'sample diagnostics', 'sample diagnostics', 'sample diagnostics', 'sample diagnostics', '2018-01-17 12:55:00', '01-26-22', 2),
+(1, 0, 1, 0, 1, 1, 0, 1, 0, '150/90', '45', '54', 'sample ', 'sample ', 'sample ', 'sample ', 'sample ', 'sample ', 'sample ', 'sample ', 'sample ', 'sample s', '0000-00-00 00:00:00', '01-26-22', 3);
 
 -- --------------------------------------------------------
 
@@ -105,15 +126,89 @@ CREATE TABLE `employeeprofile` (
 --
 
 INSERT INTO `employeeprofile` (`employee_num`, `status`, `firstname`, `middlename`, `address`, `telephone`, `mobile`, `position`, `lastname`, `transaction`, `employeeid`, `username`, `password`, `transaction_a`, `patientprofile_a`, `employeeprofile_a`, `labtest_a`, `nephrologist_a`, `descriptors_a`, `userprofile_a`, `maintenance_a`, `reports_a`, `account`) VALUES
-(1, 1, 'Carl', 'A', 'admin', '', '+12 (394) 549-55-6', 'Administrator', 'Betio', 1, 'E0001', 'admin', 'admin', 1, 1, 1, 1, 1, 1, 1, 1, 1, '1'),
-(2, 1, 'Jay Allan', 'L', 'Aguinaldo Street, Silay City, Negros Occidental', '', '09206348946', 'Nurse', 'Vasquez', 1, 'E0002', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, ''),
+(1, 1, 'Carl', 'a', 'admin', '', '123', 'Admin', 'Betio', 0, 'E0001', 'admin', 'admin', 1, 1, 1, 1, 1, 1, 1, 1, 1, '1'),
+(10, 1, 'Smith', 'D', 'La Carlota', '', '+09 (504) 563-55-6', 'Nurse', 'Smith', 1, 'E00010', 'Carlagi', '123', 1, 1, 0, 1, 1, 1, 0, 0, 1, 'a'),
+(11, 1, 'Miriam', 'P', 'Bacolod City', '', '+63 (912) 345-67-8', 'Nurse', 'Gayoba', 1, 'E00011', 'gayoba', 'miriam', 1, 1, 1, 0, 1, 0, 1, 1, 0, 'a'),
+(2, 1, 'Jay Allan', 'L', 'Aguinaldo Street, Silay City, Negros Occidental', '', '09206348946', 'Nurse', 'Vasquez', 1, 'E0002', 'vasquez', 'vasquez', 1, 1, 0, 1, 1, 1, 0, 0, 1, 'a'),
 (3, 1, 'John Paul', 'J', '#90 Bayabas St. Elena Subdivision, Silay City, Negros Occidental', '495 - 4538', '09228167114', 'Nurse', 'Peornato', 1, 'E0003', 'peornato', 'peornato', 1, 1, 0, 1, 1, 1, 0, 0, 1, 'a'),
-(4, 1, 'Guillermo', 'R', 'Purok Golf, Brgy. Guinhalaran, Silay City, Negros Occidental', '', '09207918057', 'Technician', 'Margate Sr.', 1, 'E0004', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, ''),
-(5, 1, 'Jenelle Marco', 'A', 'Lot 42 Block 30 St. Francis Subdivision, Silay City, Negros Occidental', '495 - 5569', '09055406423', 'Nurse', 'Paez', 1, 'E0005', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, ''),
+(4, 1, 'Guillermo', 'R', 'Purok Golf, Brgy. Guinhalaran, Silay City, Negros Occidental', '', '09207918057', 'Technician', 'Margate Sr.', 1, 'E0004', 'margate', 'margate', 1, 1, 0, 1, 1, 1, 0, 0, 1, 'a'),
+(5, 1, 'Jenelle Marco', 'A', 'Lot 42 Block 30 St. Francis Subdivision, Silay City, Negros Occidental', '495 - 5569', '09055406423', 'Nurse', 'Paez', 1, 'E0005', 'paez', 'paez', 1, 1, 0, 1, 1, 1, 0, 0, 1, 'a'),
 (6, 1, 'Christopher NiÃ±o', 'R', '#10 Villa City High, Bacolod City, Negros Occidental', '706 - 0186', '09182446674', 'Nurse', 'Tolimao', 1, 'E0006', 'tolimao', 'tolimao', 1, 1, 0, 1, 1, 1, 0, 0, 1, 'a'),
-(7, 1, 'Rhitt', 'L', 'Santan Ville, Brgy 5, Silay City, Negros Occidental', '495 - 0108', '09327372678', 'Head Nurse', 'Bancaya', 1, 'E0007', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, ''),
-(8, 1, 'Joebert', 'P', 'Purok Pag-asa, Talabaan Zone 1 Cadiz City, Negros Occidental', '', '09234346532', 'Nurse', 'Datu-on', 1, 'E0008', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, ''),
-(9, 0, 'Alvin', 'L', 'Bacolod City', '', '+23 (321) 332-32-3', 'Technician', 'Yanson', 1, 'E0009', 'alvin', 'alvin', 1, 1, 0, 1, 1, 1, 0, 0, 1, 'a');
+(8, 1, 'Joebert', 'P', 'Purok Pag-asa, Talabaan Zone 1 Cadiz City, Negros Occidental', '', '09234346532', 'Nurse', 'Datu-on', 1, 'E0008', 'datu-on', 'datu-on', 0, 0, 0, 0, 0, 0, 0, 0, 0, ''),
+(9, 1, 'Alvin', 'L', 'Bacolod City', '', '+23 (321) 332-32-3', 'Technician', 'Yanson', 1, 'E0009', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `hemo_order`
+--
+
+CREATE TABLE `hemo_order` (
+  `coerd` char(100) NOT NULL,
+  `hepastat` int(1) NOT NULL,
+  `antihstat` int(1) NOT NULL,
+  `hepstatdate` date NOT NULL,
+  `antihstatdate` date NOT NULL,
+  `access` int(1) NOT NULL,
+  `insertdate` date NOT NULL,
+  `surgeon` char(25) NOT NULL,
+  `avfistula` int(1) NOT NULL,
+  `avdate` date NOT NULL,
+  `avsurgeon` char(25) NOT NULL,
+  `ptfe` int(1) NOT NULL,
+  `ptdate` date NOT NULL,
+  `ptsurgeon` char(25) NOT NULL,
+  `frequency` varchar(10) NOT NULL,
+  `duration` varchar(10) NOT NULL,
+  `dialyzer` char(20) NOT NULL,
+  `reuse` int(1) NOT NULL,
+  `dialysatebath` int(1) NOT NULL,
+  `hdrug` char(25) NOT NULL,
+  `hdose` char(25) NOT NULL,
+  `bloodflow` char(5) NOT NULL,
+  `targetwt` char(5) NOT NULL,
+  `medication` varchar(50) NOT NULL,
+  `Hospital_id` varchar(30) NOT NULL,
+  `order_id` int(11) NOT NULL,
+  `order_date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `hemo_order`
+--
+
+INSERT INTO `hemo_order` (`coerd`, `hepastat`, `antihstat`, `hepstatdate`, `antihstatdate`, `access`, `insertdate`, `surgeon`, `avfistula`, `avdate`, `avsurgeon`, `ptfe`, `ptdate`, `ptsurgeon`, `frequency`, `duration`, `dialyzer`, `reuse`, `dialysatebath`, `hdrug`, `hdose`, `bloodflow`, `targetwt`, `medication`, `Hospital_id`, `order_id`, `order_date`) VALUES
+('Chronic Gromerulonephritis and Hypertensive Nephrosclorosis', 0, 1, '2018-01-29', '2018-01-29', 0, '2018-01-22', 'sad', 1, '2018-01-29', 'sad', 1, '2018-01-29', 'sad', '1', '3 hours', 'HIPS-18', 0, 0, 'sad', 'dsad', 'sad', '21 Kg', 'sdasdasd', '01-26-22', 13, '2018-02-09'),
+('Diabetic Nephropathy', 0, 0, '2018-01-29', '2018-01-29', 0, '2018-01-29', 'as', 1, '2018-01-29', 'asd', 1, '2018-01-29', 'a', '2', '', 'F8HPS', 1, 0, 'sad', 'dsad', 'sad', ' Kg', 'sadasd', '05-29-07', 14, '2018-01-29'),
+('Chronic Gromerulonephritis and Hypertensive Nephrosclorosis', 0, 0, '2018-02-08', '2018-02-08', 1, '2018-02-09', 'mango', 1, '2018-02-09', 'mango', 1, '2018-02-09', 'mango', '2', '3 hours', 'F8HPS', 0, 0, 'asd', '250', 'sad', ' Kg', 'sad', '01-26-22', 25, '2018-02-09');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `hepatitisbvaccine`
+--
+
+CREATE TABLE `hepatitisbvaccine` (
+  `description` varchar(10) NOT NULL,
+  `administeredby` varchar(50) NOT NULL,
+  `hepa_daterecieved` date NOT NULL,
+  `hepa_nextdate` date NOT NULL,
+  `hepa_id` int(11) NOT NULL,
+  `Hospital_Id` varchar(30) NOT NULL,
+  `hepa_year` char(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `hepatitisbvaccine`
+--
+
+INSERT INTO `hepatitisbvaccine` (`description`, `administeredby`, `hepa_daterecieved`, `hepa_nextdate`, `hepa_id`, `Hospital_Id`, `hepa_year`) VALUES
+('1', 'johnsaa', '2018-02-10', '2018-02-15', 1, '01-26-22', ''),
+('2', 'asd', '2018-02-03', '2018-02-23', 2, '01-26-22', ''),
+('2', 'haha', '2018-02-15', '2018-02-15', 3, '01-26-22', ''),
+('1', 's4', '2018-02-04', '2018-02-04', 4, '01-26-22', ''),
+('1', 'johnsa', '2018-02-10', '2018-02-10', 5, '01-26-22', '2018'),
+('2', 'ASD', '2017-06-07', '2017-06-07', 6, '01-26-22', '1970, Janu');
 
 -- --------------------------------------------------------
 
@@ -128,8 +223,44 @@ CREATE TABLE `hepatitisprofile` (
   `HCV` varchar(3) NOT NULL,
   `HIV` varchar(3) NOT NULL,
   `Hospital_Id` varchar(30) NOT NULL,
-  `hepatitisprofile_id` int(11) NOT NULL
+  `hepatitisprofile_id` int(11) NOT NULL,
+  `hepatitismonthyear` char(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `hepatitisprofile`
+--
+
+INSERT INTO `hepatitisprofile` (`hepatitisdate`, `HbsAg`, `AntiHBs`, `HCV`, `HIV`, `Hospital_Id`, `hepatitisprofile_id`, `hepatitismonthyear`) VALUES
+('2018-02-09', 'r', 'r', 'nr', 'nr', '01-26-22', 10, '2018, February'),
+('2018-01-19', 'nr', 'r', 'nr', 'r', '01-26-22', 11, '2018, January'),
+('2018-02-15', '', '', '', '', '', 12, '2018, February'),
+('2018-02-15', '', '', '', '', '', 13, '2018, February');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `influenzavaccine`
+--
+
+CREATE TABLE `influenzavaccine` (
+  `influenza_administeredby` varchar(50) NOT NULL,
+  `influenza_daterecieved` date NOT NULL,
+  `influenza_datenext` date NOT NULL,
+  `influenza_id` int(11) NOT NULL,
+  `Hospital_Id` varchar(30) NOT NULL,
+  `influenza_year` char(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `influenzavaccine`
+--
+
+INSERT INTO `influenzavaccine` (`influenza_administeredby`, `influenza_daterecieved`, `influenza_datenext`, `influenza_id`, `Hospital_Id`, `influenza_year`) VALUES
+('johnsaac', '2018-02-03', '2018-02-28', 1, '01-26-22', ''),
+('asda', '2018-02-14', '2018-02-28', 5, '01-26-22', ''),
+('hehe', '2018-02-09', '2018-02-22', 6, '01-26-22', '2018'),
+('johna', '2018-02-03', '2018-02-28', 7, '01-26-22', '');
 
 -- --------------------------------------------------------
 
@@ -153,11 +284,92 @@ CREATE TABLE `initialtestresult` (
 --
 
 INSERT INTO `initialtestresult` (`initialtemperature`, `bloodpressure`, `cardiacrate`, `repulsiverate`, `initialtestresult_id`, `Hospital_Id`, `initialtest_date`, `initialtest_time`) VALUES
-('35.5', '136/55', '78', '19', 1, '40-89-11', '2017-06-05', '12:00 pm'),
-('35.3', '196/74', '81', '19', 2, '40-89-11', '2017-06-19', '7:10 am'),
-('35.5', '130/80', '75', '19', 3, '01-26-22', '2018-01-17', '7:03 pm'),
-('36.3', '207/70', '81', '20', 4, '40-89-11', '2017-06-26', '6:50 am'),
-('35.5', '130/80', '75', '19', 5, '45-45-24', '2017-06-19', '7:30 am');
+('36', '164/91', '74', '18', 1, '86-89-17', '2017-06-26', '7:11 am'),
+('36.', '169/90', '70', '19', 2, '86-89-17', '2017-07-03', '7:00 am'),
+('35.5', '152/85', '68', '19', 3, '86-89-17', '2017-10-07', '6:41 am'),
+('35.2', '176/93', '68', '19', 4, '86-89-17', '2017-07-17', '6:50'),
+('35.8', '176/95', '68', '19', 5, '86-89-17', '2017-07-24', '6:55'),
+('35.6', '167/81', '76', '20', 6, '86-89-17', '2017-07-31', '6:37'),
+('35.6', '167/81', '76', '20', 7, '86-89-17', '2018-01-22', '5:13 am'),
+('32', '151/171', '78', '22', 8, '45-45-24', '2018-01-22', '10:37 am'),
+('dsa', 'das', 'dasd', 'asdas', 9, '01-26-22', '2018-01-29', '11:41 am'),
+('35', '175/80', '70', '40', 10, '45-45-24', '2018-01-29', '8:15 pm'),
+('31', '170 / 90', '23', '23', 11, '86-89-17', '2018-02-05', '1:32 am');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `laboratory`
+--
+
+CREATE TABLE `laboratory` (
+  `Creatinine` varchar(10) NOT NULL,
+  `BUN` varchar(10) NOT NULL,
+  `Magnesium` varchar(10) NOT NULL,
+  `Calcium` varchar(10) NOT NULL,
+  `Phosphorus` varchar(10) NOT NULL,
+  `Potassium` varchar(10) NOT NULL,
+  `Sodium` varchar(10) NOT NULL,
+  `TCholesterol` varchar(10) NOT NULL,
+  `Triglycerides` varchar(10) NOT NULL,
+  `HDL` varchar(10) NOT NULL,
+  `LDL` varchar(10) NOT NULL,
+  `FBS` varchar(10) NOT NULL,
+  `RBS` varchar(10) NOT NULL,
+  `UricAcid` varchar(10) NOT NULL,
+  `RBCBlood` varchar(10) NOT NULL,
+  `WBC` varchar(10) NOT NULL,
+  `Hemoglobin` varchar(10) NOT NULL,
+  `Hematocrit` varchar(10) NOT NULL,
+  `PlateletCount` varchar(10) NOT NULL,
+  `Polys` varchar(10) NOT NULL,
+  `Lymph` varchar(10) NOT NULL,
+  `Eosinophyl` varchar(10) NOT NULL,
+  `Monocytes` varchar(10) NOT NULL,
+  `Basophil` varchar(10) NOT NULL,
+  `pH` varchar(10) NOT NULL,
+  `SpGravity` varchar(10) NOT NULL,
+  `Albumin` varchar(10) NOT NULL,
+  `Sugar` varchar(10) NOT NULL,
+  `PlusCells` varchar(10) NOT NULL,
+  `RBCUrine` varchar(10) NOT NULL,
+  `Hospital_Id` varchar(30) NOT NULL,
+  `Laboratory_date` date NOT NULL,
+  `Laboratory_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `laboratory`
+--
+
+INSERT INTO `laboratory` (`Creatinine`, `BUN`, `Magnesium`, `Calcium`, `Phosphorus`, `Potassium`, `Sodium`, `TCholesterol`, `Triglycerides`, `HDL`, `LDL`, `FBS`, `RBS`, `UricAcid`, `RBCBlood`, `WBC`, `Hemoglobin`, `Hematocrit`, `PlateletCount`, `Polys`, `Lymph`, `Eosinophyl`, `Monocytes`, `Basophil`, `pH`, `SpGravity`, `Albumin`, `Sugar`, `PlusCells`, `RBCUrine`, `Hospital_Id`, `Laboratory_date`, `Laboratory_id`) VALUES
+('a1', 'a1', 'a1', 'a1', 'a1', 'a1', 'a1', 'a1', 'a1', 'a1', 'a1', 'a1', 'a1', 'a1', 'a1', 'a1', 'a1', 'a1', 'a1', 'a1', 'a1', 'a1', 'a1', 'a1', 'a1', 'a1', 'a1', 'a1', 'a1', 'a1', '86-89-17', '2018-01-27', 1),
+('1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '01-26-22', '2018-02-06', 15),
+('', '', '', '', '', '', '', '', '', '', '', '', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', '', '', '', '', '', '', '', '', '01-26-22', '2018-02-07', 16);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `laboratory_others`
+--
+
+CREATE TABLE `laboratory_others` (
+  `labothers_id` int(11) NOT NULL,
+  `description` text NOT NULL,
+  `value` varchar(10) NOT NULL,
+  `labothers_date` date NOT NULL,
+  `Hospital_Id` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `laboratory_others`
+--
+
+INSERT INTO `laboratory_others` (`labothers_id`, `description`, `value`, `labothers_date`, `Hospital_Id`) VALUES
+(1, 's', 's', '2018-02-05', 'sad'),
+(2, 'desc', 's', '2018-02-05', '86-89-17'),
+(3, 'red blood ', '24', '2018-02-21', '01-26-22'),
+(4, 'as', 'as', '2018-02-07', '01-26-22');
 
 -- --------------------------------------------------------
 
@@ -182,27 +394,57 @@ CREATE TABLE `machineresult` (
 --
 
 INSERT INTO `machineresult` (`m_bloodpressure`, `m_cardiacrate`, `m_bloodflowrate`, `m_transmempressure`, `m_venpressure`, `machineresult_id`, `Hospital_Id`, `m_date`, `m_time`) VALUES
-('160/70', '66', '175', '120', '100', 13, '37-67-12', '2017-12-27', '3:46 pm'),
-('169/79', '58', '180', '160', '120', 14, '37-67-12', '2017-12-27', '3:47 pm'),
-('150/80', '64', '200', '140', '120', 15, '37-67-12', '2017-12-27', '3:48 pm'),
-('132/55', '75', '250', '60', '80', 23, '40-89-11', '2017-06-05', '11:55 am'),
-('189/76', '81', '200', '40', '60', 24, '40-89-11', '2017-06-19', '7:25 am'),
-('75/40', '70', '180', '40', '40', 25, '40-89-11', '2017-06-19', '7:45 am'),
-('120/60', '75', '180', '40', '40', 26, '40-89-11', '2017-06-19', '7:50 am'),
-('160/80', '74', '200', '40', '80', 27, '40-89-11', '2017-06-19', '8:50 am'),
-('160/70', '79', '200', '40', '80', 28, '40-89-11', '2017-06-19', '9:30 am'),
-('110/70', '77', '200', '40', '80', 29, '40-89-11', '2017-06-19', '10:40 am'),
-('120/80', '77', '200', '40', '80', 30, '40-89-11', '2017-06-19', '10:45 am'),
-('130/80', '-', '-', '-', '-', 31, '40-89-11', '2017-06-19', '11:15 am'),
-('140/70', '-', '-', '-', '-', 32, '40-89-11', '2017-06-19', '11:30 am'),
-('198/64', '78', '200', '40', '80', 34, '40-89-11', '2017-06-26', '7:10 am'),
-('206/68', '76', '200', '40', '80', 35, '40-89-11', '2017-06-26', '8:10 am'),
-('194/60', '76', '220', '40', '80', 36, '40-89-11', '2017-06-26', '8:50 am'),
-('216/72', '76', '220', '20', '80', 37, '40-89-11', '2017-06-19', '9:45 am'),
-('193/66', '76', '220', '20', '80', 38, '40-89-11', '2017-06-19', '10:20 am'),
-('195/71', '-', '-', '-', '-', 39, '40-89-11', '2017-06-19', '11:10 am'),
-('150/80', '-', '-', '-', '-', 42, '40-89-11', '2017-06-19', '11:30 am'),
-('130/80', '75', '180', '40', '80', 44, '45-45-24', '2017-06-19', '8:30 am');
+('164/91', '72', '250', '80', '180', 1, '86-89-17', '2017-06-26', '7:25 am'),
+('165/88', '78', '300', '80', '200', 2, '86-89-17', '2017-06-26', '8:45 am'),
+('172/86', '75', '300', '80', '200', 3, '86-89-17', '2017-06-26', '9:45 am'),
+('165/95', '78', '300', '80', '200', 4, '86-89-17', '2017-06-26', '10:20 am'),
+('170/83', '70', '300', '80', '200', 5, '86-89-17', '2017-06-26', '11:15 am'),
+('160/80', '', '', '', '', 6, '86-89-17', '2017-06-26', '11:25 am'),
+('160/80', '', '', '', '', 7, '86-89-17', '2017-06-26', '11:55 am'),
+('152/88', '70', '250', '36.3', '200', 8, '86-89-17', '2017-07-03', '7:12 am'),
+('175/90', '78', '250', '80', '200', 9, '86-89-17', '2017-07-03', '7:45 am'),
+('174/90', '78', '250', '80', '200', 10, '86-89-17', '2017-07-03', '8:05 pm'),
+('174/93', '78', '250', '80', '200', 11, '86-89-17', '2017-07-03', '9:05 pm'),
+('160/80', '80', '300', '80', '240', 12, '86-89-17', '2017-07-03', '10:25 pm'),
+('180/90', '', '', '', '', 13, '86-89-17', '2017-07-03', '11:15 pm'),
+('160/90', '', '', '', '', 14, '86-89-17', '2017-07-03', '11:31 pm'),
+('151/83', '55', '250', '120', '180', 15, '86-89-17', '2017-10-07', '7:00 am'),
+('180/88', '77', '300', '120', '220', 16, '86-89-17', '2017-10-07', '8:00 pm'),
+('150/80', '80', '300', '140', '200', 17, '86-89-17', '2017-10-07', '8:42 pm'),
+('162/90', '71', '300', '140', '200', 18, '86-89-17', '2017-10-07', '9:30 am'),
+('171/90', '80', '300', '100', '200', 19, '86-89-17', '2017-10-07', '10:05 am'),
+('171/90', '80', '300', '100', '200', 20, '86-89-17', '2017-10-07', '11:05'),
+('160/90', '', '', '', '', 21, '86-89-17', '2017-10-07', '11:05'),
+('162/90', '67', '250', '120', '180', 22, '86-89-17', '2017-07-17', '6.50'),
+('169/85', '68', '350', '120', '240', 23, '86-89-17', '2017-07-17', '7:45'),
+('173/88', '65', '300', '120', '240', 24, '86-89-17', '2017-07-17', '820'),
+('186/91', '70', '300', '120', '240', 25, '86-89-17', '2017-07-17', '8:43'),
+('173/91', '72', '300', '120', '220', 26, '86-89-17', '2017-07-17', '9:15'),
+('186/85', '70', '300', '120', '220', 27, '86-89-17', '2017-07-17', '10:00'),
+('160/80', '70', '300', '120', '200', 28, '86-89-17', '2017-07-17', '10:20'),
+('154/80', '', '', '', '', 29, '86-89-17', '2017-07-17', '11:10'),
+('150/80', '', '', '', '', 30, '86-89-17', '2017-07-17', '11:25'),
+('156/86', '66', '250', '100', '160', 31, '86-89-17', '2017-07-24', '7:15'),
+('156/83', '67', '300', '140', '200', 32, '86-89-17', '2017-07-24', '7:50'),
+('179/93', '72', '300', '140', '220', 33, '86-89-17', '2017-07-24', '8:05'),
+('176/88', '68', '300', '140', '220', 34, '86-89-17', '2017-07-24', '10:30'),
+('164/93', '73', '300', '120', '220', 35, '86-89-17', '2017-07-24', '11:10'),
+('168/93', '', '', '', '', 36, '86-89-17', '2017-07-24', '11:32'),
+('160/90', '', '', '', '', 37, '86-89-17', '2017-07-24', '11:40'),
+('153/80', '72', '250', '120', '180', 38, '86-89-17', '2017-07-31', '6:45'),
+('160/80', '77', '300', '140', '200', 39, '86-89-17', '2017-07-31', '7:45'),
+('170/90', '80', '300', '140', '220', 40, '86-89-17', '2017-07-31', '8:30'),
+('165/83', '77', '300', '140', '220', 41, '86-89-17', '2017-07-31', '9:00'),
+('185/92', '73', '300', '160', '220', 42, '86-89-17', '2017-07-31', '10:0'),
+('160/90', '', '', '', '', 43, '86-89-17', '2017-07-31', '10:45'),
+('160/90', '', '', '', '', 44, '86-89-17', '2017-07-31', '11:15'),
+('a', 'a', 'a', 'a', 'a', 45, '86-89-17', '2018-01-22', '5:12 am'),
+('139/69', '75', '220', '42', '52', 46, '45-45-24', '2018-01-22', '10:39 am'),
+('151/180', '75', '200', '44', '60', 47, '45-45-24', '2018-01-22', '10:40 am'),
+('dsad', 'asd', 'dasd', 'sad', 'sada', 48, '01-26-22', '2018-01-29', '11:41 am'),
+('dsa', 'dasd', 'ads', 'asdsa', 'dasd', 49, '01-26-22', '2018-01-29', '11:45 am'),
+('175/90', '75', '300cc', '70', '70', 50, '45-45-24', '2018-01-29', '8:16 pm'),
+('190 / 62', '12', '23', '231', '12', 51, '86-89-17', '2018-02-05', '1:39 am');
 
 -- --------------------------------------------------------
 
@@ -213,33 +455,53 @@ INSERT INTO `machineresult` (`m_bloodpressure`, `m_cardiacrate`, `m_bloodflowrat
 CREATE TABLE `maintenance` (
   `employeeid` varchar(7) NOT NULL,
   `action` char(6) NOT NULL,
-  `m_date` datetime NOT NULL,
-  `name` char(30) NOT NULL
+  `m_date` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `maintenance`
 --
 
-INSERT INTO `maintenance` (`employeeid`, `action`, `m_date`, `name`) VALUES
-('E0001', 'Export', '2017-12-13 00:00:00', 'Carl Betio'),
-('E0001', 'Import', '2017-12-13 00:00:00', 'Carl Betio'),
-('E0001', 'Export', '2017-12-13 00:00:00', 'Carl Betio'),
-('E0001', 'Export', '2017-12-13 00:00:00', 'Carl Betio'),
-('E0001', 'Export', '2017-12-13 00:00:00', 'Carl Betio'),
-('E0001', 'Export', '2017-12-13 00:00:00', 'Carl Betio'),
-('E0001', 'Import', '2017-12-13 00:00:00', 'Carl Betio'),
-('E0001', 'Export', '2017-12-13 00:00:00', 'Carl Betio'),
-('E0001', 'Import', '2017-12-13 00:00:00', 'Carl Betio'),
-('E0001', 'Export', '2017-12-13 00:00:00', 'Carl Betio'),
-('E0001', 'Export', '2017-12-13 00:00:00', 'Carl Betio'),
-('E0001', 'Export', '2017-12-13 00:00:00', 'Carl Betio'),
-('E0001', 'Export', '2017-12-13 00:00:00', 'Carl Betio'),
-('E0001', 'Export', '2017-12-13 07:40:25', 'Carl Betio'),
-('E0001', 'Export', '2017-12-13 07:42:15', 'Carl Betio'),
-('E0001', 'Export', '2017-12-13 14:43:11', 'Carl Betio'),
-('E0001', 'Export', '2017-12-13 14:44:19', 'Carl Betio'),
-('E0001', 'Export', '2018-01-17 17:28:04', 'Carl Betio');
+INSERT INTO `maintenance` (`employeeid`, `action`, `m_date`) VALUES
+('E0001', 'Export', '2018-01-23 08:19 pm'),
+('E0001', 'Export', '2018-01-28 10:03 pm'),
+('E0001', 'Import', '2018-02-03 01:58 pm'),
+('E0001', 'Export', '2018-01-23 08:19 pm'),
+('E0001', 'Export', '2018-01-28 10:03 pm'),
+('E0001', 'Export', '2018-01-29 08:29 pm'),
+('E0001', 'Export', '2018-02-06 12:53 pm'),
+('E0001', 'Import', '2018-02-06 12:54 pm'),
+('E0001', 'Export', '2018-01-23 08:19 pm'),
+('E0001', 'Export', '2018-01-28 10:03 pm'),
+('E0001', 'Import', '2018-02-03 01:58 pm'),
+('E0001', 'Export', '2018-01-23 08:19 pm'),
+('E0001', 'Export', '2018-01-28 10:03 pm'),
+('E0001', 'Export', '2018-01-29 08:29 pm'),
+('E0001', 'Export', '2018-02-06 12:53 pm'),
+('E0001', 'Export', '2018-02-06 12:54 pm'),
+('E0001', 'Export', '2018-02-09 04:17 pm'),
+('E0001', 'Export', '2018-02-09 04:17 pm'),
+('E0001', 'Export', '2018-02-09 04:17 pm'),
+('E0001', 'Import', '2018-02-09 04:21 pm'),
+('E0001', 'Export', '2018-01-23 08:19 pm'),
+('E0001', 'Export', '2018-01-28 10:03 pm'),
+('E0001', 'Import', '2018-02-03 01:58 pm'),
+('E0001', 'Export', '2018-01-23 08:19 pm'),
+('E0001', 'Export', '2018-01-28 10:03 pm'),
+('E0001', 'Export', '2018-01-29 08:29 pm'),
+('E0001', 'Export', '2018-02-06 12:53 pm'),
+('E0001', 'Import', '2018-02-06 12:54 pm'),
+('E0001', 'Export', '2018-01-23 08:19 pm'),
+('E0001', 'Export', '2018-01-28 10:03 pm'),
+('E0001', 'Import', '2018-02-03 01:58 pm'),
+('E0001', 'Export', '2018-01-23 08:19 pm'),
+('E0001', 'Export', '2018-01-28 10:03 pm'),
+('E0001', 'Export', '2018-01-29 08:29 pm'),
+('E0001', 'Export', '2018-02-06 12:53 pm'),
+('E0001', 'Export', '2018-02-06 12:54 pm'),
+('E0001', 'Export', '2018-02-09 04:17 pm'),
+('E0001', 'Export', '2018-02-09 04:17 pm'),
+('E0001', 'Export', '2018-02-09 04:17 pm');
 
 -- --------------------------------------------------------
 
@@ -267,6 +529,7 @@ INSERT INTO `nephrologist` (`nephrologistnum`, `nephrologistid`, `n_lname`, `n_f
 (10, 'N00010', 'Paylado', 'Franelin', 'D', '', '', ''),
 (11, 'N00011', 'Austria', 'Joseph Peter', 'D', '', '', ''),
 (12, 'N00012', 'Togle', 'Brian Antonio', 'D', '', '', ''),
+(13, 'N00013', 'Garcia', 'Nina', 'A.', '', '', ''),
 (2, 'N0002', 'Pramio', 'Celeste-Jo', 'V', '434 - 2348', '09231429248', '#323, 109 St. Green Plains Subdivision, Bacolod City, Negros Occidental'),
 (3, 'N0003', 'Pepingco', 'Jerome', 'A', '', '', 'A'),
 (4, 'N0004', 'Tumaneng', 'Leo Manuel', 'A', '', '', 'A'),
@@ -275,6 +538,30 @@ INSERT INTO `nephrologist` (`nephrologistnum`, `nephrologistid`, `n_lname`, `n_f
 (7, 'N0007', 'Araneta', 'Maricris', '', '', '', ''),
 (8, 'N0008', 'Maravilla', 'Socorro', '', '', '', ''),
 (9, 'N0009', 'Tomas', 'Remedios', '', '', '', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `nephrologistschedule`
+--
+
+CREATE TABLE `nephrologistschedule` (
+  `nephroschedule_id` int(5) NOT NULL,
+  `nephrologistid` varchar(30) NOT NULL,
+  `monday` int(1) NOT NULL,
+  `tuesday` int(1) NOT NULL,
+  `wednesday` int(1) NOT NULL,
+  `thursday` int(1) NOT NULL,
+  `friday` int(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `nephrologistschedule`
+--
+
+INSERT INTO `nephrologistschedule` (`nephroschedule_id`, `nephrologistid`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`) VALUES
+(6, 'N0001', 1, 0, 1, 1, 0),
+(7, 'N00010', 0, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -296,9 +583,14 @@ CREATE TABLE `nephronotesorder` (
 --
 
 INSERT INTO `nephronotesorder` (`nephrologistid`, `nephro_notes`, `nephro_order`, `notes_order_date`, `notes_order_Id`, `Hospital_Id`) VALUES
-('N0005', 'BP 150/90\n(+)soft ascitis\n(-)bipedal edema\nno dyspnea', '', '2017-12-27', 26, '37-67-12'),
-('N0001', 'comfortable 160/70\npositive pulmonary ruls\npositive edema', 'UF 3L total', '2017-06-19', 74, '40-89-11'),
-('N0001', 'comfortable 120/60', 'UF to', '2017-07-03', 75, '40-89-11');
+('N0001', 'comfortable 160/80', 'UF to DW', '2017-07-03', 1, '86-89-17'),
+('N0001', 'Comfortable \r\nclear bs\r\nP edema\r\n', 'UF to BW', '2017-10-07', 2, '86-89-17'),
+('N0001', 'Comfortable clear ruls P edema 160/80', 'UF to 3.8 li talat\r\n', '2017-07-17', 3, '86-89-17'),
+('N0001', 'comfortable clear ruls, med edema', 'UF to DW', '2017-07-24', 4, '86-89-17'),
+('N00010', 'a', 'a', '2017-07-31', 6, '86-89-17'),
+('N00010', 'a', 'a', '2018-01-22', 7, '86-89-17'),
+('N00010', 'asdasd', 'sadasd', '2018-01-29', 8, '01-26-22'),
+('N00010', 'this is a note', 'this is an order', '2018-01-29', 9, '45-45-24');
 
 -- --------------------------------------------------------
 
@@ -322,18 +614,23 @@ CREATE TABLE `nursenotes` (
 --
 
 INSERT INTO `nursenotes` (`focus`, `data`, `action`, `resolution`, `employeeid`, `nurse_notes_date`, `nurse_notes_id`, `Hospital_Id`) VALUES
-('Hemodialysis', 'Recieved ambulatory', 'Consent for MD', 'AUF', 'E0001', '2017-12-27', 36, '37-67-12'),
-('Hemodialysis', 'received ambulatory conscious and coherent', 'pre HD assessment done, consent for HD signed. L AVF site dressed aseptically, UF goal set to 4000ml, consultation done. 7:18 HD started. flushed 50cc nss initially, then every 15 mins until end of HD.', 'Able to comprehend', 'E0003', '2017-06-05', 56, '40-89-11'),
-('health teaching on diet', '', 'Advised to strictly limit oral fluid intake to less than 1L per day', 'able to comprehend', 'E0003', '2017-06-05', 57, '40-89-11'),
-('blood transfusion', 'HgD 76', 'transfused 1 unit PRBC serial#0144486, exp.date 7/6/17, blood type A+, consent to BT signed, transfused another unit PRBC serial#0144821, exp.date 7/4/17. blood type A+', '2 units PRBC consumed', 'E0003', '2017-06-05', 58, '40-89-11'),
-('for hemodialysis', 'received ambulatory conscious and consent', 'pre HD assessment done, consent for HD signed. consent and pre HD vital signs and weight checked. L AVF site dressed aseptically. UF goal set to 2500ml. cannulation done, precaution. 7:25 HD started, flushed 50cc nss initially, then every 15 mins until end of HD session', '11:15 HD ended and terminated per patient request (10 mins remaining time). VF received 2373ml. Post HD assessment done. Eposino 6000ml given at abdominal wall', 'E0003', '2017-06-19', 59, '40-89-11'),
-('decreased blood pressure', 'BP 70/40', 'flushed 200cc nss rechecked BP. placed on trendilenburg position', 'BP 140/70', 'E0003', '2017-06-19', 60, '40-89-11'),
-('health teaching on diet', '', 'advised to strictly limit oral fluid intake to less than 1L per day', 'able to comprehend\r\n11:30 discharged ambulatory in fair condition accompanied by folks', 'E0003', '2017-06-19', 61, '40-89-11'),
-('for hemodialysis', 'came in per wheelchair; conscious and coherent; ready for HD', 'pre HD assessment done; HD consent signed; made comfortable on bed chair. - L AVF site cleansed & dressed aseptically. 7:10am HD started; UF goal set to 2 liters.\r\n-NSS flushubg 50cc given IV bolus 15mins until end of HD', '11:10am HD ended and terminated', 'E0006', '2017-06-26', 62, '40-89-11'),
-('health teaching', '', 'instructed to limit fluid intake to 800ml/day', 'able to comprehend\r\n-eposino 6000 IV injected subcutaneously at the abdominal wall\r\n-past HD weight taken and recorded.\r\n12pm discharged ambulatory and in fair condition', 'E0006', '2017-06-26', 65, '40-89-11'),
-('for hemodialysis', 'received ambulatory conscious and coherent', 'pre HD assessment done, consent for HD signed, L AVF site dressed aseptically, UF goal set to 3500ml, cannulation done ; precaution\r\n6:48 HD started, regular heparin, 1000ml given initially then every hour 500ml given until the 3rd hour', '10:48 HD ended and terminated, UF removed 3,100ml. post HD assessment done.\r\nEposino 6,000 ml given at L abdominal wall', 'E0003', '2017-06-19', 67, '40-89-11'),
-('hfhh', 'fhghh', 'ghfhgf', 'hfghf', 'E0001', '2017-07-03', 68, '40-89-11'),
-('hghfgh', 'hfghfh', 'hfhfgh', 'hfghfgh', 'E0001', '2017-07-03', 69, '40-89-11');
+('For hemodialysis', 'Recieved ambulatory concious and coherent', 'Recieved Ambulatory, consent signed, Avf site', 'Uf goal recieved, Hd assessment done. Post HD weight and vital signs checked. eposino 6000 iu given @ at  R abdominal well', 'E0001', '2017-06-26', 1, '86-89-17'),
+('For Hemodialysis', 'Recieved ambulatory concious and coherent', 'Consent for HD signed 4vf site dressed aseptically, Uf goal set to 3,000ml connulation', 'Uf goal reacted, HD treatment ended and terminated past HD assessment done, epueno 6,000 is given at abdominal wall', 'E0001', '2017-07-03', 2, '86-89-17'),
+('Health teaching in diet', '', 'advised to strictly limit oral fluid in less than 1 liter per day', 'able to comprehend', 'E0001', '2017-07-03', 3, '86-89-17'),
+('elevated blood pressure', 'BP 190/95', 'Due meds given', 'BP 160/90\r\n', 'E0001', '2017-07-03', 4, '86-89-17'),
+('For Hemodialysis', 'Came in ambulatory; concious and coherent; ready for hemodialysis', 'Pre HD assessment done, HD consent signed; mode comfortable on bedchair.', '11:00 AM HD ended & terminated', 'E0001', '2017-10-07', 5, '86-89-17'),
+('Health Teaching', '', 'Instructed to limit fluid intake to 800 ml/day\r\n-kept monitored', 'Able to Comprehend\r\n-Epokine 4000 IU injected subcotaneously @the R abdominal wall\r\n-Post HD weight taken and recorded. 11:25PM Discharged ambulatory; in fair\r\n', 'E0001', '2017-10-07', 6, '86-89-17'),
+('aaaaaaa', 'aaaa', 'aaaa', 'aaaaa', 'E0001', '0000-00-00', 7, '05-29-07'),
+('For Hemodialysis', 'Recieved ambulatory consumes and coherent', 'Pre Hemodialysis assessment done, consent signed,', '11:05 UF goal reached, HD ended and terminated, Post HD assessment done, Eporis 4000 ml given at (P) Abdominal wall.', 'E0003', '2017-07-17', 8, '86-89-17'),
+('Health teaching on diet', '', 'Advised to shortly limit oral fluid intake, to less than 1 liter per day', '11:25 Discharged ambulatory in fair condition accompanied by folks\r\n', 'E0003', '2017-07-17', 9, '86-89-17'),
+('for hemodialysis', 'patient came in ambulatory and ready for HD', 'pre HD in, recorded UF goal set to 3800', 'UF goal recorded, HD ended', 'E0008', '2017-07-24', 10, '86-89-17'),
+('Health teach', '', 'instructed on proper one of AUF al to in OF to 800ml/day', 'able to complete', 'E0008', '2017-07-24', 11, '86-89-17'),
+('For Hemodialysis', 'Recieved ambulatory concious and consent', 'consent for Hemodialysis signs, C AUF site dressed aseptically, UF goal set to 3,400 ml ', '10:45 UF goal reached, HD ended and terminated, post HD weight and vital signs checked Eposino 6,000 ml given at R abdominal wall\r\n', 'E0003', '2017-07-31', 12, '86-89-17'),
+('Health teaching an diet', '', 'Advised to strictly limit oral fluid intake to less than 1 liter per day', 'Able to comprehend\r\n', 'E0003', '2017-07-31', 13, '86-89-17'),
+('a', 'a', 'a', 'a', 'E0001', '2018-01-22', 14, '86-89-17'),
+('for hemodialysis', 'came in ambulatory ', 'pre HD consent signed ', '12:30pm HD ended', 'E0001', '2018-01-22', 15, '45-45-24'),
+('sda', 'sdas', 'dasda', 'dasdas', 'E0001', '2018-01-29', 16, '01-26-22'),
+('for hemodialysis', 'bp 170/40', 'give medicine', 'bp normal', 'E0001', '2018-01-29', 17, '45-45-24');
 
 -- --------------------------------------------------------
 
@@ -353,8 +650,17 @@ CREATE TABLE `patientdrugprofile` (
   `nephrologistid` varchar(30) NOT NULL,
   `drugprofile_id` int(11) NOT NULL,
   `Hospital_Id` varchar(30) NOT NULL,
-  `drugprofile_date` date NOT NULL
+  `drugprofile_date` char(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `patientdrugprofile`
+--
+
+INSERT INTO `patientdrugprofile` (`drug_strength`, `dosage`, `frequency`, `ROA`, `dateordered`, `datediscription`, `PRN`, `remarks`, `nephrologistid`, `drugprofile_id`, `Hospital_Id`, `drugprofile_date`) VALUES
+(' s', 's', 's', 's', '2018-02-09', 's', 's', 's', 'N00011', 9, '01-26-22', '2018, February'),
+(' s', 's', 's', 's', '2018-02-09', 's', 'a', 's', 'N0002', 10, '01-26-22', '2018, February'),
+(' a', 'a', 'a', 'a', '2018-01-12', 'a', 'a', 'a', 'N00010', 11, '01-26-22', '2018, January');
 
 -- --------------------------------------------------------
 
@@ -388,51 +694,57 @@ CREATE TABLE `patientprofile` (
   `P_DFBRelation` char(50) NOT NULL,
   `P_InDial` date NOT NULL,
   `dialysistype` int(1) NOT NULL,
-  `nephrologistid` varchar(8) NOT NULL
+  `nephrologistid` varchar(8) NOT NULL,
+  `P_Status` int(1) NOT NULL,
+  `P_Month` char(3) NOT NULL,
+  `P_Year` char(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `patientprofile`
 --
 
-INSERT INTO `patientprofile` (`Hospital_Id`, `P_Lname`, `P_Fname`, `P_Mname`, `P_BirthDate`, `P_Age`, `P_Sex`, `P_Nationality`, `P_Religion`, `P_CivilStatus`, `P_PermanentAdd`, `P_ConNum1`, `P_PresentAdd`, `P_ConNum2`, `P_Relative`, `P_RelativeAdd`, `P_RelativeConNum`, `P_AgeFD`, `P_Erythropoetin`, `P_Diagnosis`, `P_PhilHealthNum`, `P_DFBName`, `P_DFBRelation`, `P_InDial`, `dialysistype`, `nephrologistid`) VALUES
-('01-26-22', 'Orota', 'Rosario', 'Abanilla', '1933-09-24', 84, 'Female', 'F', 'Dating Daan', 'Widowed', 'Comboy St. Phase II St. Francis Subd. Brgy. 5, Silay City, Negros Occidental', '09064459636', 'Comboy St. Phase II St. Francis Subd. Brgy. 5, Silay City, Negros Occidental', '09064459636', 'Jake Joaquin', 'HDA. Puyas Brgy. IV, Silay City, Negros Occidental', '09126634789', 83, 'Eposino 4,000 iu', 'CKD Secondary to Hypertensive Nephrosclerosis', '1117-5342-4950', 'Dennis Valladarez', '', '2017-03-01', 0, 'N0007'),
-('05-29-07', 'Cordova', 'Ronnie Sr.', 'Dusaran', '1959-08-22', 58, 'Male', 'Filipino', 'Roman Catholic', 'Married', 'HDA. Dacudao, Brgy. Guimbala-on, Silay City, Negros Occidental', '09216844881', 'HDA. Dacudao, Brgy. Guimbala-on, Silay City, Negros Occidental', '09216844881', 'Ronely Gerota', 'Panaogao 1, Brgy. 4, Silay City, Negros Occidental', '09074632447', 37, 'Epoetin Alpha 4,000 ui 2x/week', 'End Stage Renal Disease Secondary to Obstructive Uropathy', '4000-6000-3707', 'Ma. Nelly Cordova', 'Wife', '1997-09-07', 0, 'N00011'),
-('06-08-23', 'Ignacio', 'Rafael', 'Mayang', '1955-10-24', 61, 'Male', 'Filipino', 'MCG I', 'Married', 'Rizal St., Brgy. 4, Poblacion, Victorias City, Negros Occidental', '09094652572', 'Rizal St., Brgy. 4, Poblacion, Victorias City, Negros Occidental', '09466773230', 'Francisca Ignacio', 'Rizal St., Brgy. 4, Poblacion, Victorias City, Negros Occidental', '09092673505', 61, 'Epoetin Alpha 4,000 ui 2x/week', 'End Stage Renal Disease Secondary to Diabetic Nephropathy', '0802-5420-0615', 'Josephine Ignacio', 'Wife', '2017-03-17', 0, 'N0001'),
-('13-18-17', 'Baroy', 'Edwin', 'Canindo', '1960-07-19', 57, 'Male', 'Filipino', 'Roman Catholic', 'Single', 'Antilla Subd., Brgy. 4, Silay City, Negros Occidental', '495-4496', 'Antilla Subd., Brgy. 4, Silay City, Negros Occidental', '495-4496', 'Dolores Baloy', 'Antilla Subd., Brgy. 4, Silay City, Negros Occidental', '495-4496', 52, 'Epoetin Alpha 4,000 ui 2x/week', 'End Stage Renal Disease Secondary to Hypertensive Neproclerosis', '1102-5157-3190', 'Edwin Baroy', 'Self', '2012-12-27', 0, 'N0009'),
-('13-38-01', 'Duyo', 'Cerezille', 'Abella', '1970-05-15', 47, 'Female', 'Filipino', 'Roman Catholic', 'Married', 'Purok Acasia, Boulevard, Brgy. Mambulac, Silay City, Negros Occidental', '495-6126', 'Purok Acasia, Boulevard, Brgy. Mambulac, Silay City, Negros Occidental', '09462542671', 'Saturnina Duyo', 'Purok Acasia, Boulevard, Brgy. Mambulac, Silay City, Negros Occidental', '714-5757', 38, 'Epoetin Alpha 4,000 ui 2x/week', 'End Stage Renal Disease Secondary to Chronic Glomerulonephritis', '', 'Cerezille Duyo', 'Self', '2008-08-26', 0, 'N00012'),
-('13-67-08', 'Baroquillo', 'Jeresa', 'Serato', '1970-01-13', 47, 'Female', 'Filipino', 'Roman Catholic', 'Married', 'Brgy. Cabatangan, Talisay City, Negros Occidental', '09183773619', 'Brgy. Cabatangan, Talisay City, Negros Occidental', '09183773619', 'Marlyn Tulia', 'Dos Hermanas, Talisay City, Negros Occidental', '09198446769', 41, 'Epoetin Alpha 6,000 ui 2x/week', 'End Stage Renal Disease Secondary to Hypertensive Nephrosclerosis', '', 'Jeresa Baroquillo', 'Self', '2011-08-23', 0, 'N0003'),
-('20-12-17', 'Bebit', 'Venacia', 'Mejasco', '1968-08-05', 48, 'Female', 'Filipino', 'Roman Catholic', 'Divorced', 'Brgy. Tanza, EB Magalona, Negros Occidental', '09129417216', 'Brgy. Tanza, EB Magalona, Negros Occidental', '09129417216', 'Rose Mae Hulleza', 'Brgy. Tanza, EB Magalona, Negros Occidental', '0912836737', 46, 'Eposino 4,000 iu  twice a week', 'ESRD SEC TO  CGN AND HPN NEPHROCLEROSIS', '1120-2668-7147', 'Venancia Bebit', 'Self', '2015-06-22', 0, 'N0006'),
-('20-80-17', 'Pangue', 'Hubert', 'Castilla', '1946-02-27', 67, 'Male', 'Filipino', 'Roman Catholic', 'Married', 'Gov. Alfelon, Poblacion 2, Sagay City', '09213310502', 'Gov. Alfelon, Poblacion 2, Sagay City', '09213310502', 'Anita Zante', 'Patricia Homes Subd., Sta. Fe, Bacolod City', '7098028', 69, 'Eposino 4000 iu (Tuesday); Eposino 6,000 iu (frida', 'ESRD 2 degree to HPN Nephrosclerosis', '111751916309', 'Eleanor Pangue', 'Wife', '2015-02-01', 0, 'N0009'),
-('21-26-17', 'Arboleda', 'Ma. Theresa', 'Aldea', '1960-01-12', 57, 'Female', 'Filipino', 'Roman Catholic', 'Married', 'Villa Barbas 2, Cadiz City, Negros Occidental', '493-0719', 'Villa Barbas 2, Cadiz City, Negros Occidental', '09326160944', 'Joresa Arboleda', 'Villa Barbas 2, Cadiz City, Negros Occidental', '09232225140', 54, 'Epoetin Alpha 4,000 ui 2x/week', 'End Stage Renal Disease Secondary to Hypertensive Nephrosclerosis', '1100-0070-7430', 'Ma. Theresa Arboleda', 'Self', '2014-03-19', 0, 'N00012'),
-('23-22-02', 'Medel', 'Rebecca', 'Delgado', '1956-11-01', 61, 'Female', 'Filipino', 'Roman Catholic', 'Married', 'HDA. Guadalupe, Brgy. Salvacion, Murcia, Negros Occidental', '09292538764', 'HDA. Guadalupe, Brgy. Salvacion, Murcia, Negros Occidental', '09292538764', 'Archie Marcial', 'Gardenville Subdivision, Bacolod City, Negros Occidental', '09128559773', 53, 'Epoetin Alpha (Eposino) 6,000 ui 2x/week', 'End Stage Renal Disease Secondary to Diabetic Nephropathy', '1120-1295-5017', 'Rolando Medel', 'Husband', '2017-01-02', 0, 'N00010'),
-('25-84-10', 'Nolido', 'Mario Jr', 'Jentelizo', '1985-11-29', 32, 'Male', 'Filipino', 'Born Again Christian', 'Married', 'St. Francis De Asissi, Brgy. Lantad, Silay City, Negros Occidetal', '09468572829', 'St. Francis De Asissi, Brgy. Lantad, Silay City, Negros Occidetal', '09468572830', 'Dolores Baroy', 'Antilla Subd., Brgy. 4, Silay City, Negros Occidetal', '495-4496', 25, 'Epoetin Alpha 4,000 ui 2x/week', 'End Stage Renal Disease Secondary to  Chronic Glomerulonephritis', '', 'Mario Nolido Jr.', 'Self', '2001-10-17', 0, 'N00010'),
-('31-24-32', 'Lanada', 'Fremrose', 'Gallego', '1982-10-05', 34, 'Female', 'Filipino', 'Roman Catholic', 'Single', 'New Site, Brgy. E Lopez, Silay City, Negros Occidental', '09122408667', 'New Site, Brgy. E Lopez, Silay City, Negros Occidental', '09122408667', 'Ma. Theresa Lanada', 'New Site, Brgy. E Lopez, Silay City, Negros Occidental', '09752975653', 33, 'Epoetin Alpha 4,000 ui 2x/week', 'End Stage Renal Disease Secondary to Chronic Glomerulonephritis', '0202-6170-8907', 'Fremrose Lanasa', 'Self', '2016-03-29', 0, 'N0007'),
-('33-42-13', 'Araneta', 'Arnold', 'Lacson', '1965-04-09', 52, 'Male', 'Filipino', 'Roman Catholic', 'Married', 'Lopez Jaena St., Brgy. 5, Silay City, Negros Occidental', '714-5557', 'Lopez Jaena St., Brgy. 5, Silay City, Negros Occidental', '09093670837', 'Allen Parrocho', 'Carmela Valley Subd., Talisay City, Negros Occidental', '702-2017', 50, 'Epoetin Alpha 4,000 ui 2x/week', 'End Stage Renal Disease Secondary to Diabetic Nephropathy', '1100-0098-8928', 'Jennifer Araneta', 'Wife', '2015-08-11', 0, 'N00011'),
-('37-67-12', 'Ditchella', 'Dionisio', 'Constantino', '1949-10-03', 68, 'Male', 'Fiilipino', 'Roman Catholic', 'Married', 'Yap Quina St., Brgy.4, Victorias City, Negros Occidental', '09152910941', 'Yap Quina St., Brgy.4, Victorias City, Negros Occidental', '09152910941', 'Marilyn Ditchella', 'Osmena Avenue, Brgy.5, Victorias, Negros Occidental', '09152910941', 63, 'Epoetin Alpha 4,000 iu 2x/week', 'End Stage Renal Disease Secondary to Diabetic Nephropathy', '', 'Teresita Ditchella', 'Wife', '2013-04-23', 0, 'N0005'),
-('40-24-17', 'Roa', 'Corazon', 'Dionio', '1937-09-06', 80, 'Female', 'Filipino', 'Roman Catholic', 'Widowed', '361 Quezon Street, Brgy. 5, Victorias City, Negros Occidental', '09194040465', '361 Quezon Street, Brgy. 5, Victorias City, Negros Occidental', '09194040465', 'Sheila Seballos', 'Purok 1B, Da-an Banwa, Brgy.9, Victorias City, Negros Occidental', '399-2719', 76, 'Epoetin Alfa 4,000 IU 2x/week', 'ESRD SECONDARY TO HYPERTENSIVE NEPHROSCLEROSIS', '1117-5245-5909', 'Sheila Seballos', 'Daughter', '2013-09-21', 0, 'N0004'),
-('40-78-21', 'Mahilum', 'Edbert', 'Jamora', '1971-12-29', 45, 'Male', 'Filipino', 'Roman Catholic', 'Married', 'Carmella, Phase I, Brgy. V, Silay City, Negros Occidental', '09128338521', 'Carmella, Phase I, Brgy. V, Silay City, Negros Occidental', '09074507590', 'Eduardo Mahilum Jr.', 'Buenavista Subd., Phase IV, Brgy.Guinhalaran, Silay City, Negros Occidental', '0918662686', 36, 'Epoetin Alfa (Eposino) 6,000 ui 2x/week', 'ESRD SEC.TO CGN; S/P KT W/ CHRONIC REJECTION (2008)', '1102-5121-3933', 'Almira Mahilum', 'Wife', '2007-05-01', 0, 'N0003'),
-('40-89-11', 'De Asis', 'Myrna', 'Abancio', '1944-08-10', 73, 'Female', 'Filipino', 'Roman Catholic', 'Married', 'Lopez Subd. Brgy. 16, Victorias City, Negros Occidental', '09466127045', 'Lopez Subd. Brgy. 16, Victorias City, Negros Occidental', '09466127045', 'Maribelle De Asis', 'Lopez Subd. Brgy. 16, Victorias City, Negros Occidental', '09328752532', 68, 'Epoetin Alpha 4,000 iu 2x/week', 'End Stage Renal Disease Secondary to Diabetic Nephropathy', '', 'Maribelle De Asis', 'Sibling', '2013-05-08', 0, 'N0008'),
-('45-18-16', 'Inquig', 'Van Calvin', 'Bincal', '1986-10-11', 30, 'Male', 'Filipino', 'Roman Catholic', 'Married', 'Antilla Subd., Silay City, Negros Occidental ', '09488030713', 'Paglaum Village, Mansilingan, Bacolod City, Negros Occidental', '09484052091', 'Lamberto Inquig', 'Paglaum Village, Mansilingan, Bacolod City, Negros Occidental', '09274675655', 28, 'Epoetin Alpha 4,000 ui ', 'ESRD Secondary to CGN', '1105-0363-0907', 'Van Calvin Inquig', 'Patient', '2015-02-04', 0, 'N0006'),
-('45-45-24', 'Ano', 'Jemmel', 'V', '1997-11-20', 20, 'Male', 'Filipino', 'RC', 'Widowed', 'Bacolod City', '+63 (918) 839-42-2', 'Bacolod City', '+63 (918) 839-42-2', 'John Ano', 'Bacolod City', '+63 (219) 304-82-0', 17, 'Epoetin Alphs 4000 ui 2x/week', 'End Stage Renal Disease Secondary to Diabetic nephropathy', '', 'Josephine Ano', 'Parent', '2014-03-21', 0, 'N0001'),
-('46-20-04', 'Escalona', 'Elbert', 'Leonida', '1970-04-16', 45, 'Male', 'Filipino', 'Roman Catholic', 'Married', 'Antonio Luna Interior Brgy Mambulac, Silay City', '099332599656', 'Antonio Luna Interior Brgy Mambulac, Silay City', '09984979689', 'Elma Superficial', 'Antonio Luna Interior Brgy Mambulac, Silay City', '09297598448', 43, 'Epoetin Alfa (Eposino) 6,000 IO', 'ESRD 2 degree to Dm Nephropathy', '', 'Elbert Escalona', 'Self', '2014-12-16', 0, 'N0006'),
-('52-04-23', 'Valle', 'Restituto', '', '1955-10-14', 62, 'Male', 'F', 'Roman Catholic', 'Married', 'Brgy. Tanza, EB Magalona, Silay City, Negros Occidental', '09092954332', 'Brgy. Tanza, EB Magalona, Silay City, Negros Occidental', '09092954332', 'Leilanie V. Lima', 'Brgy. Tanza, EB Magalona, Silay City, Negros Occidental', '09217464044', 60, 'Epoetin Alpha (Eposino) 6,000 ui 2x/week', 'End Stage Renal Disease Secondary to Hypertensive Nephrosclerosis', '1105-0229-0398', '', 'Wife', '2015-09-06', 0, 'N00011'),
-('55-14-06', 'Mabacquiao', 'Lilibeth', 'Vega', '1967-04-18', 50, 'Female', 'Filipino', 'Roman Catholic', 'Married', 'HDA. Bagacay, Brgy. Bagtic, Silay City, Negros Occidental', '495-2761', 'HDA. Bagacay, Brgy. Bagtic, Silay City, Negros Occidental', '0912533652', 'Judie Vega', 'St. Francis Subd., Silay City, Negros Occidental', '0912533652', 44, 'Epoetin Alpha (Eposino) 6,000 ui 2x/week', 'End Stage Renal Disease Secondary to Chronic Glomerulonephritis; Anemia  Secondary to CKD', '1105-0228-7353-9', 'Lilibeth Mabacquiao', 'Self', '2011-09-29', 0, 'N0004'),
-('58-67-08', 'Jimena', 'Josue', 'Abian', '1949-03-10', 68, 'Male', 'Filipino', 'Roman Catholic', 'Married', 'Tuburan Takas, Brgy. Tuburan, E.B Magalona, Negros Occidental', '09214153247', 'Tuburan Takas, Brgy. Tuburan, E.B Magalona, Negros Occidental', '09214153247', 'Jobosan Villaflor', 'Sagay City, Negros Occidental', '09391217423', 61, 'Epoetin Alpha(Renogen) 6,000 iu 2x/week', 'End Stage Renal Disease Secondary to Hypertensive Nephrosclerosis', '', 'Josue Jimena', 'Self', '2010-06-07', 0, 'N0008'),
-('61-39-06', 'Gonzales', 'Lerma', 'Agbay', '1963-08-28', 54, 'Female', 'Filipino', 'Roman Catholic', 'Married', 'HDA. Makina, Brgy. Rizal, Silay City, Negros Occidental', '09997739530', 'HDA. Makina, Brgy. Rizal, Silay City, Negros Occidental', '09997739530', 'Mary Ann Ubay', 'HDA. Makina, Brgy. Rizal, Silay City, Negros Occidental', '09997739530', 53, 'Epoetin Alpha 4,000 iu 2x/week', 'End Stage Renal Disease Secondary to Hypertensive Nephrosclerosis', '', 'Lerma Gonzales', 'Self', '2016-09-24', 0, 'N0001'),
-('65-10-03', 'Marayan', 'Brenda', 'Magbanua', '1967-10-08', 50, 'Female', 'Filipino', 'Roman Catholic', 'Single', 'Brgy. Tanza, EB Magalona, Negros Occidental', '09123769375', 'Brgy. Tanza, EB Magalona, Negros Occidental', '09123769375', 'Myra Davo', 'Brgy. Tanza, EB Magalona, Negros Occidental', '09505758070', 48, 'Epoetin Alpha 4,000 ui 2x/week', 'End Stage Renal Disease Secondary to Diabetic Nephropathy', '', 'Brenda Marayan', 'Self', '2015-03-05', 0, 'N0004'),
-('80-67-10', 'Liven', 'Allan', 'Gutierrez', '1971-11-11', 46, 'Male', 'Filipino', 'Roman Catholic', 'Single', 'HDA. Necoton Brgy 13, Victorias City, Negros Occidental', '09278852865', 'HDA. Necoton Brgy 13, Victorias City, Negros Occidental', '09100317020', 'Lucily Gutierrez', 'HDA. Necoton Brgy 13, Victorias City, Negros Occidental', '09278852865', 45, 'Epoetin Alfa(Eposino) 4000 units', 'CKD 2 degree to Hypertensive Nephrosclerosis', '', 'Lucily Gutierrez', 'Guardian', '2017-08-01', 0, 'N0007'),
-('83-49-22', 'Hibionada', 'Ma. Carel', 'Dionio', '1963-03-17', 53, 'Female', 'Filipino', 'Roman Catholic', 'Married', 'Yap Quina Subd. Brgy.3, Victorias City, Negros Occidental', '09226597988', 'Yap Quina Subd. Brgy.3, Victorias City, Negros Occidental', '09226597988', 'Cyril Gustillo', 'Cantown Subd., Victorias City, Negros Occidental', '09328657897', 52, 'Eposino 4,000 iu alternate (once & twice a week)', 'ESRD Secondary to Hypertensive Nephrosclerosis', '1150-0145-4893', 'Ma. Carel Hibionada', 'Self', '2016-02-20', 0, 'N00011'),
-('84-63-02', 'Pedrajas', 'Lolita', 'Patrimonio', '1939-02-19', 78, 'Female', 'Filipino', 'Roman Catholic', 'Widowed', '#52 Francisco Maravilla St., Brgy. 3, EB Magalona, Negros Occidental', '09125896891', 'Antonio Luna St., Silay City, Negros Occidental', '09125896891', 'Daisy Pedrajas', '#52 Francisco Maravilla St., Brgy. 3, EB Magalona, Negros Occidental', '09125896891', 73, 'Epoetin Alpha (Eposino) 4,000 iu 2x/week', 'End Stage Renal Disease Secondary to Hypertensive Nephroclerosis', '', 'Daisy Pedrojas', 'Daughter', '2013-02-10', 0, 'N0003'),
-('86-11-12', 'Toriano', 'Josette', 'Ballesteros', '1971-10-14', 44, 'Female', 'Filipino', 'Roman Catholic', 'Single', 'Blk. 11 Lot 4, Manmar Subd. Brgy Zone 15, Talisay City, Negros Occidental', '09232381390', 'Blk. 11 Lot 4, Manmar Subd. Brgy Zone 15, Talisay City, Negros Occidental', '09258746582', 'Gil Demis Toriano', 'Blk. 11 Lot 4, Manmar Subd. Brgy Zone 15, Talisay City, Negros Occidental', '0923747400', 40, 'Eposino 6,000 iu once a week', 'CKD Secondary to Hypertensive Nephrosclerosis', '', 'Josette Toriano', 'Self', '2013-02-27', 0, 'N0003'),
-('86-89-17', 'Bacaron', 'Genelyn', 'Amante', '1979-09-25', 36, 'Female', 'Filipino', 'Baptist', 'Single', 'HDA. Juliana Washington, Escalante City, Negros Occidental', '09282278493', 'HDA. Juliana Washington, Escalante City, Negros Occidental', '09303286809', 'Judith Amante', 'Quezon St. Victorias City, Negros Occidental', '09185985952', 31, 'Renogen 4,000 iu', 'End Stage Renal Disease Secondary to  Chronic Glomerulonephritis, Anemia', '', 'Genelyn Bacaron', 'Self', '2011-01-05', 0, 'N00010'),
-('89-93-08', 'Deliva', 'Hazel Mae', 'Abancio', '1980-02-07', 37, 'Female', 'Filipino', 'Roman Catholic', 'Single', '#359 Auxilladora St., Canetown Subd., Victorias City, Negros Occidental', '09463696469', '#359 Auxilladora St., Canetown Subd., Victorias City, Negros Occidental', '09463696469', 'Cheryl Lademora', 'Brgy. 16, Bacolod City, Negros Occidenral', '', 31, 'Epoetin Alpha 4,000 ui 2x/week', 'End Stage Renal Disease Secondary to Chronic Glomerulonephritis', '1100-0099-2372', 'Ma. Theresa Arboleda', 'Patient', '2011-05-20', 0, 'N00011'),
-('89-96-01', 'Catigan', 'Sheryl', 'Entera', '1978-11-23', 38, 'Female', 'Filipino', 'Roman Catholic', 'Married', 'Blk 15, Talisay Town Heights, Matab - ang, Talisay City, Negros Occidental', '09168430493', 'Blk 15, Talisay Town Heights, Matab - ang, Talisay City, Negros Occidental', '09168430493', 'Alex Entera', 'Brgy. Concepcion, Talisay City, Negros Occidental', '09194474423', 31, 'Renogen 4,000 iu', 'ESRD Secondary to CGN', '', 'Edita Entera', 'Guardian', '2013-05-13', 0, 'N0005'),
-('93-91-13', 'Boteros', 'Ma. Andrea', 'Marcasote', '1983-11-30', 34, 'Female', 'Filipino', 'Roman Catholic', 'Single', 'Brgy. 3, EB Magalona, Silay City, Negros Occidental', '09236367547', 'Brgy. 3, EB Magalona, Silay City, Negros Occidental', '09236367547', 'Ma. Donna Ortega', 'Brgy. 3, EB Magalona, Silay City, Negros Occidental', '09198446769', 30, 'Epoetin Beta (Recormon) 5,000 ui 2x/week', 'End Stage Renal Disease Secondary to Chronic Glomerulonephritis', '', 'Ma. Andrea Boteros', 'Self', '2014-02-17', 0, 'N0007'),
-('93-94-12', 'Nitro', 'Jose Marie', 'Rivas', '1968-09-29', 49, 'Male', 'Filipino', 'Roman Catholic', 'Married', 'Cinco De Noviembre, Brgy. III, Silay City, Negros Occidental', '714-8416', 'Cinco De Noviembre, Brgy. III, Silay City, Negros Occidental', '714-8416', 'Marivic Golez', 'Rizal Street, Silay City, Negros Occidental', '09226763042', 44, 'Epoetin Beta (Recormon) 5,000 ui 2x/week', 'End Stage Renal Disease Secondary to Hypertensive Nephrosclerosis', '1102-5136-3412', 'Ma. Soccoro Nitro', 'Wife', '2013-01-28', 0, 'N0009'),
-('96-34-17', 'Susmiran', 'Liezl Corazon', 'Lavadia', '1972-03-24', 44, 'Female', 'Filipino', 'Born Again', 'Married', 'Purok Ipil-ipil, Brgy. Mambulac, Silay City, Negros Occidental', '09079749850', 'Purok Ipil-ipil, Brgy. Mambulac, Silay City, Negros Occidental', '09079749850', 'Mary Jane Lavadia', 'Purok Paghidaet, Brgy. Mambulac, Silay City, Negros Occidental', '09103794462', 43, 'Epoetin Alfa (Esposino 4000 units)', 'ESRD 2 degree Hypertensive Nephrosclerosis', '', 'Liezl Susmiran', 'Self', '2015-05-25', 0, 'N0004'),
-('96-52-17', 'Acosta', 'Ireneo Jr.', 'Chavez', '1949-02-23', 67, 'Male', 'Filipino', 'Roman Catholic', 'Married', 'Brgy. 19 Mallorca, Victorias City, Negros Occidental', '09064975176', 'Brgy. 19 Mallorca, Victorias City, Negros Occidental', '09064975176', 'Elena Marinas', 'Brgy. 19 Mallorca, Victorias City, Negros Occidental', '09064975176', 65, 'Eposino 4,000 iu', 'ESRD Secondary to DM Nephropathy, Urate Nephropathy', '1120-0762-8091', 'Vilma Acosta', 'Wife', '2014-08-01', 0, 'N0007'),
-('99-06-03', 'Villarte Sr.', 'Edwin', 'Condada', '1954-08-19', 63, '', 'Filipino', 'Roman Catholic', '', 'Sampaguita Village, Brgy. Lantad, Silay City, Negros Occidental', '09951334869', 'Sampaguita Village, Brgy. Lantad, Silay City, Negros Occidental', '09951334869', 'Alma Juarez', 'Sitio Berano, Brgy. Lantad, Silay City, Negross Occidental', '09191623435', 58, 'Epoetin Alpha (Renogen) 4,000 iu 2x/week', 'ESRD Secondary to Hypertensive Nephrosclerosis', '1120-1172-3406', 'Edwin Villarte Sr.', 'Self', '2012-11-24', 0, 'N0005');
+INSERT INTO `patientprofile` (`Hospital_Id`, `P_Lname`, `P_Fname`, `P_Mname`, `P_BirthDate`, `P_Age`, `P_Sex`, `P_Nationality`, `P_Religion`, `P_CivilStatus`, `P_PermanentAdd`, `P_ConNum1`, `P_PresentAdd`, `P_ConNum2`, `P_Relative`, `P_RelativeAdd`, `P_RelativeConNum`, `P_AgeFD`, `P_Erythropoetin`, `P_Diagnosis`, `P_PhilHealthNum`, `P_DFBName`, `P_DFBRelation`, `P_InDial`, `dialysistype`, `nephrologistid`, `P_Status`, `P_Month`, `P_Year`) VALUES
+('01-26-22', 'Orota', 'Rosario', 'Abanilla', '1933-09-24', 83, 'Female', 'F', 'Dating Daan', 'Widowed', 'Comboy St. Phase II St. Francis Subd. Brgy. 5, Silay City, Negros Occidental', '09064459636', 'Comboy St. Phase II St. Francis Subd. Brgy. 5, Silay City, Negros Occidental', '09064459636', 'Jake Joaquin', 'HDA. Puyas Brgy. IV, Silay City, Negros Occidental', '09126634789', 83, 'Eposino 4,000 iu', ' ESRD Secondary to Chronic Gromerulonephritis and Hypertensive Nephrosclorosis', '1117-5342-4950', 'Dennis Valladarez', '', '2017-03-01', 0, 'N0007', 1, '', ''),
+('05-29-07', 'Cordova', 'Ronnie Sr.', 'Dusaran', '1959-08-22', 58, 'Male', 'Filipino', 'Roman Catholic', 'Married', 'HDA. Dacudao, Brgy. Guimbala-on, Silay City, Negros Occidental', '09216844881', 'HDA. Dacudao, Brgy. Guimbala-on, Silay City, Negros Occidental', '09216844881', 'Ronely Gerota', 'Panaogao 1, Brgy. 4, Silay City, Negros Occidental', '09074632447', 37, 'Epoetin Alpha 4,000 ui 2x/week', 'End Stage Renal Disease Secondary to Obstructive Uropathy', '4000-6000-3707', 'Ma. Nelly Cordova', 'Wife', '1997-09-07', 0, 'N00011', 0, '', ''),
+('06-08-23', 'Ignacio', 'Rafael', 'Mayang', '1955-10-24', 61, 'Male', 'Filipino', 'MCG I', 'Married', 'Rizal St., Brgy. 4, Poblacion, Victorias City, Negros Occidental', '09094652572', 'Rizal St., Brgy. 4, Poblacion, Victorias City, Negros Occidental', '09466773230', 'Francisca Ignacio', 'Rizal St., Brgy. 4, Poblacion, Victorias City, Negros Occidental', '09092673505', 61, 'Epoetin Alpha 4,000 ui 2x/week', 'End Stage Renal Disease Secondary to Diabetic Nephropathy', '0802-5420-0615', 'Josephine Ignacio', 'Wife', '2017-03-17', 0, 'N0001', 0, '', ''),
+('13-18-17', 'Baroy', 'Edwin', 'Canindo', '1960-07-19', 57, 'Male', 'Filipino', 'Roman Catholic', 'Single', 'Antilla Subd., Brgy. 4, Silay City, Negros Occidental', '495-4496', 'Antilla Subd., Brgy. 4, Silay City, Negros Occidental', '495-4496', 'Dolores Baloy', 'Antilla Subd., Brgy. 4, Silay City, Negros Occidental', '495-4496', 52, 'Epoetin Alpha 4,000 ui 2x/week', 'End Stage Renal Disease Secondary to Hypertensive Neproclerosis', '1102-5157-3190', 'Edwin Baroy', 'Self', '2012-12-27', 0, 'N0009', 0, '', ''),
+('13-38-01', 'Duyo', 'Cerezille', 'Abella', '1970-05-15', 47, 'Female', 'Filipino', 'Roman Catholic', 'Married', 'Purok Acasia, Boulevard, Brgy. Mambulac, Silay City, Negros Occidental', '495-6126', 'Purok Acasia, Boulevard, Brgy. Mambulac, Silay City, Negros Occidental', '09462542671', 'Saturnina Duyo', 'Purok Acasia, Boulevard, Brgy. Mambulac, Silay City, Negros Occidental', '714-5757', 38, 'Epoetin Alpha 4,000 ui 2x/week', 'End Stage Renal Disease Secondary to Chronic Glomerulonephritis', '', 'Cerezille Duyo', 'Self', '2008-08-26', 0, 'N00012', 0, '', ''),
+('13-67-08', 'Baroquillo', 'Jeresa', 'Serato', '1970-01-13', 47, 'Female', 'Filipino', 'Roman Catholic', 'Married', 'Brgy. Cabatangan, Talisay City, Negros Occidental', '09183773619', 'Brgy. Cabatangan, Talisay City, Negros Occidental', '09183773619', 'Marlyn Tulia', 'Dos Hermanas, Talisay City, Negros Occidental', '09198446769', 41, 'Epoetin Alpha 6,000 ui 2x/week', 'End Stage Renal Disease Secondary to Hypertensive Nephrosclerosis', '', 'Jeresa Baroquillo', 'Self', '2011-08-23', 0, 'N0003', 0, '', ''),
+('20-12-17', 'Bebit', 'Venacia', 'Mejasco', '1968-08-05', 48, 'Female', 'Filipino', 'Roman Catholic', 'Divorced', 'Brgy. Tanza, EB Magalona, Negros Occidental', '09129417216', 'Brgy. Tanza, EB Magalona, Negros Occidental', '09129417216', 'Rose Mae Hulleza', 'Brgy. Tanza, EB Magalona, Negros Occidental', '0912836737', 46, 'Eposino 4,000 iu  twice a week', 'ESRD SEC TO  CGN AND HPN NEPHROCLEROSIS', '1120-2668-7147', 'Venancia Bebit', 'Self', '2015-06-22', 0, 'N0006', 0, '', ''),
+('20-80-17', 'Pangue', 'Hubert', 'Castilla', '1946-02-27', 67, 'Male', 'Filipino', 'Roman Catholic', 'Married', 'Gov. Alfelon, Poblacion 2, Sagay City', '09213310502', 'Gov. Alfelon, Poblacion 2, Sagay City', '09213310502', 'Anita Zante', 'Patricia Homes Subd., Sta. Fe, Bacolod City', '7098028', 69, 'Eposino 4000 iu (Tuesday); Eposino 6,000 iu (frida', 'ESRD 2 degree to HPN Nephrosclerosis', '111751916309', 'Eleanor Pangue', 'Wife', '2015-02-01', 0, 'N0009', 0, '', ''),
+('21-26-17', 'Arboleda', 'Ma. Theresa', 'Aldea', '1960-01-12', 57, 'Female', 'Filipino', 'Roman Catholic', 'Married', 'Villa Barbas 2, Cadiz City, Negros Occidental', '493-0719', 'Villa Barbas 2, Cadiz City, Negros Occidental', '09326160944', 'Joresa Arboleda', 'Villa Barbas 2, Cadiz City, Negros Occidental', '09232225140', 54, 'Epoetin Alpha 4,000 ui 2x/week', 'End Stage Renal Disease Secondary to Hypertensive Nephrosclerosis', '1100-0070-7430', 'Ma. Theresa Arboleda', 'Self', '2014-03-19', 0, 'N00012', 0, '', ''),
+('23-22-02', 'Medel', 'Rebecca', 'Delgado', '1956-11-01', 61, 'Female', 'Filipino', 'Roman Catholic', 'Married', 'HDA. Guadalupe, Brgy. Salvacion, Murcia, Negros Occidental', '09292538764', 'HDA. Guadalupe, Brgy. Salvacion, Murcia, Negros Occidental', '09292538764', 'Archie Marcial', 'Gardenville Subdivision, Bacolod City, Negros Occidental', '09128559773', 53, 'Epoetin Alpha (Eposino) 6,000 ui 2x/week', 'End Stage Renal Disease Secondary to Diabetic Nephropathy', '1120-1295-5017', 'Rolando Medel', 'Husband', '2017-01-02', 0, 'N00010', 0, '', ''),
+('25-84-10', 'Nolido', 'Mario Jr', 'Jentelizo', '1985-11-29', 32, 'Male', 'Filipino', 'Born Again Christian', 'Married', 'St. Francis De Asissi, Brgy. Lantad, Silay City, Negros Occidetal', '09468572829', 'St. Francis De Asissi, Brgy. Lantad, Silay City, Negros Occidetal', '09468572830', 'Dolores Baroy', 'Antilla Subd., Brgy. 4, Silay City, Negros Occidetal', '495-4496', 25, 'Epoetin Alpha 4,000 ui 2x/week', 'End Stage Renal Disease Secondary to  Chronic Glomerulonephritis', '', 'Mario Nolido Jr.', 'Self', '2001-10-17', 0, 'N00010', 0, '', ''),
+('31-24-32', 'Lanada', 'Fremrose', 'Gallego', '1982-10-05', 34, 'Female', 'Filipino', 'Roman Catholic', 'Single', 'New Site, Brgy. E Lopez, Silay City, Negros Occidental', '09122408667', 'New Site, Brgy. E Lopez, Silay City, Negros Occidental', '09122408667', 'Ma. Theresa Lanada', 'New Site, Brgy. E Lopez, Silay City, Negros Occidental', '09752975653', 33, 'Epoetin Alpha 4,000 ui 2x/week', 'End Stage Renal Disease Secondary to Chronic Glomerulonephritis', '0202-6170-8907', 'Fremrose Lanasa', 'Self', '2016-03-29', 0, 'N0007', 0, '', ''),
+('33-42-13', 'Araneta', 'Arnold', 'Lacson', '1965-04-09', 52, 'Male', 'Filipino', 'Roman Catholic', 'Married', 'Lopez Jaena St., Brgy. 5, Silay City, Negros Occidental', '714-5557', 'Lopez Jaena St., Brgy. 5, Silay City, Negros Occidental', '09093670837', 'Allen Parrocho', 'Carmela Valley Subd., Talisay City, Negros Occidental', '702-2017', 50, 'Epoetin Alpha 4,000 ui 2x/week', 'End Stage Renal Disease Secondary to Diabetic Nephropathy', '1100-0098-8928', 'Jennifer Araneta', 'Wife', '2015-08-11', 0, 'N00011', 0, '', ''),
+('37-67-12', 'Ditchella', 'Dionisio', 'Constantino', '1949-10-03', 68, 'Male', 'Fiilipino', 'Roman Catholic', 'Married', 'Yap Quina St., Brgy.4, Victorias City, Negros Occidental', '09152910941', 'Yap Quina St., Brgy.4, Victorias City, Negros Occidental', '09152910941', 'Marilyn Ditchella', 'Osmena Avenue, Brgy.5, Victorias, Negros Occidental', '09152910941', 63, 'Epoetin Alpha 4,000 iu 2x/week', 'End Stage Renal Disease Secondary to Diabetic Nephropathy', '', 'Teresita Ditchella', 'Wife', '2013-04-23', 0, 'N0005', 0, '', ''),
+('40-24-17', 'Roa', 'Corazon', 'Dionio', '1937-09-06', 80, 'Female', 'Filipino', 'Roman Catholic', 'Widowed', '361 Quezon Street, Brgy. 5, Victorias City, Negros Occidental', '09194040465', '361 Quezon Street, Brgy. 5, Victorias City, Negros Occidental', '09194040465', 'Sheila Seballos', 'Purok 1B, Da-an Banwa, Brgy.9, Victorias City, Negros Occidental', '399-2719', 76, 'Epoetin Alfa 4,000 IU 2x/week', 'ESRD SECONDARY TO HYPERTENSIVE NEPHROSCLEROSIS', '1117-5245-5909', 'Sheila Seballos', 'Daughter', '2013-09-21', 0, 'N0004', 0, '', ''),
+('40-78-21', 'Mahilum', 'Edbert', 'Jamora', '1971-12-29', 45, 'Male', 'Filipino', 'Roman Catholic', 'Married', 'Carmella, Phase I, Brgy. V, Silay City, Negros Occidental', '09128338521', 'Carmella, Phase I, Brgy. V, Silay City, Negros Occidental', '09074507590', 'Eduardo Mahilum Jr.', 'Buenavista Subd., Phase IV, Brgy.Guinhalaran, Silay City, Negros Occidental', '0918662686', 36, 'Epoetin Alfa (Eposino) 6,000 ui 2x/week', 'ESRD SEC.TO CGN; S/P KT W/ CHRONIC REJECTION (2008)', '1102-5121-3933', 'Almira Mahilum', 'Wife', '2007-05-01', 0, 'N0003', 0, '', ''),
+('40-89-11', 'De Asis', 'Myrna', 'Abancio', '1944-08-10', 73, 'Female', 'Filipino', 'Roman Catholic', 'Married', 'Lopez Subd. Brgy. 16, Victorias City, Negros Occidental', '09466127045', 'Lopez Subd. Brgy. 16, Victorias City, Negros Occidental', '09466127045', 'Maribelle De Asis', 'Lopez Subd. Brgy. 16, Victorias City, Negros Occidental', '09328752532', 68, 'Epoetin Alpha 4,000 iu 2x/week', 'End Stage Renal Disease Secondary to Diabetic Nephropathy', '', 'Maribelle De Asis', 'Sibling', '2013-05-08', 0, 'N0008', 0, '', ''),
+('45-18-16', 'Inquig', 'Van Calvin', 'Bincal', '1986-10-11', 30, 'Male', 'Filipino', 'Roman Catholic', 'Married', 'Antilla Subd., Silay City, Negros Occidental ', '09488030713', 'Paglaum Village, Mansilingan, Bacolod City, Negros Occidental', '09484052091', 'Lamberto Inquig', 'Paglaum Village, Mansilingan, Bacolod City, Negros Occidental', '09274675655', 28, 'Epoetin Alpha 4,000 ui ', 'ESRD Secondary to CGN', '1105-0363-0907', 'Van Calvin Inquig', 'Patient', '2015-02-04', 0, 'N0006', 0, '', ''),
+('45-45-24', 'Ano', 'Jemmel', 'V', '1997-11-20', 20, 'Male', 'Filipino', 'RC', 'Divorced', 'Bacolod City', '09129817112', 'Bacolod City', '09129817112', 'Jems', 'Bacolod City', '09129817112', 20, 'Epoetin Alpha 4,000 ui', 'ESRD', '', 'Jems', 'Guardian', '2018-01-22', 0, 'N00010', 0, '', ''),
+('46-20-04', 'Escalona', 'Elbert', 'Leonida', '1970-04-16', 45, 'Male', 'Filipino', 'Roman Catholic', 'Married', 'Antonio Luna Interior Brgy Mambulac, Silay City', '099332599656', 'Antonio Luna Interior Brgy Mambulac, Silay City', '09984979689', 'Elma Superficial', 'Antonio Luna Interior Brgy Mambulac, Silay City', '09297598448', 43, 'Epoetin Alfa (Eposino) 6,000 IO', 'ESRD 2 degree to Dm Nephropathy', '', 'Elbert Escalona', 'Self', '2014-12-16', 0, 'N0006', 0, '', ''),
+('52-04-23', 'Valle', 'Restituto', '', '1955-10-14', 62, 'Male', 'F', 'Roman Catholic', 'Married', 'Brgy. Tanza, EB Magalona, Silay City, Negros Occidental', '09092954332', 'Brgy. Tanza, EB Magalona, Silay City, Negros Occidental', '09092954332', 'Leilanie V. Lima', 'Brgy. Tanza, EB Magalona, Silay City, Negros Occidental', '09217464044', 60, 'Epoetin Alpha (Eposino) 6,000 ui 2x/week', 'End Stage Renal Disease Secondary to Hypertensive Nephrosclerosis', '1105-0229-0398', '', 'Wife', '2015-09-06', 0, 'N00011', 0, '', ''),
+('55-14-06', 'Mabacquiao', 'Lilibeth', 'Vega', '1967-04-18', 50, 'Female', 'Filipino', 'Roman Catholic', 'Married', 'HDA. Bagacay, Brgy. Bagtic, Silay City, Negros Occidental', '495-2761', 'HDA. Bagacay, Brgy. Bagtic, Silay City, Negros Occidental', '0912533652', 'Judie Vega', 'St. Francis Subd., Silay City, Negros Occidental', '0912533652', 44, 'Epoetin Alpha (Eposino) 6,000 ui 2x/week', 'End Stage Renal Disease Secondary to Chronic Glomerulonephritis; Anemia  Secondary to CKD', '1105-0228-7353-9', 'Lilibeth Mabacquiao', 'Self', '2011-09-29', 0, 'N0004', 0, '', ''),
+('58-67-08', 'Jimena', 'Josue', 'Abian', '1949-03-10', 68, 'Male', 'Filipino', 'Roman Catholic', 'Married', 'Tuburan Takas, Brgy. Tuburan, E.B Magalona, Negros Occidental', '09214153247', 'Tuburan Takas, Brgy. Tuburan, E.B Magalona, Negros Occidental', '09214153247', 'Jobosan Villaflor', 'Sagay City, Negros Occidental', '09391217423', 61, 'Epoetin Alpha(Renogen) 6,000 iu 2x/week', 'End Stage Renal Disease Secondary to Hypertensive Nephrosclerosis', '', 'Josue Jimena', 'Self', '2010-06-07', 0, 'N0008', 0, '', ''),
+('61-39-06', 'Gonzales', 'Lerma', 'Agbay', '1963-08-28', 54, 'Female', 'Filipino', 'Roman Catholic', 'Married', 'HDA. Makina, Brgy. Rizal, Silay City, Negros Occidental', '09997739530', 'HDA. Makina, Brgy. Rizal, Silay City, Negros Occidental', '09997739530', 'Mary Ann Ubay', 'HDA. Makina, Brgy. Rizal, Silay City, Negros Occidental', '09997739530', 53, 'Epoetin Alpha 4,000 iu 2x/week', 'End Stage Renal Disease Secondary to Hypertensive Nephrosclerosis', '', 'Lerma Gonzales', 'Self', '2016-09-24', 0, 'N0001', 0, '', ''),
+('65-10-03', 'Marayan', 'Brenda', 'Magbanua', '1967-10-08', 50, 'Female', 'Filipino', 'Roman Catholic', 'Single', 'Brgy. Tanza, EB Magalona, Negros Occidental', '09123769375', 'Brgy. Tanza, EB Magalona, Negros Occidental', '09123769375', 'Myra Davo', 'Brgy. Tanza, EB Magalona, Negros Occidental', '09505758070', 48, 'Epoetin Alpha 4,000 ui 2x/week', 'End Stage Renal Disease Secondary to Diabetic Nephropathy', '', 'Brenda Marayan', 'Self', '2015-03-05', 0, 'N0004', 0, '', ''),
+('80-67-10', 'Liven', 'Allan', 'Gutierrez', '1971-11-11', 46, 'Male', 'Filipino', 'Roman Catholic', 'Single', 'HDA. Necoton Brgy 13, Victorias City, Negros Occidental', '09278852865', 'HDA. Necoton Brgy 13, Victorias City, Negros Occidental', '09100317020', 'Lucily Gutierrez', 'HDA. Necoton Brgy 13, Victorias City, Negros Occidental', '09278852865', 45, 'Epoetin Alfa(Eposino) 4000 units', 'CKD 2 degree to Hypertensive Nephrosclerosis', '', 'Lucily Gutierrez', 'Guardian', '2017-08-01', 0, 'N0007', 0, '', ''),
+('83-49-22', 'Hibionada', 'Ma. Carel', 'Dionio', '1963-03-17', 53, 'Female', 'Filipino', 'Roman Catholic', 'Married', 'Yap Quina Subd. Brgy.3, Victorias City, Negros Occidental', '09226597988', 'Yap Quina Subd. Brgy.3, Victorias City, Negros Occidental', '09226597988', 'Cyril Gustillo', 'Cantown Subd., Victorias City, Negros Occidental', '09328657897', 52, 'Eposino 4,000 iu alternate (once & twice a week)', 'ESRD Secondary to Hypertensive Nephrosclerosis', '1150-0145-4893', 'Ma. Carel Hibionada', 'Self', '2016-02-20', 0, 'N00011', 0, '', ''),
+('84-63-02', 'Pedrajas', 'Lolita', 'Patrimonio', '1939-02-19', 78, 'Female', 'Filipino', 'Roman Catholic', 'Widowed', '#52 Francisco Maravilla St., Brgy. 3, EB Magalona, Negros Occidental', '09125896891', 'Antonio Luna St., Silay City, Negros Occidental', '09125896891', 'Daisy Pedrajas', '#52 Francisco Maravilla St., Brgy. 3, EB Magalona, Negros Occidental', '09125896891', 73, 'Epoetin Alpha (Eposino) 4,000 iu 2x/week', 'End Stage Renal Disease Secondary to Hypertensive Nephroclerosis', '', 'Daisy Pedrojas', 'Daughter', '2013-02-10', 0, 'N0003', 0, '', ''),
+('86-11-12', 'Toriano', 'Josette', 'Ballesteros', '1971-10-14', 44, 'Female', 'Filipino', 'Roman Catholic', 'Single', 'Blk. 11 Lot 4, Manmar Subd. Brgy Zone 15, Talisay City, Negros Occidental', '09232381390', 'Blk. 11 Lot 4, Manmar Subd. Brgy Zone 15, Talisay City, Negros Occidental', '09258746582', 'Gil Demis Toriano', 'Blk. 11 Lot 4, Manmar Subd. Brgy Zone 15, Talisay City, Negros Occidental', '0923747400', 40, 'Eposino 6,000 iu once a week', 'CKD Secondary to Hypertensive Nephrosclerosis', '', 'Josette Toriano', 'Self', '2013-02-27', 0, 'N0003', 0, '', ''),
+('86-89-17', 'Bacaron', 'Genelyn', 'Amante', '1979-09-25', 36, 'Female', 'Filipino', 'Baptist', 'Single', 'HDA. Juliana Washington, Escalante City, Negros Occidental', '09282278493', 'HDA. Juliana Washington, Escalante City, Negros Occidental', '09303286809', 'Judith Amante', 'Quezon St. Victorias City, Negros Occidental', '09185985952', 31, 'Renogen 4,000 iu', ' ESRD Secondary to Diabetic Nephropathy and Hypertensive Nephrosclorosis', '', 'Genelyn Bacaron', 'Self', '2011-01-05', 0, 'N00010', 1, '', ''),
+('89-93-08', 'Deliva', 'Hazel Mae', 'Abancio', '1980-02-07', 37, 'Female', 'Filipino', 'Roman Catholic', 'Single', '#359 Auxilladora St., Canetown Subd., Victorias City, Negros Occidental', '09463696469', '#359 Auxilladora St., Canetown Subd., Victorias City, Negros Occidental', '09463696469', 'Cheryl Lademora', 'Brgy. 16, Bacolod City, Negros Occidenral', '', 31, 'Epoetin Alpha 4,000 ui 2x/week', 'End Stage Renal Disease Secondary to Chronic Glomerulonephritis', '1100-0099-2372', 'Ma. Theresa Arboleda', 'Patient', '2011-05-20', 0, 'N00011', 0, '', ''),
+('89-96-01', 'Catigan', 'Sheryl', 'Entera', '1978-11-23', 38, 'Female', 'Filipino', 'Roman Catholic', 'Married', 'Blk 15, Talisay Town Heights, Matab - ang, Talisay City, Negros Occidental', '09168430493', 'Blk 15, Talisay Town Heights, Matab - ang, Talisay City, Negros Occidental', '09168430493', 'Alex Entera', 'Brgy. Concepcion, Talisay City, Negros Occidental', '09194474423', 31, 'Renogen 4,000 iu', 'ESRD Secondary to CGN', '', 'Edita Entera', 'Guardian', '2013-05-13', 0, 'N0005', 0, '', ''),
+('93-91-13', 'Boteros', 'Ma. Andrea', 'Marcasote', '1983-11-30', 34, 'Female', 'Filipino', 'Roman Catholic', 'Single', 'Brgy. 3, EB Magalona, Silay City, Negros Occidental', '09236367547', 'Brgy. 3, EB Magalona, Silay City, Negros Occidental', '09236367547', 'Ma. Donna Ortega', 'Brgy. 3, EB Magalona, Silay City, Negros Occidental', '09198446769', 30, 'Epoetin Beta (Recormon) 5,000 ui 2x/week', 'End Stage Renal Disease Secondary to Chronic Glomerulonephritis', '', 'Ma. Andrea Boteros', 'Self', '2014-02-17', 0, 'N0007', 0, '', ''),
+('93-94-12', 'Nitro', 'Jose Marie', 'Rivas', '1968-09-29', 49, 'Male', 'Filipino', 'Roman Catholic', 'Married', 'Cinco De Noviembre, Brgy. III, Silay City, Negros Occidental', '714-8416', 'Cinco De Noviembre, Brgy. III, Silay City, Negros Occidental', '714-8416', 'Marivic Golez', 'Rizal Street, Silay City, Negros Occidental', '09226763042', 44, 'Epoetin Beta (Recormon) 5,000 ui 2x/week', 'End Stage Renal Disease Secondary to Hypertensive Nephrosclerosis', '1102-5136-3412', 'Ma. Soccoro Nitro', 'Wife', '2013-01-28', 0, 'N0009', 0, '', ''),
+('96-34-17', 'Susmiran', 'Liezl Corazon', 'Lavadia', '1972-03-24', 44, 'Female', 'Filipino', 'Born Again', 'Married', 'Purok Ipil-ipil, Brgy. Mambulac, Silay City, Negros Occidental', '09079749850', 'Purok Ipil-ipil, Brgy. Mambulac, Silay City, Negros Occidental', '09079749850', 'Mary Jane Lavadia', 'Purok Paghidaet, Brgy. Mambulac, Silay City, Negros Occidental', '09103794462', 43, 'Epoetin Alfa (Esposino 4000 units)', 'ESRD 2 degree Hypertensive Nephrosclerosis', '', 'Liezl Susmiran', 'Self', '2015-05-25', 0, 'N0004', 0, '', ''),
+('96-52-17', 'Acosta', 'Ireneo Jr.', 'Chavez', '1949-02-23', 67, 'Male', 'Filipino', 'Roman Catholic', 'Married', 'Brgy. 19 Mallorca, Victorias City, Negros Occidental', '09064975176', 'Brgy. 19 Mallorca, Victorias City, Negros Occidental', '09064975176', 'Elena Marinas', 'Brgy. 19 Mallorca, Victorias City, Negros Occidental', '09064975176', 65, 'Eposino 4,000 iu', 'ESRD Secondary to DM Nephropathy, Urate Nephropathy', '1120-0762-8091', 'Vilma Acosta', 'Wife', '2014-08-01', 0, 'N0007', 0, '', ''),
+('99-06-03', 'Villarte Sr.', 'Edwin', 'Condada', '1954-08-19', 63, '', 'Filipino', 'Roman Catholic', '', 'Sampaguita Village, Brgy. Lantad, Silay City, Negros Occidental', '09951334869', 'Sampaguita Village, Brgy. Lantad, Silay City, Negros Occidental', '09951334869', 'Alma Juarez', 'Sitio Berano, Brgy. Lantad, Silay City, Negross Occidental', '09191623435', 58, 'Epoetin Alpha (Renogen) 4,000 iu 2x/week', 'ESRD Secondary to Hypertensive Nephrosclerosis', '1120-1172-3406', 'Edwin Villarte Sr.', 'Self', '2012-11-24', 0, 'N0005', 0, '', ''),
+('A', 'A', 'A', 'A', '2018-01-21', 20, 'Male', 'A', 'A', 'Single', 'A', 'a', 'A', '123', 'A', 'A', '123', 12, '123', 'Asd', 'Asd', 'Asd', 'Guardian', '2018-01-21', 0, 'N00010', 0, '', ''),
+('B', 'B', 'B', 'B', '2018-01-21', 2, 'Male', 'B', 'B', 'Married', 'B', '123', 'B', '123', 'B', 'B', '123', 2, 'Ds', 'Asd', '123', '123', 'Guardian', '2018-01-22', 0, 'N00011', 0, '', ''),
+('C', 'C', 'C', 'C', '2018-01-21', 2, 'Male', 'B', 'B', 'Married', 'B', '123', 'B', '123', 'B', 'B', '123', 12, 'Asd', 'Asd', 'Asd', 'Asd', 'Parent', '2018-01-17', 0, 'N00010', 0, '', '');
 
 -- --------------------------------------------------------
 
@@ -444,33 +756,51 @@ CREATE TABLE `patientschedule` (
   `schedule_id` int(5) NOT NULL,
   `Hospital_Id` varchar(30) NOT NULL,
   `treatment_day` varchar(10) NOT NULL,
-  `treatment_time` varchar(10) NOT NULL,
-  `treatment_status` int(1) NOT NULL
+  `treatment_time` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `patientschedule`
 --
 
-INSERT INTO `patientschedule` (`schedule_id`, `Hospital_Id`, `treatment_day`, `treatment_time`, `treatment_status`) VALUES
-(3, '06-08-23', 'Monday', 'afternoon', 0),
-(4, '13-18-17', 'Monday', 'morning', 1),
-(5, '13-38-01', 'Tuesday', 'afternoon', 1),
-(6, '23-22-02', 'friday', 'afternoon', 1),
-(7, '13-67-08', 'monday', 'afternoon', 0),
-(8, '86-89-17', 'Monday', 'morning', 1),
-(9, '40-89-11', 'Monday', 'morning', 1),
-(10, '86-11-12', 'Monday', 'morning', 1),
-(11, '40-78-21', 'Monday', 'morning', 1),
-(12, '40-24-17', 'Monday', 'morning', 0),
-(13, '93-94-12', 'Monday', 'afternoon', 1),
-(14, '25-84-10', 'Monday', 'afternoon', 1),
-(15, '89-93-08', 'Tuesday', 'morning', 1),
-(16, '45-18-16', 'Tuesday', 'morning', 1),
-(17, '20-12-17', 'Tuesday', 'afternoon', 1),
-(18, '31-24-32', 'Tuesday', 'afternoon', 1),
-(19, '01-26-22', 'Wednesday', 'morning', 1),
-(20, '45-45-24', 'Monday', 'morning', 1);
+INSERT INTO `patientschedule` (`schedule_id`, `Hospital_Id`, `treatment_day`, `treatment_time`) VALUES
+(11, '13-18-17', 'Monday', 'morning'),
+(12, '86-89-17', 'Monday', 'morning'),
+(13, '40-89-11', 'Monday', 'morning'),
+(14, '86-11-12', 'Monday', 'morning'),
+(15, '93-94-12', 'Monday', 'afternoon'),
+(16, '05-29-07', 'Monday', 'afternoon'),
+(17, '40-78-21', 'Wednesday', 'morning'),
+(18, '01-26-22', 'Tuesday', 'morning'),
+(19, '45-45-24', 'Monday', 'morning'),
+(20, 'A', 'Sunday', 'morning');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pneumococcal_vaccine`
+--
+
+CREATE TABLE `pneumococcal_vaccine` (
+  `pneumococcal_administeredby` varchar(50) NOT NULL,
+  `pneumococcal_datenext` date NOT NULL,
+  `pneumococcal_daterecieved` date NOT NULL,
+  `pneumococcal_id` int(11) NOT NULL,
+  `Hospital_Id` varchar(30) NOT NULL,
+  `pneumococcal_year` char(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pneumococcal_vaccine`
+--
+
+INSERT INTO `pneumococcal_vaccine` (`pneumococcal_administeredby`, `pneumococcal_datenext`, `pneumococcal_daterecieved`, `pneumococcal_id`, `Hospital_Id`, `pneumococcal_year`) VALUES
+('johnhahaa', '2018-02-15', '2018-02-21', 1, '01-26-22', '2018'),
+('qwer', '2018-02-10', '2018-02-14', 2, '01-26-22', ''),
+('rtys', '2018-02-09', '2018-02-22', 3, '01-26-22', ''),
+('asd', '2018-02-03', '2018-02-16', 4, '01-26-22', ''),
+('gr', '2018-02-23', '2018-02-24', 5, '01-26-22', ''),
+('', '0000-00-00', '0000-00-00', 6, '86-89-17', '');
 
 -- --------------------------------------------------------
 
@@ -483,8 +813,20 @@ CREATE TABLE `problemlist` (
   `datenoted` date NOT NULL,
   `dateresolved` date NOT NULL,
   `Hospital_Id` varchar(30) NOT NULL,
-  `problemlist_id` int(11) NOT NULL
+  `problemlist_id` int(11) NOT NULL,
+  `problemlist_monthyear` char(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `problemlist`
+--
+
+INSERT INTO `problemlist` (`problem`, `datenoted`, `dateresolved`, `Hospital_Id`, `problemlist_id`, `problemlist_monthyear`) VALUES
+('sadsad', '2018-01-28', '2018-01-28', '86-89-17', 9, ''),
+('asda', '2018-02-22', '2018-02-07', '01-26-22', 10, ''),
+('gh', '2018-02-14', '2018-02-14', '01-26-22', 11, ''),
+('haha', '2018-02-10', '2018-02-17', '01-26-22', 12, '2018, February'),
+('sample', '2018-01-19', '2018-02-16', '01-26-22', 13, '2018, January');
 
 -- --------------------------------------------------------
 
@@ -495,32 +837,42 @@ CREATE TABLE `problemlist` (
 CREATE TABLE `treatment` (
   `treatment_id` int(5) NOT NULL,
   `treatment_date` date NOT NULL,
-  `treatment_duration` varchar(10) NOT NULL,
   `BFR` varchar(20) NOT NULL,
-  `dialyzer` varchar(20) NOT NULL,
   `dialyzer_user` varchar(20) NOT NULL,
   `access` varchar(20) NOT NULL,
   `heparin` varchar(20) NOT NULL,
   `machine_num` int(2) NOT NULL,
   `Hospital_Id` varchar(30) NOT NULL,
-  `weight` varchar(10) NOT NULL,
+  `preweight` varchar(10) NOT NULL,
   `employeeid` varchar(10) NOT NULL,
-  `technicianid` varchar(10) NOT NULL
+  `technicianid` varchar(10) NOT NULL,
+  `postweight` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `treatment`
 --
 
-INSERT INTO `treatment` (`treatment_id`, `treatment_date`, `treatment_duration`, `BFR`, `dialyzer`, `dialyzer_user`, `access`, `heparin`, `machine_num`, `Hospital_Id`, `weight`, `employeeid`, `technicianid`) VALUES
-(2, '2017-06-05', '4 hours', '300 cc/min', 'HIPS-18', '1st reuse', 'L AVF', 'free', 6, '40-89-11 ', '51.4', 'E0003', 'E0006'),
-(3, '2017-06-19', '4 hours', '300 cc/min', 'HIPS-18', 'new set', 'L AVF', 'free', 6, '40-89-11 ', '49.1', 'E0003', 'E0002'),
-(7, '2017-07-03', '4 hours', '300cc/min', 'F8HPS', 'newset', 'L AVF', 'Regular', 6, '40-89-11 ', '', 'E0003', 'E0003'),
-(8, '2017-06-19', '4 hours', '25 cc/min', 'HIPS 18', '2nd reuse', 'R IJ', 'FREE', 4, '45-45-24 ', '75.2', 'E0001', 'E0003');
+INSERT INTO `treatment` (`treatment_id`, `treatment_date`, `BFR`, `dialyzer_user`, `access`, `heparin`, `machine_num`, `Hospital_Id`, `preweight`, `employeeid`, `technicianid`, `postweight`) VALUES
+(1, '2017-06-26', '350 cc/min', '5th Re-use', 'AVF', '0.261 lmwh', 5, '86-89-17 ', '44.2', 'E0003', 'E0005', ''),
+(2, '2017-07-03', '300 cc/min', 'last use', 'AVF', '0.261 lmwh', 5, '86-89-17 ', '43.9', 'E0003', 'E0003', ''),
+(3, '2017-10-07', '300 cc/min', 'NEWSET', 'L AVF', '0.261 lmwh', 5, '86-89-17 ', '44.3', 'E0006', 'E0003', ''),
+(4, '2017-07-10', '300 cc/min', 'NEWSET', 'L AVF', '0.261 lmwh', 5, '86-89-17 ', '44.3', 'E0003', 'E0003', ''),
+(5, '2017-07-17', '300 cc/min', '1st reuse', 'L AVF', '0.261 lmwh', 5, '86-89-17 ', '44.7', 'E0003', 'E0003', ''),
+(6, '2017-07-24', '300 cc/min', '2nd reuse', 'L AVF', '0.261 lmwh', 5, '86-89-17 ', '44.1', 'E0008', 'E0003', ''),
+(7, '2017-07-31', '300 cc/min', '2nd reuse', 'L AVF', '0.261 lmwh', 5, '86-89-17 ', '44.1', 'E0003', 'E0003', ''),
+(9, '2018-01-29', 'dasd', 'dasd', 'R AVF', 'dsad', 3, '01-26-22 ', '30', 'E0001', 'E0004', '31'),
+(10, '2018-01-29', '300', 'reuse', 'L AVF', 'free', 4, '45-45-24 ', '78', 'E0001', 'E00010', '73');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `confinement`
+--
+ALTER TABLE `confinement`
+  ADD PRIMARY KEY (`confinement_id`);
 
 --
 -- Indexes for table `diagnostic/examination`
@@ -536,10 +888,28 @@ ALTER TABLE `employeeprofile`
   ADD KEY `employee_num` (`employee_num`) USING BTREE;
 
 --
+-- Indexes for table `hemo_order`
+--
+ALTER TABLE `hemo_order`
+  ADD PRIMARY KEY (`order_id`);
+
+--
+-- Indexes for table `hepatitisbvaccine`
+--
+ALTER TABLE `hepatitisbvaccine`
+  ADD PRIMARY KEY (`hepa_id`);
+
+--
 -- Indexes for table `hepatitisprofile`
 --
 ALTER TABLE `hepatitisprofile`
   ADD PRIMARY KEY (`hepatitisprofile_id`);
+
+--
+-- Indexes for table `influenzavaccine`
+--
+ALTER TABLE `influenzavaccine`
+  ADD PRIMARY KEY (`influenza_id`);
 
 --
 -- Indexes for table `initialtestresult`
@@ -548,16 +918,22 @@ ALTER TABLE `initialtestresult`
   ADD PRIMARY KEY (`initialtestresult_id`);
 
 --
+-- Indexes for table `laboratory`
+--
+ALTER TABLE `laboratory`
+  ADD PRIMARY KEY (`Laboratory_id`);
+
+--
+-- Indexes for table `laboratory_others`
+--
+ALTER TABLE `laboratory_others`
+  ADD PRIMARY KEY (`labothers_id`);
+
+--
 -- Indexes for table `machineresult`
 --
 ALTER TABLE `machineresult`
   ADD PRIMARY KEY (`machineresult_id`);
-
---
--- Indexes for table `maintenance`
---
-ALTER TABLE `maintenance`
-  ADD KEY `employeeid` (`employeeid`);
 
 --
 -- Indexes for table `nephrologist`
@@ -565,6 +941,12 @@ ALTER TABLE `maintenance`
 ALTER TABLE `nephrologist`
   ADD PRIMARY KEY (`nephrologistid`),
   ADD KEY `nephrologistnum` (`nephrologistnum`);
+
+--
+-- Indexes for table `nephrologistschedule`
+--
+ALTER TABLE `nephrologistschedule`
+  ADD PRIMARY KEY (`nephroschedule_id`);
 
 --
 -- Indexes for table `nephronotesorder`
@@ -599,6 +981,12 @@ ALTER TABLE `patientschedule`
   ADD PRIMARY KEY (`schedule_id`);
 
 --
+-- Indexes for table `pneumococcal_vaccine`
+--
+ALTER TABLE `pneumococcal_vaccine`
+  ADD PRIMARY KEY (`pneumococcal_id`);
+
+--
 -- Indexes for table `problemlist`
 --
 ALTER TABLE `problemlist`
@@ -615,75 +1003,135 @@ ALTER TABLE `treatment`
 --
 
 --
+-- AUTO_INCREMENT for table `confinement`
+--
+ALTER TABLE `confinement`
+  MODIFY `confinement_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `diagnostic/examination`
+--
+ALTER TABLE `diagnostic/examination`
+  MODIFY `diagnostic/examination_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `employeeprofile`
 --
 ALTER TABLE `employeeprofile`
-  MODIFY `employee_num` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `employee_num` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `hemo_order`
+--
+ALTER TABLE `hemo_order`
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+
+--
+-- AUTO_INCREMENT for table `hepatitisbvaccine`
+--
+ALTER TABLE `hepatitisbvaccine`
+  MODIFY `hepa_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
 --
 -- AUTO_INCREMENT for table `hepatitisprofile`
 --
 ALTER TABLE `hepatitisprofile`
-  MODIFY `hepatitisprofile_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `hepatitisprofile_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `influenzavaccine`
+--
+ALTER TABLE `influenzavaccine`
+  MODIFY `influenza_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
 --
 -- AUTO_INCREMENT for table `initialtestresult`
 --
 ALTER TABLE `initialtestresult`
-  MODIFY `initialtestresult_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `initialtestresult_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `laboratory`
+--
+ALTER TABLE `laboratory`
+  MODIFY `Laboratory_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
+-- AUTO_INCREMENT for table `laboratory_others`
+--
+ALTER TABLE `laboratory_others`
+  MODIFY `labothers_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
 -- AUTO_INCREMENT for table `machineresult`
 --
 ALTER TABLE `machineresult`
-  MODIFY `machineresult_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `machineresult_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+
 --
 -- AUTO_INCREMENT for table `nephrologist`
 --
 ALTER TABLE `nephrologist`
-  MODIFY `nephrologistnum` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `nephrologistnum` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `nephrologistschedule`
+--
+ALTER TABLE `nephrologistschedule`
+  MODIFY `nephroschedule_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
 --
 -- AUTO_INCREMENT for table `nephronotesorder`
 --
 ALTER TABLE `nephronotesorder`
-  MODIFY `notes_order_Id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
+  MODIFY `notes_order_Id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
 --
 -- AUTO_INCREMENT for table `nursenotes`
 --
 ALTER TABLE `nursenotes`
-  MODIFY `nurse_notes_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+  MODIFY `nurse_notes_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
 --
 -- AUTO_INCREMENT for table `patientdrugprofile`
 --
 ALTER TABLE `patientdrugprofile`
-  MODIFY `drugprofile_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `drugprofile_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
 --
 -- AUTO_INCREMENT for table `patientschedule`
 --
 ALTER TABLE `patientschedule`
   MODIFY `schedule_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT for table `pneumococcal_vaccine`
+--
+ALTER TABLE `pneumococcal_vaccine`
+  MODIFY `pneumococcal_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
 --
 -- AUTO_INCREMENT for table `problemlist`
 --
 ALTER TABLE `problemlist`
-  MODIFY `problemlist_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `problemlist_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
 --
 -- AUTO_INCREMENT for table `treatment`
 --
 ALTER TABLE `treatment`
-  MODIFY `treatment_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `treatment_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
 --
 -- Constraints for dumped tables
 --
-
---
--- Constraints for table `maintenance`
---
-ALTER TABLE `maintenance`
-  ADD CONSTRAINT `employeeid` FOREIGN KEY (`employeeid`) REFERENCES `employeeprofile` (`employeeid`);
 
 --
 -- Constraints for table `nursenotes`
 --
 ALTER TABLE `nursenotes`
   ADD CONSTRAINT `Hospital_Id` FOREIGN KEY (`Hospital_Id`) REFERENCES `patientprofile` (`Hospital_Id`);
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

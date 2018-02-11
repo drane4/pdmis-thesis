@@ -39,7 +39,7 @@
         <link href="../../plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
 
         <!-- Custom Css -->
-        <link href="../../css/style3.css" rel="stylesheet">
+        <link href="../../css/style4.css" rel="stylesheet">
 
         <!-- mytable Css -->
         <link href="../../css/table.css" rel="stylesheet">
@@ -127,38 +127,37 @@
                 <!-- Menu -->
                  <div class="menu">
                     <ul class="list">
-
                         <li class="header">MAIN NAVIGATION</li>
-
-                        <li  id="transaction">
+                          <li id="transaction">
                             <a href="javascript:void(0);" class="menu-toggle">
-                                <i class="material-icons">folder</i>
+                                 <i class="material-icons">folder</i>
                                 <span>Transaction</span>
                             </a>
-                            <ul class="ml-menu">
-                                <li id="transaction" >
+                             <ul class="ml-menu">
+                                <li id="transaction">
                                     <a href="transaction.php">HemoTreatment</a>
                                 </li>
+                               
                             </ul>
-
+                        
                         </li>
-                        <li id="profile" class="active">
+                         <li class="active" id="profile">
                             <a href="javascript:void(0);" class="menu-toggle">
                                 <i class="material-icons">people</i>
                                 <span>Profile</span>
                             </a>
-                            <ul class="ml-menu" >
-                                <li id="patientprofile" >
+                            <ul class="ml-menu">
+                                <li id="patientprofile">
                                     <a href="PatientProfile.php">Patient Profile</a>
                                 </li>
-                                <li id="employeeprofile" >
+                                <li id="employeeprofile">
                                     <a href="EmployeeProfile.php">Employee Profile</a>
                                 </li>
-                                
-                                <li id="nephrologist" class="active">
+                                <li class="active" id="nephrologist">
                                     <a href="nephrologist.php">Nephrologist</a>
                                 </li>
-                            <li id="profile">
+                                
+                            <li class="" id="schedule">
                             <a href="javascript:void(0);" class="menu-toggle">
                                 <span>Schedule</span>
                             </a>
@@ -169,7 +168,7 @@
                                 <li id="descriptors">
                                     <a href="nephroschedule.php">Nephrologist</a>
                                 </li>
-                                    
+                                
                                 </ul>
                                 </li>
                             </ul>
@@ -192,26 +191,40 @@
                                 </li>
                             </ul>
                         </li>
-
-                        <li id="reports">
+                          <li id="reports">
                             <a href="javascript:void(0);" class="menu-toggle">
                                 <i class="material-icons">assignment</i>
                                 <span>Reports</span>
                             </a>
                             <ul class="ml-menu">
-                                <li id="">
-                                    <a href="report2.php">Trend Statistics</a>
+                                <li id="statistics">
+                            <a href="javascript:void(0);" class="menu-toggle">
+                                <span>Statistics</span>
+                            </a>
+                            <ul class="ml-menu">
+                                 <li id="genderstat">
+                                    <a href="report1.php">Gender Statistics</a>
                                 </li>
-                                <!--<li id="">
-                                    <a href="report3.php">Patient Progress Statistics</a>
-                                </li>-->
-
+                                <li id="agestat">
+                                    <a href="report2.php">Age Statistics</a>
+                                </li>
+                                 <li id="dialysisstat">
+                                    <a href="report3.php">Dialysis Statistics</a>
+                                </li>
+                                </ul>
+                                </li>
+                                <li  id="progressstat">
+                                    <a href="report4.php">Patient Progress Statistics</a>
+                                </li>
+                                <li id="">
+                                    <a href="report5.php">Employee Performance</a>
+                                </li>
                             </ul>
                         </li>
                         <li>
-                            <a href="logout.php">
+                           <a href="logout.php">
                                 <i class="material-icons">input</i>
-                                <span>Logout</span>
+                                <span>Exit</span>
                             </a>
                         </li>
 
@@ -252,7 +265,7 @@
                             </div>
                             <div class="body">
 
-                                <form class="form-horizontal page-content" form method="POST" action="savenephro.php">
+                                <form class="form-horizontal page-content" form method="POST" action="save/savenephro.php">
 
 
 
@@ -309,7 +322,7 @@
                                         <div class="col-lg-9 col-md-1 col-sm-2 col-xs-8">
                                             <div class="form-group">
                                                 <div class="form-line">
-                                                    <input type="text" class="form-control" name="n_address" id="n_address" placeholder="Optional" value="<?php echo $fetch['n_address']?>" onkeyup="capitalize(this.id, this.value);">
+                                                    <input type="text" class="form-control" name="n_address" id="n_address" value="<?php echo $fetch['n_address']?>" onkeyup="capitalize(this.id, this.value);">
                                                 </div>
                                             </div>
                                         </div>
@@ -321,7 +334,7 @@
                                         <div class="col-lg-2 col-md-1 col-sm-2 col-xs-3">
                                             <div class="form-group">
                                                 <div class="form-line ">
-                                                    <input type="text" class="form-control" name="n_telephone" id="n_telephone" value="<?php echo $fetch['n_telephone']?>" placeholder="Optional" maxlength="7" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+                                                    <input type="text" class="form-control" name="n_telephone" id="n_telephone" value="<?php echo $fetch['n_telephone']?>" placeholder="Optional">
                                                 </div>
                                             </div>
                                         </div>
@@ -331,7 +344,7 @@
                                         <div class="col-lg-2 col-md-1 col-sm-2 col-xs-3">
                                             <div class="form-group">
                                                 <div class="form-line">
-                                                    <input type="text" class="form-control" id="n_mobile" name="n_mobile" value="<?php echo $fetch['n_mobile']?>" required maxlength="11" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+                                                    <input type="text" class="form-control mobile-phone-number" id="n_mobile" name="n_mobile" value="<?php echo $fetch['n_mobile']?>">
                                                 </div>
                                             </div>
                                         </div>

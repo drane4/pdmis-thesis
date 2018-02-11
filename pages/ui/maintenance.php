@@ -38,7 +38,7 @@ include('session.php');
         <link href="../../plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
 
         <!-- Custom Css -->
-        <link href="../../css/style3.css" rel="stylesheet">
+        <link href="../../css/style4.css" rel="stylesheet">
 
         <!-- mytable Css -->
         <link href="../../css/table.css" rel="stylesheet">
@@ -82,7 +82,7 @@ include('session.php');
                     <a href="javascript:void(0);" class="bars"></a>
                     <center>
                         <a class="navbar-brand" href="index.html">
-                            <div class="title">Teresita Jalandoni Provincial Hospital <br> Dialysis Department</div>
+                            <div class="title"></div>
                         </a>
                     </center>
 
@@ -136,7 +136,6 @@ include('session.php');
                                 <li id="transaction">
                                     <a href="transaction.php">HemoTreatment</a>
                                 </li>
-                                
                             </ul>
                         
                         </li>
@@ -152,11 +151,12 @@ include('session.php');
                                 <li id="employeeprofile">
                                     <a href="EmployeeProfile.php">Employee Profile</a>
                                 </li>
-                    
                                 <li class="" id="nephrologist">
                                     <a href="nephrologist.php">Nephrologist</a>
                                 </li>
-                                
+                                <li id="descriptors">
+                                    <a href="D.php">Descriptors</a>
+                                </li>
                             <li id="schedule">
                             <a href="javascript:void(0);" class="menu-toggle">
                                 <span>Schedule</span>
@@ -183,32 +183,43 @@ include('session.php');
                                 <li id="userprofile">
                                     <a href="UserProfile.php">User Profile</a>
                                 </li>
-                                <li id="descriptors">
-                                    <a href="D.php">Descriptors</a>
-                                </li>
                                 <li  class="active" id="systemmaintenance">
                                     <a href="maintenance.php">System Maintenance</a>
                                 </li>
                             </ul>
                         </li>
                         <li id="reports">
-                              <a href="javascript:void(0);" class="menu-toggle">
+                            <a href="javascript:void(0);" class="menu-toggle">
                                 <i class="material-icons">assignment</i>
                                 <span>Reports</span>
                             </a>
                             <ul class="ml-menu">
-                                <li id="">
-                                    <a href="report2.php">Trend Statistics</a>
+                                <li id="statistics">
+                            <a href="javascript:void(0);" class="menu-toggle">
+                                <span>Statistics</span>
+                            </a>
+                            <ul class="ml-menu">
+                                 <li id="genderstat">
+                                    <a href="report1.php">Gender Statistics</a>
                                 </li>
-                               <!-- <li id="">
-                                        <a href="report3.php">Patient Progress Statistics</a>
-                                    </li>-->
+                                <li id="agestat">
+                                    <a href="report2.php">Age Statistics</a>
+                                </li>
+                                
+                                </ul>
+                                </li>
+                                <li  id="progressstat">
+                                    <a href="report4.php">Patient Progress Statistics</a>
+                                </li>
+                                <li id="">
+                                    <a href="report5.php">Employee Performance</a>
+                                </li>
                             </ul>
                         </li>
                         <li>
-                           <a href="logout.php" onclick="return confirm('Are you sure to logout?')">
+                           <a href="logout.php">
                                 <i class="material-icons">input</i>
-                                <span>Logout</span>
+                                <span>Exit</span>
                             </a>
                         </li>
 
@@ -249,10 +260,14 @@ include('session.php');
                             </div>
                          
                             <div class="body">
-                            
-                                <button name="export" type="button" class="btn btn-primary m-t-15 waves-effect" onclick="location.href='export.php'"> <i class="material-icons">cloud_download</i>Export</button>
-                                   <button type="button" class="btn btn-primary m-t-15 waves-effect" onclick="location.href='import.php'"> <i class="material-icons">cloud_upload</i>Import</button>
-                            
+                          
+                                
+                                
+                                
+                                
+                                <button name="export" id="export" type="button" class="btn btn-primary m-t-15 waves-effect" onclick="location.href='export.php'"> <i class="material-icons">cloud_download</i>Export</button>
+                                   <button type="button" name="import" class="btn btn-primary m-t-15 waves-effect" onclick="location.href='import.php'" id="import"> <i class="material-icons" >cloud_upload</i>Import</button>
+                       
                                 <div class="header">
                                     <h2> 
                                     Maintenance History
@@ -270,16 +285,20 @@ include('session.php');
 
                                                 <tbody>
                                                     <?php
+                                               
+                                                    
+                                                    
                                                     $date = date("Y-m-d H:i:s"); 
                                                             $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
-                                                           $query = $conn->query("SELECT * FROM `maintenance` order by '$date' desc") or die(mysqli_error());
+                                                           $query = $conn->query("SELECT * FROM `maintenance` INNER JOIN `employeeprofile`
+                                                        ON `maintenance`.`employeeid` = `employeeprofile`.`employeeid` order by '$date' desc") or die(mysqli_error());
                                                            $id = $fetch['employeeid'];
                                                            while($fetch = $query ->fetch_array()){
                                                         ?>
                                                         <tr>
 
                                                             <td>
-                                                                  <?php echo $fetch['name']?>
+                                                                  <?php echo $fetch['firstname']." ".$fetch['lastname']?>
                                                             </td>
                                                             <td>
                                                                   <?php echo $fetch['action']?>

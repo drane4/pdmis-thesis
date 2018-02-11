@@ -38,7 +38,7 @@ include('session.php');
         <link href="../../plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
 
         <!-- Custom Css -->
-        <link href="../../css/style3.css" rel="stylesheet">
+        <link href="../../css/style4.css" rel="stylesheet">
 
         <!-- mytable Css -->
         <link href="../../css/table.css" rel="stylesheet">
@@ -126,38 +126,37 @@ include('session.php');
                 <!-- Menu -->
                  <div class="menu">
                     <ul class="list">
-
                         <li class="header">MAIN NAVIGATION</li>
-
-                        <li  id="transaction">
+                         <li id="transaction">
                             <a href="javascript:void(0);" class="menu-toggle">
-                                <i class="material-icons">folder</i>
+                                 <i class="material-icons">folder</i>
                                 <span>Transaction</span>
                             </a>
-                            <ul class="ml-menu">
-                                <li id="transaction" >
+                             <ul class="ml-menu">
+                                <li id="transaction">
                                     <a href="transaction.php">HemoTreatment</a>
                                 </li>
+                              
                             </ul>
-
+                        
                         </li>
-                        <li id="profile" class="active">
+                        <li class="active" id="profile">
                             <a href="javascript:void(0);" class="menu-toggle">
                                 <i class="material-icons">people</i>
                                 <span>Profile</span>
                             </a>
-                            <ul class="ml-menu" >
-                                <li id="patientprofile" >
+                            <ul class="ml-menu">
+                                <li id="patientprofile">
                                     <a href="PatientProfile.php">Patient Profile</a>
                                 </li>
-                                <li id="employeeprofile" class="active">
+                                <li class="active" id="employeeprofile">
                                     <a href="EmployeeProfile.php">Employee Profile</a>
                                 </li>
-                                
                                 <li class="" id="nephrologist">
                                     <a href="nephrologist.php">Nephrologist</a>
                                 </li>
-                            <li id="profile">
+                                
+                            <li id="schedule">
                             <a href="javascript:void(0);" class="menu-toggle">
                                 <span>Schedule</span>
                             </a>
@@ -168,7 +167,7 @@ include('session.php');
                                 <li id="descriptors">
                                     <a href="nephroschedule.php">Nephrologist</a>
                                 </li>
-                                    
+                                
                                 </ul>
                                 </li>
                             </ul>
@@ -191,26 +190,40 @@ include('session.php');
                                 </li>
                             </ul>
                         </li>
-
-                        <li id="reports">
+                          <li id="reports">
                             <a href="javascript:void(0);" class="menu-toggle">
                                 <i class="material-icons">assignment</i>
                                 <span>Reports</span>
                             </a>
                             <ul class="ml-menu">
-                                <li id="">
-                                    <a href="report2.php">Trend Statistics</a>
+                                <li id="statistics">
+                            <a href="javascript:void(0);" class="menu-toggle">
+                                <span>Statistics</span>
+                            </a>
+                            <ul class="ml-menu">
+                                 <li id="genderstat">
+                                    <a href="report1.php">Gender Statistics</a>
                                 </li>
-                              <!--  <li id="">
-                                    <a href="report3.php">Patient Progress Statistics</a>
-                                </li>-->
-
+                                <li id="agestat">
+                                    <a href="report2.php">Age Statistics</a>
+                                </li>
+                                 <li id="dialysisstat">
+                                    <a href="report3.php">Dialysis Statistics</a>
+                                </li>
+                                </ul>
+                                </li>
+                                <li  id="progressstat">
+                                    <a href="report4.php">Patient Progress Statistics</a>
+                                </li>
+                                <li id="">
+                                    <a href="report5.php">Employee Performance</a>
+                                </li>
                             </ul>
                         </li>
                         <li>
-                            <a href="logout.php">
+                           <a href="logout.php">
                                 <i class="material-icons">input</i>
-                                <span>Logout</span>
+                                <span>Exit</span>
                             </a>
                         </li>
 
@@ -250,11 +263,7 @@ include('session.php');
 
                             </div>
                             <div class="body">
-
-                                <form class="form-horizontal page-content" form method="POST" action="saveemployee.php">
-
-
-
+                                <form class="form-horizontal page-content" form method="POST" action="save/saveemployee.php">
                                     <div class="row clearfix">
                                         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-3 form-control-label">
                                             <label for="email_address_2">Employee ID :</label>
@@ -278,7 +287,6 @@ include('session.php');
                                                    </span>
                                             </div>
                                         </div>
-
                                     </div>
                                     <div class="row clearfix">
                                         <div class="col-lg-2 col-md-1 col-sm-2 col-xs-3 form-control-label">
@@ -287,7 +295,7 @@ include('session.php');
                                         <div class="col-lg-2 col-md-1 col-sm-2 col-xs-3 col-md-3  form-control-label">
                                             <div class="form-group">
                                                 <div class="form-line">
-                                                    <input type="text" id="lastname" name="lastname" class="form-control" placeholder="" value="<?php echo $fetch['lastname']?>" onkeyup="capitalize(this.id, this.value);" autofocus required>
+                                                    <input type="text" id="lastname" name="lastname" class="form-control" placeholder="" value="<?php echo $fetch['lastname']?>" onchange="myFunction(this.id);" autofocus required>
                                                 </div>
                                             </div>
                                         </div>
@@ -297,7 +305,7 @@ include('session.php');
                                         <div class="col-lg-2 col-md-1 col-sm-2 col-xs-3">
                                             <div class="form-group">
                                                 <div class="form-line">
-                                                    <input type="text" id="firstname" name="firstname" class="form-control" placeholder="" value="<?php echo $fetch['firstname']?>" onkeyup="capitalize(this.id, this.value);" required>
+                                                    <input type="text" id="firstname" name="firstname" class="form-control" placeholder="" value="<?php echo $fetch['firstname']?>" onkeyup="myFunction(this.id);" required>
                                                 </div>
                                             </div>
                                         </div>
@@ -307,7 +315,7 @@ include('session.php');
                                         <div class="col-lg-1 col-md-1 col-sm-2 col-xs-3">
                                             <div class="form-group">
                                                 <div class="form-line">
-                                                    <input type="text" id="middlename" name="middlename" class="form-control" placeholder="" value="<?php echo $fetch['middlename']?>" onkeyup="capitalize(this.id, this.value);" required>
+                                                    <input type="text" id="middlename" name="middlename" class="form-control" placeholder="" value="<?php echo $fetch['middlename']?>" onkeyup="myFunction(this.id);" required>
                                                 </div>
                                             </div>
                                         </div>
@@ -319,7 +327,7 @@ include('session.php');
                                         <div class="col-lg-9 col-md-1 col-sm-2 col-xs-8">
                                             <div class="form-group">
                                                 <div class="form-line">
-                                                    <input type="text" class="form-control" name="address" id="address" value="<?php echo $fetch['address']?>" onkeyup="capitalize(this.id, this.value);" required>
+                                                    <input type="text" class="form-control" name="address" id="address" value="<?php echo $fetch['address']?>" onkeyup="myFunction(this.id);" required>
                                                 </div>
                                             </div>
                                         </div>
@@ -331,7 +339,7 @@ include('session.php');
                                         <div class="col-lg-2 col-md-1 col-sm-2 col-xs-3">
                                             <div class="form-group">
                                                 <div class="form-line ">
-                                                    <input type="text" class="form-control" name="telnum" id="telnum" value="<?php echo $fetch['telephone']?>" placeholder="Optional" onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="7">
+                                                    <input type="text" class="form-control" name="telnum" id="telnum" value="<?php echo $fetch['telephone']?>" placeholder="Optional">
                                                 </div>
                                             </div>
                                         </div>
@@ -341,7 +349,7 @@ include('session.php');
                                         <div class="col-lg-2 col-md-1 col-sm-2 col-xs-3">
                                             <div class="form-group">
                                                 <div class="form-line">
-                                                    <input type="text" class="form-control" id="monum" name="monum" value="<?php echo $fetch['mobile']?>" required maxlength="11" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+                                                    <input type="text" class="form-control mobile-phone-number" id="monum" name="monum" value="<?php echo $fetch['mobile']?>" required>
                                                 </div>
                                             </div>
                                         </div>
@@ -352,8 +360,8 @@ include('session.php');
                                         </div>
                                         <div class="col-lg-2 col-md-1 col-sm-2 col-xs-3">
 
-                                            <select class="form-control show-tick" name="position" id="position" title="&nbsp;" required>
-                                             <option value="" disabled selected hidden>Select: </option> 
+                                            <select class="form-control show-tick" name="position" id="position" title="&nbsp;" >
+                                                <option value="#">&nbsp;</option>
                                                 <option value="Nurse" <?php if($fetch['position']== 'Nurse') echo "selected"; ?>
                                                         >Nurse</option>
                                                  <option value="Technician"   <?php if($fetch['position']== 'Technician') echo "selected"; ?>
@@ -399,10 +407,8 @@ include('session.php');
                                         <div class="header bg-indigo">
                                             <h2>
                                                 List of Employees
-
                                                 <a href=""><i class="material-icons pull-right" data-dismiss="modal">clear</i></a>
                                             </h2>
-
                                         </div>
                                         <div class="body">
                                             <div class="table-responsive">
@@ -413,7 +419,6 @@ include('session.php');
                                                             <th>FirstName</th>
                                                         </tr>
                                                     </thead>
-
                                                     <tbody>
                                                         <?php
                                                             $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
@@ -422,7 +427,6 @@ include('session.php');
                                                            while($fetch = $query ->fetch_array()){
                                                         ?>
                                                             <tr>
-
                                                                 <td>
                                                                     <a href="EmployeeProfile.php?id=<?php echo $fetch['employeeid']?>">
                                                                         <?php echo $fetch['lastname']?>
@@ -436,9 +440,7 @@ include('session.php');
                                                             </tr>
                                                             <?php
                                                            }
-
                                                         ?>
-
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -541,23 +543,19 @@ include('session.php');
                 document.getElementById("position").value = "";
                 document.getElementById("employeeid").active = "";
                 $("#position").val("&nbsp;").change();
-                
-               
-            
-
             }
 
 
-            function capitalize(textboxid, str) {
-                // string with alteast one character
-                if (str && str.length >= 1) {
-                    var firstChar = str.charAt(0);
-                    var remainingStr = str.slice(1);
-                    str = firstChar.toUpperCase() + remainingStr;
-                }
-                document.getElementById(textboxid).value = str;
-            }
-            
+            function myFunction(textboxid) {
+
+            var input = document.getElementById(textboxid);
+            var word = input.value.split(" ");
+            for (var i = 0; i < word.length; i++) {
+             word[i] = word[i].charAt(0).toUpperCase() + word[i].slice(1).toLowerCase();
+                              }
+             input.value = word.join(" ");
+                                            }
+                          
 
 
         </script>

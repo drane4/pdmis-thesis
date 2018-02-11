@@ -40,10 +40,14 @@ require 'session.php';
         <link href="../../plugins/morrisjs/morris.css" rel="stylesheet" />
 
         <!-- Custom Css -->
-        <link href="../../css/style2.css" rel="stylesheet">
+        <link href="../../css/style4.css" rel="stylesheet">
 
         <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
         <link href="../../css/themes/theme-indigo.css" rel="stylesheet" />
+       
+        
+       
+        
     </head>
 
     <body class="theme-indigo">
@@ -79,7 +83,7 @@ require 'session.php';
                     <a href="javascript:void(0);" class="bars"></a>
                     <center>
                         <a class="navbar-brand" href="index.html">
-                            <div class="title">Teresita Jalandoni Provincial Hospital <br> Dialysis Department</div>
+                            <div class="title"></div>
                         </a>
                     </center>
 
@@ -126,32 +130,23 @@ require 'session.php';
                 <!-- #User Info -->
                 <!-- Menu -->
                 <div class="menu">
-                    <ul class="list">
+                   <ul class="list">
 
                         <li class="header">MAIN NAVIGATION</li>
 
-                        <li class="active" id="transaction">
+                        <li id="transaction">
                             <a href="javascript:void(0);" class="menu-toggle">
                                 <i class="material-icons">folder</i>
                                 <span>Transaction</span>
                             </a>
                             <ul class="ml-menu">
-                                <li id="transaction" class="active">
+                                <li id="transaction" >
                                     <a href="transaction.php">HemoTreatment</a>
-                                </li>
-                                <li id="Schedule">
-                                    <a href="LT.php">Schedule</a>
-                                </li>
-                                <li id="Immunization">
-                                    <a href="P.php">Immunization</a>
-                                </li>
-                                <li id="PatientMedicalHistory">
-                                    <a href="D.php">Patient Medical History</a>
                                 </li>
                             </ul>
 
                         </li>
-                         <li id="profile">
+                        <li id="profile">
                             <a href="javascript:void(0);" class="menu-toggle">
                                 <i class="material-icons">people</i>
                                 <span>Profile</span>
@@ -163,9 +158,7 @@ require 'session.php';
                                 <li id="employeeprofile">
                                     <a href="EmployeeProfile.php">Employee Profile</a>
                                 </li>
-                                <li id="labtest">
-                                    <a href="LT.php">Lab Tests</a>
-                                </li>
+                                
                                 <li class="" id="nephrologist">
                                     <a href="nephrologist.php">Nephrologist</a>
                                 </li>
@@ -183,7 +176,7 @@ require 'session.php';
                                 <li id="descriptors">
                                     <a href="nephroschedule.php">Nephrologist</a>
                                 </li>
-                                
+                                    
                                 </ul>
                                 </li>
                             </ul>
@@ -203,23 +196,36 @@ require 'session.php';
                                 </li>
                             </ul>
                         </li>
-                        
-                        <li id="reports">
+
+                         <li class="active" id="reports">
                             <a href="javascript:void(0);" class="menu-toggle">
                                 <i class="material-icons">assignment</i>
                                 <span>Reports</span>
                             </a>
                             <ul class="ml-menu">
-                                <li id="">
-                                    <a href="report1.php">Agreement</a>
+                                <li class="active" id="statistics">
+                            <a href="javascript:void(0);" class="menu-toggle">
+                                <span>Statistics</span>
+                            </a>
+                              <ul class="ml-menu">
+                                 <li id="genderstat">
+                                    <a href="report1.php">Gender Statistics</a>
                                 </li>
-                                <li id="">
-                                    <a href="report2.php">Statistics</a>
+                                <li id="agestat">
+                                    <a href="report2.php">Age Statistics</a>
                                 </li>
-                                <li id="">
-                                    <a href="report3.php">Patient Progress Statistics</a>
+                                <li id="dialysisstat" class="active">
+                                    <a href="report3.php">Dialysis Statistics</a>
                                 </li>
                                 
+                                </ul>
+                                </li>
+                                <li id="">
+                                    <a href="report4.php">Patient Progress Statistics</a>
+                                </li>
+                                <li id="">
+                                    <a href="report5.php">Employee Performance</a>
+                                </li>
                             </ul>
                         </li>
                         <li>
@@ -261,12 +267,36 @@ require 'session.php';
                         <div class="card">
                             <div class="header bg-indigo">
                                 <h2>
-                                    Patient Progress Statistics
+                                    Dialysis Type Statistics
                                 </h2>
 
                             </div>
-                            <div class="body">
-                                
+                           <div class="body">
+                                <div class="clearfix row" id="printDiv">
+                                    <style type="text/css">
+                                        .header{
+                                            text-align: center;
+                                            font-family: “Calibri, Optima, Candara, Verdana, Geneva, sans-serif”;
+                                            color: #393938;
+                                        }
+                                    </style>
+
+                                    <div class="header">
+                                        <span style="font-weight: bold;font-size: 18px;">
+                                            TERESITA L. JALANDONI PROVINCIAL HOSPITAL
+                                        <span><br>
+                                        Rizal St, Silay City, Neg. Occ.<br>
+                                        Tel. No. 495-1704 / 495-1705 / 495-0096<br>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                         <div id="dialysis_type" style="width: 100%; height: 400px"></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12 text-right">
+                                        <button id="print"><span class="glyphicon glyphicon-print"></span>&nbsp;Print</button>        
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -281,12 +311,18 @@ require 'session.php';
 
 
         </section>
-
+  <script>
+            $(document).ready(function(){
+                $("#pyear").on('change', function(){
+                    var year=$(this).val();
+                    window.location = 'index.php?year='+year;
+                });
+            });
+        </script>
 
         <!-- Jquery Core Js -->
 
 
-        <script src="../../plugins/jquery/jquery.min.js"></script>
         <script src="../../plugins/jquery/jquery.js"></script>
 
         <!-- Bootstrap Core Js -->
@@ -325,7 +361,7 @@ require 'session.php';
         <!-- Sparkline Chart Plugin Js -->
         <script src="../../plugins/jquery-sparkline/jquery.sparkline.js"></script>
 
-
+        
 
         <!-- Custom Js -->
         <script src="../../js/admin.js"></script>
@@ -333,6 +369,7 @@ require 'session.php';
 
         <!-- Demo Js -->
         <script src="../../js/demo.js"></script>
+        <script src = "js/charteasy/printThis/printThis.js"></script>
         <script>
             $(window).load(function() {
                 var module = '<?php echo $transaction_a; ?>';
@@ -399,8 +436,16 @@ require 'session.php';
                 }
             });
 
+            $('#print').on('click', function(){
+                $('#printDiv').printThis({
+                    importStyle: true,
+                    canvas: true
+                });
+            });
         </script>
-
+        
+        <script src = "js/jquery.canvasjs.min.js"></script>
+        <?php require 'js/charteasy/dialysis_type.php'?>
     </body>
 
     </html>

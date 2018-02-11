@@ -6,7 +6,7 @@ if(ISSET($_POST['submit'])){
      $patientid = $_POST['patient_S'];
     $day = $_POST['day_S'];
      $time = $_POST['time_S'];
-    $status = $_POST['status'];
+
 
     
     
@@ -19,18 +19,19 @@ if(ISSET($_POST['submit'])){
   
     if($check > 0){
         
-            $conn->query ("UPDATE `patientschedule` SET `treatment_day` = '$day', `treatment_time` = '$time', `treatment_status` = '$status' WHERE `patientschedule`.`Hospital_Id` = '$patientid'") or die(mysqli_error());
+            $conn->query ("UPDATE `patientschedule` SET `treatment_day` = '$day', `treatment_time` = '$time' WHERE `patientschedule`.`Hospital_Id` = '$patientid'") or die(mysqli_error());
+        echo "<script type='text/javascript'> alert ('Schedule Successfully Updated!');</script>";
     }
     else{
         
         $conn = new mysqli("localhost", 'root', '', 'pdmis') or die(mysqli_error());
-        $conn->query ("INSERT INTO `patientschedule` VALUES (NULL, '$patientid', '$day', '$time', '$status')") or die(mysqli_error());
+        $conn->query ("INSERT INTO `patientschedule` VALUES (NULL, '$patientid', '$day', '$time')") or die(mysqli_error());
         
-        echo "<script type='text/javascript'> alert ('Account registered successfully!');</script>";
+        echo "<script type='text/javascript'> alert ('Schedule Successfully Saved!');</script>";
       
     
     }
 }
-header("location: ../patientschedule.php");
 
+echo "<script>document.location='../patientschedule.php'</script>"
 ?>

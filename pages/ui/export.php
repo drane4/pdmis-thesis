@@ -1,13 +1,12 @@
 
 <?php
-
 include('session.php');   
   $conn = new mysqli("localhost", 'root', '', 'pdmis') or die(mysqli_error());
 $connection = mysqli_connect('localhost', 'root', '', 'pdmis');
 date_default_timezone_set('Asia/Manila');
-$date = date("Y-m-d H:i:s");    
+$date = date("Y-m-d h:i a");    
 
-$conn->query ("INSERT INTO `maintenance` (`employeeid`, `action`, `m_date`, `name`) VALUES ('$id', 'Export', '$date' ,'$name');") or die(mysqli_error());
+$conn->query ("INSERT INTO `maintenance` (`employeeid`, `action`, `m_date`) VALUES ('$id', 'Export', '$date');") or die(mysqli_error());
 
 
  

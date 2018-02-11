@@ -1,7 +1,28 @@
 <?php
 require 'session.php';
-require 'queries/treatment_query.php'
-   
+require 'queries/patientprofile_query.php';
+  ini_set('display_errors', 0);
+   $pageid = $_GET[id];
+   list($H_id ,$ydate) = explode(" | ", $pageid);
+$conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
+ $q2 = $conn->query("SELECT * FROM `treatment` WHERE `Hospital_Id` = '$H_id' && `treatment_date` = '$ydate'") or die(mysqli_error());
+    $fetch2 = $q2 ->fetch_array();
+    $tquery = $conn->query("SELECT * FROM `nephronotesorder` WHERE `Hospital_Id` = '$H_id' && `notes_order_date` = '$ydate'") or die(mysqli_error());
+     $tfetch = $tquery ->fetch_array();
+       $nid = $tfetch['nephrologistid'];
+       $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
+       $tquery1 = $conn->query("SELECT * FROM `nephrologist` WHERE `nephrologistid` = '$nid'") or die(mysqli_error());
+            $tfetch1 = $tquery1 ->fetch_array();
+            $n_fname = $tfetch1['n_fname'];
+            $n_mname = $tfetch1['n_mname'];
+            $n_lname = $tfetch1['n_lname'];
+    
+$q3 = $conn->query("SELECT * FROM `hemo_order` WHERE `Hospital_Id` = '$H_id' ORDER BY `order_id` DESC") or die(mysqli_error());
+  $fetch3 = $q3 ->fetch_array();
+
+  $q1 = $conn->query("SELECT * FROM `patientprofile` where `Hospital_Id` = '$H_id' ") or die(mysqli_error());
+  $fetch1 = $q1 ->fetch_array();
+
 ?>
 
 
@@ -36,7 +57,7 @@ require 'queries/treatment_query.php'
         <link href="../../plugins/morrisjs/morris.css" rel="stylesheet" />
 
         <!-- Custom Css -->
-        <link href="../../css/style2.css" rel="stylesheet">
+        <link href="../../css/style4.css" rel="stylesheet">
 
         <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
         <link href="../../css/themes/theme-indigo.css" rel="stylesheet" />
@@ -75,7 +96,7 @@ require 'queries/treatment_query.php'
                     <a href="javascript:void(0);" class="bars"></a>
                     <center>
                         <a class="navbar-brand" href="index.html">
-                            <div class="title">Teresita Jalandoni Provincial Hospital <br> Dialysis Department</div>
+                            <div class="title"></div>
                         </a>
                     </center>
 
@@ -126,47 +147,38 @@ require 'queries/treatment_query.php'
 
                         <li class="header">MAIN NAVIGATION</li>
 
-                        <li class="active" id="transaction">
+                        <li id="transaction">
                             <a href="javascript:void(0);" class="menu-toggle">
                                 <i class="material-icons">folder</i>
                                 <span>Transaction</span>
                             </a>
                             <ul class="ml-menu">
-                                <li id="transaction" class="active">
+                                <li id="transaction" >
                                     <a href="transaction.php">HemoTreatment</a>
                                 </li>
                             </ul>
 
                         </li>
-                        <li id="profile">
+                        <li id="profile" class="active">
                             <a href="javascript:void(0);" class="menu-toggle">
                                 <i class="material-icons">people</i>
                                 <span>Profile</span>
                             </a>
                             <ul class="ml-menu">
-                                <li id="patientprofile">
+                                <li id="patientprofile" class="active">
                                     <a href="PatientProfile.php">Patient Profile</a>
                                 </li>
                                 <li id="employeeprofile">
                                     <a href="EmployeeProfile.php">Employee Profile</a>
                                 </li>
-                                
-                                <li class="" id="nephrologist">
-                                    <a href="nephrologist.php">Nephrologist</a>
+                                <li id="labtest">
+                                    <a href="LT.php">Lab Tests</a>
                                 </li>
-                            <li id="profile">
-                            <a href="javascript:void(0);" class="menu-toggle">
-                                <span>Schedule</span>
-                            </a>
-                            <ul class="ml-menu">
-                                 <li id="descriptors">
-                                    <a href="patientschedule.php">Patient</a>
+                                <li id="nephrologist">
+                                    <a href="P.php">Nephrologist</a>
                                 </li>
                                 <li id="descriptors">
-                                    <a href="nephroschedule.php">Nephrologist</a>
-                                </li>
-                                    
-                                </ul>
+                                    <a href="D.php">Descriptors</a>
                                 </li>
                             </ul>
                         </li>
@@ -180,34 +192,21 @@ require 'queries/treatment_query.php'
                                 <li id="userprofile">
                                     <a href="UserProfile.php">User Profile</a>
                                 </li>
-                                <li id="descriptors">
-                                    <a href="D.php">Descriptors</a>
-                                </li>
                                 <li id="systemmaintenance">
                                     <a href="maintenance.php">System Maintenance</a>
                                 </li>
                             </ul>
                         </li>
-
                         <li id="reports">
-                            <a href="javascript:void(0);" class="menu-toggle">
+                            <a href="R.php">
                                 <i class="material-icons">assignment</i>
                                 <span>Reports</span>
                             </a>
-                            <ul class="ml-menu">
-                                <li id="">
-                                    <a href="report2.php">Trend Statistics</a>
-                                </li>
-                                <li id="">
-                                    <a href="report3.php">Patient Progress Statistics</a>
-                                </li>
-
-                            </ul>
                         </li>
                         <li>
                             <a href="logout.php">
                                 <i class="material-icons">input</i>
-                                <span>Logout</span>
+                                <span>Exit</span>
                             </a>
                         </li>
 
@@ -250,7 +249,7 @@ require 'queries/treatment_query.php'
                                         <h4>TERESITA L. JALANDONI PROVINCIAL HOSPITAL</h4>
                                         <h5>Rizal St, Silay City, Neg. Occ.</h5>
                                         <h5>Tel. No. 495-1704 / 495-1705 / 495-0096</h5>
-                                        <h4>HEMODIALYSIS TREATMENT REPORT</h4>
+                                        <h4>HEMODIALYSIS TREATMENT SHEET</h4>
 
 
                                         </center>
@@ -258,19 +257,19 @@ require 'queries/treatment_query.php'
                                 </div>
                                                <div class="row clearfix">
                                 <div class="col-xs-5">
-                                        <strong>   Name : <u><?php echo $fetch1['P_Fname'].' '.$fetch1['P_Mname'].' '.$fetch1['P_Lname']?></u>
+                                        <strong>Name : <u><?php echo $fetch1['P_Fname'].' '.$fetch1['P_Mname'].' '.$fetch1['P_Lname']?></u>
                                          <br> Sex: <u><?php echo $fetch1['P_Sex']?></u>
-                                        <br>Dry Wt.:<u></u>
-                                        <br>Weight Gain :<u> <?php echo $fetch2['weight']-$fetch3['weight']?></u>
-                                        <br>Pre Dialysis WT. :<u> <?php echo $fetch3['weight']?></u>
-                                        <br>Post-Dialysis WT. :<u> <?php echo $fetch2['weight']?></u>
+                                        <br>Dry Wt.:<u><?php echo $fetch3['targetwt']?></u>
+                                        <br>Weight Gain :<u> <?php echo $fetch2['preweight']-$fetch3['targetwt']?></u>
+                                        <br>Pre Dialysis WT. :<u> <?php echo $fetch2['preweight']?></u>
+                                        <br>Post-Dialysis WT. :<u> <?php echo $fetch2['postweight']?></u>
                                         </strong>
                                 </div>
                                 <div class="col-xs-3">
                                
                                         <br>
                                         <strong>   Age : <u> <?php echo $fetch1['P_Age'] ?></u>
-                                        <br>Duration :<u> <?php echo $fetch2['treatment_duration'] ?></u>
+                                        <br>Duration :<u> <?php echo $fetch3['duration'] ?></u>
                                         <br>Bfr :<u> <?php echo $fetch2['BFR'] ?></u>
                                         <br>Access :<u> <?php echo $fetch2['access'] ?></u>
                                         <br>Heparin :<u> <?php echo $fetch2['heparin'] ?></u>
@@ -283,7 +282,7 @@ require 'queries/treatment_query.php'
                                     <strong>  Hospital ID : <u><?php echo $fetch1['Hospital_Id'] ?></u> 
                                           <br>Civil Status: <u> <?php echo $fetch1['P_CivilStatus'] ?></u>     
                                         <br>Date :<u> <?php echo $fetch2['treatment_date'] ?></u>
-                                        <br>Dialyzer :<u> <?php echo $fetch2['dialyzer'] ?></u>
+                                        <br>Dialyzer :<u> <?php echo $fetch3['dialyzer'] ?></u>
                                         <br>Dialyzer Use :<u> <?php echo $fetch2['dialyzer_user'] ?></u>
                                         <br>Machine #:<u> <?php echo $fetch2['machine_num'] ?></u>
                                         </strong>
@@ -300,8 +299,8 @@ require 'queries/treatment_query.php'
                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
                                                 <?php
-                                              $date = date("Y-m-d");                
-                                              $query = $conn->query("SELECT * FROM `nephronotesorder` WHERE `Hospital_Id` = '$_GET[id]' && `notes_order_date` = '$date'") or die(mysqli_error());
+                                              $date = $ydate;                
+                                              $query = $conn->query("SELECT * FROM `nephronotesorder` WHERE `Hospital_Id` = '$H_id' && `notes_order_date` = '$date'") or die(mysqli_error());
                                               $fetch = $query ->fetch_array();
                                     
                                                 ?>
@@ -325,9 +324,9 @@ require 'queries/treatment_query.php'
                                                 ?>
                                                         <tbody>
                                                             <?php   
-                                                            $date = date("Y-m-d");
+                                                            $date = $ydate;
                                                             $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
-                                                           $query = $conn->query("SELECT * FROM `nephronotesorder` WHERE `Hospital_Id` = '$_GET[id]' && `notes_order_date` = '$date' ORDER BY `notes_order_id`") or die(mysqli_error());
+                                                           $query = $conn->query("SELECT * FROM `nephronotesorder` WHERE `Hospital_Id` = '$H_id' && `notes_order_date` = '$date' ORDER BY `notes_order_id`") or die(mysqli_error());
                                                            $id = $fetch['Hospital_Id'];
                                                            
                                                            while($fetch = $query ->fetch_array()){
@@ -335,11 +334,11 @@ require 'queries/treatment_query.php'
                                                             <tr>
                                                                 <td style="white-space: normal">
                                                                     <p style="word-wrap: break-word;">
-                                                                        <a href="#editPhysician_notes" data-toggle="modal" data-target="#editPhysician_notes" style="color: black;">
+                                                                       
                                                                             <?php echo $fetch['nephro_notes']?>
-                                                                        </a>
+                                                                     
 
-                                                                        <a class="pull-right"><?php echo " -".$n_fname." ".$n_mname." ".$n_lname?></a>
+                                                                        <a class="pull-right" style="color:black;"><?php echo " -".$n_fname." ".$n_mname." ".$n_lname?></a>
                                                                     </p>
                                                                 </td>
                                                                 <td style="white-space: normal">
@@ -381,38 +380,38 @@ require 'queries/treatment_query.php'
                                                     </thead>
                                                     <tbody>
                                                         <?php
-                                                            $date = date("Y-m-d");
+                                                              $date = $ydate;  
                                                             $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
-                                                           $query = $conn->query("SELECT * FROM `initialtestresult` WHERE `Hospital_Id` = '$_GET[id]' && `initialtest_date` = '$date' ORDER BY `initialtestresult_id`") or die(mysqli_error());
+                                                           $query = $conn->query("SELECT * FROM `initialtestresult` WHERE `Hospital_Id` = '$H_id' && `initialtest_date` = '$date' ORDER BY `initialtestresult_id`") or die(mysqli_error());
                                                            $id = $fetch['Hospital_Id'];
                                                            
                                                            while($fetch = $query ->fetch_array()){
                                                         ?>
                                                             <tr>
                                                                 <td>
-                                                                    <a href="#editInitialtest" data-toggle="modal" data-target="#editInitialtest" style="color: black;">
+                                                                   
                                                                         <?php echo $fetch['initialtest_time']?>
-                                                                    </a>
+                                                              
                                                                 </td>
                                                                 <td>
-                                                                    <a href="#editInitialtest" data-toggle="modal" data-target="#editInitialtest" style="color: black;">
+                                                                    
                                                                         <?php echo $fetch['bloodpressure']?>
-                                                                    </a>
+                                                          
                                                                 </td>
                                                                 <td>
-                                                                    <a href="#editInitialtest" data-toggle="modal" data-target="#editInitialtest" style="color: black;">
+                                                                   
                                                                         <?php echo $fetch['cardiacrate']?>
-                                                                    </a>
+                                                                    
                                                                 </td>
                                                                 <td>
-                                                                    <a href="#editInitialtest" data-toggle="modal" data-target="#editInitialtest" style="color: black;">
+                                                                   
                                                                         <?php echo $fetch['repulsiverate']?>
-                                                                    </a>
+                                                               
                                                                 </td>
                                                                 <td>
-                                                                    <a href="#editInitialtest" data-toggle="modal" data-target="#editInitialtest" style="color: black;">
+                                                                   
                                                                         <?php echo $fetch['initialtemperature']?>
-                                                                    </a>
+                                                                
                                                                 </td>
 
                                                             </tr>
@@ -440,23 +439,23 @@ require 'queries/treatment_query.php'
                                                     </thead>
                                                     <tbody>
                                                         <?php
-                                                            $date = date("Y-m-d");
+                                                             $date = $ydate;  
                                                             $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
-                                                           $query = $conn->query("SELECT * FROM `nursenotes` WHERE `Hospital_Id` = '$_GET[id]' && `nurse_notes_date` = '$date' ORDER BY `nurse_notes_id`") or die(mysqli_error());
+                                                           $query = $conn->query("SELECT * FROM `nursenotes` WHERE `Hospital_Id` = '$H_id' && `nurse_notes_date` = '$date' ORDER BY `nurse_notes_id`") or die(mysqli_error());
                                                            $id = $fetch['Hospital_Id'];
                                                            
                                                            while($fetch = $query ->fetch_array()){
                                                         ?>
                                                             <tr>
                                                                 <td style="white-space: normal">
-                                                                    <a href="#editnursesnotes<?php echo $fetch['nurse_notes_id'];?>" data-toggle="modal" data-target="#editnursesnotes<?php echo $fetch['nurse_notes_id'];?>" style="color: black;">
+                                                                   
                                                                         <p style="word-wrap: break-word;"> (F) :
                                                                             <?php echo $fetch['focus']?><br> (D) :
                                                                             <?php echo $fetch['data']?><br> (A) :
                                                                             <?php echo $fetch['action']?><br> (R) :
                                                                             <?php echo $fetch['resolution']?>
                                                                         </p>
-                                                                    </a>
+                                                                
                                                                 </td>
 
 
@@ -489,43 +488,43 @@ require 'queries/treatment_query.php'
                                                     <tbody>
                                                         <?php
                                                            
-                                                            $date = date("Y-m-d");
+                                                             $date = $ydate;  
                                                             $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
-                                                           $query = $conn->query("SELECT * FROM `machineresult` WHERE `Hospital_Id` = '$_GET[id]' && `m_date` = '$date' ORDER BY `machineresult_id`") or die(mysqli_error());
+                                                           $query = $conn->query("SELECT * FROM `machineresult` WHERE `Hospital_Id` = '$H_id' && `m_date` = '$date' ORDER BY `machineresult_id`") or die(mysqli_error());
                                                            $id = $fetch['Hospital_Id'];
                                                            
                                                            while($fetch = $query ->fetch_array()){
                                                         ?>
                                                             <tr>
                                                                 <td>
-                                                                    <a href="#editmachinetest<?php echo $fetch['machineresult_id'];?>" data-toggle="modal" data-target="#editmachinetest<?php echo $fetch['machineresult_id'];?>" style="color: black;">
+                                                                   
                                                                         <?php echo $fetch['m_time']?>
-                                                                    </a>
+                                                            
                                                                 </td>
                                                                 <td>
-                                                                    <a href="#editmachinetest<?php echo $fetch['machineresult_id'];?>" data-toggle="modal" data-target="#editmachinetest<?php echo $fetch['machineresult_id'];?>" style="color: black;">
+                                                                    
                                                                         <?php echo $fetch['m_bloodpressure']?>
-                                                                    </a>
+                                                              
                                                                 </td>
                                                                 <td>
-                                                                    <a href="#editmachinetest<?php echo $fetch['machineresult_id'];?>" data-toggle="modal" data-target="#editmachinetest<?php echo $fetch['machineresult_id'];?>" style="color: black;">
+                                                                   
                                                                         <?php echo $fetch['m_cardiacrate']?>
-                                                                    </a>
+                                                              
                                                                 </td>
                                                                 <td>
-                                                                    <a href="#editmachinetest<?php echo $fetch['machineresult_id'];?>" data-toggle="modal" data-target="#editmachinetest<?php echo $fetch['machineresult_id'];?>" style="color: black;">
+                                                                  
                                                                         <?php echo $fetch['m_bloodflowrate']?>
-                                                                    </a>
+                                                                   
                                                                 </td>
                                                                 <td>
-                                                                    <a href="#editmachinetest<?php echo $fetch['machineresult_id'];?>" data-toggle="modal" data-target="#editmachinetest<?php echo $fetch['machineresult_id'];?>" style="color: black;">
+                                                                   
                                                                         <?php echo $fetch['m_transmempressure']?>
-                                                                    </a>
+                                                           
                                                                 </td>
                                                                 <td>
-                                                                    <a href="#editmachinetest<?php echo $fetch['machineresult_id'];?>" data-toggle="modal" data-target="#editmachinetest<?php echo $fetch['machineresult_id'];?>" style="color: black;">
+                                                                    
                                                                         <?php echo $fetch['m_venpressure']?>
-                                                                    </a>
+                                                                 
                                                                 </td>
 
                                                             </tr>
@@ -561,9 +560,12 @@ require 'queries/treatment_query.php'
                                 </div>    
                                 </div>
                                         <div class="row clearfix">
-                                            <div class="col-lg-offset-11 col-xs-offset-11">
+                                            <div class="col-lg-offset-9 col-xs-offset-9">
                                                <div class="row hidden-print mt-20">
-                                                   <a class="btn btn-primary" onclick="printDiv('printableArea')" target="_blank"><i class="fa fa-print"></i> Print</a>
+                                                 
+                                                   <a class="btn btn-primary btn-xs" onclick="printDiv('printableArea')" target="_blank"><i class="material-icons">print</i> Print</a>
+                                                   <button class="btn btn-primary btn-sm" onclick="location.href='patientprofile.php?id=<?php echo $H_id." | "."hemotreatment"." | "."$ydate"?>'">cancel</button>
+                                                   
                                               </div>
                                          </div>
                                     </div>

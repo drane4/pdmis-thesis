@@ -38,7 +38,7 @@
         <link href="../../plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
 
         <!-- Custom Css -->
-        <link href="../../css/style3.css" rel="stylesheet">
+        <link href="../../css/style4.css" rel="stylesheet">
 
         <!-- mytable Css -->
         <link href="../../css/table.css" rel="stylesheet">
@@ -80,7 +80,7 @@
                     <a href="javascript:void(0);" class="bars"></a>
                     <center>
                         <a class="navbar-brand" href="index.html">
-                            <div class="title">Teresita Jalandoni Provincial Hospital <br> Dialysis Department</div>
+                            <div class="title"></div>
                         </a>
                     </center>
 
@@ -138,7 +138,6 @@
                                 <li id="transaction">
                                     <a href="transaction.php">HemoTreatment</a>
                                 </li>
-                               
                             </ul>
                         
                         </li>
@@ -155,6 +154,7 @@
                                 <li id="employeeprofile">
                                     <a href="EmployeeProfile.php">Employee Profile</a>
                                 </li>
+                            
                                 <li class="" id="nephrologist">
                                     <a href="nephrologist.php">Nephrologist</a>
                                 </li>
@@ -193,24 +193,38 @@
                                 </li>
                             </ul>
                         </li>
-                        <li id="reports">
-                              <a href="javascript:void(0);" class="menu-toggle">
+                           <li id="reports">
+                            <a href="javascript:void(0);" class="menu-toggle">
                                 <i class="material-icons">assignment</i>
                                 <span>Reports</span>
                             </a>
                             <ul class="ml-menu">
-                                <li id="">
-                                    <a href="report2.php">Trend Statistics</a>
+                                <li id="statistics">
+                            <a href="javascript:void(0);" class="menu-toggle">
+                                <span>Statistics</span>
+                            </a>
+                            <ul class="ml-menu">
+                                 <li id="genderstat">
+                                    <a href="report1.php">Gender Statistics</a>
                                 </li>
-                                <!--<li id="">
-                                    <a href="report3.php">Patient Progress Statistics</a>
-                                </li>-->
+                                <li id="agestat">
+                                    <a href="report2.php">Age Statistics</a>
+                                </li>
+                                
+                                </ul>
+                                </li>
+                                <li  id="progressstat">
+                                    <a href="report4.php">Patient Progress Statistics</a>
+                                </li>
+                                <li id="">
+                                    <a href="report5.php">Employee Performance</a>
+                                </li>
                             </ul>
                         </li>
                         <li>
                             <a href="logout.php">
                                 <i class="material-icons">input</i>
-                                <span>Logout</span>
+                                <span>Exit</span>
                             </a>
                         </li>
 
@@ -332,9 +346,9 @@
                                         <div class="demo-radio-button col-lg-offset-2 col-md-offset-2 col-sm-offset-3 col-xs-offset-4 " >
 
                                             <input name="type1" type="radio" class="with-gap" id="radio_3" value="a" <?php if ($fetch[ 'account']==a && $_GET[id]!='' ){?> checked="checked"<?php } ?> <?php if ($fetch[ 'account']!=a && $_GET[id]!='' && $fetch[ 'account']!=''){?> disabled<?php } ?> />
-                                            <label for="radio_3">Regular User</label>
+                                            <label for="radio_3">Nurse</label>
                                             <input name="type1" type="radio" id="radio_4" class="with-gap" value="b" <?php if ($fetch[ 'account']==b && $_GET[id]!='' ){?> checked="checked"<?php } ?> <?php if ($fetch[ 'account']!=b && $_GET[id]!='' && $fetch[ 'account']!='' ){?> disabled<?php } ?> />
-                                            <label for="radio_4">Administrator</label>
+                                            <label for="radio_4">Head Nurse</label>
                                         
                                         </div>
                                         <hr>
@@ -596,6 +610,7 @@
         <script src="../../js/admin.js"></script>
         <script src="../../js/pages/tables/jquery-datatable.js"></script>
         <script src="../../js/pages/forms/advanced-form-elements.js"></script>
+
 
 
         <!-- Demo Js -->

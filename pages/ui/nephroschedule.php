@@ -34,7 +34,7 @@
         <link href="../../plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
 
         <!-- Custom Css -->
-        <link href="../../css/style2.css" rel="stylesheet">
+        <link href="../../css/style4.css" rel="stylesheet">
 
         <!-- mytable Css -->
         <link href="../../css/table.css" rel="stylesheet">
@@ -42,7 +42,8 @@
         <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
         <link href="../../css/themes/theme-indigo.css" rel="stylesheet" />
 
-
+         <!-- Multi Select Css -->
+        <link href="../../plugins/multi-select/css/multi-select.css" rel="stylesheet">
     </head>
 
     <body class="theme-indigo">
@@ -78,7 +79,7 @@
                     <a href="javascript:void(0);" class="bars"></a>
                     <center>
                         <a class="navbar-brand" href="index.html">
-                            <div class="title">Teresita Jalandoni Provincial Hospital <br> Dialysis Department</div>
+                            <div class="title"></div>
                         </a>
                     </center>
 
@@ -186,11 +187,36 @@
                                 </li>
                             </ul>
                         </li>
-                        <li id="reports">
-                            <a href="R.php">
+                          <li id="reports">
+                            <a href="javascript:void(0);" class="menu-toggle">
                                 <i class="material-icons">assignment</i>
                                 <span>Reports</span>
                             </a>
+                            <ul class="ml-menu">
+                                <li id="statistics">
+                            <a href="javascript:void(0);" class="menu-toggle">
+                                <span>Statistics</span>
+                            </a>
+                                    
+                            <ul class="ml-menu">
+                                 <li id="genderstat">
+                                    <a href="report1.php">Gender Statistics</a>
+                                </li>
+                                <li id="agestat">
+                                    <a href="report2.php">Age Statistics</a>
+                                </li>
+                                 <li id="dialysisstat">
+                                    <a href="report3.php">Dialysis Statistics</a>
+                                </li>
+                                </ul>
+                                </li>
+                                <li  id="progressstat">
+                                    <a href="report4.php">Patient Progress Statistics</a>
+                                </li>
+                                <li id="">
+                                    <a href="report5.php">Employee Performance</a>
+                                </li>
+                            </ul>
                         </li>
                         <li>
                            <a href="logout.php">
@@ -244,9 +270,11 @@
                                                     <tr>
                                              
                                                         <th>Name</th>
-                                                        <th>Day</th>
-                                                        <th>Time</th>
-                                                         <th>Status</th>
+                                                        <th>Monday</th>
+                                                        <th>Tuesday</th>
+                                                        <th>Wednesday</th>
+                                                        <th>Thursday</th>
+                                                        <th>Friday</th>
                                                        
                                                     </tr>
                                                 </thead>
@@ -254,7 +282,7 @@
                                                     <?php
                                                             $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
                                                            $query = $conn->query("SELECT *
-                                                           FROM `nephrologist` INNER JOIN `nephrologistschedule` ON `nephrologist`.`nephrologistid` = `nephrologistschedule`.`nephrologistid` WHERE `nephrologistschedule`.`nephrologistschedule_status` = 1") or die(mysqli_error());
+                                                           FROM `nephrologist` INNER JOIN `nephrologistschedule` ON `nephrologist`.`nephrologistid` = `nephrologistschedule`.`nephrologistid`") or die(mysqli_error());
                                                   
                                                            while($fetch = $query ->fetch_array()){        
                                                         ?>
@@ -263,16 +291,22 @@
                                                               <?php echo $fetch['n_fname'].' '.$fetch['n_mname'].' '.$fetch['n_lname']?>
                                                         </td>
                                                        
-                                                          <td>
-                                                            <?php echo $fetch['nephroschedule_day'] ?>
-                                                        </td>
-                                                          <td>
-                                                             <?php echo $fetch['nephroschedule_time'] ?>
+                                                        <td>
+                                                            <?php if($fetch['monday'] == 0) echo "Available" ?>
                                                         </td>
                                                         <td>
-                                                            <?php if($fetch['nephrologistschedule_status'] == 1) echo "active" ?>
-                                                            <?php if($fetch['nephrologistschedule_status'] == 0) echo "Not Active" ?>
+                                                           <?php if($fetch['tuesday'] == 0) echo "Available" ?>
                                                         </td>
+                                                        <td>
+                                                            <?php if($fetch['wednesday'] == 0) echo "Available" ?>
+                                                        </td>
+                                                         <td>
+                                                             <?php if($fetch['thursday'] == 0) echo "Available" ?>
+                                                        </td>
+                                                         <td>
+                                                             <?php if($fetch['friday'] == 0) echo "Available" ?>
+                                                        </td>
+                                                        
                                                     </tr>
                                                     <?php } ?>
                                                 </tbody>
@@ -301,11 +335,9 @@
                                             </h2>
 
                                         </div>
-                                        <div class="body">  
-                                       
+                                        <div class="body">               
                                           <form class="form-horizontal" form method="POST" action="save/savenephroschedule.php">
                                             <div class="row clearfix">
-                                            
                                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 form-control-label">
                                             <label for="email_address_2">Nephrologist Name</label>
                                         </div>
@@ -344,42 +376,54 @@
                                         </div>       
           
                                     </div>
+                                               <div class="col-sm-offset-1">  
+                                            <label for="email_address_2">Available Days :</label>
+                                              </div>
                                               <div class="row clearfix">
-                                        <div class="col-lg-3 col-md-1 col-sm-2 col-xs-3 col-sm-offset-1 form-control-label">
-                                            <label for="email_address_2">Day</label>
-                                        </div>
-                                        <div class="col-lg-3 col-md-1 col-sm-2 col-xs-3 ">
+                                            
 
-                                            <select class="form-control show-tick" name="nephroday_S" id="day_S" title="&nbsp;" >
-                                                <option value="#">&nbsp;</option>
-                                                <option value="Monday" <?php if($fetch['']== 'monday') echo "selected"; ?>
-                                                        >Monday</option>
-                                                 <option value="Tuesday" <?php if($fetch['']== 'tuesday') echo "selected"; ?>
-                                                        >Tuesday</option>
-                                                 <option value="Wednesday" <?php if($fetch['']== 'wednesday') echo "selected"; ?>
-                                                        >Wednesday</option>
-                                                 <option value="Thursday" <?php if($fetch['']== 'thursday') echo "selected"; ?>
-                                                        >Thursday</option>
-                                                 <option value="Friday" <?php if($fetch['']== 'friday') echo "selected"; ?>
-                                                        >Friday</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                         <div class="row clearfix">
-                                        <div class="col-lg-3 col-md-1 col-sm-2 col-xs-3 col-sm-offset-1 form-control-label">
-                                            <label for="email_address_2">Time</label>
-                                        </div>
-                                        <div class="col-lg-3 col-md-1 col-sm-2 col-xs-3">
+                                       
 
-                                            <select class="form-control show-tick" name="nephrotime_S" id="time_S" title="&nbsp;" >
-                                                <option value="#">&nbsp;</option>
-                                                <option value="morning" <?php if($fetch['']== 'morning') echo "selected"; ?>
-                                                        >Morning</option>
-                                                 <option value="afternoon" <?php if($fetch['']== 'afternoon') echo "selected"; ?>
-                                                        >Afternoon</option>
-                                            </select>
+                                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 col-sm-offset-2 ">
+                                           <div class="form-group input-group">
+                                            <input type="checkbox" id="day1" name="day1" class="filled-in" value="Monday"
+                                                   <?php if ($fetch[ 'nephroschedule_day']=='Monday' ){?> checked="checked"<?php } ?>/>
+                                            <label for="day1">Monday</label>         
+                                            </div>
                                         </div>
+                                         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 ">
+                                           <div class="form-group input-group">
+                                            <input type="checkbox" id="day2" name="day2" class="filled-in" value="Monday"
+                                                   <?php if ($fetch[ 'nephroschedule_day']=='Monday' ){?> checked="checked"<?php } ?>/>
+                                            <label for="day2">Tuesday</label>         
+                                            </div>
+                                        </div>
+                                           <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 ">
+                                           <div class="form-group input-group">
+                                            <input type="checkbox" id="day3" name="day3" class="filled-in" value="Monday"
+                                                   <?php if ($fetch[ 'nephroschedule_day']=='Monday' ){?> checked="checked"<?php } ?>/>
+                                            <label for="day3">Wednesday</label>         
+                                            </div>
+                                        </div>
+                                          <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 ">
+                                           <div class="form-group input-group">
+                                            <input type="checkbox" id="day4" name="day4" class="filled-in" value="Monday"
+                                                   <?php if ($fetch[ 'nephroschedule_day']=='Monday' ){?> checked="checked"<?php } ?>/>
+                                            <label for="day4">Thursday</label>         
+                                            </div>
+                                        </div>
+                                         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 ">
+                                           <div class="form-group input-group">
+                                            <input type="checkbox" id="day5" name="day5" class="filled-in" value="Monday"
+                                                   <?php if ($fetch[ 'nephroschedule_day']=='Monday' ){?> checked="checked"<?php } ?>/>
+                                            <label for="day5">Friday</label>         
+                                            </div>
+                                        </div>   
+                                          
+                                             
+                                                  
                                     </div>
+                                       
                                               
                                               
                                               <div class="row clearfix">
@@ -424,7 +468,9 @@
 
         <!-- Waves Effect Plugin Js -->
         <script src="../../plugins/node-waves/waves.js"></script>
-
+        
+        <!-- Multi Select Plugin Js -->
+        <script src="../../plugins/multi-select/js/jquery.multi-select.js"></script>
 
         <script src="../../plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
 
@@ -446,6 +492,7 @@
         <script src="../../js/admin.js"></script>
         <script src="../../js/pages/tables/jquery-datatable.js"></script>
         <script src="../../js/pages/forms/advanced-form-elements.js"></script>
+         <script src="../../js/pages/forms/basic-form-elements.js"></script>
 
 
         <!-- Demo Js -->

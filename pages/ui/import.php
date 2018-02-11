@@ -1,11 +1,11 @@
 <?php 
 include('session.php');   
 $conn = new mysqli("localhost", 'root', '', 'pdmis') or die(mysqli_error());
+date_default_timezone_set('Asia/Manila');
+$date = date("Y-m-d h:i a");    
 
-$date = date("Y-m-d");    
 
-
-$conn->query ("INSERT INTO `maintenance` (`employeeid`, `action`, `m_date`, `name`) VALUES ('$id', 'Import', '$date' ,'$name');") or die(mysqli_error());
+$conn->query ("INSERT INTO `maintenance` (`employeeid`, `action`, `m_date`) VALUES ('$id', 'Import', '$date');") or die(mysqli_error());
 
 
 
@@ -31,6 +31,7 @@ foreach($sql as $query){
 		echo '<tr><tr><br></td></tr>';
 	}
 }
+
 fclose($handle);
 
 

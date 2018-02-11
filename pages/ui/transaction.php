@@ -1,7 +1,7 @@
 ﻿<?php
 require 'session.php';
 require 'queries/treatment_query.php'
-
+        
 ?>
 
     <!DOCTYPE html>
@@ -43,7 +43,7 @@ require 'queries/treatment_query.php'
     </head>
 
     <body class="theme-indigo">
-
+        
         <!-- Page Loader -->
         <div class="page-loader-wrapper">
             <div class="loader">
@@ -81,141 +81,14 @@ require 'queries/treatment_query.php'
 
                 </div>
                    <div class="collapse navbar-collapse" id="navbar-collapse">
-                <ul class="nav navbar-nav navbar-right">
-                    <!-- Call Search -->
-                   
-                    <!-- #END# Call Search -->
-                    <!-- Notifications -->
-                    <li class="dropdown">
-                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button">
-                            <i class="material-icons">notifications</i>
-                            <span class="label-count">2</span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li class="header">NOTIFICATIONS</li>
-                            <li class="body">
-                                <ul class="menu">
-                                    <li>
-                                        <a href="javascript:void(0);">
-                                            <div class="icon-circle bg-red">
-                                                <i class="material-icons">warning</i>
-                                            </div>
-                                           <div class="menu-info">
-                                                <h4><b>Patient</b> weight gained: 15kg</h4>
-                                                <p>
-                                                    <i class="material-icons">access_time</i> a minute ago
-                                                </p>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    
-                                    <li>
-                                        <a href="javascript:void(0);">
-                                            <div class="icon-circle bg-light-green">
-                                                <i class="material-icons">priority_high</i>
-                                            </div>
-                                            <div class="menu-info">
-                                                <h4><b>John</b> missed the dialysis</h4>
-                                                <p>
-                                                    <i class="material-icons">perm_contact_calendar</i> <?php echo date('l')?>
-                                                </p>
-                                            </div>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="footer">
-                                <a href="javascript:void(0);">View All Notifications</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <!-- #END# Notifications -->
-                    <!-- Tasks -->
-                    <li class="dropdown">
-                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button">
-                            <i class="material-icons">flag</i>
-                            <span class="label-count">5</span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li class="header">TASKS</li>
-                            <li class="body">
-                                <ul class="menu tasks">
-                                    <li>
-                                        <a href="javascript:void(0);">
-                                            <h4>
-                                                John David
-                                                <small>32%</small>
-                                            </h4>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-pink" role="progressbar" aria-valuenow="1" aria-valuemin="0" aria-valuemax="5" style="width: 32%">
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0);">
-                                            <h4>
-                                                Relson Magallanes
-                                                <small>45%</small>
-                                            </h4>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-cyan" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 45%">
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0);">
-                                            <h4>
-                                                David Mellow
-                                                <small>54%</small>
-                                            </h4>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-teal" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 54%">
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0);">
-                                            <h4>
-                                                Alson Megan
-                                                <small>65%</small>
-                                            </h4>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-orange" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 65%">
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0);">
-                                            <h4>
-                                                Jonahs Daniel
-                                                <small>92%</small>
-                                            </h4>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-purple" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 92%">
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="footer">
-                                <a href="javascript:void(0);">View All Tasks</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <!-- #END# Tasks -->
-                   
-                </ul>
+            
             </div>
             </div>
         </nav>
         <!-- #Top Bar -->
         <section>
             <!-- Left Sidebar -->
+        <?php include ('modals/dialysisreport_modal.php')?>
             <aside id="leftsidebar" class="sidebar">
                 <!-- User Info -->
                 <div class="user-info">
@@ -270,6 +143,9 @@ require 'queries/treatment_query.php'
                                 <li class="" id="nephrologist">
                                     <a href="nephrologist.php">Nephrologist</a>
                                 </li>
+                                <li id="descriptors">
+                                    <a href="D.php">Descriptors</a>
+                                </li>
                             <li id="profile">
                             <a href="javascript:void(0);" class="menu-toggle">
                                 <span>Schedule</span>
@@ -296,34 +172,47 @@ require 'queries/treatment_query.php'
                                 <li id="userprofile">
                                     <a href="UserProfile.php">User Profile</a>
                                 </li>
-                                <li id="descriptors">
-                                    <a href="D.php">Descriptors</a>
-                                </li>
                                 <li id="systemmaintenance">
                                     <a href="maintenance.php">System Maintenance</a>
                                 </li>
                             </ul>
                         </li>
 
-                        <li id="reports">
+                         <li id="reports">
                             <a href="javascript:void(0);" class="menu-toggle">
                                 <i class="material-icons">assignment</i>
                                 <span>Reports</span>
                             </a>
                             <ul class="ml-menu">
-                                <li id="">
-                                    <a href="report2.php">Trend Statistics</a>
+                                <li id="statistics">
+                            <a href="javascript:void(0);" class="menu-toggle">
+                                <span>Statistics</span>
+                            </a>
+                            <ul class="ml-menu">
+                                 <li id="genderstat">
+                                    <a href="report1.php">Gender Statistics</a>
                                 </li>
-                                <!--<li id="">
-                                    <a href="report3.php">Patient Progress Statistics</a>
-                                </li>-->
-
+                                <li id="agestat">
+                                    <a href="report2.php">Age Statistics</a>
+                                </li>
+                                 <li id="dialysisstat">
+                                    <a href="report3.php">Dialysis Statistics</a>
+                                </li>
+                                </ul>
+                                </li>
+                                <li  id="progressstat">
+                                    <a data-toggle="modal" data-target="#dialysisreport_modal" >
+                                            Dialysis Report</a>
+                                </li>
+                                <li id="">
+                                    <a href="report5.php">Employee Performance</a>
+                                </li>
                             </ul>
                         </li>
                         <li>
                             <a href="logout.php">
                                 <i class="material-icons">input</i>
-                                <span>Logout</span>
+                                <span>Exit</span>
                             </a>
                         </li>
 
@@ -344,7 +233,7 @@ require 'queries/treatment_query.php'
             <!-- Right Sidebar -->
             <aside id="rightsidebar" class="right-sidebar">
                 <a> <i class="material-icons">input</i></a>
-
+                
                 <!-- tab content (header right)-->
                 <!-- tab content -->
             </aside>
@@ -364,10 +253,10 @@ require 'queries/treatment_query.php'
 
                             </div>
                             <div class="body">
-                                <form class="form-horizontal" form method="POST" action="savehemotreatment.php?id=<?php echo $_GET[id]." | ".'no'?>">
+                                <form class="form-horizontal" form method="POST" action="save/savehemotreatment.php?id=<?php echo $_GET[id]." | ".'no'?>">
                                     <div class="row clearfix">
                                         <div class="col-md-2 col-sm-5 col-xs-4 form-control-label">
-                                            <label>Hospital ID</label>
+                                            <label>Hospital Id</label>
                                         </div>
                                         <div class="col-lg-2 col-md-2 col-sm-1 col-xs-1 ">
                                             <div class="input-group">
@@ -386,12 +275,12 @@ require 'queries/treatment_query.php'
                                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
                                             <div class="form-group">
                                                 <div class="form-line">
-                                                        <select class="form-control show-tick" name="technician" id="technician" title="&nbsp" required>
+                                                        <select class="form-control show-tick" data-live-search="true" name="technician" id="technician" title="&nbsp" required>
                                          
                                                         <?php 
 
                                                           $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
-                                                          $query = $conn->query("SELECT * FROM `employeeprofile`") or die(mysqli_error());
+                                                          $query = $conn->query("SELECT * FROM `employeeprofile` WHERE `status` = 1") or die(mysqli_error());
                                                     
                                                         while ($row = $query->fetch_array()){
 
@@ -415,12 +304,12 @@ require 'queries/treatment_query.php'
                                     <hr>
                                     <div class="row clearfix">
                                         <div class="col-md-2 col-sm-5 col-xs-4 form-control-label">
-                                            <label>Full Name</label>
+                                            <label>FullName</label>
                                         </div>
                                         <div class="col-lg-5 col-md-5 col-sm-1 col-xs-1 ">
                                             <div class="form-group">
                                                 <div class="form-line">
-                                                    <input type="text" class="form-control" value="<?php echo $fetch1['P_Fname'].' '.$fetch1['P_Mname'].' '.$fetch1['P_Lname']?>" name="employeeid" value="" id="employeeid" readonly>
+                                                    <input type="text" class="form-control" value="<?php echo $fetch1['P_Fname'].' '.$fetch1['P_Mname'].' '.$fetch1['P_Lname']?>" name="" id="" readonly>
                                                 </div>
                                             </div>
                                         </div>
@@ -434,7 +323,7 @@ require 'queries/treatment_query.php'
                                         <div class="col-lg-1 col-md-2 col-sm-1 col-xs-1 ">
                                             <div class="form-group">
                                                 <div class="form-line">
-                                                    <input type="text" class="form-control" name="employeeid" value="<?php echo $fetch1['P_Age']?>" id="employeeid" readonly>
+                                                    <input type="text" class="form-control" name="" value="<?php echo $fetch1['P_Age']?>" id="employeeid" readonly>
                                                 </div>
                                             </div>
                                         </div>
@@ -444,7 +333,7 @@ require 'queries/treatment_query.php'
                                         <div class="col-lg-2 col-md-2 col-sm-1 col-xs-1 ">
                                             <div class="form-group">
                                                 <div class="form-line">
-                                                    <input type="text" class="form-control" name="employeeid" value="<?php echo $fetch1['P_Sex']?>" id="employeeid" readonly>
+                                                    <input type="text" class="form-control" name="" value="<?php echo $fetch1['P_Sex']?>" id="employeeid" readonly>
                                                 </div>
                                             </div>
                                         </div>
@@ -454,7 +343,7 @@ require 'queries/treatment_query.php'
                                         <div class="col-lg-2 col-md-2 col-sm-1 col-xs-1 ">
                                             <div class="form-group">
                                                 <div class="form-line">
-                                                    <input type="text" class="form-control" name="employeeid" value="<?php echo $fetch1['P_CivilStatus']?>" id="employeeid" readonly>
+                                                    <input type="text" class="form-control" name="" value="<?php echo $fetch1['P_CivilStatus']?>" id="employeeid" readonly>
                                                 </div>
                                             </div>
                                         </div>
@@ -467,7 +356,7 @@ require 'queries/treatment_query.php'
                                         <div class="col-lg-2 col-md-2 col-sm-1 col-xs-1 ">
                                             <div class="form-group">
                                                 <div class="form-line">
-                                                    <input type="text" class="form-control" name="employeeid" value="" id="employeeid" readonly>
+                                                    <input type="text" class="form-control" name="" value="<?php if($_GET[id] != '') echo $fetch3['targetwt']." Kg"?>" id="" readonly>
                                                 </div>
                                             </div>
                                         </div>
@@ -477,7 +366,7 @@ require 'queries/treatment_query.php'
                                         <div class="col-lg-2 col-md-2 col-sm-1 col-xs-1 ">
                                             <div class="form-group">
                                                 <div class="form-line">
-                                                    <input type="text" class="form-control" name="duration" value="<?php echo $fetch2['treatment_duration']?>" id="duration">
+                                                    <input type="text" class="form-control" name="" value="<?php echo $fetch3['duration']?>" id="">
                                                 </div>
                                             </div>
                                         </div>
@@ -487,7 +376,7 @@ require 'queries/treatment_query.php'
                                         <div class="col-lg-2 col-md-2 col-sm-1 col-xs-1 ">
                                             <div class="form-group">
                                                 <div class="form-line">
-                                                    <input type="text" class="form-control" name="dates" value="<?php echo $fetch2['treatment_date'] ?>" id="dates">
+                                                    <input type="text" class="form-control" name="date" value="<?php echo date("Y-m-d"); ?>" id="date" readonly>
                                                 </div>
                                             </div>
                                         </div>
@@ -499,7 +388,7 @@ require 'queries/treatment_query.php'
                                         <div class="col-lg-2 col-md-2 col-sm-1 col-xs-1 ">
                                             <div class="form-group">
                                                 <div class="form-line">
-                                                    <input type="text" class="form-control" name="weightgain" value=" <?php if($fetch2['weight'] != 0) echo $fetch2['weight']-$fetch3['weight']; ?>" id="weightgain" placeholder="haha" readonly>   
+                                                    <input type="text" class="form-control" name="weightgain" value="<?php if($fetch2['preweight'] != 0) echo $fetch2['preweight']-$fetch3['targetwt']." Kg"; ?>" id="weightgain" readonly>   
                                                 </div>
                                             </div>
                                         </div>
@@ -519,7 +408,7 @@ require 'queries/treatment_query.php'
                                         <div class="col-lg-2 col-md-2 col-sm-1 col-xs-1 ">
                                             <div class="form-group">
                                                 <div class="form-line">
-                                                    <input type="text" class="form-control" name="dialyzer" value="<?php echo $fetch2['dialyzer']?>" id="dialyzer">
+                                                    <input type="text" class="form-control" name="dialyzer" value="<?php echo $fetch3['dialyzer']?>" id="dialyzer" readonly>
                                                 </div>
                                             </div>
                                         </div>
@@ -528,20 +417,23 @@ require 'queries/treatment_query.php'
                                         <div class="col-md-2 col-sm-5 col-xs-4 form-control-label">
                                             <label>Pre Dialysis WT.</label>
                                         </div>
-                                        <div class="col-lg-2 col-md-2 col-sm-1 col-xs-1 ">
+                                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 ">
                                             <div class="form-group">
                                                 <div class="form-line">
-                                                    <input type="text" class="form-control" name="predialysiswt" value="<?php echo $fetch3['weight']?>" id="predialysiswt" readonly>
+                                                    <input type="text" class="form-control" name="preweight" value="<?php if($fetch2['preweight'] != '') echo $fetch2['preweight']." Kg"?>" id="predialysiswt">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-md-1 col-sm-5 col-xs-4 form-control-label">
                                             <label>Access</label>
                                         </div>
-                                        <div class="col-lg-2 col-md-2 col-sm-1 col-xs-1 ">
+                                          <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
                                             <div class="form-group">
                                                 <div class="form-line">
-                                                    <input type="text" class="form-control" name="access" value="<?php echo $fetch2['access']?>" id="access">
+                                                      <select class="form-control show-tick" name="access" id="access" title="&nbsp" required>
+                                                        <option value="L AVF" <?php if($fetch2['access']=='L AVF') echo selected?>>L AVF</option>
+                                                        <option value="R AVF"  <?php if($fetch2['access']=='R AVF') echo selected?>>R AVF</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
@@ -563,7 +455,7 @@ require 'queries/treatment_query.php'
                                         <div class="col-lg-2 col-md-2 col-sm-1 col-xs-1 ">
                                             <div class="form-group">
                                                 <div class="form-line">
-                                                    <input type="text" class="form-control" name="weight" value="<?php echo $fetch2['weight']?>" id="weight">
+                                                    <input type="text" class="form-control" name="postweight" value="<?php if($fetch2['postweight'] != '') echo $fetch2['postweight']." Kg"?>" id="weight">
                                                 </div>
                                             </div>
                                         </div>
@@ -589,14 +481,12 @@ require 'queries/treatment_query.php'
                                         </div>
                                     </div>
                                     <hr>
-
                                     <div class="row">
-
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
                                             <?php
-                                             // $date = date("Y-m-d");                
-                                              $query = $conn->query("SELECT * FROM `nephronotesorder` WHERE `Hospital_Id` = '$_GET[id]' && `notes_order_date` = '$dateni'") or die(mysqli_error());
+                                              $date = date("Y-m-d");                
+                                              $query = $conn->query("SELECT * FROM `nephronotesorder` WHERE `Hospital_Id` = '$_GET[id]' && `notes_order_date` = '$date'") or die(mysqli_error());
                                               $fetch = $query ->fetch_array();
                                     
                                                 ?>
@@ -606,9 +496,7 @@ require 'queries/treatment_query.php'
                                                         <tr>
                                                             <th>Physician's Notes</th>
                                                             <th>Physician's Order</th>
-
                                                         </tr>
-
                                                     </thead>
                                                     <?php 
                                                                $nid = $fetch['nephrologistid'];
@@ -621,10 +509,10 @@ require 'queries/treatment_query.php'
                                                 ?>
                                                     <tbody>
                                                         <?php   
-                                                            
-                                                           // $date = date("Y-m-d");
+                                                            date_default_timezone_set('Asia/Manila');
+                                                            $date = date("Y-m-d");
                                                             $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
-                                                           $query = $conn->query("SELECT * FROM `nephronotesorder` WHERE `Hospital_Id` = '$_GET[id]' && `notes_order_date` = '$dateni' ORDER BY `notes_order_id`") or die(mysqli_error());
+                                                           $query = $conn->query("SELECT * FROM `nephronotesorder` WHERE `Hospital_Id` = '$_GET[id]' && `notes_order_date` = '$date' ORDER BY `notes_order_id`") or die(mysqli_error());
                                                            $id = $fetch['Hospital_Id'];
                                                            
                                                            while($fetch = $query ->fetch_array()){
@@ -680,9 +568,9 @@ require 'queries/treatment_query.php'
                                                 </thead>
                                                 <tbody>
                                                     <?php
-                                                           // $date = date("Y-m-d");
+                                                            $date = date("Y-m-d");
                                                             $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
-                                                           $query = $conn->query("SELECT * FROM `initialtestresult` WHERE `Hospital_Id` = '$_GET[id]' && `initialtest_date` = '$dateni' ORDER BY `initialtestresult_id`") or die(mysqli_error());
+                                                           $query = $conn->query("SELECT * FROM `initialtestresult` WHERE `Hospital_Id` = '$_GET[id]' && `initialtest_date` = '$date' ORDER BY `initialtestresult_id`") or die(mysqli_error());
                                                            $id = $fetch['Hospital_Id'];
                                                            
                                                            while($fetch = $query ->fetch_array()){
@@ -739,9 +627,9 @@ require 'queries/treatment_query.php'
                                                 </thead>
                                                 <tbody>
                                                     <?php
-                                                           // $date = date("Y-m-d");
+                                                            $date = date("Y-m-d");
                                                             $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
-                                                           $query = $conn->query("SELECT * FROM `nursenotes` WHERE `Hospital_Id` = '$_GET[id]' && `nurse_notes_date` = '$dateni' ORDER BY `nurse_notes_id`") or die(mysqli_error());
+                                                           $query = $conn->query("SELECT * FROM `nursenotes` WHERE `Hospital_Id` = '$_GET[id]' && `nurse_notes_date` = '$date' ORDER BY `nurse_notes_id`") or die(mysqli_error());
                                                            $id = $fetch['Hospital_Id'];
                                                            
                                                            while($fetch = $query ->fetch_array()){
@@ -750,17 +638,19 @@ require 'queries/treatment_query.php'
                                                             <td style="white-space: normal">
                                                                 <a href="#editnursesnotes<?php echo $fetch['nurse_notes_id'];?>" data-toggle="modal" data-target="#editnursesnotes<?php echo $fetch['nurse_notes_id'];?>" style="color: black;">
                                                                     <p style="word-wrap: break-word;"> (F) :
-                                                                        <?php echo $fetch['focus']?> 
-                                                                        <?php if($fetch['data'] != "" ) echo"(D) : ".$fetch['data']; ?>
-                                                                        <br>(A) :
+                                                                        <?php echo $fetch['focus']?><br> (D) :
+                                                                        <?php echo $fetch['data']?><br> (A) :
                                                                         <?php echo $fetch['action']?><br> (R) :
                                                                         <?php echo $fetch['resolution']?>
                                                                     </p>
                                                                 </a>
                                                             </td>
+
+
                                                         </tr>
                                                         <?php
                                                            }
+
                                                         ?>
                                                 </tbody>
 
@@ -786,9 +676,9 @@ require 'queries/treatment_query.php'
                                                 <tbody>
                                                     <?php
                                                            
-                                                          //  $date = date("Y-m-d");
+                                                            $date = date("Y-m-d");
                                                             $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
-                                                           $query = $conn->query("SELECT * FROM `machineresult` WHERE `Hospital_Id` = '$_GET[id]' && `m_date` = '$dateni' ORDER BY `machineresult_id`") or die(mysqli_error());
+                                                           $query = $conn->query("SELECT * FROM `machineresult` WHERE `Hospital_Id` = '$_GET[id]' && `m_date` = '$date' ORDER BY `machineresult_id`") or die(mysqli_error());
                                                            $id = $fetch['Hospital_Id'];
                                                            
                                                            while($fetch = $query ->fetch_array()){
@@ -838,20 +728,23 @@ require 'queries/treatment_query.php'
                                         </div>
                                     </div>
 
-
+                        
                                     <div class="row clearfix">
-                                        <div class="col-lg-offset-7 col-xs-offset-7">
+                                      
+                                        <div class="col-lg-offset-8 col-xs-offset-8">
                                             <a data-toggle="modal" class="btn btn-primary m-t-15 waves-effect" 
-                                               
-                                              
-                                              data-target="#smallModal">
+                                                
+                                               <?php if($_GET[id]=='') {?> disabled="disabled"<?php }  ?>
+                                                <?php if($status == 0) {?> disabled="disabled"<?php }  ?>
+                                                <?php if($day != date("l")) {?> disabled="disabled"<?php }  ?>
+                                               <?php if($day == date("l") && $status == 1 ) {?> data-target="#smallModal" <?php }  ?>>
                                              <i class="material-icons">mode_edit</i>Update</a>&nbsp;
-                                            <button type="button" class="btn btn-primary m-t-15 waves-effect" onclick="location.href='transaction.php'"> <i class="material-icons">description</i>New</button> &nbsp;
-                                           
-                                            <button type="button" class="btn btn-primary m-t-15 waves-effect" onclick="location.href='print_transaction.php?id=<?php echo $_GET[id]?>'" ><i class="material-icons">visibility</i>Preview</button> &nbsp;
-                                            
+                                            <button type="button" class="btn btn-primary m-t-15 waves-effect" onclick="location.href='transaction.php'" <?php if($_GET[id]=='' ) {?> disabled="disabled"<?php }  ?>> <i class="material-icons">description</i>New</button> &nbsp;
                                             <button class="btn btn-primary m-t-15 waves-effect" 
-                                             name="treatment_infos" type="submit" ><i class="material-icons">save</i>Save</button> &nbsp;
+                                            <?php if($_GET[id]=='' ) {?> disabled="disabled"<?php }  ?>
+                                            <?php if($status == 0) {?> disabled="disabled"<?php }  ?>
+                                            <?php if($day != date("l")) {?> disabled="disabled"<?php }  ?>        
+                                             name="treatment_infos" type="submit"><i class="material-icons">save</i>Save</button> &nbsp;
                                         </div>
                                     </div>
                                 </form>
@@ -891,7 +784,7 @@ require 'queries/treatment_query.php'
                                             <div role="tabpanel" class="tab-pane fade in active" id="physician">
                                                 <!-- #physician Notes/Order -->
 
-                                                <form class="form-horizontal" form method="POST" action="savehemotreatment.php?id=<?php echo $_GET[id]." | "?><?php if($notes_order_id == "") echo "null"; ?><?php if($notes_order_id != "") echo $notes_order_id; ?>">
+                                                <form class="form-horizontal" form method="POST" action="save/savehemotreatment.php?id=<?php echo $_GET[id]." | "?><?php if($notes_order_id == "") echo "null"; ?><?php if($notes_order_id != "") echo $notes_order_id; ?>">
                                                     
                                                     <div class="row clearfix">
                                                         <div class="col-lg-3 col-md-1 col-sm-2 col-xs-3 form-control-label">
@@ -899,6 +792,7 @@ require 'queries/treatment_query.php'
                                                         </div>
                                                         <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 form-control-label" style="margin-bottom:0px;">
                                                             <div class="form-group">
+
 
                                                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                                     <div class="form-group">
@@ -937,7 +831,7 @@ require 'queries/treatment_query.php'
                                                         <div class="row clearfix">
 
                                                             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label">
-                                                                <label>Physician's Notes</label>
+                                                                <label>Physicians Notes</label>
                                                             </div>
                                                             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 col-md-8  form-control-label">
                                                                 <div class="form-group">
@@ -974,7 +868,7 @@ require 'queries/treatment_query.php'
 
                                             <div role="tabpanel" class="tab-pane fade" id="nurses">
                                                
-                                                    <form class="form-horizontal" form method="POST" action="savehemotreatment.php?id=<?php echo $_GET[id]." | "."null"?>">
+                                                    <form class="form-horizontal" form method="POST" action="save/savehemotreatment.php?id=<?php echo $_GET[id]." | "."null"?>">
 
 
                                                         <div class="row clearfix">
@@ -982,11 +876,11 @@ require 'queries/treatment_query.php'
                                                                 <label>Focus</label>
                                                             </div>
                                                             <div class="col-lg-8 col-md-1 col-sm-6 col-xs-8 col-md-3  form-control-label">
-                                                                <div class="form-group">
+                                                                
                                                                     <div class="form-line">
                                                                         <textarea rows="2" name="focus" value="focus" class="form-control no-resize auto-growth"></textarea>
                                                                     </div>
-                                                                </div>
+                                                           
                                                             </div>
                                                         </div>
                                                         <div class="row clearfix">
@@ -994,11 +888,11 @@ require 'queries/treatment_query.php'
                                                                 <label>Data</label>
                                                             </div>
                                                             <div class="col-lg-8 col-md-1 col-sm-6 col-xs-8 col-md-3  form-control-label">
-                                                                <div class="form-group">
+                                                               
                                                                     <div class="form-line">
                                                                         <textarea rows="2" name="data" value="data" class="form-control no-resize auto-growth"></textarea>
                                                                     </div>
-                                                                </div>
+                                                              
                                                             </div>
                                                         </div>
                                                         <div class="row clearfix">
@@ -1006,11 +900,11 @@ require 'queries/treatment_query.php'
                                                                 <label>Action</label>
                                                             </div>
                                                             <div class="col-lg-8 col-md-1 col-sm-6 col-xs-8 col-md-3  form-control-label">
-                                                                <div class="form-group">
+                                                               
                                                                     <div class="form-line">
                                                                         <textarea rows="2" name="action" value="action" class="form-control no-resize auto-growth"></textarea>
                                                                     </div>
-                                                                </div>
+                                                               
                                                             </div>
                                                         </div>
                                                         <div class="row clearfix">
@@ -1018,11 +912,11 @@ require 'queries/treatment_query.php'
                                                                 <label>Resolution</label>
                                                             </div>
                                                             <div class="col-lg-8 col-md-1 col-sm-6 col-xs-8 col-md-3  form-control-label">
-                                                                <div class="form-group">
+                                                                
                                                                     <div class="form-line">
                                                                         <textarea rows="2" name="resolution" value="resolution" class="form-control no-resize auto-growth"></textarea>
                                                                     </div>
-                                                                </div>
+                                                              
                                                             </div>
                                                         </div>
 
@@ -1037,42 +931,40 @@ require 'queries/treatment_query.php'
                                             </div>
                                             <div role="tabpanel" class="tab-pane fade" id="itest">
                                             
-                                                <form class="form-horizontal" form method="POST" action="savehemotreatment.php?id=<?php echo $_GET[id]." | "?><?php if($itest_id == "") echo "null"; ?><?php if($itest_id != "") echo $itest_id; ?>">
-
-                                                     <div class="row clearfix">
-                                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 form-control-label">
-                                                            <label>time</label>
-                                                        </div>
-                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 col-md-3  form-control-label">
-                                                            <div class="form-group">
-                                                                <div class="form-line">
-                                                                    <input type="text" id="time" name="time" class="form-control" placeholder="" value="<?php echo $fetch5['initialtest_time']?>" autofocus>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                <form class="form-horizontal" form method="POST" action="save/savehemotreatment.php?id=<?php echo $_GET[id]." | "?><?php if($itest_id == "") echo "null"; ?><?php if($itest_id != "") echo $itest_id; ?>">
+                                                    <?php
+                                                    $ibloodpressure = $fetch5['bloodpressure'];
+                                                    list($ib1 ,$ib2) = explode(" / ", $ibloodpressure);
+                                                    ?>
                                                     <div class="row clearfix">
                                                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 form-control-label">
                                                             <label>Initial Temperature</label>
                                                         </div>
-                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 col-md-3  form-control-label">
-                                                            <div class="form-group">
+                                                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 col-md-2  form-control-label">
+                                                           
                                                                 <div class="form-line">
-                                                                    <input type="text" id="initialtemp" name="initialtemp" class="form-control" placeholder="" value="<?php echo $fetch5['initialtemperature']?>" autofocus>
+                                                                    <input type="number" id="initialtemp" name="initialtemp" class="form-control" placeholder="" value="<?php echo $fetch5['initialtemperature']?>" autofocus>
                                                                 </div>
-                                                            </div>
+                                                           
                                                         </div>
                                                     </div>
                                                     <div class="row clearfix">
                                                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 form-control-label">
                                                             <label>Blood Pressure</label>
                                                         </div>
-                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 col-md-3  form-control-label">
-                                                            <div class="form-group">
+                                                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 col-md-2  form-control-label">
+                                                            
                                                                 <div class="form-line">
-                                                                    <input type="text" id="bloodpressure" name="bloodpressure" class="form-control" placeholder="" value="<?php echo $fetch5['bloodpressure']?>">
+                                                                    <input type="number" id="isdp" name="isbp" class="form-control" placeholder="" value="<?php echo $ib1 ?>">
                                                                 </div>
-                                                            </div>
+                                                            
+                                                        </div>
+                                                          <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 col-md-2  form-control-label">
+                                                            
+                                                                <div class="form-line">
+                                                                    <input type="text" id="idbp" name="idbp" class="form-control" placeholder="" value="<?php echo $ib2 ?>">
+                                                                </div>
+                                                        
                                                         </div>
                                                     </div>
                                                     <div class="row clearfix">
@@ -1080,11 +972,11 @@ require 'queries/treatment_query.php'
                                                             <label>Cardiac Rate</label>
                                                         </div>
                                                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 col-md-3  form-control-label">
-                                                            <div class="form-group">
+                                                            
                                                                 <div class="form-line">
                                                                     <input type="text" id="cardiacrate" name="cardiacrate" class="form-control" placeholder="" value="<?php echo $fetch5['cardiacrate']?>">
                                                                 </div>
-                                                            </div>
+                                                         
                                                         </div>
                                                     </div>
                                                     <div class="row clearfix">
@@ -1092,11 +984,11 @@ require 'queries/treatment_query.php'
                                                             <label>Repulsive Rate</label>
                                                         </div>
                                                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 col-md-3  form-control-label">
-                                                            <div class="form-group">
+                                                           
                                                                 <div class="form-line">
                                                                     <input type="text" id="repulsiverate" name="repulsiverate" class="form-control" placeholder="" value="<?php echo $fetch5['repulsiverate']?>">
                                                                 </div>
-                                                            </div>
+                                                           
                                                         </div>
                                                     </div>
 
@@ -1112,30 +1004,26 @@ require 'queries/treatment_query.php'
                                             </div>
                                             <div role="tabpanel" class="tab-pane fade" id="machinetest">
 
-                                                <form class="form-horizontal" form method="POST" action="savehemotreatment.php?id=<?php echo $_GET[id]." | ".'null'?>">
-                                                      <div class="row clearfix">
-                                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 form-control-label">
-                                                            <label>time</label>
-                                                        </div>
-                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 col-md-3  form-control-label">
-                                                            <div class="form-group">
-                                                                <div class="form-line">
-                                                                    <input type="text" id="time" name="time" class="form-control" placeholder="" value="<?php echo $fetch5['m_time']?>" autofocus>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                <form class="form-horizontal" form method="POST" action="save/savehemotreatment.php?id=<?php echo $_GET[id]." | ".'null'?>">
 
+                                                    
                                                     <div class="row clearfix">
                                                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 form-control-label">
                                                             <label>Blood Pressure</label>
                                                         </div>
-                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 col-md-3  form-control-label">
-                                                            <div class="form-group">
+                                                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 col-md-2  form-control-label">
+                                                            
                                                                 <div class="form-line">
-                                                                    <input type="text" id="bloodpressure" name="bloodpressure" class="form-control" placeholder="" value="">
+                                                                    <input type="text" id="msdp" name="msdp" class="form-control" placeholder="" value="">
                                                                 </div>
-                                                            </div>
+                                                            
+                                                        </div>
+                                                          <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 col-md-2  form-control-label">
+                                                            
+                                                                <div class="form-line">
+                                                                    <input type="text" id="mdbp" name="mdbp" class="form-control" placeholder="" value="">
+                                                                </div>
+                                                        
                                                         </div>
                                                     </div>
                                                     <div class="row clearfix">
@@ -1235,8 +1123,10 @@ require 'queries/treatment_query.php'
 
                                                 <tbody>
                                                     <?php
+                                                             date_default_timezone_set('Asia/Manila');
+                                                             $date = date("l");  
                                                             $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
-                                                           $query = $conn->query("SELECT * FROM `patientprofile` INNER JOIN `patientschedule` ON `patientprofile`.`Hospital_Id` = `patientschedule`.`Hospital_Id` WHERE `patientschedule`.`treatment_status` = 1") or die(mysqli_error());
+                                                           $query = $conn->query("SELECT * FROM `patientprofile` INNER JOIN `patientschedule` ON `patientprofile`.`Hospital_Id` = `patientschedule`.`Hospital_Id` WHERE `patientschedule`.`treatment_day` = '$date' && `P_Status` = '1'") or die(mysqli_error());
                                                            $id = $fetch['Hospital_Id'];
                                                            while($fetch = $query ->fetch_array()){
                                                         ?>
@@ -1282,13 +1172,15 @@ require 'queries/treatment_query.php'
                                     <div class="header bg-indigo">
                                         <h2>
                                             Update Record
+
                                             <a href=""><i class="material-icons pull-right" data-dismiss="modal">clear</i></a>
                                         </h2>
+
                                     </div>
                                     <div class="body">
 
                                         <ul class="nav nav-tabs tab-nav-right" role="tablist">
-                                            <li role="presentation" class="active"><a href="#physician" data-toggle="tab">Physician's Notes/Order</a></li>
+                                            <li role="presentation" class="active"><a href="#physician" data-toggle="tab">Physicians Notes/Order</a></li>
                                             <li role="presentation" class="disabled"><a>Nurses Notes</a></li>
                                             <li role="presentation" class="disabled"><a>Initial Test</a></li>
                                             <li role="presentation" class="disabled"><a>Machine Result</a></li>
@@ -1404,19 +1296,7 @@ require 'queries/treatment_query.php'
 
                                             <div role="tabpanel" class="tab-pane fade in active" id="itest">
 
-                                                <form class="form-horizontal" form method="POST" action="savehemotreatment.php?id=<?php echo $_GET[id]." | ".$fetch5['initialtestresult_id']?>">
-                                                     <div class="row clearfix">
-                                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 form-control-label">
-                                                            <label>time</label>
-                                                        </div>
-                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 col-md-3  form-control-label">
-                                                            <div class="form-group">
-                                                                <div class="form-line">
-                                                                    <input type="text" id="time" name="time" class="form-control" placeholder="" value="<?php echo $fetch5['initialtest_time']?>" autofocus>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                <form class="form-horizontal" form method="POST" action="save/savehemotreatment.php?id=<?php echo $_GET[id]." | ".$fetch5['initialtestresult_id']?>">
                                                     <div class="row clearfix">
                                                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 form-control-label">
                                                             <label>Initial Temperature</label>
@@ -1486,9 +1366,9 @@ require 'queries/treatment_query.php'
                 </div>
             </div>
             <?php
-            // $date = date("Y-m-d");
+             $date = date("Y-m-d");
              $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
-             $query = $conn->query("SELECT * FROM `machineresult` WHERE `Hospital_Id` = '$_GET[id]' && `m_date` = '$dateni' ORDER BY `machineresult_id`") or die(mysqli_error());
+             $query = $conn->query("SELECT * FROM `machineresult` WHERE `Hospital_Id` = '$_GET[id]' && `m_date` = '$date' ORDER BY `machineresult_id`") or die(mysqli_error());
               while($fetch = $query ->fetch_array()){
                                                         ?>
                 <div class="modal fade" id="editmachinetest<?php echo $fetch['machineresult_id'];?>" role="dialog">
@@ -1518,31 +1398,30 @@ require 'queries/treatment_query.php'
                                                 <!-- #the 2nd query is to show the content of notes/order of certain patient -->
                                                 <div role="tabpanel" class="tab-pane fade in active" id="machinetest">
 
-                                                    <form class="form-horizontal" form method="POST" action="savehemotreatment.php?id=<?php echo $_GET[id]." | ".$fetch['machineresult_id']?>">
+                                                    <form class="form-horizontal" form method="POST" action="save/savehemotreatment.php?id=<?php echo $_GET[id]." | ".$fetch['machineresult_id']?>">
+                                                        <?php
+                                                    $ibloodpressure = $fetch['m_bloodpressure'];
+                                                    list($mb1 ,$mb2) = explode(" / ", $ibloodpressure);
+                                                    ?>
 
-                                                         <div class="row clearfix">
-                                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 form-control-label">
-                                                            <label>time</label>
-                                                        </div>
-                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 col-md-3  form-control-label">
-                                                            <div class="form-group">
-                                                                <div class="form-line">
-                                                                    <input type="text" id="time" name="time" class="form-control" placeholder="" value="<?php echo $fetch['m_time']?>" autofocus>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
                                                         <div class="row clearfix">
                                                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 form-control-label">
                                                                 <label>Blood Pressure</label>
                                                             </div>
-                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 col-md-3  form-control-label">
-                                                                <div class="form-group">
-                                                                    <div class="form-line">
-                                                                        <input type="text" id="bloodpressure" name="bloodpressure" class="form-control" placeholder="" value="<?php echo $fetch['m_bloodpressure'];?>" autofocus>
-                                                                    </div>
+                                                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 col-md-2  form-control-label">
+                                                            
+                                                                <div class="form-line">
+                                                                    <input type="number" id="msdp" name="msbp" class="form-control" placeholder="" value="<?php echo $mb1 ?>">
                                                                 </div>
-                                                            </div>
+                                                            
+                                                        </div>
+                                                          <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 col-md-2  form-control-label">
+                                                            
+                                                                <div class="form-line">
+                                                                    <input type="text" id="mdbp" name="mdbp" class="form-control" placeholder="" value="<?php echo $mb2 ?>">
+                                                                </div>
+                                                        
+                                                        </div>
                                                         </div>
                                                         <div class="row clearfix">
                                                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 form-control-label">
@@ -1617,9 +1496,9 @@ require 'queries/treatment_query.php'
 
 
                 <?php
-              //  $date = date("Y-m-d");
+                $date = date("Y-m-d");
                 $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
-               $query = $conn->query("SELECT * FROM `nursenotes` WHERE `Hospital_Id` = '$_GET[id]' && `nurse_notes_date` = '$dateni' ORDER BY `nurse_notes_id`") or die(mysqli_error());                              
+               $query = $conn->query("SELECT * FROM `nursenotes` WHERE `Hospital_Id` = '$_GET[id]' && `nurse_notes_date` = '$date' ORDER BY `nurse_notes_id`") or die(mysqli_error());                              
               while($fetch = $query ->fetch_array()){
                 ?>
                     <div class="modal fade" id="editnursesnotes<?php echo $fetch['nurse_notes_id'];?>" role="dialog">
@@ -1650,7 +1529,7 @@ require 'queries/treatment_query.php'
 
                                                     <div role="tabpanel" class="tab-pane fade in active" id="nurses">
 
-                                                        <form class="form-horizontal" form method="POST" action="savehemotreatment.php?id=<?php echo $_GET[id]." | ".$fetch['nurse_notes_id']?>">
+                                                        <form class="form-horizontal" form method="POST" action="save/savehemotreatment.php?id=<?php echo $_GET[id]." | ".$fetch['nurse_notes_id']?>">
 
 
                                                             <div class="row clearfix">

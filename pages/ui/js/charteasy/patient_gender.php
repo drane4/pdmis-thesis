@@ -16,12 +16,12 @@ $f2 = $q2->fetch_array();
             theme: "light2",
             animationEnabled: true,
             animationDuration: 1000,
-            exportFileName: "Gender", 
-            exportEnabled: true,
+            //exportFileName: "Gender", 
+            //exportEnabled: true,
             title: { 
-                text: "Patient Gender",
+                text: "Patient Gender Statistics - Year <?php echo $year?>",
                 fontSize: 20
-            }, 
+            },
             axisY: { 
                 title: "Patient Gender" 
             }, 
@@ -38,11 +38,11 @@ $f2 = $q2->fetch_array();
                     dataPoints: [ 
                         { label: "Male",  y: 
                          <?php
-                        if($f1 == ""){
-                            echo 0;
-                        }else{
-                            echo $f1['total'];
-                        }	
+    if($f1 == ""){
+        echo 0;
+    }else{
+        echo $f1['total'];
+    }	
                          ?>, legendText: "Male"},
 
                         { label: "Female",  y: 
@@ -56,6 +56,6 @@ $f2 = $q2->fetch_array();
                     ] 
                 } 
             ] 
-        }); 
+        });
     } 
 </script>

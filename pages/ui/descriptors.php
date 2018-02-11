@@ -205,12 +205,34 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li id="reports">
-                                <a href="R.php">
+                             <li id="reports">
+                            <a href="javascript:void(0);" class="menu-toggle">
                                 <i class="material-icons">assignment</i>
                                 <span>Reports</span>
                             </a>
-                            </li>
+                            <ul class="ml-menu">
+                                <li id="statistics">
+                            <a href="javascript:void(0);" class="menu-toggle">
+                                <span>Statistics</span>
+                            </a>
+                            <ul class="ml-menu">
+                                 <li id="genderstat">
+                                    <a href="report1.php">Gender Statistics</a>
+                                </li>
+                                <li id="agestat">
+                                    <a href="report2.php">Age Statistics</a>
+                                </li>
+                                
+                                </ul>
+                                </li>
+                                <li  id="progressstat">
+                                    <a href="report4.php">Patient Progress Statistics</a>
+                                </li>
+                                <li id="">
+                                    <a href="report5.php">Employee Performance</a>
+                                </li>
+                            </ul>
+                        </li>
                             <li>
                                 <a href="logout.php">
                                 <i class="material-icons">input</i>
@@ -247,31 +269,34 @@
                 <div class="row clearfix">
                     <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
                         <div class="card">
-                            <div class="header bg-indigo">
-                                <h2>
-                                    Descriptors
-                                </h2>
-                            </div>
-                            <div class="body" style="height:70%">
-
-                              <ul class="nav nav-tabs tab-nav-right" role="">
-                                        <li role="presentation" class="active"><a href="#religion" data-toggle="tab">Patient Info</a></li>
-                                        <li role="presentation" class=""><a href="#religion1" data-toggle="tab">Treatment</a></li>
-                               
-                                </ul>
-                                
-                                  
+                            <section class="panel">
+                          <header class="panel-heading tab-bg-dark-navy-blue ">
+                              <ul class="nav nav-tabs">
+                                  <li class="active">
+                                      <a data-toggle="tab" href="#home">Home</a>
+                                  </li>
+                                  <li class="">
+                                      <a data-toggle="tab" href="#about">About</a>
+                                  </li>
+                                  <li class="">
+                                      <a data-toggle="tab" href="#profile">Profile</a>
+                                  </li>
+                                  <li class="">
+                                      <a data-toggle="tab" href="#contact">Contact</a>
+                                  </li>
+                              </ul>
+                          </header>
+                          <div class="panel-body">
                               <div class="tab-content">
-                                    <!-- #the 2nd query is to show the content of notes/order of certain patient -->
-
-                                    <div role="tabpanel" class="tab-pane fade in active" id="religion">
-                                        hahhahahhaha
+                                  <div id="home" class="tab-pane active">
+                                      Home
                                   </div>
-                                  <div role="tabpanel" class="tab-pane fade in" id="religion1">
-                                        hahhahahhahas
-                                  </div>
-                                </div>
-                            </div>
+                                  <div id="about" class="tab-pane">About</div>
+                                  <div id="profile" class="tab-pane">Profile</div>
+                                  <div id="contact" class="tab-pane">Contact</div>
+                              </div>
+                          </div>
+                      </section>
                         </div>
                     </div>
                 </div>
