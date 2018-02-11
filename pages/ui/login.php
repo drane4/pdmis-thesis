@@ -21,7 +21,7 @@ if(ISSET($_POST['submit'])){
     
     if($valid > 0){
             $_SESSION['username'] = $username;
-            header("location: pages/ui/transaction.php");
+            header("location: pages/ui/PatientProfile.php");
             
     }
     else {
