@@ -235,9 +235,11 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <li id="progressstat">
-                                    <a href="report4.php">Patient Progress Statistics</a>
+                                 <li  id="progressstat">
+                                    <a data-toggle="modal" data-target="#dialysisreport_modal" >
+                                            Dialysis Report</a>
                                 </li>
+                                
                                 <li id="">
                                     <a href="report5.php">Employee Performance</a>
                                 </li>
@@ -640,7 +642,16 @@
                                                 <div class="col-lg-8 col-md-1 col-sm-2 col-xs-8">
                                                     <div class="form-group">
                                                         <div class="form-line">
-                                                            <input type="text" class="form-control" name="diagnosis" id="diagnosis" onkeyup="capitalize(this.id, this.value);" value="<?php if($H_id != '')echo " ESRD Secondary to ".$HOfetch['coerd']?>" readonly>
+                                                            
+                                                            <?php 
+	                                                   $found = checkorder($H_id);              
+                                                    ?>
+                                        <?php if( !empty($found) ){ ?>
+                                                       <input type="text" class="form-control" name="diagnosis" id="diagnosis" onkeyup="capitalize(this.id, this.value);" value="<?php echo "ESRD Secondary to ".$HOfetch1['coerd']?>" readonly>       
+                                             <?php }else{ ?>           
+                                                        <input type="text" class="form-control" name="diagnosis" id="diagnosis" readonly>        
+                                                 <?php } ?>                
+                                                          
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1413,20 +1424,93 @@
                                     <div role="tabpanel" class="tab-pane fade in <?php if ($id2 == 'lab' )echo active ?>" id="lab">
 
                                     <div class="row clearfix">
+                                            <form method="post" name="filterdate_lab1" id="filterdate_lab1">
+                                             <div class="row clearfix">
+                                                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 col-lg-offset-4 form-control-label">
+                                                            <label for="">Filter Date</label>
+                                                        </div>
+                                                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
 
+                                                            <div class="form-line">
+                                                         <select class="form-control show-tick" name="filterdate_lab1" data-live-search="true" id="filterdate_lab" title="&nbsp" required>
+                                                                    <ul class="dropdown-menu">
+                                                            <option class="hidden"></option>
+                                                        <?php 
+                                                          $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
+                                                          $querylab = $conn->query("SELECT `Laboratory_date` FROM `laboratory` WHERE `Hospital_Id` = '$H_id'") or die(mysqli_error());
+                                                        while ($row = $querylab->fetch_array()){
+                                                            
+                                                        ?>
+                                                        <option value="<?php echo $row['Laboratory_date']?>" 
+                                                        <?php if($fetch['Laboratory_date']==$row['Laboratory_date']) echo "selected"; ?>>
+                                                        <?php
+                                                           
+                                                            echo $row['Laboratory_date'];
+                                                            ?>
+                                                        </option>
+                                                        <?php
+                                                        }
+                                                    ?>
+                                                                    </ul>
+                                                            </select>
+                                                            </div>
+                                                        </div>
+                                        
+                                                 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+
+                                                            <div class="form-line">
+                                                         <select class="form-control show-tick" name="filterdate_lab2" data-live-search="true" id="filterdate_lab2" title="&nbsp" required>
+                                                                    <ul class="dropdown-menu">
+                                                            <option class="hidden"></option>
+                                                        <?php 
+                                                          $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
+                                                          $querylab = $conn->query("SELECT `Laboratory_date` FROM `laboratory` WHERE `Hospital_Id` = '$H_id'") or die(mysqli_error());
+                                                        while ($row = $querylab->fetch_array()){
+                                                            
+                                                        ?>
+                                                        <option value="<?php echo $row['Laboratory_date']?>" 
+                                                        <?php if($fetch['Laboratory_date']==$row['Laboratory_date']) echo "selected"; ?>>
+                                                        <?php
+                                                           
+                                                            echo $row['Laboratory_date'];
+                                                            ?>
+                                                        </option>
+                                                        <?php
+                                                        }
+                                                    ?>
+                                                                    </ul>
+                                                            </select>
+                                                            </div>
+                                                        </div>
+                                                 
+                                                 <button type="submit" name="lab" onclick="location.href='patientprofile.php'" class="btn btn-primary btn-sm waves-effect" ><i class="material-icons">search</i></button>
+                                                        <button class="btn btn-primary btn-sm waves-effect" onclick="location.href='print_transaction.php?id=<?php echo $H_id." | ".$ydate?>'" <?php if($H_id=='' ) {?> disabled="disabled"<?php }  ?>><i class="material-icons">visibility</i>Preview</button>
+                                                    </div>
+                                        </form>
                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                 <center>
                                                     <h3>Laboratory Record
                                                     </h3>
                                                 </center>
-
-
+                                        
+                                                
+                                                
+                                                
+                                                
+                                                
                                                 <?php 
-                                                    
-	                                                   $dateArray = getDates($H_id);
-	                                                   $columnCount = count($dateArray);
+                                                    $from = '';
+                                                    $to = '';
+                                                    if(isset($_POST['lab'])){
+                                                        $from = $_POST['filterdate_lab1'];
+                                                        $to = $_POST['filterdate_lab2']; 
+                                                        
+                                                    }
+                                                       
+	                                                   $dateArray = getDates($H_id, $from, $to);
+                                                       $columnCount = count($dateArray);
                                                                    
-                                                    ?>
+                                                ?>
 
                                                 <?php if( !empty($dateArray) ){ ?>
                                                  <table id="mainTable" class="table table-bordered">
@@ -1439,7 +1523,7 @@
                                                                }
                                                             ?>
                                                     </tr>
-
+                                                     
                                                     <?php
                                                         $column = array("Creatinine", "BUN", "Magnesium", "Calcium", "Phosphorus", "Potassium", "Sodium", "TCholesterol", "Triglycerides", "HDL", "LDL", "FBS", "RBS", "UricAcid", "RBC Blood", "WBC", "Hemoglobin", "Hematocrit", "PlateletCount", "Polys", "Lymph", "Eosinophyl", "Monocytes", "Basophil", "pH", "Sp Gravity", "Albumin", "Sugar", "PlusCells", "RBC Urine");
 	                                                       $size = count($column);
@@ -1464,10 +1548,10 @@
   	                                                         <td>'.$column[$i].'</td>';
   	
   		                                                        $r = str_replace(' ', '', $column[$i]);
-  		                                                        $array = getCreatinine($r, $H_id);
+  		                                                        $array = getCreatinine($r, $H_id, $from, $to);
   		
     	                                                           foreach ($array as $x) {
-                                                                       echo '<td><a href="#">'.$x[$r].'</href></td>';	
+                                                                       echo '<td>  <a href="#updatelab1 '. $fetchlab['Laboratory_id'].'" data-toggle="modal" data-target="#updatelab1 '.$fetchlab['Laboratory_id'].'" style="color: black;">'.$x[$r].'</href></td>';	
                                                                    }
     
   	                                                                 echo '</tr>';
@@ -1482,13 +1566,16 @@
                                                                     echo '
                                                                     <tr>
                                                                     <td>'.$o['description'].'</td>';
-                                                                    
+                                                      
                                                                     foreach ($dateArray as $d) {
-                                                                        echo '<td>'.getOtherByDate($o['description'], 
-                                                                            $d['labothers_date'], $H_id).'</td>';
+                                                                        echo 
+                                                                        '<td>'.getOtherByDate($o['description'], 
+                                                                            $d['Laboratory_date'], $H_id).
+                                                                        '</td>';
+                                                                        
   			                                                       }
-                                                                    
-  	                                                                         echo '</tr>';
+                                                                
+  	                                                             echo '</tr>';
   	
                                                                 }
                                                     ?>
@@ -1588,7 +1675,7 @@
                                                         <tbody>
                                                             <?php         
                                                                 
-                                                                   while($fetch = $problemquery ->fetch_array()){
+                                                                   while($fetch = $problemquery1 ->fetch_array()){
                                                                 ?>
                                                                 <tr>
                                                                     <td>
@@ -1692,7 +1779,7 @@
                                                     </thead>
                                                     <tbody>
                                                         <?php
-                                                                   while($fetch = $confinementquery ->fetch_array()){
+                                                                   while($fetch = $confinementquery1 ->fetch_array()){
                                                                 ?>
                                                             <tr>
                                                                 <td>
@@ -2086,7 +2173,7 @@
                                             
                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                 <center>
-                                                    <h3>Patient Drug Profile <?php echo $drugdate?>
+                                                    <h3>Patient Drug Profile 
                                                     </h3>
                                                 </center>
 
@@ -2239,7 +2326,7 @@
                                                     <tbody>
                                                         <?php
 
-                                                                   while($fetch = $hepaquery ->fetch_array()){
+                                                                   while($fetch = $hepaquery1 ->fetch_array()){
                                                                 ?>
                                                             <tr>
                                                                 <td>
@@ -2663,6 +2750,7 @@
             });
 
         </script>
+        <?php include ('modals/dialysisreport_modal.php')?>
     </body>
 
     </html>

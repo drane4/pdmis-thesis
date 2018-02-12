@@ -13,23 +13,45 @@
     	echo "Connection failed: " . $e->getMessage();
     }
 
-	function getDates($id){
+	function getDates($id, $from, $to){
+        
+        if(empty($from) && empty($to)){
+        
 		$dates = $GLOBALS['pdo'] -> prepare(" SELECT `Laboratory_date` FROM `laboratory` WHERE `Hospital_id` = ? GROUP BY `Laboratory_date` ORDER BY `Laboratory_date` ");
 		$dates -> execute([$id]);
 		$dates = $dates -> fetchAll(PDO::FETCH_ASSOC);
 		return $dates;
+        
+        }else{
+        
+        $dates = $GLOBALS['pdo'] -> prepare(" SELECT `Laboratory_date` FROM `laboratory` WHERE `Hospital_id` = ? 
+            AND `Laboratory_date` BETWEEN ? AND ? GROUP BY `Laboratory_date` ORDER BY `Laboratory_date` ");
+		$dates -> execute([$id, $from, $to]);
+		$dates = $dates -> fetchAll(PDO::FETCH_ASSOC);
+		return $dates;
+        
+        }
 	}
 
-	function getCreatinine($row, $patientid){
+	function getCreatinine($row, $patientid, $from, $to){
 
 		// $column = array("row1", "row2", "row3", "row4", "row5");
 		// $n = $column[$row];
-
+        if(empty($from) && empty($to)){
 		$data = $GLOBALS['pdo'] -> prepare(" SELECT $row FROM `Laboratory` WHERE `Hospital_id` = ? GROUP BY `Laboratory_date` ORDER BY `Laboratory_date` ");
 		$data -> execute([$patientid]);
 		$data = $data -> fetchAll(PDO::FETCH_ASSOC);
 
 		return $data;
+            
+        }else{
+            
+            $data = $GLOBALS['pdo'] -> prepare(" SELECT $row FROM `Laboratory` WHERE `Hospital_id` = ? AND Laboratory_date BETWEEN ? AND ?GROUP BY `Laboratory_date` ORDER BY `Laboratory_date` ");
+            $data -> execute([$patientid, $from, $to]);
+            $data = $data -> fetchAll(PDO::FETCH_ASSOC);
+
+            return $data;
+        }
 	}
     function getOtherlist($patientid){
 		$data = $GLOBALS['pdo'] -> prepare(" SELECT description FROM laboratory_others WHERE Hospital_Id = ? GROUP BY description ");
@@ -40,10 +62,9 @@
 	}
 
 	function getOtherByDate($Description, $date, $patientid){
-		$data = $GLOBALS['pdo'] -> prepare(" SELECT value FROM `laboratory_others` WHERE description = ? AND `labothers_date` = ? AND Hospital_Id = ? ");
+		$data = $GLOBALS['pdo'] -> prepare("SELECT value FROM `laboratory_others` WHERE description = ? AND `labothers_date` = ? AND Hospital_Id = ? ");
 		$data -> execute([$Description, $date, $patientid]);
 		$data = $data -> fetch(PDO::FETCH_ASSOC);
-
 		return $data['value']; 
 	}
 	function checktreatment($id){-
@@ -70,6 +91,13 @@
 		$drug = $drug -> fetchAll(PDO::FETCH_ASSOC);
 		return $drug;
 	}
+    function checkorder($id){-
+		$order = $GLOBALS['pdo'] -> prepare(" SELECT `order_id` FROM `hemo_order` WHERE `Hospital_id` = ?");
+		$order -> execute([$id]);
+		$order = $order -> fetchAll(PDO::FETCH_ASSOC);
+		return $order;
+	}
+    
 
 
 

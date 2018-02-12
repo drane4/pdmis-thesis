@@ -66,7 +66,7 @@ if(ISSET($_POST['bloodcount'])){
    
     }
     else{  
-        $conn->query ("INSERT INTO `laboratory` VALUES ('', '', '', '', '', '', '', '', '', '', '', '', '$rbc', '$wbc', '$hemog', '$hema', '$platelet', '$polys', '$lymph', '$eosi', '$mono', '$baso', '', '', '', '', '', '', '', '', '$H_id', '$date', '')") or die(mysqli_error());
+        $conn->query ("INSERT INTO `laboratory` VALUES ('', '', '', '', '', '', '', '', '', '', '', '', '', '', '$rbc', '$wbc', '$hemog', '$hema', '$platelet', '$polys', '$lymph', '$eosi', '$mono', '$baso', '', '', '', '', '', '', '$H_id', '$date', '')") or die(mysqli_error());
      
         echo "<script type='text/javascript'> alert ('notes/order saved!');</script>";
 

@@ -3,19 +3,15 @@
  $pageid = $_GET[id];
  list($H_id ,$id2) = explode(" | ", $pageid);
 
-echo $pageid."orig";
+
 
 if(ISSET($_POST['submit'])){
-       echo $H_id."<-";
+ 
   date_default_timezone_set('Asia/Manila');
   $date1 = date("Y-m-d");
-    
- 
+
    $coerds = implode(' and ', $_POST['coerd']);
         
-
-    
-    
     
     $hepstat = $_POST['hepstat']; 
     $antihstat = $_POST['antihstat']; 
@@ -61,7 +57,7 @@ if(ISSET($_POST['submit'])){
         VALUES ('$coerds', '$hepastat', '$antihstat', '$hepstatdate', '$antihstatdate', '$access', '$insertdate', '$surgeon', '$avfistula', '$avdate', '$avsurgeon', '$ptfe', '$ptdate', '$ptsurgeon', '$frequency', '$duration', '$dialyzer', '$reuse', '$dialysatebath', '$hdrug', '$hdose', '$bloodflow', '$targetwt', '$medication', '$H_id', NULL, '$date1')") or die(mysqli_error());
       
         echo "<script type='text/javascript'> alert ('Hemo Order Saved!');</script>";
-      echo $H_id;
+  
     
     }
 

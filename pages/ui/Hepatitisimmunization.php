@@ -272,11 +272,9 @@ require 'session.php';
                                                 </div>
                                                 <span class="input-group-addon">
                                                  <button style="color:blue" type="button" class="btn btn-xs" data-toggle="modal" data-target="#patients">...</button>
-                                                 
                                             </span>
                                             </div>
                                         </div>
-
                                     </div>
                                     <hr>
                                     <div class="row clearfix">

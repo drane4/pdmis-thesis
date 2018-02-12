@@ -81,7 +81,6 @@ require 'queries/treatment_query.php'
 
                 </div>
                    <div class="collapse navbar-collapse" id="navbar-collapse">
-            
             </div>
             </div>
         </nav>
@@ -103,8 +102,6 @@ require 'queries/treatment_query.php'
                             <?php echo $position; ?>
                         </div>
                         <div class="btn-group user-helper-dropdown">
-
-
                         </div>
                     </div>
                 </div>
@@ -239,7 +236,7 @@ require 'queries/treatment_query.php'
             </aside>
             <!-- #END# Right Sidebar -->
         </section>
-
+          <?php include ('queries/laboratory_query.php');  ?> 
 
         <section class="content">
             <div class="container-fluid">
@@ -356,7 +353,7 @@ require 'queries/treatment_query.php'
                                         <div class="col-lg-2 col-md-2 col-sm-1 col-xs-1 ">
                                             <div class="form-group">
                                                 <div class="form-line">
-                                                    <input type="text" class="form-control" name="" value="<?php if($_GET[id] != '') echo $fetch3['targetwt']." Kg"?>" id="" readonly>
+                                                    <input type="text" class="form-control" name="" value="<?php if($_GET[id] != '' && $fetch3['targetwt'] != '') echo $fetch3['targetwt']." Kg"?>" id="" readonly>
                                                 </div>
                                             </div>
                                         </div>
@@ -366,7 +363,7 @@ require 'queries/treatment_query.php'
                                         <div class="col-lg-2 col-md-2 col-sm-1 col-xs-1 ">
                                             <div class="form-group">
                                                 <div class="form-line">
-                                                    <input type="text" class="form-control" name="" value="<?php echo $fetch3['duration']?>" id="">
+                                                    <input type="text" class="form-control" name="" value="<?php echo $fetch3['duration']?>" id="" readonly>
                                                 </div>
                                             </div>
                                         </div>
@@ -376,7 +373,7 @@ require 'queries/treatment_query.php'
                                         <div class="col-lg-2 col-md-2 col-sm-1 col-xs-1 ">
                                             <div class="form-group">
                                                 <div class="form-line">
-                                                    <input type="text" class="form-control" name="date" value="<?php echo date("Y-m-d"); ?>" id="date" readonly>
+                                                    <input type="text" class="form-control" name="date" value="<?php if($_GET['id'] != '') echo date("Y-m-d"); ?>" id="date" readonly>
                                                 </div>
                                             </div>
                                         </div>
@@ -398,7 +395,7 @@ require 'queries/treatment_query.php'
                                         <div class="col-lg-2 col-md-2 col-sm-1 col-xs-1 ">
                                             <div class="form-group">
                                                 <div class="form-line">
-                                                    <input type="text" class="form-control" name="bfr" value="<?php echo $fetch2['BFR']?>" id="bfr">
+                                                    <input type="text" class="form-control" name="bfr" value="<?php echo $fetch2['BFR']?>" id="bloodflowrate">
                                                 </div>
                                             </div>
                                         </div>
@@ -974,7 +971,7 @@ require 'queries/treatment_query.php'
                                                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 col-md-3  form-control-label">
                                                             
                                                                 <div class="form-line">
-                                                                    <input type="text" id="cardiacrate" name="cardiacrate" class="form-control" placeholder="" value="<?php echo $fetch5['cardiacrate']?>">
+                                                                    <input type="text" id="cardiacrate1" name="cardiacrate" class="form-control" placeholder="" value="<?php echo $fetch5['cardiacrate']?>">
                                                                 </div>
                                                          
                                                         </div>
@@ -1014,7 +1011,7 @@ require 'queries/treatment_query.php'
                                                         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 col-md-2  form-control-label">
                                                             
                                                                 <div class="form-line">
-                                                                    <input type="text" id="msdp" name="msdp" class="form-control" placeholder="" value="">
+                                                                    <input type="text" id="msbp" name="msbp" class="form-control" placeholder="" value="">
                                                                 </div>
                                                             
                                                         </div>
@@ -1097,7 +1094,6 @@ require 'queries/treatment_query.php'
 
             <div class="modal fade" id="patients" tabindex="-1" role="dialog">
                 <div class="modal-dialog modal-default" role="document">
-
                     <div class="modal-content">
                         <div class="row clearfix">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -1187,7 +1183,6 @@ require 'queries/treatment_query.php'
                                         </ul>
                                         <!-- Tab panes -->
                                         <div class="tab-content">
-
                                             <div role="tabpanel" class="tab-pane fade in active" id="physician">
                                                 <!-- #physician Notes/Order -->
                                                 <form class="form-horizontal" form method="POST" action="savehemotreatment.php?id=<?php echo $_GET[id]." | ".$notes_order_id?>">
@@ -1586,6 +1581,7 @@ require 'queries/treatment_query.php'
 
                                                                     <button type="button" class="btn btn-primary m-t-15 waves-effect" onclick="ClearFields();"> <i class="material-icons">description</i>Clear</button> &nbsp;
                                                                     <button type="NurseNO" class="btn btn-primary m-t-15 waves-effect" name="NurseNO"><i class="material-icons">save</i>Save</button> &nbsp;
+                                                                    
                                                                 </div>
                                                             </div>
                                                         </form>
@@ -1603,11 +1599,6 @@ require 'queries/treatment_query.php'
         $conn->close();
         ?>
                       
-
-
-
-
-
 
 
         </section>
@@ -1656,7 +1647,6 @@ require 'queries/treatment_query.php'
         <script src="../../plugins/jquery-sparkline/jquery.sparkline.js"></script>
 
 
-
         <!-- Custom Js -->
         <script src="../../js/admin.js"></script>
         <script src="../../js/pages/tables/jquery-datatable.js"></script>
@@ -1664,6 +1654,13 @@ require 'queries/treatment_query.php'
         
         <!-- Demo Js -->
         <script src="../../js/demo.js"></script>
+        
+
+        <script src="autofill/jquery.easy-autocomplete.min.js"></script> 
+        <link rel="stylesheet" href="autofill/easy-autocomplete.min.css"> 
+        <link rel="stylesheet" href="autofill/easy-autocomplete.themes.min.css">
+
+        
         <script>
             $(window).load(function() {
                 var module = '<?php echo $transaction_a; ?>';
@@ -1730,6 +1727,94 @@ require 'queries/treatment_query.php'
                 }
             });
 
+    
+            
+            <?php
+            
+                $list = array();
+                $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
+                $query1 = $conn->query("SELECT `cardiacrate` FROM `initialtestresult` where `Hospital_Id` = '$_GET[id]' GROUP BY cardiacrate") or die(mysqli_error());
+                                                          
+                while($fetch1 = $query1 ->fetch_array()){
+                    array_push($list, $fetch1['cardiacrate']."");
+                } 
+
+            ?>
+            var options = {
+                    data: <?php echo json_encode($list) ?>,
+                    list: {
+                        match: {
+                            enabled: true	
+                        }
+                    }
+                };
+
+            $("#cardiacrate1").easyAutocomplete(options);
+     //-----------------------------------------------------------       
+               <?php
+                  $ydate1 = date("Y-m-d");  
+                $list2 = array();
+                $list3 = array();
+                $list4 = array();
+                 $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
+                $query2 = $conn->query("SELECT * FROM `treatment` WHERE `Hospital_Id` = '$_GET[id]' ") or die(mysqli_error());
+                                                          
+                while($fetch2 = $query2 ->fetch_array()){
+                    array_push($list2, $fetch2['dialyzer_user']."");
+                    array_push($list3, $fetch2['machine_num']."");
+                    array_push($list4, $fetch2['heparin']."");
+                    array_push($list6, $fetch2['BFR']."");
+                } 
+
+                ?>
+                 var options1 = {
+                    data: <?php echo json_encode($list2) ?>,
+                    list: {
+                        match: {
+                            enabled: true	
+                        }
+                    }
+                };
+            
+             $("#dialyzeruse").easyAutocomplete(options1);
+                var options2 = {
+                    data: <?php echo json_encode($list3) ?>,
+                    list: {
+                        match: {
+                            enabled: true	
+                        }
+                    }
+                }; 
+            $("#machinenum").easyAutocomplete(options2);
+            var options3 = {
+                    data: <?php echo json_encode($list4) ?>,
+                    list: {
+                        match: {
+                            enabled: true	
+                        }
+                    }
+                }; 
+            
+            $("#heparin").easyAutocomplete(options3);
+            var options5 = {
+                    data: <?php echo json_encode($list6) ?>,
+                    list: {
+                        match: {
+                            enabled: true	
+                        }
+                    }
+                }; 
+            $("#bloodflowrate").easyAutocomplete(options5);
+                
+                
+                
+            
+              
+            
+            
+            
+            
+            
         </script>
         
     </body>

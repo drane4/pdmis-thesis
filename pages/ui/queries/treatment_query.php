@@ -22,7 +22,7 @@
   
 
   
-//display tables area
+//display tables areaa
 //nephrologist notes   
   $date = date("Y-m-d");                
   $q4 = $conn->query("SELECT * FROM `nephronotesorder` WHERE `Hospital_Id` = '$_GET[id]' && `notes_order_date` = '$date'") or die(mysqli_error());
@@ -42,7 +42,12 @@
  $day = $fetch6['treatment_day'];
 $status = $fetch6['P_Status'];     
 
-
+  function checkweight($id){-
+		$order = $GLOBALS['pdo'] -> prepare(" SELECT `order_id` FROM `hemo_order` WHERE `Hospital_id` = ?");
+		$order -> execute([$id]);
+		$order = $order -> fetchAll(PDO::FETCH_ASSOC);
+		return $order;
+	}
 //--------------------------------->end transaction    
 
 

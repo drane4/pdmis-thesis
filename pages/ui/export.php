@@ -1,5 +1,6 @@
 
 <?php
+ ini_set('display_errors', 0);
 include('session.php');   
   $conn = new mysqli("localhost", 'root', '', 'pdmis') or die(mysqli_error());
 $connection = mysqli_connect('localhost', 'root', '', 'pdmis');
