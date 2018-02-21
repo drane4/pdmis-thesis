@@ -10,7 +10,7 @@
         $administered = $_POST['administered'];
         $datereceived = $_POST['datereceived'];
         $nddo1 = $_POST['nddo'];
-        $date1 = date('Y, F', strtotime($administered));
+        $date1 = date('Y, F', strtotime($datereceived));
         
     $conn = new mysqli("localhost", 'root', '', 'pdmis') or die(mysqli_error());
    $q1 = $conn->query ("SELECT * FROM `hepatitisbvaccine` WHERE `Hospital_Id` = '$H_id' && `hepa_id` = '$id2'") or die(mysqli_error());
@@ -25,7 +25,7 @@
     }
     else{
 
-        $conn->query ("INSERT INTO `hepatitisbvaccine` VALUES ('$description', '$administered', '$datereceived', '$datereceived', '', '$H_id','$date1')") or die(mysqli_error());
+        $conn->query ("INSERT INTO `hepatitisbvaccine` VALUES ('$description', '$administered', '$datereceived', '$nddo1', '', '$H_id','$date1')") or die(mysqli_error());
     
     }
     

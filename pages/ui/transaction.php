@@ -88,6 +88,7 @@ require 'queries/treatment_query.php'
         <section>
             <!-- Left Sidebar -->
         <?php include ('modals/dialysisreport_modal.php')?>
+        <?php include ('modals/employee_modal.php')?>    
             <aside id="leftsidebar" class="sidebar">
                 <!-- User Info -->
                 <div class="user-info">
@@ -128,18 +129,16 @@ require 'queries/treatment_query.php'
                                 <li class="" id="nephrologist">
                                     <a href="nephrologist.php">Nephrologist</a>
                                 </li>
-                                <li id="descriptors">
-                                    <a href="D.php">Descriptors</a>
-                                </li>
+                    
                             <li id="profile">
                             <a href="javascript:void(0);" class="menu-toggle">
                                 <span>Schedule</span>
                             </a>
                             <ul class="ml-menu">
-                                 <li id="descriptors">
+                                 <li id="">
                                     <a href="patientschedule.php">Patient</a>
                                 </li>
-                                <li id="descriptors">
+                                <li id="">
                                     <a href="nephroschedule.php">Nephrologist</a>
                                 </li>
                                     
@@ -195,14 +194,17 @@ require 'queries/treatment_query.php'
                                  <li id="dialysisstat">
                                     <a href="report3.php">Dialysis Statistics</a>
                                 </li>
+                                <li id="esrdstat">
+                                    <a href="report7.php">ESRD Statistics</a>
+                                </li>
                                 </ul>
                                 </li>
                                 <li  id="progressstat">
                                     <a data-toggle="modal" data-target="#dialysisreport_modal" >
-                                            Dialysis Report</a>
+                                            Patient Reports</a>
                                 </li>
                                 <li id="">
-                                    <a href="report5.php">Employee Performance</a>
+                                    <a data-toggle="modal" data-target="#employee_modal" >Employee Reports</a>
                                 </li>
                             </ul>
                         </li>
@@ -1002,7 +1004,6 @@ require 'queries/treatment_query.php'
                                             <div role="tabpanel" class="tab-pane fade" id="machinetest">
 
                                                 <form class="form-horizontal" form method="POST" action="save/savehemotreatment.php?id=<?php echo $_GET[id]." | ".'null'?>">
-
                                                     
                                                     <div class="row clearfix">
                                                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 form-control-label">
@@ -1011,16 +1012,13 @@ require 'queries/treatment_query.php'
                                                         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 col-md-2  form-control-label">
                                                             
                                                                 <div class="form-line">
-                                                                    <input type="text" id="msbp" name="msbp" class="form-control" placeholder="" value="">
+                                                                    <input type="text" id="msbp1" name="msbp" class="form-control" placeholder="" value="">
                                                                 </div>
-                                                            
                                                         </div>
                                                           <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 col-md-2  form-control-label">
-                                                            
                                                                 <div class="form-line">
-                                                                    <input type="text" id="mdbp" name="mdbp" class="form-control" placeholder="" value="">
+                                                                    <input type="text" id="mdbp2" name="mdbp" class="form-control" placeholder="" value="">
                                                                 </div>
-                                                        
                                                         </div>
                                                     </div>
                                                     <div class="row clearfix">
@@ -1030,7 +1028,7 @@ require 'queries/treatment_query.php'
                                                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 col-md-3  form-control-label">
                                                             <div class="form-group">
                                                                 <div class="form-line">
-                                                                    <input type="text" id="cardiacrate" name="cardiacrate" class="form-control" placeholder="" value="">
+                                                                    <input type="text" id="cardiacrate2" name="cardiacrate" class="form-control" placeholder="" value="">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1042,7 +1040,7 @@ require 'queries/treatment_query.php'
                                                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 col-md-3  form-control-label">
                                                             <div class="form-group">
                                                                 <div class="form-line">
-                                                                    <input type="text" id="bloodflowrate" name="bloodflowrate" class="form-control" placeholder="" value="">
+                                                                    <input type="text" id="bloodflowrate1" name="bloodflowrate" class="form-control" placeholder="" value="">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1054,7 +1052,7 @@ require 'queries/treatment_query.php'
                                                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 col-md-3  form-control-label">
                                                             <div class="form-group">
                                                                 <div class="form-line">
-                                                                    <input type="text" id="transmembranepressure" name="transmembranepressure" class="form-control" placeholder="" value="" autofocus>
+                                                                    <input type="text" id="transmembranepressure1" name="transmembranepressure" class="form-control" placeholder="" value="" autofocus>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1066,7 +1064,7 @@ require 'queries/treatment_query.php'
                                                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 col-md-3  form-control-label">
                                                             <div class="form-group">
                                                                 <div class="form-line">
-                                                                    <input type="text" id="venuspressure" name="venuspressure" class="form-control" placeholder="" value="">
+                                                                    <input type="text" id="venuspressure1" name="venuspressure" class="form-control" placeholder="" value="">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1101,10 +1099,8 @@ require 'queries/treatment_query.php'
                                     <div class="header bg-indigo">
                                         <h2>
                                             List of Patients
-
                                             <a href=""><i class="material-icons pull-right" data-dismiss="modal">clear</i></a>
                                         </h2>
-
                                     </div>
                                     <div class="body">
                                         <div class="table-responsive">
@@ -1425,7 +1421,7 @@ require 'queries/treatment_query.php'
                                                             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 col-md-3  form-control-label">
                                                                 <div class="form-group">
                                                                     <div class="form-line">
-                                                                        <input type="text" id="cardiacrate" name="cardiacrate" class="form-control" placeholder="" value="<?php echo $fetch['m_cardiacrate'];?>">
+                                                                        <input type="text" id="cardiacrate2" name="cardiacrate" class="form-control" placeholder="" value="<?php echo $fetch['m_cardiacrate'];?>">
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -1668,7 +1664,7 @@ require 'queries/treatment_query.php'
                 var module2 = '<?php echo $employeeprofile_a; ?>';
                 var module3 = '<?php echo $labtest_a; ?>';
                 var module4 = '<?php echo $nephrologist_a; ?>';
-                var module5 = '<?php echo $descriptors_a; ?>';
+            
                 var module6 = '<?php echo $userprofile_a; ?>';
                 var module7 = '<?php echo $maintenance_a; ?>';
                 var module8 = '<?php echo $reports_a; ?>';
@@ -1698,10 +1694,6 @@ require 'queries/treatment_query.php'
 
                 }
 
-                if (module5 == '0') {
-                    $('#descriptors').hide();
-
-                }
 
                 if (module6 == '0') {
                     $('#userprofile').hide();
@@ -1726,20 +1718,10 @@ require 'queries/treatment_query.php'
 
                 }
             });
-
-    
+    //------------------------------------------------------------modal-initial        
+            <?php include('autofillquery/autofill_transaction.php')?>
             
-            <?php
-            
-                $list = array();
-                $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
-                $query1 = $conn->query("SELECT `cardiacrate` FROM `initialtestresult` where `Hospital_Id` = '$_GET[id]' GROUP BY cardiacrate") or die(mysqli_error());
-                                                          
-                while($fetch1 = $query1 ->fetch_array()){
-                    array_push($list, $fetch1['cardiacrate']."");
-                } 
-
-            ?>
+          
             var options = {
                     data: <?php echo json_encode($list) ?>,
                     list: {
@@ -1750,7 +1732,26 @@ require 'queries/treatment_query.php'
                 };
 
             $("#cardiacrate1").easyAutocomplete(options);
-     //-----------------------------------------------------------       
+    //------------------------------------------------------------modal-machine
+           <?php
+            $list_m = array();
+                $query_m = $conn->query("SELECT `m_cardiacrate` FROM `machineresult` WHERE `Hospital_Id` = '$_GET[id]'") or die(mysqli_error());                          
+                while($fetch_m = $query_m ->fetch_array()){
+                    array_push($list_m, $fetch_m['m_cardiacrate']."");
+                } ?>
+            var options_m = {
+                    data: <?php echo json_encode($list_m) ?>,
+                    list: {
+                        match: {
+                            enabled: true	
+                        }
+                    }
+                };
+                
+             $("#cardiacrate2").easyAutocomplete(options_m); 
+           
+                
+     //-----------------------------------------------------------treatment       
                <?php
                   $ydate1 = date("Y-m-d");  
                 $list2 = array();
@@ -1805,10 +1806,7 @@ require 'queries/treatment_query.php'
                     }
                 }; 
             $("#bloodflowrate").easyAutocomplete(options5);
-                
-                
-                
-            
+
               
             
             

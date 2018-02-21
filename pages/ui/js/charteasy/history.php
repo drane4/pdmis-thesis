@@ -9,11 +9,11 @@ if(isset($_GET['year']))
 $conn = new mysqli("localhost", "root", "", "pdmis") or die(mysqli_error());
 $bs = $conn->query("SELECT COUNT(*) as total FROM `hemo_order` WHERE `esrd_chronic` = 1 ") or die(mysqli_error());
 $fetch1 = $bs->fetch_array();
-$di = $conn->query("SELECT COUNT(*) as total FROM `hemo_order` WHERE `esrd_diabetic` = '1' ") or die(mysqli_error());
+$di = $conn->query("SELECT COUNT(*) as total FROM `hemo_order` WHERE `esrd_diabetic` = 'Diabetic Nephropathy' ") or die(mysqli_error());
 $fetch2 = $di->fetch_array();
 $ch = $conn->query("SELECT COUNT(*) as total FROM `hemo_order` WHERE `esrd_others` != '' ") or die(mysqli_error());
 $fetch3 = $ch->fetch_array();
-$hy = $conn->query("SELECT COUNT(*) as total FROM `hemo_order` WHERE `esrd_hypertensive` = '1' ") or die(mysqli_error());
+$hy = $conn->query("SELECT COUNT(*) as total FROM `hemo_order` WHERE `esrd_hypertensive` = 'Hypertensive Nephrosclorosis' ") or die(mysqli_error());
 $fetch4 = $hy->fetch_array();
 ?>
 <script type="text/javascript"> 

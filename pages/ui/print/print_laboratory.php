@@ -1,6 +1,7 @@
 <?php
-require 'session.php';
-require 'queries/patientprofile_query.php';
+require '../session.php';
+require '../queries/patientprofile_query.php';
+require '../queries/laboratory_query.php';
   ini_set('display_errors', 0);
    $pageid = $_GET[id];
    list($H_id ,$ydate) = explode(" | ", $pageid);
@@ -34,31 +35,31 @@ $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         <title>PDMIS</title>
         <!-- Favicon-->
-        <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+        <link rel="icon" href="../../../favicon.ico" type="image/x-icon">
 
         <!-- Google Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
 
         <!-- Bootstrap Core Css -->
-        <link href="../../plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
-        <link href="../../plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
+        <link href="../../../plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+        <link href="../../../plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
         <!-- Waves Effect Css -->
-        <link href="../../plugins/node-waves/waves.css" rel="stylesheet" />
+        <link href="../../../plugins/node-waves/waves.css" rel="stylesheet" />
 
         <!-- Animation Css -->
-        <link href="../../plugins/animate-css/animate.css" rel="stylesheet" />
+        <link href="../../../plugins/animate-css/animate.css" rel="stylesheet" />
         <!-- JQuery DataTable Css -->
-        <link href="../../plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
+        <link href="../../../plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
 
         <!-- Morris Chart Css-->
-        <link href="../../plugins/morrisjs/morris.css" rel="stylesheet" />
+        <link href="../../../plugins/morrisjs/morris.css" rel="stylesheet" />
 
         <!-- Custom Css -->
-        <link href="../../css/style2.css" rel="stylesheet">
+        <link href="../../../css/style2.css" rel="stylesheet">
 
         <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
-        <link href="../../css/themes/theme-indigo.css" rel="stylesheet" />
+        <link href="../../../css/themes/theme-indigo.css" rel="stylesheet" />
     </head>
 
     <body class="theme-indigo">
@@ -123,7 +124,7 @@ $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
                 <!-- User Info -->
                 <div class="user-info">
                     <div class="image">
-                        <img src="../../images/nurse.png" width="48" height="48" alt="User" />
+                        <img src="../../../images/nurse.png" width="48" height="48" alt="User" />
                     </div>
                     <div class="info-container">
                         <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -259,140 +260,98 @@ $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
                                         </center>
                                         </div>
                                 </div>
-                                <h5>BLOOD CHEMISTRY</h5>
-                                               <div class="row">
-                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                <center>
+                                                    <h3>Laboratory Record
+                                                    </h3>
+                                                </center>
+                                        
+                                                
+                                                
+                                         
 
-                                            
-                                                <table id="mainTable" class="table table-bordered" style="margin-bottom: 0px; table-layout: fixed;">
+                                           
+                                                 <table id="mainTable" class="table table-bordered">
+                                                    <tr>
+                                                        <th>Date</th>
 
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Creatinine</th>
-                                                            <th>BUN</th>
-                                                            <th>Magnesium </th>
-                                                            <th>Calcium </th>
-                                                            <th>Phosplones </th>
-                                                            <th>Sodium </th>
-                                                            <th>TCholesterol </th>
-                                                            <th>Triglycendes </th>
-                                                            <th>HDL </th>
-                                                            <th>LDL </th>
-                                                            <th>FBS </th>
-                                                            <th>RBS </th>
-                                                            <th>Uric Acid </th>
-                                                            
-                                                        </tr>
-                                                    </thead>
-                                                    </table>   
-                                <h5>BLOOD COUNT</h5>
-                                               <div class="row">
-                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                            
-                                                <table id="mainTable" class="table table-bordered" style="margin-bottom: 0px; table-layout: fixed;">
+                                                        <?php 
+    	                                                       foreach ($dateArray as $d) {
+                                                                   echo '<th>' .$d['Laboratory_date']. '</th>';
+                                                               }
+                                                            ?>
+                                                    </tr>
+                                                     
+                                                    <?php
+                                                        $column = array("Creatinine", "BUN", "Magnesium", "Calcium", "Phosphorus", "Potassium", "Sodium", "TCholesterol", "Triglycerides", "HDL", "LDL", "FBS", "RBS", "UricAcid", "RBC Blood", "WBC", "Hemoglobin", "Hematocrit", "PlateletCount", "Polys", "Lymph", "Eosinophyl", "Monocytes", "Basophil", "pH", "Sp Gravity", "Albumin", "Sugar", "PlusCells", "RBC Urine");
+	                                                       $size = count($column);
+  	
+                                                        for($i=0;$i < $size;$i++){
+  		                                                    //echo $column[$i];
+                                                            if($i == 0){
+                                                                echo '<tr>
+                                                                <td style="background-color:teal;color:#fff;" colspan="'. (1 + $columnCount) .'" >BLOOD CHEMISTRY</td>
+                                                                </tr>';
+                                                            }else if($i == 14){
+                                                                echo '<tr>
+                                                                <td style="background-color:teal;color:#fff;" colspan="'. (1 + $columnCount) .'" >BLOOD COUNT</td>
+                                                                </tr>';
+  	                                                         }
+                                                            else if($i == 24){
+                                                                echo '<tr>
+                                                                <td style="background-color:teal;color:#fff;" colspan="'. (1 + $columnCount) .'" >Urinalysis</td>
+                                                                </tr>';
+  	                                                         }
+  	                                                         echo '<tr>
+  	                                                         <td>'.$column[$i].'</td>';
+  	
+  		                                                        $r = str_replace(' ', '', $column[$i]);
+  		                                                        $array = getCreatinine($r, $H_id, $from, $to);
+  		
+    	                                                           foreach ($array as $x) {
+                                                                       echo '<td>  <a href="#updatelab1 '. $fetchlab['Laboratory_id'].'" data-toggle="modal" data-target="#updatelab1 '.$fetchlab['Laboratory_id'].'" style="color: black;">'.$x[$r].'</href></td>';	
+                                                                   }
+    
+  	                                                                 echo '</tr>';
+                                                                        }
+                                                             $otherslist = getOtherlist($H_id);
 
-                                                    <thead>
-                                                        <tr>
-                                                            <th>RCB</th>
-                                                            <th>WBC</th>
-                                                            <th>Hemoglobin </th>
-                                                            <th>Hematocrit </th>
-                                                            <th>PlateletCount </th>
-                                                            <th>Polys </th>
-                                                            <th>Lymph</th>
-                                                            <th>Eosinophyl </th>
-                                                            <th>Monocytes </th>
-                                                            <th>Basophil </th>
-                                                            
-                                                        </tr>
-                                                    </thead>
-                                                    </table> 
-                                 <h5>URINALYSIS</h5>
-                                               <div class="row">
-                                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                            
-                                                <table id="mainTable" class="table table-bordered" style="margin-bottom: 0px; table-layout: fixed;">
+                                                                echo '<tr>
+                                                                <td style="background-color:teal;color:#fff;" colspan="'. (1 + $columnCount) .'" >OTHERS</td>
+                                                                </tr>';
 
-                                                    <thead>
-                                                        <tr>
-                                                            <th>pH</th>
-                                                            <th>Sp Gravity</th>
-                                                            <th>Albumin </th>
-                                                            <th>Sugar</th>
-                                                            <th>PlusCells </th>
-                                                            <th>RBC Urine </th>
-                                                                 
-                                                        </tr>
-                                                    </thead>
-                                                    </table>                   
-                                                    
-                                    <h5>OTHERS</h5>
-                                               <div class="row">
-                                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                            
-                                                <table id="mainTable" class="table table-bordered" style="margin-bottom: 0px; table-layout: fixed;">
+                                                                foreach ($otherslist as $o) {
+                                                                    echo '
+                                                                    <tr>
+                                                                    <td>'.$o['description'].'</td>';
+                                                      
+                                                                    foreach ($dateArray as $d) {
+                                                                        echo 
+                                                                        '<td>'.getOtherByDate($o['description'], 
+                                                                            $d['Laboratory_date'], $H_id).
+                                                                        '</td>';
+                                                                        
+  			                                                       }
+                                                                
+  	                                                             echo '</tr>';
+  	
+                                                                }
+                                                    ?>
 
-                                                    <thead>
-                                                        <tr>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th> </th>
-                    
-                                                            
-                                                        </tr>
-                                                    </thead>
-                                                    </table>                   
-                                                    
-                                                    <tbody>
-                                                        <?php   
-                                                            date_default_timezone_set('Asia/Manila');
-                                                            $date = date("Y-m-d");
-                                                            $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
-                                                           $query = $conn->query("SELECT * FROM `nephronotesorder` WHERE `Hospital_Id` = '$_GET[id]' && `notes_order_date` = '$date' ORDER BY `notes_order_id`") or die(mysqli_error());
-                                                           $id = $fetch['Hospital_Id'];
-                                                           
-                                                           while($fetch = $query ->fetch_array()){
-                                                        ?>
-                                                        <tr>
-                                                            <td style="white-space: normal">
-                                                                <p style="word-wrap: break-word;">
-                                                                    <a href="#editPhysician_notes" data-toggle="modal" data-target="#editPhysician_notes" style="color: black;">
-                                                                        <?php echo $fetch['nephro_notes']?>
-                                                                    </a>
-
-                                                                    <a class="pull-right" href="#editPhysician_notes" data-toggle="modal" data-target="#editPhysician_notes" style="color: black;">
-                                                                        <?php echo " -".$n_fname." ".$n_mname." ".$n_lname?>
-                                                                    </a>
-                                                                </p>
-                                                            </td>
-                                                            <td style="white-space: normal">
-                                                                <p style="word-wrap: break-word;">
-                                                                    <a href="#editPhysician_notes" data-toggle="modal" data-target="#editPhysician_notes" style="color: black;">
-                                                                        <?php echo $fetch['nephro_order']?>
-                                                                    </a>
-                                                                </p>
-                                                            </td>
-
-                                                        </tr>
-                                                        <?php
-                                                           }
-
-                                                        ?>
-
-                                                    </tbody>
 
                                                 </table>
+                                             
+                              
+                                            </div>
+                               
 
-                                        </div>
+                                        
                                         <div class="row clearfix">
                                             <div class="col-lg-offset-9 col-xs-offset-9">
                                                <div class="row hidden-print mt-20">
                                                  
                                                    <a class="btn btn-primary btn-xs" onclick="printDiv('printableArea')" target="_blank"><i class="material-icons">print</i> Print</a>
-                                                   <button class="btn btn-primary btn-sm" onclick="location.href='patientprofile.php?id=<?php echo $H_id." | "."hemotreatment"." | "."$ydate"?>'">cancel</button>
+                                                   <button class="btn btn-primary btn-sm" onclick="location.href='../patientprofile.php?id=<?php echo $H_id." | "."lab"?>'">cancel</button>
                                                    
                                               </div>
                                          </div>
@@ -404,11 +363,6 @@ $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
                         </div>
                     </div>
            
-
-     
-
-
-
 
         </section>
 
@@ -427,53 +381,53 @@ $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
 }
         </script>
 
-        <script src="../../plugins/jquery/jquery.min.js"></script>
-        <script src="../../plugins/jquery/jquery.js"></script>
+        <script src="../../../plugins/jquery/jquery.min.js"></script>
+        <script src="../../../plugins/jquery/jquery.js"></script>
 
         <!-- Bootstrap Core Js -->
-        <script src="../../plugins/bootstrap/js/bootstrap.js"></script>
+        <script src="../../../plugins/bootstrap/js/bootstrap.js"></script>
 
         <!-- Select Plugin Js -->
-        <script src="../../plugins/bootstrap-select/js/bootstrap-select.js"></script>
+        <script src="../../../plugins/bootstrap-select/js/bootstrap-select.js"></script>
 
         <!-- Slimscroll Plugin Js -->
-        <script src="../../plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+        <script src="../../../plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
 
         <!-- Waves Effect Plugin Js -->
-        <script src="../../plugins/node-waves/waves.js"></script>
+        <script src="../../../plugins/node-waves/waves.js"></script>
 
         <!-- Jquery CountTo Plugin Js -->
-        <script src="../../plugins/jquery-countto/jquery.countTo.js"></script>
+        <script src="../../../plugins/jquery-countto/jquery.countTo.js"></script>
 
         <!-- Morris Plugin Js -->
-        <script src="../../plugins/raphael/raphael.min.js"></script>
-        <script src="../../plugins/morrisjs/morris.js"></script>
+        <script src="../../../plugins/raphael/raphael.min.js"></script>
+        <script src="../../../plugins/morrisjs/morris.js"></script>
 
         <!-- ChartJs -->
-        <script src="../../plugins/chartjs/Chart.bundle.js"></script>
+        <script src="../../../plugins/chartjs/Chart.bundle.js"></script>
 
         <!-- Jquery DataTable Plugin Js -->
-        <script src="../../plugins/jquery-datatable/jquery.dataTables.js"></script>
-        <script src="../../plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
-        <script src="../../plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
-        <script src="../../plugins/jquery-datatable/extensions/export/buttons.flash.min.js"></script>
-        <script src="../../plugins/jquery-datatable/extensions/export/jszip.min.js"></script>
-        <script src="../../plugins/jquery-datatable/extensions/export/pdfmake.min.js"></script>
-        <script src="../../plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>
-        <script src="../../plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
-        <script src="../../plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
-        <script src="../../js/pages/tables/jquery-datatable.js"></script>
+        <script src="../../../plugins/jquery-datatable/jquery.dataTables.js"></script>
+        <script src="../../../plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
+        <script src="../../../plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
+        <script src="../../../plugins/jquery-datatable/extensions/export/buttons.flash.min.js"></script>
+        <script src="../../../plugins/jquery-datatable/extensions/export/jszip.min.js"></script>
+        <script src="../../../plugins/jquery-datatable/extensions/export/pdfmake.min.js"></script>
+        <script src="../../../plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>
+        <script src="../../../plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
+        <script src="../../../plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
+        <script src="../../../js/pages/tables/jquery-datatable.js"></script>
         <!-- Sparkline Chart Plugin Js -->
-        <script src="../../plugins/jquery-sparkline/jquery.sparkline.js"></script>
+        <script src="../../../plugins/jquery-sparkline/jquery.sparkline.js"></script>
 
 
 
         <!-- Custom Js -->
-        <script src="../../js/admin.js"></script>
-        <script src="../../js/pages/index.js"></script>
+        <script src="../../../js/admin.js"></script>
+        <script src="../../../js/pages/index.js"></script>
 
         <!-- Demo Js -->
-        <script src="../../js/demo.js"></script>
+        <script src="../../../js/demo.js"></script>
         <script>
             $(window).load(function() {
                 var module = '<?php echo $transaction_a; ?>';

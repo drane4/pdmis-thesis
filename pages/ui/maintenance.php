@@ -1,4 +1,5 @@
 <?php
+
 include('session.php');                                   
                                     ini_set('display_errors', 0);
                                     $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
@@ -88,7 +89,7 @@ include('session.php');
 
                 </div>
                 <div class="collapse navbar-collapse" id="navbar-collapse">
-
+                    
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Call Search -->
 
@@ -143,9 +144,6 @@ include('session.php');
                                 <li class="" id="nephrologist">
                                     <a href="nephrologist.php">Nephrologist</a>
                                 </li>
-                                <li id="descriptors">
-                                    <a href="D.php">Descriptors</a>
-                                </li>
                             <li id="schedule">
                             <a href="javascript:void(0);" class="menu-toggle">
                                 <span>Schedule</span>
@@ -189,7 +187,7 @@ include('session.php');
                                 </li>
                             </ul>
                         </li>
-                        <li id="reports">
+                       <li id="reports">
                             <a href="javascript:void(0);" class="menu-toggle">
                                 <i class="material-icons">assignment</i>
                                 <span>Reports</span>
@@ -206,14 +204,17 @@ include('session.php');
                                 <li id="agestat">
                                     <a href="report2.php">Age Statistics</a>
                                 </li>
-                                
+                                 <li id="dialysisstat">
+                                    <a href="report3.php">Dialysis Statistics</a>
+                                </li>
                                 </ul>
                                 </li>
                                 <li  id="progressstat">
-                                    <a href="report4.php">Patient Progress Statistics</a>
+                                    <a data-toggle="modal" data-target="#dialysisreport_modal" >
+                                            Patient Reports</a>
                                 </li>
                                 <li id="">
-                                    <a href="report5.php">Employee Performance</a>
+                                    <a data-toggle="modal" data-target="#employee_modal" >Employee Reports</a>
                                 </li>
                             </ul>
                         </li>
@@ -223,8 +224,8 @@ include('session.php');
                                 <span>Logout</span>
                             </a>
                         </li>
-
-
+                    
+                        
                     </ul>
                 </div>
                 <!-- #Menu -->
@@ -233,13 +234,14 @@ include('session.php');
                     <div class="copyright">
                         &copy; 2016 - 2017 <a href="javascript:void(0);">Dynamic Explorers</a>.
                     </div>
-
+                    
                 </div>
                 <!-- #Footer -->
             </aside>
             <!-- #END# Left Sidebar -->
             <!-- Right Sidebar -->
             <aside id="rightsidebar" class="right-sidebar">
+                    
 
 
                 <!-- tab content (header right)-->
@@ -247,7 +249,8 @@ include('session.php');
             </aside>
             <!-- #END# Right Sidebar -->
         </section>
-
+              <?php include ('modals/dialysisreport_modal.php')?>
+                        <?php include ('modals/employee_modal.php')?>    
         <section class="content">
             <div class="container-fluid">
                 <div class="row clearfix">
@@ -261,10 +264,6 @@ include('session.php');
                             </div>
                          
                             <div class="body">
-                          
-                                
-                                
-                                
                                 
                                 <button name="export" id="export" type="button" class="btn btn-primary m-t-15 waves-effect" onclick="location.href='export.php'"> <i class="material-icons">cloud_download</i>Export</button>
                                    <button type="button" name="import" class="btn btn-primary m-t-15 waves-effect" onclick="location.href='import.php'" id="import"> <i class="material-icons" >cloud_upload</i>Import</button>
@@ -292,7 +291,7 @@ include('session.php');
                                                     $date = date("Y-m-d H:i:s"); 
                                                             $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
                                                            $query = $conn->query("SELECT * FROM `maintenance` INNER JOIN `employeeprofile`
-                                                        ON `maintenance`.`employeeid` = `employeeprofile`.`employeeid` order by '$date' desc") or die(mysqli_error());
+                                                           ON `maintenance`.`employeeid` = `employeeprofile`.`employeeid` order by '$date' desc") or die(mysqli_error());
                                                            $id = $fetch['employeeid'];
                                                            while($fetch = $query ->fetch_array()){
                                                         ?>
@@ -316,24 +315,6 @@ include('session.php');
                                                 </tbody>
                                             </table>
                                         </div>
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
                                 
                                 
                             </div>
@@ -409,7 +390,6 @@ include('session.php');
         var module2 ='<?php echo $employeeprofile_a; ?>';
         var module3 ='<?php echo $labtest_a; ?>';
         var module4 ='<?php echo $nephrologist_a; ?>';
-        var module5 ='<?php echo $descriptors_a; ?>';
         var module6 ='<?php echo $userprofile_a; ?>';
         var module7 ='<?php echo $maintenance_a; ?>';
         var module8 ='<?php echo $reports_a; ?>';
@@ -444,11 +424,6 @@ include('session.php');
             
         }
       
-         if(module5 == '0') 
-        {                       
-            $('#descriptors').hide(); 
-            
-        }
    
          if(module6 == '0') 
         {                       

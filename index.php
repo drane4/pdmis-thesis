@@ -2,7 +2,7 @@
 include('pages/ui/login.php'); // Includes Login Script
 
 if(isset($_SESSION['login_user'])){
-header("location: pages/ui/transaction.php");
+header("location: pages/ui/PatientProfile.php");
 }
 ?>
 <html>

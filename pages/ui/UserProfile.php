@@ -86,7 +86,8 @@
 
                 </div>
                 <div class="collapse navbar-collapse" id="navbar-collapse">
-
+                         
+                    
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Call Search -->
 
@@ -103,6 +104,8 @@
             </div>
         </nav>
         <!-- #Top Bar -->
+         <?php include ('modals/dialysisreport_modal.php')?>
+                        <?php include ('modals/employee_modal.php')?>    
         <section>
             <!-- Left Sidebar -->
             <aside id="leftsidebar" class="sidebar">
@@ -210,14 +213,17 @@
                                 <li id="agestat">
                                     <a href="report2.php">Age Statistics</a>
                                 </li>
-                                
+                                 <li id="dialysisstat">
+                                    <a href="report3.php">Dialysis Statistics</a>
+                                </li>
                                 </ul>
                                 </li>
                                 <li  id="progressstat">
-                                    <a href="report4.php">Patient Progress Statistics</a>
+                                    <a data-toggle="modal" data-target="#dialysisreport_modal" >
+                                            Patient Reports</a>
                                 </li>
                                 <li id="">
-                                    <a href="report5.php">Employee Performance</a>
+                                    <a data-toggle="modal" data-target="#employee_modal" >Employee Reports</a>
                                 </li>
                             </ul>
                         </li>
@@ -391,11 +397,7 @@
                                                    <?php if ($fetch[ 'nephrologist_a']==1 ){?> checked="checked"<?php } ?>/>
                                             <label for="nephrologist_a">Nephrologist</label>   
                                             </div>
-                                              <div class="form-group input-group"> 
-                                            <input type="checkbox" id="descriptors_a" name="descriptors_a" class="filled-in" value="1"
-                                                   <?php if ($fetch[ 'descriptors_a']==1 ){?> checked="checked"<?php } ?>/>
-                                            <label for="descriptors_a">Descriptors</label>
-                                    </div>                                 
+                                                    
                                         </div>                 
                                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
                                             <label style="margin-left:-20px;">Maintenance</label>                            
@@ -623,7 +625,7 @@
                 var module2 = '<?php echo $employeeprofile_a; ?>';
                 var module3 = '<?php echo $labtest_a; ?>';
                 var module4 = '<?php echo $nephrologist_a; ?>';
-                var module5 = '<?php echo $descriptors_a; ?>';
+           
                 var module6 = '<?php echo $userprofile_a; ?>';
                 var module7 = '<?php echo $maintenance_a; ?>';
                 var module8 = '<?php echo $reports_a; ?>';
@@ -653,11 +655,7 @@
 
                 }
 
-                if (module5 == '0') {
-                    $('#descriptors').hide();
-
-                }
-
+            
                 if (module6 == '0') {
                     $('#userprofile').hide();
 

@@ -6,7 +6,7 @@ require 'session.php';
                                     $query = $conn->query("SELECT * FROM `patientprofile` where `Hospital_Id` = '$_GET[id]' ") or die(mysqli_error());
                                     $fetch = $query ->fetch_array();
                                     $id = $fetch['Hospital_Id'];
- date_default_timezone_set('Asia/Manila');
+                                    date_default_timezone_set('Asia/Manila');
 ?>
 
     <!DOCTYPE html>
@@ -44,9 +44,9 @@ require 'session.php';
 
         <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
         <link href="../../css/themes/theme-indigo.css" rel="stylesheet" />
-       
-      
-        
+
+
+
     </head>
 
     <body class="theme-indigo">
@@ -129,11 +129,11 @@ require 'session.php';
                 <!-- #User Info -->
                 <!-- Menu -->
                 <div class="menu">
-                   <ul class="list">
+                    <ul class="list">
 
                         <li class="header">MAIN NAVIGATION</li>
 
-                        
+
                         <li id="profile">
                             <a href="javascript:void(0);" class="menu-toggle">
                                 <i class="material-icons">people</i>
@@ -146,34 +146,34 @@ require 'session.php';
                                 <li id="employeeprofile">
                                     <a href="EmployeeProfile.php">Employee Profile</a>
                                 </li>
-                                
+
                                 <li class="" id="nephrologist">
                                     <a href="nephrologist.php">Nephrologist</a>
                                 </li>
-                                
-                            <li id="profile">
-                            <a href="javascript:void(0);" class="menu-toggle">
+
+                                <li id="profile">
+                                    <a href="javascript:void(0);" class="menu-toggle">
                                 <span>Schedule</span>
                             </a>
-                            <ul class="ml-menu">
-                                 <li id="descriptors">
-                                    <a href="patientschedule.php">Patient</a>
-                                </li>
-                                <li id="descriptors">
-                                    <a href="nephroschedule.php">Nephrologist</a>
-                                </li>
-                                    
-                                </ul>
+                                    <ul class="ml-menu">
+                                        <li id="descriptors">
+                                            <a href="patientschedule.php">Patient</a>
+                                        </li>
+                                        <li id="descriptors">
+                                            <a href="nephroschedule.php">Nephrologist</a>
+                                        </li>
+
+                                    </ul>
                                 </li>
                             </ul>
                         </li>
-                       <li id="transaction">
+                        <li id="transaction">
                             <a href="javascript:void(0);" class="menu-toggle">
                                 <i class="material-icons">folder</i>
                                 <span>Transaction</span>
                             </a>
                             <ul class="ml-menu">
-                                <li id="transaction" >
+                                <li id="transaction">
                                     <a href="transaction.php">HemoTreatment</a>
                                 </li>
                             </ul>
@@ -189,47 +189,54 @@ require 'session.php';
                                 <li id="userprofile">
                                     <a href="UserProfile.php">User Profile</a>
                                 </li>
-                               
+
                                 <li id="systemmaintenance">
                                     <a href="maintenance.php">System Maintenance</a>
                                 </li>
                             </ul>
                         </li>
 
-                         <li class="active" id="reports">
+                        <li class="active" id="reports">
                             <a href="javascript:void(0);" class="menu-toggle">
                                 <i class="material-icons">assignment</i>
                                 <span>Reports</span>
                             </a>
                             <ul class="ml-menu">
                                 <li class="active" id="statistics">
-                            <a href="javascript:void(0);" class="menu-toggle">
+                                    <a href="javascript:void(0);" class="menu-toggle">
                                 <span>Statistics</span>
                             </a>
-                              <ul class="ml-menu">
-                                 <li class="active"  id="genderstat">
-                                    <a href="report1.php">Gender Statistics</a>
+                                    <ul class="ml-menu">
+                                        <li class="active" id="genderstat">
+                                            <a href="report1.php">Gender Statistics</a>
+                                        </li>
+                                        <li id="agestat">
+                                            <a href="report2.php">Age Statistics</a>
+                                        </li>
+                                        <li id="dialysisstat">
+                                            <a href="report3.php">Dialysis Statistics</a>
+                                        </li>
+                                        <li id="esrdstat">
+                                            <a href="report7.php">ESRD Statistics</a>
+                                        </li>
+                                        <li id="esrdstat">
+                                            <a href="bp_report.php">BloodPressure</a>
+                                        </li>
+                                         <li id="">
+                                            <a href="report9.php">Patient History Statistics</a>
+                                        </li>
+                                    </ul>
                                 </li>
-                                <li id="agestat">
-                                    <a href="report2.php">Age Statistics</a>
-                                </li>
-                                <li id="dialysisstat">
-                                    <a href="report3.php">Dialysis Statistics</a>
-                                </li>
-                                  <li id="dialysisstat">
-                                    <a href="report7.php">ESRD Statistics</a>
-                                </li>
-                                
-                                </ul>
+                                <li id="progressstat">
+                                    <a data-toggle="modal" data-target="#dialysisreport_modal">
+                                            Patient Reports</a>
                                 </li>
                                 <li id="">
-                                    <a href="report4.php">Patient Progress Statistics</a>
-                                </li>
-                                 <li id="">
-                                    <a href="report5.php">Employee Performance</a>
+                                    <a data-toggle="modal" data-target="#employee_modal">Employee Reports</a>
                                 </li>
                             </ul>
                         </li>
+
                         <li>
                             <a href="logout.php">
                                 <i class="material-icons">input</i>
@@ -262,6 +269,10 @@ require 'session.php';
         </section>
 
 
+
+        <?php include ('modals/dialysisreport_modal.php')?>
+        <?php include ('modals/employee_modal.php')?>
+
         <section class="content">
             <div class="container-fluid">
                 <div class="row clearfix">
@@ -271,36 +282,67 @@ require 'session.php';
                                 <h2>
                                     Hemodialysis Gender Statistics
                                 </h2>
-                                
+
                             </div>
-                           <div class="body">
-                            
+                             <div class="btn-group pull-right">
+                                        <div class="pull-left">
+                                        <select id="pyear" class="validate[required] select" data-style="btn-primary" data-live-search="true">
+                                                <option>Select Year...</option>
+                                                <option value="<?php 
+                                                if(isset($_GET['year'])){
+                                                    $value=$_GET['year']; 
+                                                    echo $value;
+                                                }
+                                                else{
+                                                    echo date('Y');
+                                                }
+                                                               ?>">
+                                                    <?php 
+                                                    if(isset($_GET['year'])){
+                                                        $value=$_GET['year']; 
+                                                        echo $value;
+                                                    }
+                                                    else{
+                                                        echo date('Y');
+                                                    }
+                                                    ?></option>
+                                                <?php
+                                                for($y=2013; $y<=2025; $y++){
+                                                ?>
+                                                <option value="<?php echo $y ?>"><?php echo $y; ?></option>
+                                                <?php
+                                                }
+                                                ?>
+                                        </select>
+                                        </div>
+                                    </div>
+                            <div class="body">
+                                
                                 <div class="clearfix row" id="printDiv">
                                     <style type="text/css">
-                                        .header{
+                                        .header {
                                             text-align: center;
                                             font-family: “Calibri, Optima, Candara, Verdana, Geneva, sans-serif”;
                                             color: #393938;
                                         }
                                     </style>
-                                    
+                                   
                                     <div class="header">
                                         <span style="font-weight: bold;font-size: 18px;">
                                             TERESITA L. JALANDONI PROVINCIAL HOSPITAL
-                                        </span><br>
-                                        Rizal St, Silay City, Neg. Occ.<br>
-                                        Tel. No. 495-1704 / 495-1705 / 495-0096<br>
+                                        </span><br> Rizal St, Silay City, Neg. Occ.<br> Tel. No. 495-1704 / 495-1705 / 495-0096<br>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                         <div id="patient_gender" style="width: 100%; height: 400px"></div>
+                                        <div id="patient_gender" style="width: 100%; height: 400px"></div>
                                     </div>
+                                    
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-12 text-right">
-                                        <button id="print"><span class="glyphicon glyphicon-print"></span>&nbsp;Print</button>        
+                                        <button id="print"><span class="glyphicon glyphicon-print"></span>&nbsp;Print</button>
                                     </div>
                                 </div>
-                                
+
                             </div>
                         </div>
                     </div>
@@ -308,14 +350,7 @@ require 'session.php';
             </div>
 
         </section>
-        <script>
-            $(document).ready(function(){
-                $("#pyear").on('change', function(){
-                    var year=$(this).val();
-                    window.location = 'index.php?year='+year;
-                });
-            });
-        </script>
+      
 
         <!-- Jquery Core Js -->
 
@@ -357,8 +392,8 @@ require 'session.php';
         <script src="../../js/pages/tables/jquery-datatable.js"></script>
         <!-- Sparkline Chart Plugin Js -->
         <script src="../../plugins/jquery-sparkline/jquery.sparkline.js"></script>
-
         
+
 
         <!-- Custom Js -->
         <script src="../../js/admin.js"></script>
@@ -366,7 +401,7 @@ require 'session.php';
 
         <!-- Demo Js -->
         <script src="../../js/demo.js"></script>
-        <script src = "js/charteasy/printThis/printThis.js"></script>
+        <script src="js/charteasy/printThis/printThis.js"></script>
 
         <script>
             $(window).load(function() {
@@ -375,7 +410,6 @@ require 'session.php';
                 var module2 = '<?php echo $employeeprofile_a; ?>';
                 var module3 = '<?php echo $labtest_a; ?>';
                 var module4 = '<?php echo $nephrologist_a; ?>';
-                var module5 = '<?php echo $descriptors_a; ?>';
                 var module6 = '<?php echo $userprofile_a; ?>';
                 var module7 = '<?php echo $maintenance_a; ?>';
                 var module8 = '<?php echo $reports_a; ?>';
@@ -405,11 +439,6 @@ require 'session.php';
 
                 }
 
-                if (module5 == '0') {
-                    $('#descriptors').hide();
-
-                }
-
                 if (module6 == '0') {
                     $('#userprofile').hide();
 
@@ -434,17 +463,26 @@ require 'session.php';
                 }
             });
 
-            $('#print').on('click', function(){
+            $('#print').on('click', function() {
                 $('#printDiv').printThis({
                     importStyle: true,
                     canvas: true
                 });
             });
-            
+
         </script>
-        <script src = "js/jquery.canvasjs.min.js"></script>
+          <script>
+            $(document).ready(function() {
+                $("#pyear").on('change', function() {
+                    var year = $(this).val();
+                    window.location = 'report1.php?year='+year;
+                });
+            });
+
+        </script>
+        <script src="js/jquery.canvasjs.min.js"></script>
         <?php require 'js/charteasy/patient_gender.php'?>
-       
+
     </body>
 
     </html>

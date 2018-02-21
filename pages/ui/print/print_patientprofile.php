@@ -1,8 +1,9 @@
 <?php
 require 'session.php';
-require 'queries/patientprofile_query.php';
+
   ini_set('display_errors', 0);
-   $pageid = $_GET[id];
+   
+$pageid = $_GET[id];
    list($H_id ,$ydate) = explode(" | ", $pageid);
 $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
  $q2 = $conn->query("SELECT * FROM `treatment` WHERE `Hospital_Id` = '$H_id' && `treatment_date` = '$ydate'") or die(mysqli_error());
@@ -20,6 +21,8 @@ $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
 
   $q1 = $conn->query("SELECT * FROM `patientprofile` where `Hospital_Id` = '$H_id' ") or die(mysqli_error());
   $fetch1 = $q1 ->fetch_array();
+
+
 
 ?>
 
@@ -84,7 +87,7 @@ $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
         <div class="overlay"></div>
         <!-- #END# Overlay For Sidebars -->
         <!-- Search Bar -->
-
+       <?php require 'queries/patientprofile_query.php'; ?> 
         <!-- #END# Search Bar -->
         <!-- Top Bar -->
         <nav class="navbar">
@@ -261,7 +264,7 @@ $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
                                 </div>
                                                <div class="row clearfix">
                                 <div class="col-xs-5">
-                                    <strong> Hospital ID : <u><?php echo $fetch1['Hospital_Id'] ?></u><strong> 
+                                    <strong> Hospital ID : <u><?php echo $fetch1['Hospital_Id'] ?></u></strong> 
                                         <br>
                                         <strong>Name : <u><?php echo $fetch1['P_Fname'].' '.$fetch1['P_Mname'].' '.$fetch1['P_Lname']?></u>
                                         <br> Birthday: <u><?php echo $fetch1['P_Birthdate']?></u>
@@ -281,12 +284,13 @@ $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
                                         <br> Type of Dialysis when First Started: <u> <?php echo $fetch1['dialysistype']?></u>
                                         <br> Erythropoetin: <u> <?php echo $fetch1['P_Erythropoetin']?></u>
                                         <br> Nephrologist: <u> <?php echo $fetch1['nephrologistid']?></u>
-                                        <br> Diagnosis: <u> <?php echo $fetch1['P_Diagnosis']?></u>
+                                        <br> Diagnosis: <u> <?php echo "" ?></u>
                                         <br> PhilHealth Number: <u> <?php echo $fetch1['P_PhilHealthNum']?></u>
                                         <br> Date Furnished By: <u> <?php echo $fetch1['P_DFBName']?></u>
                                         <br> Relation: <u> <?php echo $fetch1['P_DFBRelation']?></u>
                                  
                                         </strong>
+                                        
                                 </div>
                                                     <div class="col-xs-5">
                                

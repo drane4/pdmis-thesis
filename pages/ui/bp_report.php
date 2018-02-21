@@ -188,46 +188,46 @@ require 'session.php';
                                 <li id="userprofile">
                                     <a href="UserProfile.php">User Profile</a>
                                 </li>
-                                <li id="descriptors">
-                                    <a href="D.php">Descriptors</a>
-                                </li>
                                 <li id="systemmaintenance">
                                     <a href="maintenance.php">System Maintenance</a>
                                 </li>
                             </ul>
                         </li>
 
-                          <li class="active" id="reports">
+                        <li class="active" id="reports">
                             <a href="javascript:void(0);" class="menu-toggle">
                                 <i class="material-icons">assignment</i>
                                 <span>Reports</span>
                             </a>
                             <ul class="ml-menu">
                                 <li class="active" id="statistics">
-                            <a href="javascript:void(0);" class="menu-toggle">
+                                    <a href="javascript:void(0);" class="menu-toggle">
                                 <span>Statistics</span>
                             </a>
-                              <ul class="ml-menu">
-                                 <li id="genderstat">
-                                    <a href="report1.php">Gender Statistics</a>
+                                    <ul class="ml-menu">
+                                        <li class="active" id="genderstat">
+                                            <a href="report1.php">Gender Statistics</a>
+                                        </li>
+                                        <li id="agestat">
+                                            <a href="report2.php">Age Statistics</a>
+                                        </li>
+                                        <li id="dialysisstat">
+                                            <a href="report3.php">Dialysis Statistics</a>
+                                        </li>
+                                        <li id="esrdstat">
+                                            <a href="report7.php">ESRD Statistics</a>
+                                        </li>
+                                        <li id="esrdstat">
+                                            <a href="bp_report.php">BloodPressure</a>
+                                        </li>
+                                    </ul>
                                 </li>
-                                <li id="agestat">
-                                    <a href="report2.php">Age Statistics</a>
-                                </li>
-                                <li id="dialysisstat">
-                                    <a href="report3.php">Dialysis Statistics</a>
-                                </li>
-                                  <li class="active" id="dialysisstat">
-                                    <a href="report7.php">ESRD Statistics</a>
-                                </li>
-                                
-                                </ul>
+                                <li id="progressstat">
+                                    <a data-toggle="modal" data-target="#dialysisreport_modal">
+                                            Patient Reports</a>
                                 </li>
                                 <li id="">
-                                    <a href="report4.php">Patient Progress Statistics</a>
-                                </li>
-                                 <li id="">
-                                    <a href="report5.php">Employee Performance</a>
+                                    <a data-toggle="modal" data-target="#employee_modal">Employee Reports</a>
                                 </li>
                             </ul>
                         </li>
@@ -261,7 +261,8 @@ require 'session.php';
             </aside>
             <!-- #END# Right Sidebar -->
         </section>
-
+<?php include ('modals/dialysisreport_modal.php')?>
+        <?php include ('modals/employee_modal.php')?>
 
         <section class="content">
             <div class="container-fluid">
@@ -453,7 +454,6 @@ require 'session.php';
                 var module2 = '<?php echo $employeeprofile_a; ?>';
                 var module3 = '<?php echo $labtest_a; ?>';
                 var module4 = '<?php echo $nephrologist_a; ?>';
-                var module5 = '<?php echo $descriptors_a; ?>';
                 var module6 = '<?php echo $userprofile_a; ?>';
                 var module7 = '<?php echo $maintenance_a; ?>';
                 var module8 = '<?php echo $reports_a; ?>';
@@ -480,11 +480,6 @@ require 'session.php';
 
                 if (module4 == '0') {
                     $('#nephrologist').hide();
-
-                }
-
-                if (module5 == '0') {
-                    $('#descriptors').hide();
 
                 }
 

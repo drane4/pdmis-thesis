@@ -23,6 +23,8 @@
   $fetch1 = $q1 ->fetch_array();
   $id = $fetch1['Hospital_Id'];
 
+$qs = $conn->query("SELECT * FROM `patientprofile` where `Hospital_Id` = '$H_id' ") or die(mysqli_error());
+  $fetchs = $qs ->fetch_array();
 //<-------------------------------transaction(hemo treatment)
 //display treatment info                         
 
@@ -72,9 +74,31 @@ $status = $fetch6['treatment_status'];
 $q3 = $conn->query("SELECT `targetwt` FROM `hemo_order` WHERE `Hospital_Id` = '$H_id' ORDER BY `order_id` DESC") or die(mysqli_error());
   $fetch3 = $q3 ->fetch_array();
 //--------------------------------->Hemo Orders
- $HOq1 = $conn->query("SELECT `coerd` FROM `hemo_order` WHERE `Hospital_Id` = '$H_id' ORDER BY 'DESC'") or die(mysqli_error());
-  $HOfetch1 = $HOq1 ->fetch_array();
+// $HOq1 = $conn->query("SELECT `coerd` FROM `hemo_order` WHERE `Hospital_Id` = '$H_id' ORDER BY 'DESC'") or die(mysqli_error());
+//$HOfetch1 = $HOq1 ->fetch_array();
 
+
+
+$queryesrd = $conn->query("SELECT `esrd_diabetic`,`esrd_chronic`,`esrd_hypertensive`,`esrd_others` FROM `hemo_order` WHERE `Hospital_Id` = '$H_id' ORDER BY 'DESC'") or die(mysqli_error());
+$fetchesrd = $queryesrd ->fetch_array();
+$val1 = $fetchesrd['esrd_diabetic'];
+$val2 = $fetchesrd['esrd_chronic'];
+$val3 = $fetchesrd['esrd_hypertensive'];
+$val4 = $fetchesrd['esrd_others'];
+$coerd = "ESRD Secondary to ";
+if($val1 != 0){
+$coerd .= ", Diabetic Nephropathy";
+}
+if($val2 != 0){
+$coerd .= ", Chronic Gromerulonephritis";
+}
+if($val3 != 0){
+$coerd .= ", Hypertensive Nephrosclerosis";
+}
+if(!empty($val4)){
+$coerd .= ", $val4";
+}
+                                                 
 
 if(isset($_POST['filterdate_order'])){
     $orderdate = $_POST['filterdate_order'];
@@ -143,4 +167,20 @@ $curdate = date("Y-m-d");
  $confinementquery = $conn->query("SELECT * FROM `confinement` WHERE `Hospital_Id` = '$H_id' && month(confinementdate) = '$condate'") or die(mysqli_error());
 $confinementfetch = $confinementquery ->fetch_array();
  $confinementquery1 = $conn->query("SELECT * FROM `confinement` WHERE `Hospital_Id` = '$H_id' && month(confinementdate) = '$condate'") or die(mysqli_error());
+//-----------------------------------------------immunization profile
+if(isset($_POST['filterdate_hepab'])){
+$immunedate = $_POST['filterdate_hepab'];
+  
+}else{
+          
+}
+
+
+$queryinflu = $conn->query("SELECT * FROM `influenzavaccine` WHERE `Hospital_Id` = '$H_id' && `influenza_year` = '$immunedate' ORDER BY `influenza_id` ") or die(mysqli_error());
+   
+$querypneu = $conn->query("SELECT * FROM `pneumococcal_vaccine` WHERE `Hospital_Id` = '$H_id' && `pneumococcal_year` = '$immunedate' ORDER BY `pneumococcal_id` ") or die(mysqli_error());
+ 
+$queryhepa1 = $conn->query("SELECT * FROM `hepatitisbvaccine` WHERE `Hospital_Id` = '$H_id' && `hepa_year` = '$immunedate'") or die(mysqli_error());
+
+
 ?>

@@ -1,6 +1,6 @@
 <?php
-require 'session.php';
-require 'queries/patientprofile_query.php';
+require '../session.php';
+require '../queries/patientprofile_query.php';
   ini_set('display_errors', 0);
    $pageid = $_GET[id];
    list($H_id ,$ydate) = explode(" | ", $pageid);
@@ -34,31 +34,31 @@ $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         <title>PDMIS</title>
         <!-- Favicon-->
-        <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+        <link rel="icon" href="../../../favicon.ico" type="image/x-icon">
 
         <!-- Google Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
 
         <!-- Bootstrap Core Css -->
-        <link href="../../plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
-        <link href="../../plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
+        <link href="../../../plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+        <link href="../../../plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
         <!-- Waves Effect Css -->
-        <link href="../../plugins/node-waves/waves.css" rel="stylesheet" />
+        <link href="../../../plugins/node-waves/waves.css" rel="stylesheet" />
 
         <!-- Animation Css -->
-        <link href="../../plugins/animate-css/animate.css" rel="stylesheet" />
+        <link href="../../../plugins/animate-css/animate.css" rel="stylesheet" />
         <!-- JQuery DataTable Css -->
-        <link href="../../plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
+        <link href="../../../plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
 
         <!-- Morris Chart Css-->
-        <link href="../../plugins/morrisjs/morris.css" rel="stylesheet" />
+        <link href="../../../plugins/morrisjs/morris.css" rel="stylesheet" />
 
         <!-- Custom Css -->
-        <link href="../../css/style2.css" rel="stylesheet">
+        <link href="../../../css/style2.css" rel="stylesheet">
 
         <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
-        <link href="../../css/themes/theme-indigo.css" rel="stylesheet" />
+        <link href="../../../css/themes/theme-indigo.css" rel="stylesheet" />
     </head>
 
     <body class="theme-indigo">
@@ -123,7 +123,7 @@ $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
                 <!-- User Info -->
                 <div class="user-info">
                     <div class="image">
-                        <img src="../../images/nurse.png" width="48" height="48" alt="User" />
+                        <img src="../../../images/nurse.png" width="48" height="48" alt="User" />
                     </div>
                     <div class="info-container">
                         <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -259,328 +259,383 @@ $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
                                         </center>
                                         </div>
                                 </div>
-                                            <div class="row clearfix">
-                                               <div class="col-lg-3 col-md-1 col-sm-2 col-xs-3 form-control-label" style="margin-left: -90px;">
-                                                <label for="email_address_2">Cause of ESRD</label>
-                                            </div>
-
-                                            <div class="col-lg-3 col-md-1 col-sm-2 col-xs-3" style="margin-left: -14px;">
-                                                <select class="form-control show-tick" id="coerd" name="coerd" title="&nbsp">
-                                                    <option value="once" <?php if($fetch['coerd']== '1') echo "selected"; ?>>Diabetic Nephropathy</option>
-                                                    <option Value="twice" <?php if($fetch['coerd']== '2') echo "selected"; ?>>Chronic Gromerulonephritis</option>  
-                                                    <option Value="thrice" <?php if($fetch['coerd']== '3') echo "selected"; ?>>Hypertensive Nephrosclorosis</option> 
-                                                </select>
-                                            </div>
-                                            </div>
-                                            <div class="row clearfix">
-                                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 col-lg-offset-0 form-control-label">
-                                                    <label for="">Hepatitis status: </label>
-                                                </div>
-                                                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 col-lg-offset-0 form-control-label">
-                                                    <label for="">HepBsAg </label>
-                                                </div>
-                                                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
-                                                    <div class="form-group demo-radio-button">
-
-                                                    <input name="hepstat" type="radio" class="with-gap" id="hepstat1" value="0" <?php if ($fetch[ 'dialysistype']==0 ){?> checked="active"
-                                                    <?php } ?>/>
-                                                    <label for="hepstat1">Positive</label>
-                                                    <input name="hepstat" type="radio" id="hepstat2" class="with-gap" value="1" <?php if ($fetch[ 'dialysistype']==1 ){?> checked="active"
-                                                    <?php } ?>/>
-                                                    <label for="hepstat2">Negative</label>
-                                                </div>
-                                                </div>
-                                             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-control-label" style="margin-left:-20%">
-                                                    <label for="">Date</label>
-                                                </div>
-                                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                                                 
-                                                            <?php echo $fetch['hepstatdate']?>
-                                             
-                                             
-                                                </div>
-                                            </div>
-                     
-                                           
-                                            <div class="row clearfix">
-                                             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 col-lg-offset-1 form-control-label" style="margin-top:-20px; left:5px">
-                                                    <label for="">Anti-HCV</label>
-                                                </div>
-                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                                    <div class="form-group demo-radio-button">
-
-                                                    <input name="antihstat" type="radio" class="with-gap" id="antihstat1" value="0" <?php if ($fetch[ '']==0 ){?> checked="active"
-                                                    <?php } ?>/>
-                                                    <label for="antihstat1">Positive</label>
-                                                    <input name="antihstat" type="radio" id="antihstat2" class="with-gap" value="1" <?php if ($fetch[ '']==1 ){?> checked="active"
-                                                    <?php } ?>/>
-                                                    <label for="antihstat2">Negative</label>
-                                                </div>
-                                                </div>
-                                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 col-lg-offset-1 form-control-label" style="margin-left:-28.5%">
-                                                    <label for="">Date</label>
-                                                </div>
-                                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="margin-left:-8.5%">
-                                                    <div class="form-group">
-                                                        <div class="form-line">
-                                                            <input type="date" class="form-control unstyled" name="antihstatdate" id="antihstatdate" value="<?php echo $fetch['antihstatdate']?>" style="padding-right:0" required>
-                                                        </div>
+                                              <div class="row clearfix">
+                                                    <div class="col-lg-10" style="margin-left: 30;">
+                                                        <label for="email_address_2">Cause of ESRD (Diagnosis for primary renal disease)</label>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="row clearfix">
-                                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 col-lg-offset-0 form-control-label">
-                                                    <label for="">Access:</label>
-                                                </div>
-                                                   <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-                                                    <div class="form-group demo-radio-button">
-
-                                                    <input name="access" type="radio" class="with-gap" id="Catheter" value="0" <?php if ($fetch[ 'access']==0 ){?> checked="active"
-                                                    <?php } ?>/>
-                                                    <label for="Catheter">Dialysis Catheter</label>
-                                                    <input name="access" type="radio" id="Subclavian" class="with-gap" value="1" <?php if ($fetch['access']==1 ){?> checked="active"
-                                                    <?php } ?>/>
-                                                    <label for="Subclavian">Subclavian</label>
-                                                    <input name="access" type="radio" id="Jugular" class="with-gap" value="1" <?php if ($fetch[ 'access']==1 ){?> checked="active"
-                                                    <?php } ?>/>
-                                                    <label for="Jugular">Internal Jugular</label>
-                                                    <input name="access" type="radio" id="Femoral" class="with-gap" value="1" <?php if ($fetch[ 'access']==1 ){?> checked="active"
-                                                    <?php } ?>/>    
-                                                    <label for="Femoral">Femoral</label>    
-                                                </div>
-                                                </div>
-                                            </div>
-                                            <div class="row clearfix">
-                                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 col-lg-offset-2 form-control-label">
-                                                    <label for="">Date Inserted</label>
-                                                </div>
-                                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                                                    <div class="form-group">
-                                                        <div class="form-line">
-                                                            <input type="date" class="form-control unstyled" name="insertdate" id="insertdate" value="<?php echo $fetch['insertdate']?>" style="padding-right:0" required>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                  <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 form-control-label">
-                                                    <label for="">Surgeon</label>
-                                                </div>
-                                                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ">
-                                                            <div class="form-group">
-                                                                <div class="form-line">
-                                                                    <input type="text" class="form-control" name="surgeon" id="surgeon" value="<?php echo $fetch['surgeon']?>" autofocus required>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                            </div>
-                                            <div class="row clearfix">
-                                             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 col-lg-offset-1">
+                                                <div class="">
+                                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 col-sm-offset-2 ">
                                                     <div class="form-group input-group">
-                                                     <span class="input-group-addon">
-                                                    <input type="checkbox" id="avfistula" name="avfistula" class="filled-in" value="1"
-                                                   <?php if ($fetch['avfistula']==1 ){?> checked="checked"<?php } ?>/>
-                                                    <label for="avfistula">AV Fistula</label>
-                                                        </span>  
-                                                        
+                                                        <input type="checkbox" id="diabetic" name="diabetic" class="filled-in" value="1" <?php if ($HOfetch['esrd_diabetic']==1 ){?> checked="checked"
+                                                        <?php } ?>/>
+                                                        <label for="diabetic">Diabetic Nephropathy</label>
                                                     </div>
                                                 </div>
-                                                 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 col-lg-offset-2 form-control-label" style="margin-left:-8.5%">
-                                                    <label for="">Date Done</label>
-                                                </div>
-                                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                                                    <div class="form-group">
-                                                        <div class="form-line">
-                                                            <input type="date" class="form-control unstyled" name="avdate" id="avdate" value="<?php echo $fetch['avdate']?>" style="padding-right:0" required>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                   <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 form-control-label">
-                                                    <label for="">Surgeon</label>
-                                                </div>
-                                                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ">
-                                                            <div class="form-group">
-                                                                <div class="form-line">
-                                                                    <input type="text" class="form-control" name="avsurgeon" id="avsurgeon" value="<?php echo $fetch['avsurgeon']?>" autofocus required>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                            </div>
-                                            <div class="row clearfix">
-                                             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 col-lg-offset-1">
+                                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ">
                                                     <div class="form-group input-group">
-                                                     <span class="input-group-addon">
-                                                    <input type="checkbox" id="ptfe" name="ptfe" class="filled-in" value="1"
-                                                   <?php if ($fetch['ptfe']==1 ){?> checked="checked"<?php } ?>/>
-                                                    <label for="ptfe">PTFE(Goretex)</label>
-                                                        </span>  
-                                                        
+                                                        <input type="checkbox" id="chronic" name="chronic" class="filled-in" value="1" <?php if ($HOfetch['esrd_chronic']==1 ){?> checked="checked"
+                                                        <?php } ?>/>
+                                                        <label for="chronic">Chronic Gromerulonephritis</label>
                                                     </div>
-                                                </div>
-                                                 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 col-lg-offset-2 form-control-label" style="margin-left:-8.5%">
-                                                    <label for="">Date Done</label>
-                                                </div>
-                                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                                                    <div class="form-group">
-                                                        <div class="form-line">
-                                                            <input type="date" class="form-control unstyled" name="ptdate" id="ptdate" value="<?php echo $fetch['ptdate']?>" style="padding-right:0" required>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                   <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 form-control-label">
-                                                    <label for="">Surgeon</label>
-                                                </div>
-                                                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ">
-                                                            <div class="form-group">
-                                                                <div class="form-line">
-                                                                    <input type="text" class="form-control" name="ptsurgeon" id="ptsurgeon" value="<?php echo $fetch['ptsurgeon']?>" autofocus required>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                          
-                                            </div>
-                                                  
-                                                <div class="row clearfix">
-                                                     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-control-label">
-                                                <label>HemoDialysis Orders</label>
-                                                    </div>
-                                                </div>
-                                                <div class="row clearfix">
-                                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-control-label">
-                                                  <label for="">Frequency</label>  
-                                                    </div>
-                                                    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 form-control-label">
-                                                <select>
-                                                    <option>1x a week</option>
-                                                    <option>2x a week</option>
-                                                    <option>3x a week</option>
-                                                    </select>
-                                                    </div>
-                                                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label">
-                                                  <label for="">Duration</label>  
-                                                    </div>
-                                                  <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 form-control-label">
-                                                <select>
-                                                    <option>3 hours</option>
-                                                    <option>3.5 hours</option>
-                                                    <option>4 hours</option>
-                                                    <option>4.5 hours</option>
-                                                    </select>
-                                                    </div>
-                                                </div>
-                                            <div class="row clearfix">
-                                             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-control-label">
-                                                  <label for="">Dialyzer</label>  
-                                                    </div>
-                                                    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 form-control-label">
-                                                <select>
-                                                    <option>HIPS 18</option>
-                                                    <option>F8HPS</option>
-                                                    </select>
-                                                    </div>
-                                                 <div class="col-lg-3 col-md-2 col-sm-2 col-xs-2 form-control-label">
-                                                    <label for="">Re-use?</label>
-                                                </div>
-                                                   <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
-                                                    <div class="form-group demo-radio-button">
-                                                        
-                                                    <input name="reuse" type="radio" class="with-gap" id="yes" value="0" <?php if ($fetch[ '']==0 ){?> checked="active"
-                                                    <?php } ?>/>
-                                                    <label for="yes">Yes</label>
-                                                    <input name="reuse" type="radio" id="no" class="with-gap" value="1" <?php if ($fetch[ '']==1 ){?> checked="active"
-                                                    <?php } ?>/>
-                                                    <label for="no">No</label>
-                                                   
-                                                </div>
-                                                </div>
-                                            </div>
-                                            <div class="row clearfix">
-                                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-control-label">
-                                                    <label for="">Dialysate Bath</label>
-                                                </div>
-                                                   <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
-                                                    <div class="form-group demo-radio-button">
-                                                        
-                                                    <input name="dialysatebath" type="radio" class="with-gap" id="db1" value="0" <?php if ($fetch[ '']==0 ){?> checked="active"
-                                                    <?php } ?>/>
-                                                    <label for="db1">Bycarbonate</label>
-                                                    <input name="dialysatebath" type="radio" id="db2" class="with-gap" value="1" <?php if ($fetch[ '']==1 ){?> checked="active"
-                                                    <?php } ?>/>
-                                                    <label for="db2">Acetate</label>
-                                                   
-                                                </div>
                                                 </div> 
-                                            </div>
-                                              <div class="row clearfix">
-                                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-control-label">
-                                                    <label for="">Heparin</label>
+                                                  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                                    <div class="form-group input-group">
+                                                        <input type="checkbox" id="hypertensive" name="hypertensive" class="filled-in" value="1" <?php if ($HOfetch['esrd_hypertensive']==1 ){?> checked="checked"
+                                                        <?php } ?>/>
+                                                        <label for="hypertensive">Hypertensive Nephrosclerosis</label>
                                                     </div>
-                                                  <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 form-control-label">
-                                                    <label for="">Drug</label>
+                                                </div>    
+                                
+                                                 <div class="row clearfix">
+                                              
+                                                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 col-lg-offset-1 form-control-label">
+                                                        <label for="">Others:</label>
                                                     </div>
-                                                  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ">
-                                                            <div class="form-group">
-                                                                <div class="form-line">
-                                                                    <input type="text" class="form-control" name="drug" id="drug" value="<?php echo $fetch['']?>" autofocus required>
-                                                                </div>
+                                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ">
+                                                        <div class="form-group">
+                                                            <div class="form-line">
+                                                                <input type="text" class="form-control" name="esrdothers" id="esrdothers" value="<?php echo $HOfetch['esrd_others']?>" required>
                                                             </div>
                                                         </div>
-                                                  <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 form-control-label">
-                                                    <label for="">Dose</label>
+                                                    </div>  
+                                                </div>
+                                                <div class="row clearfix">
+                                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 col-lg-offset-0 form-control-label">
+                                                        <label for="">Hepatitis status: </label>
                                                     </div>
-                                                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 ">
-                                                            <div class="form-group">
-                                                                <div class="form-line">
-                                                                    <input type="text" class="form-control" name="dose" id="dose" value="<?php echo $fetch['']?>" autofocus required>
-                                                                </div>
+                                                    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 col-lg-offset-0 form-control-label">
+                                                        <label for="">HepBsAg </label>
+                                                    </div>
+                                                    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                                                        <div class="form-group demo-radio-button">
+
+                                                            <input name="hepstat" type="radio" class="with-gap" id="hepstat1" value="0" <?php if ($HOfetch['hepastat']==0 ){?> checked="active"
+                                                            <?php } ?>/>
+                                                            <label for="hepstat1">Positive</label>
+                                                            <input name="hepstat" type="radio" id="hepstat2" class="with-gap" value="1" <?php if ($HOfetch['hepastat']==1 ){?> checked="active"
+                                                            <?php } ?>/>
+                                                            <label for="hepstat2">Negative</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-control-label" style="margin-left:-20%">
+                                                        <label for="">Date</label>
+                                                    </div>
+                                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                                        <div class="form-group">
+                                                            <div class="form-line">
+                                                                <input type="date" class="form-control unstyled" name="hepstatdate" id="hepstatdate" value="<?php echo $HOfetch['hepstatdate']?>" style="padding-right:0" required>
                                                             </div>
                                                         </div>
-                                                  
-                                            </div>
-                                             <div class="row clearfix">
-                                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-control-label">
-                                                    <label for="">Blood Flow</label>
                                                     </div>
-  
-                                                  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ">
-                                                            <div class="form-group">
-                                                                <div class="form-line">
-                                                                    <input type="text" class="form-control" name="bloodflow" id="bloodflow" value="<?php echo $fetch['']?>" autofocus required>
-                                                                </div>
+                                                </div>
+
+
+                                                <div class="row clearfix">
+                                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 col-lg-offset-1 form-control-label" style="margin-top:-5px; left:5px">
+                                                        <label for="">Anti-HCV</label>
+                                                    </div>
+                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                        <div class="form-group demo-radio-button">
+
+                                                            <input name="antihstat" type="radio" class="with-gap" id="antihstat1" value="0" <?php if ($HOfetch[ 'antihstat']==0 ){?> checked="active"
+                                                            <?php } ?>/>
+                                                            <label for="antihstat1">Positive</label>
+                                                            <input name="antihstat" type="radio" id="antihstat2" class="with-gap" value="1" <?php if ($HOfetch[ 'antihstat']==1 ){?> checked="active"
+                                                            <?php } ?>/>
+                                                            <label for="antihstat2">Negative</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 col-lg-offset-1 form-control-label" style="margin-left:-28.5%">
+                                                        <label for="">Date</label>
+                                                    </div>
+                                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="margin-left:-8.5%">
+                                                        <div class="form-group">
+                                                            <div class="form-line">
+                                                                <input type="date" class="form-control unstyled" name="antihstatdate" id="antihstatdate" value="<?php echo $HOfetch['antihstatdate']?>" style="padding-right:0" required>
                                                             </div>
-                                                        </div> 
-                                            </div>
-                                              <div class="row clearfix">
-                                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-control-label">
-                                                    <label for="">Target Weight or UF</label>
+                                                        </div>
                                                     </div>
-  
-                                                  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ">
-                                                            <div class="form-group">
-                                                                <div class="form-line">
-                                                                    <input type="text" class="form-control" name="targetwt" id="targetwt" value="<?php echo $fetch['']?>" autofocus required>
-                                                                </div>
+                                                </div>
+                                                <div class="row clearfix">
+                                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 col-lg-offset-0 form-control-label">
+                                                        <label for="">Access:</label>
+                                                    </div>
+                                                    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                                                        <div class="form-group demo-radio-button">
+
+                                                            <input name="access" type="radio" class="with-gap" id="Catheter" value="0" <?php if ($HOfetch['access']==0 ){?> checked="active"
+                                                            <?php } ?>/>
+                                                            <label for="Catheter">Dialysis Catheter</label>
+                                                            <input name="access" type="radio" id="Subclavian" class="with-gap" value="1" <?php if ($HOfetch['access']==1 ){?> checked="active"
+                                                            <?php } ?>/>
+                                                            <label for="Subclavian">Subclavian</label>
+                                                            <input name="access" type="radio" id="Jugular" class="with-gap" value="1" <?php if ($HOfetch['access']==1 ){?> checked="active"
+                                                            <?php } ?>/>
+                                                            <label for="Jugular">Internal Jugular</label>
+                                                            <input name="access" type="radio" id="Femoral" class="with-gap" value="1" <?php if ($HOfetch['access']==1 ){?> checked="active"
+                                                            <?php } ?>/>
+                                                            <label for="Femoral">Femoral</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row clearfix">
+                                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 col-lg-offset-2 form-control-label">
+                                                        <label for="">Date Inserted</label>
+                                                    </div>
+                                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                                        <div class="form-group">
+                                                            <div class="form-line">
+                                                                <input type="date" class="form-control unstyled" name="insertdate" id="insertdate" value="<?php echo $HOfetch['insertdate']?>" style="padding-right:0" required>
                                                             </div>
-                                                        </div> 
-                                            </div>
-                                            <div class="row clearfix">
-                                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-control-label">
-                                                    <label for="">Medication</label>
+                                                        </div>
                                                     </div>
-  
+                                                    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 form-control-label">
+                                                        <label for="">Surgeon</label>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ">
+                                                        <div class="form-group">
+                                                            <div class="form-line">
+                                                                <input type="text" class="form-control" name="surgeon" id="surgeon" value="<?php echo $HOfetch['surgeon']?>" autofocus required>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row clearfix">
+                                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 col-lg-offset-1">
+                                                        <div class="form-group input-group">
+                                                            <span class="input-group-addon">
+                                                    <input type="checkbox" id="avfistula" name="avfistula" class="filled-in" value="1"
+                                                   <?php if ($HOfetch['avfistula']==1 ){?> checked="checked"<?php } ?>/>
+                                                    <label for="avfistula">AV Fistula</label>
+                                                        </span>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 col-lg-offset-2 form-control-label" style="margin-left:-8.5%">
+                                                        <label for="">Date Done</label>
+                                                    </div>
+                                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                                        <div class="form-group">
+                                                            <div class="form-line">
+                                                                <input type="date" class="form-control unstyled" name="avdate" id="avdate" value="<?php echo $HOfetch['avdate']?>" style="padding-right:0" required>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 form-control-label">
+                                                        <label for="">Surgeon</label>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ">
+                                                        <div class="form-group">
+                                                            <div class="form-line">
+                                                                <input type="text" class="form-control" name="avsurgeon" id="avsurgeon" value="<?php echo $HOfetch['avsurgeon']?>" required>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row clearfix">
+                                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 col-lg-offset-1">
+                                                        <div class="form-group input-group">
+                                                            <span class="input-group-addon">
+                                                    <input type="checkbox" id="ptfe" name="ptfe" class="filled-in" value="1"
+                                                   <?php if ($HOfetch['ptfe']==1 ){?> checked="checked"<?php } ?>/>
+                                                    <label for="ptfe">PTFE(Goretex)</label>
+                                                        </span>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 col-lg-offset-2 form-control-label" style="margin-left:-8.5%">
+                                                        <label for="">Date Done</label>
+                                                    </div>
+                                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                                        <div class="form-group">
+                                                            <div class="form-line">
+                                                                <input type="date" class="form-control unstyled" name="ptdate" id="ptdate" value="<?php echo $HOfetch['ptdate']?>" style="padding-right:0" required>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 form-control-label">
+                                                        <label for="">Surgeon</label>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ">
+                                                        <div class="form-group">
+                                                            <div class="form-line">
+                                                                <input type="text" class="form-control" name="ptsurgeon" id="ptsurgeon" value="<?php echo $HOfetch['ptsurgeon']?>" autofocus required>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="row clearfix">
+                                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-control-label">
+                                                        <label>HemoDialysis Orders</label>
+                                                    </div>
+                                                </div>
+                                                <div class="row clearfix">
+                                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-control-label">
+                                                        <label for="">Frequency</label>
+                                                    </div>
+                                                    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 form-control-label">
+                                                        <select id="frequency" name="frequency">
+                                                    <option></option>
+                                                    <option value="1" <?php if($HOfetch['frequency']== '1') echo "selected"; ?>>1x a week</option>
+                                                    <option value="2" <?php if($HOfetch['frequency']== '2') echo "selected"; ?>>2x a week</option>
+                                                    <option value="3" <?php if($HOfetch['frequency']== '3') echo "selected"; ?>>3x a week</option>
+                                                    </select>
+                                                    </div>
+                                                   
+                                                    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 col-lg-offset-2 form-control-label">
+                                                        <label for="">Others:</label>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ">
+                                                        <div class="form-group">
+                                                            <div class="form-line">
+                                                                <input type="text" class="form-control" name="frequencyothers" id="frequencyothers" value="<?php echo $HOfetch['freq_others']?>" autofocus required>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row clearfix">
+                                                 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-control-label">
+                                                        <label for="">Duration</label>
+                                                    </div>
+                                                    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 form-control-label">
+                                                        <select id="duration" name="duration">
+                                                      <option></option> 
+                                                    <option value="3 hours" <?php if($HOfetch['duration']== '3 hours') echo "selected"; ?>>3 hours</option>
+                                                    <option value="3.5 hours" <?php if($HOfetch['duration']== '3.5 hours') echo "selected"; ?>>3.5 hours</option>
+                                                    <option value="4 hours" <?php if($HOfetch['duration']== '4 hours') echo "selected"; ?>>4 hours</option>
+                                                    <option value="4.5 hours" <?php if($HOfetch['duration']== '4.5 hours') echo "selected"; ?>>4.5 hours</option>
+                                                    </select>
+                                                    </div>
+                                                     
+                                                    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 col-lg-offset-2 form-control-label">
+                                                        <label for="">Others:</label>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ">
+                                                        <div class="form-group">
+                                                            <div class="form-line">
+                                                                <input type="text" class="form-control" name="durationothers" id="durationothers" value="<?php echo $HOfetch['dur_others']?>" required>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row clearfix">
+                                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-control-label">
+                                                        <label for="">Dialyzer</label>
+                                                    </div>
+                                                    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 form-control-label">
+                                                        <select id="dialyzer" name="dialyzer">
+                                                      <option></option>
+                                                    <option value="HIPS-18" <?php if($HOfetch['dialyzer']== 'HIPS-18') echo "selected"; ?>>HIPS 18</option>
+                                                    <option value="F8HPS" <?php if($HOfetch['dialyzer']== 'F8HPS') echo "selected"; ?>>F8HPS</option>
+                                                    </select>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-2 col-sm-2 col-xs-2 form-control-label">
+                                                        <label for="">Re-use?</label>
+                                                    </div>
+                                                    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                                                        <div class="form-group demo-radio-button">
+
+                                                            <input name="reuse" type="radio" class="with-gap" id="yes" value="0" <?php if ($HOfetch[ 'reuse']==0 ){?> checked="active"
+                                                            <?php } ?>/>
+                                                            <label for="yes">Yes</label>
+                                                            <input name="reuse" type="radio" id="no" class="with-gap" value="1" <?php if ($HOfetch[ 'reuse ']==1 ){?> checked="active"
+                                                            <?php } ?>/>
+                                                            <label for="no">No</label>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row clearfix">
+                                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-control-label">
+                                                        <label for="">Dialysate Bath</label>
+                                                    </div>
+                                                    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                                                        <div class="form-group demo-radio-button">
+
+                                                            <input name="dialysatebath" type="radio" class="with-gap" id="db1" value="0" <?php if ($HOfetch[ 'dialysatebath']==0 ){?> checked="active"
+                                                            <?php } ?>/>
+                                                            <label for="db1">Bycarbonate</label>
+                                                            <input name="dialysatebath" type="radio" id="db2" class="with-gap" value="1" <?php if ($HOfetch[ 'dialysatebath']==1 ){?> checked="active"
+                                                            <?php } ?>/>
+                                                            <label for="db2">Acetate</label>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row clearfix">
+                                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-control-label">
+                                                        <label for="">Heparin</label>
+                                                    </div>
+                                                    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 form-control-label">
+                                                        <label for="">Drug</label>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ">
+                                                        <div class="form-group">
+                                                            <div class="form-line">
+                                                                <input type="text" class="form-control" name="hdrug" id="hdrug" value="<?php echo $HOfetch['hdrug']?>" autofocus required>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 form-control-label">
+                                                        <label for="">Dose</label>
+                                                    </div>
+                                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 ">
+                                                        <div class="form-group">
+                                                            <div class="form-line">
+                                                                <input type="text" class="form-control" name="hdose" id="hdose" value="<?php echo $HOfetch['hdose']?>" autofocus required>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="row clearfix">
+                                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-control-label">
+                                                        <label for="">Blood Flow</label>
+                                                    </div>
+
+                                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ">
+                                                        <div class="form-group">
+                                                            <div class="form-line">
+                                                                <input type="text" class="form-control" name="bloodflow" id="bloodflow" value="<?php echo $HOfetch['bloodflow']?>" autofocus required>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row clearfix">
+                                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-control-label">
+                                                        <label for="">Target Weight or UF</label>
+                                                    </div>
+
+                                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 ">
+                                                        <div class="form-group">
+                                                            <div class="form-line">
+                                                                <input type="text" class="form-control" name="targetwt" id="targetwt" value="<?php echo $HOfetch['targetwt']." Kg "?>" maxlength="3" min="2" autofocus required>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row clearfix">
+                                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-control-label">
+                                                        <label for="">Medication</label>
+                                                    </div>
+
                                                     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 col-md-8  form-control-label">
-                                                                <div class="form-group">
-                                                                    <div class="form-line">
-                                                                        <textarea rows="2" name="medication" id="medication" class="form-control no-resize auto-growth"><?php echo $fetch4['nephro_order']?></textarea>
-                                                                    </div>
-                                                                </div>
+                                                        <div class="form-group">
+                                                            <div class="form-line">
+                                                                <textarea rows="2" name="medication" id="medication" class="form-control no-resize auto-growth"><?php echo $HOfetch['medication']?></textarea>
                                                             </div>
-                                            </div>
-                                            
+                                                        </div>
+                                                    </div>
+                                                </div>
                                         <div class="row clearfix">
                                             <div class="col-lg-offset-9 col-xs-offset-9">
                                                <div class="row hidden-print mt-20">
                                                  
                                                    <a class="btn btn-primary btn-xs" onclick="printDiv('printableArea')" target="_blank"><i class="material-icons">print</i> Print</a>
-                                                   <button class="btn btn-primary btn-sm" onclick="location.href='patientprofile.php?id=<?php echo $H_id." | "."hemotreatment"." | "."$ydate"?>'">cancel</button>
+                                                   <button class="btn btn-primary btn-sm" onclick="location.href='../patientprofile.php?id=<?php echo $H_id." | "."order"." | "."$orderdate"?>'">cancel</button>
                                                    
                                               </div>
                                          </div>
@@ -591,8 +646,7 @@ $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
                             </div>
                         </div>
                     </div>
-           
-
+            </div>
      
 
 
@@ -615,53 +669,53 @@ $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
 }
         </script>
 
-        <script src="../../plugins/jquery/jquery.min.js"></script>
-        <script src="../../plugins/jquery/jquery.js"></script>
+        <script src="../../../plugins/jquery/jquery.min.js"></script>
+        <script src="../../../plugins/jquery/jquery.js"></script>
 
         <!-- Bootstrap Core Js -->
-        <script src="../../plugins/bootstrap/js/bootstrap.js"></script>
+        <script src="../../../plugins/bootstrap/js/bootstrap.js"></script>
 
         <!-- Select Plugin Js -->
-        <script src="../../plugins/bootstrap-select/js/bootstrap-select.js"></script>
+        <script src="../../../plugins/bootstrap-select/js/bootstrap-select.js"></script>
 
         <!-- Slimscroll Plugin Js -->
-        <script src="../../plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+        <script src="../../../plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
 
         <!-- Waves Effect Plugin Js -->
-        <script src="../../plugins/node-waves/waves.js"></script>
+        <script src="../../../plugins/node-waves/waves.js"></script>
 
         <!-- Jquery CountTo Plugin Js -->
-        <script src="../../plugins/jquery-countto/jquery.countTo.js"></script>
+        <script src="../../../plugins/jquery-countto/jquery.countTo.js"></script>
 
         <!-- Morris Plugin Js -->
-        <script src="../../plugins/raphael/raphael.min.js"></script>
-        <script src="../../plugins/morrisjs/morris.js"></script>
+        <script src="../../../plugins/raphael/raphael.min.js"></script>
+        <script src="../../../plugins/morrisjs/morris.js"></script>
 
         <!-- ChartJs -->
-        <script src="../../plugins/chartjs/Chart.bundle.js"></script>
+        <script src="../../../plugins/chartjs/Chart.bundle.js"></script>
 
         <!-- Jquery DataTable Plugin Js -->
-        <script src="../../plugins/jquery-datatable/jquery.dataTables.js"></script>
-        <script src="../../plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
-        <script src="../../plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
-        <script src="../../plugins/jquery-datatable/extensions/export/buttons.flash.min.js"></script>
-        <script src="../../plugins/jquery-datatable/extensions/export/jszip.min.js"></script>
-        <script src="../../plugins/jquery-datatable/extensions/export/pdfmake.min.js"></script>
-        <script src="../../plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>
-        <script src="../../plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
-        <script src="../../plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
-        <script src="../../js/pages/tables/jquery-datatable.js"></script>
+        <script src="../../../plugins/jquery-datatable/jquery.dataTables.js"></script>
+        <script src="../../../plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
+        <script src="../../../plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
+        <script src="../../../plugins/jquery-datatable/extensions/export/buttons.flash.min.js"></script>
+        <script src="../../../plugins/jquery-datatable/extensions/export/jszip.min.js"></script>
+        <script src="../../../plugins/jquery-datatable/extensions/export/pdfmake.min.js"></script>
+        <script src="../../../plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>
+        <script src="../../../plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
+        <script src="../../../plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
+        <script src="../../../js/pages/tables/jquery-datatable.js"></script>
         <!-- Sparkline Chart Plugin Js -->
-        <script src="../../plugins/jquery-sparkline/jquery.sparkline.js"></script>
+        <script src="../../../plugins/jquery-sparkline/jquery.sparkline.js"></script>
 
 
 
         <!-- Custom Js -->
-        <script src="../../js/admin.js"></script>
-        <script src="../../js/pages/index.js"></script>
+        <script src="../../../js/admin.js"></script>
+        <script src="../../../js/pages/index.js"></script>
 
         <!-- Demo Js -->
-        <script src="../../js/demo.js"></script>
+        <script src="../../../js/demo.js"></script>
         <script>
             $(window).load(function() {
                 var module = '<?php echo $transaction_a; ?>';

@@ -19,7 +19,7 @@ $f2 = $q2->fetch_array();
             //exportFileName: "Gender", 
             //exportEnabled: true,
             title: { 
-                text: "Patient Gender Statistics - Year <?php echo $year?>",
+                text: "Patient Gender Statistics - Year <?php echo $pyear?>",
                 fontSize: 20
             },
             axisY: { 

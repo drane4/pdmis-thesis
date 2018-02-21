@@ -1,6 +1,6 @@
 <?php
-require 'session.php';
-require 'queries/patientprofile_query.php';
+require '../session.php';
+require '../queries/patientprofile_query.php';
   ini_set('display_errors', 0);
    $pageid = $_GET[id];
    list($H_id ,$ydate) = explode(" | ", $pageid);
@@ -41,24 +41,24 @@ $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
 
         <!-- Bootstrap Core Css -->
-        <link href="../../plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
-        <link href="../../plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
+        <link href="../../../plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+        <link href="../../../plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
         <!-- Waves Effect Css -->
-        <link href="../../plugins/node-waves/waves.css" rel="stylesheet" />
+        <link href="../../../plugins/node-waves/waves.css" rel="stylesheet" />
 
         <!-- Animation Css -->
-        <link href="../../plugins/animate-css/animate.css" rel="stylesheet" />
+        <link href="../../../plugins/animate-css/animate.css" rel="stylesheet" />
         <!-- JQuery DataTable Css -->
-        <link href="../../plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
+        <link href="../../../plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
 
         <!-- Morris Chart Css-->
-        <link href="../../plugins/morrisjs/morris.css" rel="stylesheet" />
+        <link href="../../../plugins/morrisjs/morris.css" rel="stylesheet" />
 
         <!-- Custom Css -->
-        <link href="../../css/style2.css" rel="stylesheet">
+        <link href="../../../css/style2.css" rel="stylesheet">
 
         <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
-        <link href="../../css/themes/theme-indigo.css" rel="stylesheet" />
+        <link href="../../../css/themes/theme-indigo.css" rel="stylesheet" />
     </head>
 
     <body class="theme-indigo">
@@ -259,15 +259,10 @@ $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
                                         </center>
                                         </div>
                                 </div>
-                                               <<div class="row">
+                                        <div class="row">
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
-                                            <?php
-                                              $date = date("Y-m-d");                
-                                              $query = $conn->query("SELECT * FROM `nephronotesorder` WHERE `Hospital_Id` = '$_GET[id]' && `notes_order_date` = '$date'") or die(mysqli_error());
-                                              $fetch = $query ->fetch_array();
-                                    
-                                                ?>
+                                  
                                                 <table id="mainTable" class="table table-bordered" style="margin-bottom: 0px; table-layout: fixed;">
 
                                                     <thead>
@@ -284,39 +279,59 @@ $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
                                                         </tr>
                                                     </thead>
                                                    
-                                                ?>
-                                                    <tbody>
-                                                        <?php   
-                                                            date_default_timezone_set('Asia/Manila');
-                                                            $date = date("Y-m-d");
-                                                            $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
-                                                           $query = $conn->query("SELECT * FROM `nephronotesorder` WHERE `Hospital_Id` = '$_GET[id]' && `notes_order_date` = '$date' ORDER BY `notes_order_id`") or die(mysqli_error());
-                                                           $id = $fetch['Hospital_Id'];
-                                                           
-                                                           while($fetch = $query ->fetch_array()){
-                                                        ?>
-                                                        <tr>
-                                                            <td style="white-space: normal">
-                                                                <p style="word-wrap: break-word;">
-                                                                    <a href="#editPhysician_notes" data-toggle="modal" data-target="#editPhysician_notes" style="color: black;">
-                                                                        <?php echo $fetch['nephro_notes']?>
-                                                                    </a>
-
-                                                                    <a class="pull-right" href="#editPhysician_notes" data-toggle="modal" data-target="#editPhysician_notes" style="color: black;">
-                                                                        <?php echo " -".$n_fname." ".$n_mname." ".$n_lname?>
-                                                                    </a>
-                                                                </p>
-                                                            </td>
-                                                            <td style="white-space: normal">
-                                                                <p style="word-wrap: break-word;">
-                                                                    <a href="#editPhysician_notes" data-toggle="modal" data-target="#editPhysician_notes" style="color: black;">
-                                                                        <?php echo $fetch['nephro_order']?>
-                                                                    </a>
-                                                                </p>
-                                                            </td>
-
-                                                        </tr>
+                                                    
+                                                     <tbody>
                                                         <?php
+                                                           while($fetch = $drugsquery ->fetch_array()){
+                                                        ?>
+                                                            <tr>
+                                                                <td>
+                                                                    
+                                                                        <?php echo $fetch['drug_strength']?>
+                                                                    
+                                                                </td>
+                                                                <td>
+                                                                  
+                                                                        <?php echo $fetch['dosage']?>
+                                                              
+                                                                </td>
+                                                                <td>
+                                                                    
+                                                                        <?php echo $fetch['frequency']?>
+                                                                
+                                                                </td>
+                                                                <td>
+                                                                 
+                                                                        <?php echo $fetch['ROA']?>
+                                                                 
+                                                                </td>
+                                                                <td>
+                                                                   
+                                                                        <?php echo $fetch['dateordered']?>
+                                                                  
+                                                                </td>
+                                                                <td>
+                                                                 
+                                                                        <?php echo $fetch['datediscription']?>
+                                                                 
+                                                                </td>
+                                                                <td>
+                                                                  
+                                                                        <?php echo $fetch['PRN']?>
+                                                               
+                                                                </td>
+                                                                <td>
+                                                                 
+                                                                        <?php echo $fetch['remarks']?>
+                                                              
+                                                                </td>
+                                                                <td>
+                                                                  
+                                                                        <?php echo $fetch['nephrologistid']?>
+                                                           
+                                                                </td>
+                                                            </tr>
+                                                            <?php
                                                            }
 
                                                         ?>
@@ -331,7 +346,7 @@ $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
                                                <div class="row hidden-print mt-20">
                                                  
                                                    <a class="btn btn-primary btn-xs" onclick="printDiv('printableArea')" target="_blank"><i class="material-icons">print</i> Print</a>
-                                                   <button class="btn btn-primary btn-sm" onclick="location.href='patientprofile.php?id=<?php echo $H_id." | "."hemotreatment"." | "."$ydate"?>'">cancel</button>
+                                                   <button class="btn btn-primary btn-sm" onclick="location.href='../patientprofile.php?id=<?php echo $H_id." | "."drug"." | "."$drugdate"?>'">cancel</button>
                                                    
                                               </div>
                                          </div>
@@ -347,7 +362,7 @@ $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
      
 
 
-
+            </div>
 
         </section>
 
@@ -366,53 +381,53 @@ $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
 }
         </script>
 
-        <script src="../../plugins/jquery/jquery.min.js"></script>
-        <script src="../../plugins/jquery/jquery.js"></script>
+        <script src="../../../plugins/jquery/jquery.min.js"></script>
+        <script src="../../../plugins/jquery/jquery.js"></script>
 
         <!-- Bootstrap Core Js -->
-        <script src="../../plugins/bootstrap/js/bootstrap.js"></script>
+        <script src="../../../plugins/bootstrap/js/bootstrap.js"></script>
 
         <!-- Select Plugin Js -->
-        <script src="../../plugins/bootstrap-select/js/bootstrap-select.js"></script>
+        <script src="../../../plugins/bootstrap-select/js/bootstrap-select.js"></script>
 
         <!-- Slimscroll Plugin Js -->
-        <script src="../../plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+        <script src="../../../plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
 
         <!-- Waves Effect Plugin Js -->
-        <script src="../../plugins/node-waves/waves.js"></script>
+        <script src="../../../plugins/node-waves/waves.js"></script>
 
         <!-- Jquery CountTo Plugin Js -->
-        <script src="../../plugins/jquery-countto/jquery.countTo.js"></script>
+        <script src="../../../plugins/jquery-countto/jquery.countTo.js"></script>
 
         <!-- Morris Plugin Js -->
-        <script src="../../plugins/raphael/raphael.min.js"></script>
-        <script src="../../plugins/morrisjs/morris.js"></script>
+        <script src="../../../plugins/raphael/raphael.min.js"></script>
+        <script src="../../../plugins/morrisjs/morris.js"></script>
 
         <!-- ChartJs -->
-        <script src="../../plugins/chartjs/Chart.bundle.js"></script>
+        <script src="../../../plugins/chartjs/Chart.bundle.js"></script>
 
         <!-- Jquery DataTable Plugin Js -->
-        <script src="../../plugins/jquery-datatable/jquery.dataTables.js"></script>
-        <script src="../../plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
-        <script src="../../plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
-        <script src="../../plugins/jquery-datatable/extensions/export/buttons.flash.min.js"></script>
-        <script src="../../plugins/jquery-datatable/extensions/export/jszip.min.js"></script>
-        <script src="../../plugins/jquery-datatable/extensions/export/pdfmake.min.js"></script>
-        <script src="../../plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>
-        <script src="../../plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
-        <script src="../../plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
-        <script src="../../js/pages/tables/jquery-datatable.js"></script>
+        <script src="../../../plugins/jquery-datatable/jquery.dataTables.js"></script>
+        <script src="../../../plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
+        <script src="../../../plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
+        <script src="../../../plugins/jquery-datatable/extensions/export/buttons.flash.min.js"></script>
+        <script src="../../../plugins/jquery-datatable/extensions/export/jszip.min.js"></script>
+        <script src="../../../plugins/jquery-datatable/extensions/export/pdfmake.min.js"></script>
+        <script src="../../../plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>
+        <script src="../../../plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
+        <script src="../../../plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
+        <script src="../../../js/pages/tables/jquery-datatable.js"></script>
         <!-- Sparkline Chart Plugin Js -->
-        <script src="../../plugins/jquery-sparkline/jquery.sparkline.js"></script>
+        <script src="../../../plugins/jquery-sparkline/jquery.sparkline.js"></script>
 
 
 
         <!-- Custom Js -->
-        <script src="../../js/admin.js"></script>
-        <script src="../../js/pages/index.js"></script>
+        <script src="../../../js/admin.js"></script>
+        <script src="../../../js/pages/index.js"></script>
 
         <!-- Demo Js -->
-        <script src="../../js/demo.js"></script>
+        <script src="../../../js/demo.js"></script>
         <script>
             $(window).load(function() {
                 var module = '<?php echo $transaction_a; ?>';

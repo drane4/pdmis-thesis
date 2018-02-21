@@ -66,7 +66,7 @@ if(ISSET($_POST['bloodcount'])){
    
     }
     else{  
-        $conn->query ("INSERT INTO `laboratory` VALUES ('', '', '', '', '', '', '', '', '', '', '', '', '', '', '$rbc', '$wbc', '$hemog', '$hema', '$platelet', '$polys', '$lymph', '$eosi', '$mono', '$baso', '', '', '', '', '', '', '$H_id', '$date', '')") or die(mysqli_error());
+        $conn->query ("INSERT INTO `laboratory` VALUES ('', '', '', '', '', '', '', '', '', '', '', '', '$rbc', '$wbc', '$hemog', '$hema', '$platelet', '$polys', '$lymph', '$eosi', '$mono', '$baso', '', '', '', '', '', '', '', '', '$H_id', '$date', '')") or die(mysqli_error());
      
         echo "<script type='text/javascript'> alert ('notes/order saved!');</script>";
 
@@ -110,7 +110,7 @@ if(ISSET($_POST['others'])){
     
 
     $conn = new mysqli("localhost", 'root', '', 'pdmis') or die(mysqli_error());
-   $q1 = $conn->query ("SELECT * FROM `laboratory_others` WHERE BINARY `Hospital_Id` = '$H_id' && `Labothers_date` = '$date'") or die(mysqli_error());
+   $q1 = $conn->query ("SELECT * FROM `laboratory_others` WHERE BINARY `Hospital_Id` = '$H_id' && `description` = '$desc' && `value` = '$val'") or die(mysqli_error());
     $f1 = $q1->fetch_array();
     $check = $q1->num_rows;
 
@@ -120,7 +120,7 @@ if(ISSET($_POST['others'])){
     }
     else{  
         $conn->query ("INSERT INTO `laboratory_others` (`labothers_id`, `description`, `value`, `labothers_date`, `Hospital_Id`) VALUES ('', '$desc', '$val', '$date', '$H_id')") or die(mysqli_error());
-
+     
         echo "<script type='text/javascript'> alert ('notes/order saved!');</script>";
 
     }

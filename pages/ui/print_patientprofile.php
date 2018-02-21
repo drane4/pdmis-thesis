@@ -161,9 +161,6 @@ require 'queries/patientprofile_query.php';
                                 <li id="nephrologist">
                                     <a href="nephrologist.php">Nephrologist</a>
                                 </li>
-                                <li id="descriptors">
-                                    <a href="D.php">Descriptors</a>
-                                </li>
                             </ul>
                         </li>
                         <li id="maintenance">
@@ -265,7 +262,7 @@ require 'queries/patientprofile_query.php';
                                     
                                         <br> Erythropoetin: <u> <?php echo $fetch1['P_Erythropoetin']?></u>
                                         <br> Nephrologist: <u> <?php echo $fetch1['nephrologistid']?></u>
-                                        <br> Diagnosis: <u> <?php echo $fetch1['P_Diagnosis']?></u>
+                                        <br> Diagnosis: <u> <?php echo $coerd ?></u>
                                         <br> PhilHealth Number: <u> <?php echo $fetch1['P_PhilHealthNum']?></u>
                                         <br> Date Furnished By: <u> <?php echo $fetch1['P_DFBName']?></u>
                                         <br> Relation: <u> <?php echo $fetch1['P_DFBRelation']?></u>
@@ -371,7 +368,6 @@ require 'queries/patientprofile_query.php';
                 var module2 = '<?php echo $employeeprofile_a; ?>';
                 var module3 = '<?php echo $labtest_a; ?>';
                 var module4 = '<?php echo $nephrologist_a; ?>';
-                var module5 = '<?php echo $descriptors_a; ?>';
                 var module6 = '<?php echo $userprofile_a; ?>';
                 var module7 = '<?php echo $maintenance_a; ?>';
                 var module8 = '<?php echo $reports_a; ?>';
@@ -398,11 +394,6 @@ require 'queries/patientprofile_query.php';
 
                 if (module4 == '0') {
                     $('#nephrologist').hide();
-
-                }
-
-                if (module5 == '0') {
-                    $('#descriptors').hide();
 
                 }
 

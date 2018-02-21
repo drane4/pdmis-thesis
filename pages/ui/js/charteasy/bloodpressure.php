@@ -1,27 +1,23 @@
-<!-- 164/91 7:25 am
-165/88 8:45 am
-172/86 9:45 am
-165/95 10:20 am
-170/83 11:15 am -->
+ <?php 
+               $default_date = '26-06-2017'; //day-m-year  
+                $conn = new mysqli("localhost", 'root', '', 'pdmis') or die(mysqli_error());
+               $q1 = $conn->query ("SELECT `m_bloodpressure`, `m_time` FROM `machineresult` WHERE `Hospital_Id` = '86-89-17'") or die(mysqli_error());
+                                            
+                                            $data = array();
+                                           while($fetch = $q1 ->fetch_array()){
+                                                                ?>
+                                            <?php
+                                               $temp = array('bp' => $fetch['m_bloodpressure'], 'time' => $fetch['m_time']);
+                                               array_push( $sample, $temp ) ; 
+                                            ?>
+                                            
+                                            
+                                              <?php
+                                                 }
+                                         echo var_dump($genderlist);
+                                                ?>
+                                            
 
-<?php 
-	$default_date = '03-02-2013';
-    $data = array(
-        array('bp' => '164/91', 'time' => '7:25 am'),
-        array('bp' => '165/88', 'time' => '8:45 am'),
-        array('bp' => '172/86', 'time' => '9:45 am'),
-        array('bp' => '165/95', 'time' => '10:20 am'),
-        array('bp' => '170/83', 'time' => '11:15 am'),
-        array('bp' => '164/91', 'time' => '1:25 pm'),
-        array('bp' => '165/88', 'time' => '2:45 pm'),
-        array('bp' => '172/86', 'time' => '4:45 pm'),
-        array('bp' => '165/95', 'time' => '5:20 pm'),
-        array('bp' => '170/83', 'time' => '6:15 pm')
-    );
-
-    
-    //$t = date('H:i', strtotime($default_date.' 7:25 pm'));
-?>
 
 
 

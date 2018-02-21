@@ -18,7 +18,6 @@ $patientprofile_a =$fetch['patientprofile_a'];
 $employeeprofile_a =$fetch['employeeprofile_a'];
 $labtest_a =$fetch['labtest_a'];
 $nephrologist_a =$fetch['nephrologist_a'];
-$descriptors_a =$fetch['descriptors_a'];
 $userprofile_a =$fetch['userprofile_a'];
 $maintenance_a =$fetch['maintenance_a'];
 $reports_a =$fetch['reports_a'];

@@ -84,7 +84,9 @@
 
                 </div>
                 <div class="collapse navbar-collapse" id="navbar-collapse">
-
+                    
+      <?php include ('modals/dialysisreport_modal.php')?>
+        <?php include ('modals/employee_modal.php')?>    
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Call Search -->
 
@@ -140,9 +142,6 @@
                                 <li class="" id="nephrologist">
                                     <a href="nephrologist.php">Nephrologist</a>
                                 </li>
-                                <li id="descriptors">
-                                    <a href="D.php">Descriptors</a>
-                                </li>
                             <li class="active" id="profile">
                             <a href="javascript:void(0);" class="menu-toggle">
                                 <span>Schedule</span>
@@ -185,7 +184,7 @@
                                 </li>
                             </ul>
                         </li>
-                          <li id="reports">
+                         <li id="reports">
                             <a href="javascript:void(0);" class="menu-toggle">
                                 <i class="material-icons">assignment</i>
                                 <span>Reports</span>
@@ -205,13 +204,17 @@
                                  <li id="dialysisstat">
                                     <a href="report3.php">Dialysis Statistics</a>
                                 </li>
+                                <li id="esrdstat">
+                                    <a href="report7.php">ESRD Statistics</a>
+                                </li>
                                 </ul>
                                 </li>
                                 <li  id="progressstat">
-                                    <a href="report4.php">Patient Progress Statistics</a>
+                                    <a data-toggle="modal" data-target="#dialysisreport_modal" >
+                                            Patient Reports</a>
                                 </li>
                                 <li id="">
-                                    <a href="report5.php">Employee Performance</a>
+                                    <a data-toggle="modal" data-target="#employee_modal" >Employee Reports</a>
                                 </li>
                             </ul>
                         </li>
@@ -270,7 +273,7 @@
                                 
                              
                             </ul>
-
+                                
                             <!-- Tab panes -->
                             <div class="tab-content">
                                 <div role="tabpanel" class="tab-pane fade in" id="All">

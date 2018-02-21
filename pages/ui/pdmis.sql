@@ -11,9 +11,11 @@ CREATE TABLE `confinement` (
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 INSERT INTO confinement VALUES("Doctors","2015-12-15","Car accident","86-89-17","1","");
-INSERT INTO confinement VALUES("asda","2018-02-14","asd","01-26-22","2","2018, February");
+INSERT INTO confinement VALUES("asda","2018-02-14","Highblood","01-26-22","2","2018, February");
 INSERT INTO confinement VALUES("sample","2018-02-10","wala","01-26-22","3","2018, February");
 INSERT INTO confinement VALUES("cebs","2018-01-18","wla","01-26-22","4","2018, January");
+INSERT INTO confinement VALUES("asd","2018-02-12","asd","05-29-07","5","2018, February");
+INSERT INTO confinement VALUES("asd","2018-02-12","asd","01-26-22","6","2018, February");
 INSERT INTO confinement VALUES("doctors","2018-01-28","reason","01-26-22","9","2018, January");
 INSERT INTO confinement VALUES("Corazon Locsin","2017-12-29","difficulty of breathing","45-42-23","10","2017, December");
 INSERT INTO confinement VALUES("Corazon Locsin","2014-02-22","re","33-42-13","12","2014, February");
@@ -48,7 +50,6 @@ CREATE TABLE `employeeprofile` (
   `employeeprofile_a` int(1) NOT NULL,
   `labtest_a` int(1) NOT NULL,
   `nephrologist_a` int(1) NOT NULL,
-  `descriptors_a` int(1) NOT NULL,
   `userprofile_a` int(1) NOT NULL,
   `maintenance_a` int(1) NOT NULL,
   `reports_a` int(1) NOT NULL,
@@ -57,23 +58,28 @@ CREATE TABLE `employeeprofile` (
   KEY `employee_num` (`employee_num`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
-INSERT INTO employeeprofile VALUES("1","1","Carl","a","admin","","123","Admin","Betio","0","E0001","admin","admin","1","1","1","1","1","1","1","1","1","1");
-INSERT INTO employeeprofile VALUES("10","1","Smith","D","La Carlota","","+09 (504) 563-55-6","Nurse","Smith","1","E00010","Carlagi","123","1","1","0","1","1","1","0","0","1","a");
-INSERT INTO employeeprofile VALUES("11","1","Miriam","P","Bacolod City","","+63 (912) 345-67-8","Nurse","Gayoba","1","E00011","gayoba","miriam","1","1","1","0","1","0","1","1","0","a");
-INSERT INTO employeeprofile VALUES("2","1","Jay Allan","L","Aguinaldo Street, Silay City, Negros Occidental","","09206348946","Nurse","Vasquez","1","E0002","vasquez","vasquez","1","1","0","1","1","1","0","0","1","a");
-INSERT INTO employeeprofile VALUES("3","1","John Paul","J","#90 Bayabas St. Elena Subdivision, Silay City, Negros Occidental","495 - 4538","09228167114","Nurse","Peornato","1","E0003","peornato","peornato","1","1","0","1","1","1","0","0","1","a");
-INSERT INTO employeeprofile VALUES("4","1","Guillermo","R","Purok Golf, Brgy. Guinhalaran, Silay City, Negros Occidental","","09207918057","Technician","Margate Sr.","1","E0004","margate","margate","1","1","0","1","1","1","0","0","1","a");
-INSERT INTO employeeprofile VALUES("5","1","Jenelle Marco","A","Lot 42 Block 30 St. Francis Subdivision, Silay City, Negros Occidental","495 - 5569","09055406423","Nurse","Paez","1","E0005","paez","paez","1","1","0","1","1","1","0","0","1","a");
-INSERT INTO employeeprofile VALUES("6","1","Christopher Niño","R","#10 Villa City High, Bacolod City, Negros Occidental","706 - 0186","09182446674","Nurse","Tolimao","1","E0006","tolimao","tolimao","1","1","0","1","1","1","0","0","1","a");
-INSERT INTO employeeprofile VALUES("8","1","Joebert","P","Purok Pag-asa, Talabaan Zone 1 Cadiz City, Negros Occidental","","09234346532","Nurse","Datu-on","1","E0008","datu-on","datu-on","0","0","0","0","0","0","0","0","0","");
-INSERT INTO employeeprofile VALUES("9","1","Alvin","L","Bacolod City","","+23 (321) 332-32-3","Technician","Yanson","1","E0009","","","0","0","0","0","0","0","0","0","0","");
+INSERT INTO employeeprofile VALUES("1","1","Carl","a","admin","","123","Admin","Betio","0","E0001","admin","admin","1","1","1","1","1","1","1","1","1");
+INSERT INTO employeeprofile VALUES("10","1","Smith","D","La Carlota","","+09 (504) 563-55-6","Nurse","Smith","1","E00010","Carlagi","123","1","1","0","1","1","0","0","1","a");
+INSERT INTO employeeprofile VALUES("11","1","Miriam","P","Bacolod City","","+63 (912) 345-67-8","Nurse","Gayoba","1","E00011","gayoba","miriam","1","1","1","0","1","1","1","0","a");
+INSERT INTO employeeprofile VALUES("2","1","Jay Allan","L","Aguinaldo Street, Silay City, Negros Occidental","","09206348946","Nurse","Vasquez","1","E0002","vasquez","vasquez","1","1","0","1","1","0","0","1","a");
+INSERT INTO employeeprofile VALUES("3","1","John Paul","J","#90 Bayabas St. Elena Subdivision, Silay City, Negros Occidental","495 - 4538","09228167114","Nurse","Peornato","1","E0003","peornato","peornato","1","1","0","1","1","0","0","1","a");
+INSERT INTO employeeprofile VALUES("4","1","Guillermo","R","Purok Golf, Brgy. Guinhalaran, Silay City, Negros Occidental","","09207918057","Technician","Margate Sr.","1","E0004","margate","margate","1","1","0","1","1","0","0","1","a");
+INSERT INTO employeeprofile VALUES("5","1","Jenelle Marco","A","Lot 42 Block 30 St. Francis Subdivision, Silay City, Negros Occidental","495 - 5569","09055406423","Nurse","Paez","1","E0005","paez","paez","1","1","0","1","1","0","0","1","a");
+INSERT INTO employeeprofile VALUES("6","1","Christopher Niño","R","#10 Villa City High, Bacolod City, Negros Occidental","706 - 0186","09182446674","Nurse","Tolimao","1","E0006","tolimao","tolimao","1","1","0","1","1","0","0","1","a");
+INSERT INTO employeeprofile VALUES("8","1","Joebert","P","Purok Pag-asa, Talabaan Zone 1 Cadiz City, Negros Occidental","","09234346532","Nurse","Datu-on","1","E0008","datu-on","datu-on","0","0","0","0","0","0","0","0","");
+INSERT INTO employeeprofile VALUES("9","1","Alvin","L","Bacolod City","","+23 (321) 332-32-3","Technician","Yanson","1","E0009","","","0","0","0","0","0","0","0","0","");
 
 
 
 
 
 CREATE TABLE `hemo_order` (
-  `coerd` char(100) NOT NULL,
+  `esrd_diabetic` int(1) NOT NULL,
+  `esrd_chronic` int(1) NOT NULL,
+  `esrd_hypertensive` int(1) NOT NULL,
+  `esrd_others` varchar(30) NOT NULL,
+  `freq_others` varchar(15) NOT NULL,
+  `dur_others` varchar(15) NOT NULL,
   `hepastat` int(1) NOT NULL,
   `antihstat` int(1) NOT NULL,
   `hepstatdate` date NOT NULL,
@@ -103,21 +109,21 @@ CREATE TABLE `hemo_order` (
   PRIMARY KEY (`order_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=latin1;
 
-INSERT INTO hemo_order VALUES("Chronic Gromerulonephritis and Hypertensive Nephrosclorosis","0","1","2018-01-29","2018-01-29","0","2018-01-22","sad","1","2018-01-29","sad","1","2018-01-29","sad","1","3 hours","HIPS-18","0","0","sad","dsad","sad","21 Kg","sdasdasd","01-26-22","13","2018-02-09");
-INSERT INTO hemo_order VALUES("Diabetic Nephropathy","0","0","2018-01-29","2018-01-29","0","2018-01-29","as","1","2018-01-29","asd","1","2018-01-29","a","2","","F8HPS","1","0","sad","dsad","sad"," Kg","sadasd","05-29-07","14","2018-01-29");
-INSERT INTO hemo_order VALUES("Chronic Gromerulonephritis and Hypertensive Nephrosclorosis","0","0","2018-02-08","2018-02-08","1","2018-02-09","mango","1","2018-02-09","mango","1","2018-02-09","mango","2","3 hours","F8HPS","0","0","asd","250","sad"," Kg","sad","01-26-22","25","2018-02-09");
-INSERT INTO hemo_order VALUES("Diabetic Nephropathy","0","0","2018-01-31","2018-01-28","1","2018-01-30","surgeon","1","2018-02-12","surgeon","1","2018-01-31","sssa","2","3 hours","HIPS-18","1","1","sssd","sdsd","dsd"," Kg","mdnkadkwdwdas","01-26-22","26","2018-02-11");
-INSERT INTO hemo_order VALUES("Hypertensive Nephrosclorosis","0","1","2017-10-30","2017-12-30","1","2018-01-02","","0","0000-00-00","","0","0000-00-00","","2","4 hours","F8HPS","0","0","LMWH","2.5 iu","300cc"," Kg K","Fennous sulfate 1tab TID
+INSERT INTO hemo_order VALUES("1","1","1","sampleothers","freqothers","durothers","0","1","2018-01-29","2018-01-29","0","2018-01-22","sad","1","2018-01-29","sad","1","2018-01-29","sad","1","3 hours","HIPS-18","0","0","sa","dsad","sad","21 Kg","sdasdasd","01-26-22","13","2018-02-09");
+INSERT INTO hemo_order VALUES("0","0","0","","0","0","0","0","2018-01-29","2018-01-29","0","2018-01-29","as","1","2018-01-29","asd","1","2018-01-29","a","2","","F8HPS","1","0","sad","dsad","sad"," Kg","sadasd","05-29-07","14","2018-01-29");
+INSERT INTO hemo_order VALUES("0","0","0","","0","0","0","0","2018-02-08","2018-02-08","1","2018-02-09","mango","1","2018-02-09","mango","1","2018-02-09","mango","2","3 hours","F8HPS","0","0","asd","250","sad"," Kg","sad","01-26-22","25","2018-02-09");
+INSERT INTO hemo_order VALUES("0","1","0","leptospirosis","0","0","0","0","2018-02-12","2018-02-20","0","2018-02-07","a","1","2018-02-20","as","1","2018-02-11","s","2","3.5 hours","F8HPS","0","0","as","as","as","55","as","A","26","2018-02-11");
+INSERT INTO hemo_order VALUES("0","0","0","","0","0","0","1","2017-10-30","2017-12-30","1","2018-01-02","","0","0000-00-00","","0","0000-00-00","","2","4 hours","F8HPS","0","0","LMWH","2.5 iu","300cc"," Kg K","Fennous sulfate 1tab TID
 Calcium carbonate 1 tab ","45-42-23","27","2018-02-07");
-INSERT INTO hemo_order VALUES("Diabetic Nephropathy","0","1","2017-09-16","2017-09-16","0","2015-07-01","Dr. Ranile","1","2015-07-01","Dr. Ranile","0","0000-00-00","","2","4 hours","F8HPS","0","0","LMWH","2.5 iu","300cc"," Kg","","33-42-13","28","2017-11-22");
-INSERT INTO hemo_order VALUES("Chronic Gromerulonephritis and Hypertensive Nephrosclorosis","0","1","2018-01-29","2018-01-29","0","2018-01-22","sad","1","2018-01-29","sad","1","2018-01-29","sad","1","3 hours","HIPS-18","0","0","sad","dsad","sad","21 Kg","sdasdasd","33-42-13","29","2018-02-09");
-INSERT INTO hemo_order VALUES("Diabetic Nephropathy","0","0","2018-01-29","2018-01-29","0","2018-01-29","as","1","2018-01-29","asd","1","2018-01-29","a","2","","F8HPS","1","0","sad","dsad","sad"," Kg","sadasd","65-10-03","30","2018-01-29");
-INSERT INTO hemo_order VALUES("Chronic Gromerulonephritis and Hypertensive Nephrosclorosis","0","0","2018-02-08","2018-02-08","1","2018-02-09","mango","1","2018-02-09","mango","1","2018-02-09","mango","2","3 hours","F8HPS","0","0","asd","250","sad"," Kg","sad","33-42-13","31","2018-02-09");
-INSERT INTO hemo_order VALUES("Diabetic Nephropathy","0","0","2018-01-31","2018-01-28","1","2018-01-30","surgeon","1","2018-02-12","surgeon","1","2018-01-31","sssa","2","3 hours","HIPS-18","1","1","sssd","sdsd","dsd"," Kg","mdnkadkwdwdas","01-26-22","32","2018-02-11");
-INSERT INTO hemo_order VALUES("Hypertensive Nephrosclorosis","0","1","2017-10-30","2017-12-30","1","2018-01-02","","0","0000-00-00","","0","0000-00-00","","2","4 hours","F8HPS","0","0","LMWH","2.5 iu","300cc"," Kg K","Fennous sulfate 1tab TID
+INSERT INTO hemo_order VALUES("0","0","0","","0","0","0","1","2017-09-16","2017-09-16","0","2015-07-01","Dr. Ranile","1","2015-07-01","Dr. Ranile","0","0000-00-00","","2","4 hours","F8HPS","0","0","LMWH","2.5 iu","300cc"," Kg","","33-42-13","28","2017-11-22");
+INSERT INTO hemo_order VALUES("0","0","0","","0","0","0","1","2018-01-29","2018-01-29","0","2018-01-22","sad","1","2018-01-29","sad","1","2018-01-29","sad","1","3 hours","HIPS-18","0","0","","","","21 Kg","sdasdasd","33-42-13","29","2018-02-09");
+INSERT INTO hemo_order VALUES("0","0","0","","0","0","0","0","2018-01-29","2018-01-29","0","2018-01-29","as","1","2018-01-29","asd","1","2018-01-29","a","2","","F8HPS","1","0","","",""," Kg","sadasd","65-10-03","30","2018-01-29");
+INSERT INTO hemo_order VALUES("0","0","0","","0","0","0","0","2018-02-08","2018-02-08","1","2018-02-09","mango","1","2018-02-09","mango","1","2018-02-09","mango","2","3 hours","F8HPS","0","0","","",""," Kg","sad","33-42-13","31","2018-02-09");
+INSERT INTO hemo_order VALUES("0","0","0","","0","0","0","0","2018-01-31","2018-01-28","1","2018-01-30","surgeon","1","2018-02-12","surgeon","1","2018-01-31","sssa","2","3 hours","HIPS-18","1","1","","",""," Kg","mdnkadkwdwdas","01-26-22","32","2018-02-11");
+INSERT INTO hemo_order VALUES("0","0","0","","0","0","0","1","2017-10-30","2017-12-30","1","2018-01-02","","0","0000-00-00","","0","0000-00-00","","2","4 hours","F8HPS","0","0","LMWH","2.5 iu","300cc"," Kg K","Fennous sulfate 1tab TID
 Calcium carbonate 1 tab ","45-42-23","33","2018-02-07");
-INSERT INTO hemo_order VALUES("Diabetic Nephropathy","0","1","2017-09-16","2017-09-16","0","2015-07-01","Dr. Ranile","1","2015-07-01","Dr. Ranile","0","0000-00-00","","2","4 hours","F8HPS","0","0","LMWH","2.5 iu","300cc"," Kg","","33-42-13","34","2017-11-22");
-INSERT INTO hemo_order VALUES("Diabetic Nephropathy","0","1","2017-09-16","2017-09-16","0","2015-07-01","Dr. Ranile","1","2015-07-01","Dr. Ranile","0","0000-00-00","","2","4 hours","F8HPS","0","0","LMWH","2.5 iu","300cc"," Kg","","86-89-17","35","2017-11-22");
+INSERT INTO hemo_order VALUES("0","0","0","","0","0","0","1","2017-09-16","2017-09-16","0","2015-07-01","Dr. Ranile","1","2015-07-01","Dr. Ranile","0","0000-00-00","","2","4 hours","F8HPS","0","0","LMWH","2.5 iu","300cc"," Kg","","33-42-13","34","2017-11-22");
+INSERT INTO hemo_order VALUES("0","1","0","","0","0","0","1","2017-09-16","2017-09-16","0","2015-07-01","Dr. Ranile","1","2015-07-01","Dr. Ranile","0","0000-00-00","","2","4 hours","F8HPS","0","0","LMWH","2.5 iu","300cc","50 Kg","","86-89-17","35","2017-11-22");
 
 
 
@@ -130,21 +136,16 @@ CREATE TABLE `hepatitisbvaccine` (
   `hepa_nextdate` date NOT NULL,
   `hepa_id` int(11) NOT NULL AUTO_INCREMENT,
   `Hospital_Id` varchar(30) NOT NULL,
-  `hepa_year` char(10) NOT NULL,
+  `hepa_year` char(4) NOT NULL,
   PRIMARY KEY (`hepa_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 
 INSERT INTO hepatitisbvaccine VALUES("1","johnsaa","2018-02-10","2018-02-15","1","01-26-22","");
 INSERT INTO hepatitisbvaccine VALUES("2","asd","2018-02-03","2018-02-23","2","01-26-22","");
 INSERT INTO hepatitisbvaccine VALUES("2","haha","2018-02-15","2018-02-15","3","01-26-22","");
 INSERT INTO hepatitisbvaccine VALUES("1","s4","2018-02-04","2018-02-04","4","01-26-22","");
 INSERT INTO hepatitisbvaccine VALUES("1","johnsa","2018-02-10","2018-02-10","5","01-26-22","2018");
-INSERT INTO hepatitisbvaccine VALUES("2","ASD","2017-06-07","2017-06-07","6","01-26-22","1970, Janu");
-INSERT INTO hepatitisbvaccine VALUES("2","menard","2018-02-11","2018-02-11","7","01-26-22","1970, Janu");
-INSERT INTO hepatitisbvaccine VALUES("2","menard","2016-02-03","2016-02-03","8","01-26-22","1970, Janu");
-INSERT INTO hepatitisbvaccine VALUES("2","www","2015-02-22","2015-02-22","9","45-42-23","1970, Janu");
-INSERT INTO hepatitisbvaccine VALUES("1","tljph","2017-01-18","2017-01-18","10","33-42-13","1970, Janu");
-INSERT INTO hepatitisbvaccine VALUES("2","tljph","2018-02-04","2018-02-04","11","33-42-13","1970, Janu");
+INSERT INTO hepatitisbvaccine VALUES("2","sam.e","2018-02-19","0000-00-00","14","01-26-22","2018");
 
 
 
@@ -164,7 +165,9 @@ CREATE TABLE `hepatitisprofile` (
 
 INSERT INTO hepatitisprofile VALUES("2018-02-09","r","r","nr","nr","01-26-22","10","2018, February");
 INSERT INTO hepatitisprofile VALUES("2018-01-19","nr","r","nr","r","01-26-22","11","2018, January");
-INSERT INTO hepatitisprofile VALUES("2018-02-07","r","r","r","r","01-26-22","14","2018, February");
+INSERT INTO hepatitisprofile VALUES("2018-02-15","","","","","","12","2018, February");
+INSERT INTO hepatitisprofile VALUES("2018-02-15","","","","","","13","2018, February");
+INSERT INTO hepatitisprofile VALUES("2018-02-06","nr","nr","nr","nr","05-29-07","14","2018, February");
 INSERT INTO hepatitisprofile VALUES("2018-01-24","r","r","r","r","01-26-22","15","2018, January");
 INSERT INTO hepatitisprofile VALUES("2018-01-25","r","r","nr","nr","01-26-22","16","2018, January");
 INSERT INTO hepatitisprofile VALUES("2017-12-30","nr","nr","nr","nr","45-42-23","20","2017, December");
@@ -185,7 +188,7 @@ CREATE TABLE `influenzavaccine` (
   `Hospital_Id` varchar(30) NOT NULL,
   `influenza_year` char(10) NOT NULL,
   PRIMARY KEY (`influenza_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 INSERT INTO influenzavaccine VALUES("johnsaac","2018-02-03","2018-02-28","1","01-26-22","");
 INSERT INTO influenzavaccine VALUES("asda","2018-02-14","2018-02-28","5","01-26-22","");
@@ -207,19 +210,21 @@ CREATE TABLE `initialtestresult` (
   `initialtest_date` date NOT NULL,
   `initialtest_time` varchar(12) NOT NULL,
   PRIMARY KEY (`initialtestresult_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 INSERT INTO initialtestresult VALUES("36","164/91","74","18","1","86-89-17","2017-06-26","7:11 am");
 INSERT INTO initialtestresult VALUES("36.","169/90","70","19","2","86-89-17","2017-07-03","7:00 am");
 INSERT INTO initialtestresult VALUES("35.5","152/85","68","19","3","86-89-17","2017-10-07","6:41 am");
-INSERT INTO initialtestresult VALUES("35.2","176/93","68","19","4","86-89-17","2017-07-17","6:50");
-INSERT INTO initialtestresult VALUES("35.8","176/95","68","19","5","86-89-17","2017-07-24","6:55");
-INSERT INTO initialtestresult VALUES("35.6","167/81","76","20","6","86-89-17","2017-07-31","6:37");
+INSERT INTO initialtestresult VALUES("35.2","176/93","68","19","4","86-89-17","2017-07-17","6:50 am");
+INSERT INTO initialtestresult VALUES("35.8","176/95","68","19","5","86-89-17","2017-07-24","6:55 am");
+INSERT INTO initialtestresult VALUES("35.6","167/81","76","20","6","86-89-17","2017-07-31","6:37 am");
 INSERT INTO initialtestresult VALUES("35.6","167/81","76","20","7","86-89-17","2018-01-22","5:13 am");
 INSERT INTO initialtestresult VALUES("32","151/171","78","22","8","45-45-24","2018-01-22","10:37 am");
 INSERT INTO initialtestresult VALUES("dsa","das","dasd","asdas","9","01-26-22","2018-01-29","11:41 am");
 INSERT INTO initialtestresult VALUES("35","175/80","70","40","10","45-45-24","2018-01-29","8:15 pm");
 INSERT INTO initialtestresult VALUES("31","170 / 90","23","23","11","86-89-17","2018-02-05","1:32 am");
+INSERT INTO initialtestresult VALUES("23","23 / 32","32","23","12","A","2018-02-11","9:36 pm");
+INSERT INTO initialtestresult VALUES("1","1 / 1","1123","1","13","05-29-07","2018-02-14","3:27 am");
 
 
 
@@ -260,12 +265,14 @@ CREATE TABLE `laboratory` (
   `Laboratory_date` date NOT NULL,
   `Laboratory_id` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`Laboratory_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=latin1;
 
 INSERT INTO laboratory VALUES("a1","a1","a1","a1","a1","a1","a1","a1","a1","a1","a1","a1","a1","a1","a1","a1","a1","a1","a1","a1","a1","a1","a1","a1","a1","a1","a1","a1","a1","a1","86-89-17","2018-01-27","1");
 INSERT INTO laboratory VALUES("1","1","1","1","1","1","1","1","1","1","1","1","1","1","","","","","","","","","","","","","","","","","01-26-22","2018-02-06","15");
-INSERT INTO laboratory VALUES("2","43","24","43","434","43","4","43","43","43","43","43","43","43","","","","","","","","","","","","","","","","","01-26-22","2018-01-30","18");
-INSERT INTO laboratory VALUES("43","4545","4545","5545","544545","5454","545","545","5454","4545","54545","5454","545","545","","","","","","","","","","","","","","","","","01-26-22","2017-10-12","19");
+INSERT INTO laboratory VALUES("","","","","","","","","","","","","a","a","a","a","a","a","a","a","a","a","","","","","","","","","01-26-22","2018-02-07","16");
+INSERT INTO laboratory VALUES("1","1","1","1","1","1","1","1","1","1","1","1","","","","","","","","","","","","","","","","","","","23-22-02","2018-02-12","17");
+INSERT INTO laboratory VALUES("","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","23-22-02","2018-02-14","18");
+INSERT INTO laboratory VALUES("1","1","1","1","1","1","1","1","1","1","1","1","","","","","","","","","","","","","","","","","","","05-29-07","2018-02-12","19");
 INSERT INTO laboratory VALUES("545","55","45","545","54","545","545","656","545","656","545","656","545","656","65","565","656565","65","65","65","6566","65","","","","","","","","","01-26-22","2018-02-07","20");
 INSERT INTO laboratory VALUES("18.67","116.01","","","","3.70","","","","","","","","","2.84","9.2","","0.25","219","","5","4","2","","","","","","","","45-42-23","2018-01-03","21");
 INSERT INTO laboratory VALUES("","","","","","","","","","","","","","","2.3","8.4","64","0.20","98","0.69","0.16","0.11","0.04","","","","","","","","45-42-23","2018-02-07","24");
@@ -284,6 +291,7 @@ INSERT INTO laboratory VALUES("7.08","72.75","","6.32","2.47","3.83","134.9","23
 INSERT INTO laboratory VALUES("7.23","59.55","","","","4.76","137.30","266.41","152.21","88.03","146.69","109.09","","6.86","4.7","7.5","135","0.41","248","0.63","0.14","0.08","0.13","0.02","","","","","","","86-89-17","2017-02-02","38");
 INSERT INTO laboratory VALUES("10.2","36.24","","7.68","","4.87","136.5","193.05","152.21","56.37","105.11","123.64","","9.85","","","","","","","","","","","","","","","","","86-89-17","2017-04-11","39");
 INSERT INTO laboratory VALUES("8.45","41.29","","","","4.40","136","239.38","194.69","59.07","140.91","123.64","","7.43","","","","","","","","","","","","","","","","","86-89-17","2017-08-07","40");
+INSERT INTO laboratory VALUES("s","s","s","s","ss","s","s","s","s","s","s","s","s","s","","","","","","","","","","","","","","","","","A","0000-00-00","41");
 
 
 
@@ -296,14 +304,21 @@ CREATE TABLE `laboratory_others` (
   `labothers_date` date NOT NULL,
   `Hospital_Id` varchar(30) NOT NULL,
   PRIMARY KEY (`labothers_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 INSERT INTO laboratory_others VALUES("1","s","s","2018-02-05","sad");
 INSERT INTO laboratory_others VALUES("2","desc","s","2018-02-05","86-89-17");
 INSERT INTO laboratory_others VALUES("3","red blood ","24","2018-02-21","01-26-22");
 INSERT INTO laboratory_others VALUES("4","as","as","2018-02-07","01-26-22");
-INSERT INTO laboratory_others VALUES("5","s","a","2016-12-05","33-42-13");
-INSERT INTO laboratory_others VALUES("6","SGPT","135","2018-01-27","86-89-17");
+INSERT INTO laboratory_others VALUES("5","sample_two","2","2018-02-12","01-26-22");
+INSERT INTO laboratory_others VALUES("6","aa","bb","2018-02-14","23-22-02");
+INSERT INTO laboratory_others VALUES("7","sample_two","2","2018-02-12","23-22-02");
+INSERT INTO laboratory_others VALUES("8","1","1","2018-02-28","23-22-02");
+INSERT INTO laboratory_others VALUES("9","a","1","2018-02-15","23-22-02");
+INSERT INTO laboratory_others VALUES("10","1zzzz","a","2018-02-27","23-22-02");
+INSERT INTO laboratory_others VALUES("11","sample_two","2","2018-02-12","05-29-07");
+INSERT INTO laboratory_others VALUES("12","sample_two1","22","2018-02-12","05-29-07");
+INSERT INTO laboratory_others VALUES("13","desc","2","2018-01-27","86-89-17");
 
 
 
@@ -320,7 +335,7 @@ CREATE TABLE `machineresult` (
   `m_date` date NOT NULL,
   `m_time` varchar(12) NOT NULL,
   PRIMARY KEY (`machineresult_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=latin1;
 
 INSERT INTO machineresult VALUES("164/91","72","250","80","180","1","86-89-17","2017-06-26","7:25 am");
 INSERT INTO machineresult VALUES("165/88","78","300","80","200","2","86-89-17","2017-06-26","8:45 am");
@@ -373,6 +388,20 @@ INSERT INTO machineresult VALUES("dsad","asd","dasd","sad","sada","48","01-26-22
 INSERT INTO machineresult VALUES("dsa","dasd","ads","asdsa","dasd","49","01-26-22","2018-01-29","11:45 am");
 INSERT INTO machineresult VALUES("175/90","75","300cc","70","70","50","45-45-24","2018-01-29","8:16 pm");
 INSERT INTO machineresult VALUES("190 / 62","12","23","231","12","51","86-89-17","2018-02-05","1:39 am");
+INSERT INTO machineresult VALUES("2 / 23","asd","asd","asd","sadsa","52","A","2018-02-11","9:36 pm");
+INSERT INTO machineresult VALUES("1 / 23","sad","asdasd","asd","asd","53","A","2018-02-11","9:37 pm");
+INSERT INTO machineresult VALUES("12 / 12","sd","ds","ds","ds","54","A","2018-02-11","9:46 pm");
+INSERT INTO machineresult VALUES("123 / 12","1","2","2","2","55","86-89-17","2018-02-12","2:08 am");
+INSERT INTO machineresult VALUES("2 / 2","100","1","1","1","56","86-89-17","2018-02-12","2:47 am");
+INSERT INTO machineresult VALUES("1 / 1","2","1","1","1","57","86-89-17","2018-02-12","2:49 am");
+INSERT INTO machineresult VALUES(" / ","","","","","58","86-89-17","2018-02-12","3:12 am");
+INSERT INTO machineresult VALUES(" / ","","","","","59","86-89-17","2018-02-12","3:12 am");
+INSERT INTO machineresult VALUES(" / ","","","","","60","86-89-17","2018-02-12","3:13 am");
+INSERT INTO machineresult VALUES("1 / 1","1","1","1","1","61","86-89-17","2018-02-12","3:23 am");
+INSERT INTO machineresult VALUES("1 / 1","123123","1","1","1","62","05-29-07","2018-02-14","3:28 am");
+INSERT INTO machineresult VALUES("2 / 2","1asd","2","2","2","63","05-29-07","2018-02-14","3:42 am");
+INSERT INTO machineresult VALUES("12 / 12","43","123","123","123","64","05-29-07","2018-02-14","5:19 am");
+INSERT INTO machineresult VALUES("100 / 80","123","123","123","123","65","86-89-17","2018-02-19","1:39 am");
 
 
 
@@ -423,8 +452,52 @@ INSERT INTO maintenance VALUES("E0001","Export","2018-02-06 12:54 pm");
 INSERT INTO maintenance VALUES("E0001","Export","2018-02-09 04:17 pm");
 INSERT INTO maintenance VALUES("E0001","Export","2018-02-09 04:17 pm");
 INSERT INTO maintenance VALUES("E0001","Export","2018-02-09 04:17 pm");
+INSERT INTO maintenance VALUES("E0001","Import","2018-02-15 11:57 pm");
+INSERT INTO maintenance VALUES("E0001","Export","2018-01-23 08:19 pm");
+INSERT INTO maintenance VALUES("E0001","Export","2018-01-28 10:03 pm");
+INSERT INTO maintenance VALUES("E0001","Import","2018-02-03 01:58 pm");
+INSERT INTO maintenance VALUES("E0001","Export","2018-01-23 08:19 pm");
+INSERT INTO maintenance VALUES("E0001","Export","2018-01-28 10:03 pm");
+INSERT INTO maintenance VALUES("E0001","Export","2018-01-29 08:29 pm");
+INSERT INTO maintenance VALUES("E0001","Export","2018-02-06 12:53 pm");
+INSERT INTO maintenance VALUES("E0001","Import","2018-02-06 12:54 pm");
+INSERT INTO maintenance VALUES("E0001","Export","2018-01-23 08:19 pm");
+INSERT INTO maintenance VALUES("E0001","Export","2018-01-28 10:03 pm");
+INSERT INTO maintenance VALUES("E0001","Import","2018-02-03 01:58 pm");
+INSERT INTO maintenance VALUES("E0001","Export","2018-01-23 08:19 pm");
+INSERT INTO maintenance VALUES("E0001","Export","2018-01-28 10:03 pm");
+INSERT INTO maintenance VALUES("E0001","Export","2018-01-29 08:29 pm");
+INSERT INTO maintenance VALUES("E0001","Export","2018-02-06 12:53 pm");
+INSERT INTO maintenance VALUES("E0001","Export","2018-02-06 12:54 pm");
+INSERT INTO maintenance VALUES("E0001","Export","2018-02-09 04:17 pm");
+INSERT INTO maintenance VALUES("E0001","Export","2018-02-09 04:17 pm");
+INSERT INTO maintenance VALUES("E0001","Export","2018-02-09 04:17 pm");
+INSERT INTO maintenance VALUES("E0001","Import","2018-02-09 04:21 pm");
+INSERT INTO maintenance VALUES("E0001","Export","2018-01-23 08:19 pm");
+INSERT INTO maintenance VALUES("E0001","Export","2018-01-28 10:03 pm");
+INSERT INTO maintenance VALUES("E0001","Import","2018-02-03 01:58 pm");
+INSERT INTO maintenance VALUES("E0001","Export","2018-01-23 08:19 pm");
+INSERT INTO maintenance VALUES("E0001","Export","2018-01-28 10:03 pm");
+INSERT INTO maintenance VALUES("E0001","Export","2018-01-29 08:29 pm");
+INSERT INTO maintenance VALUES("E0001","Export","2018-02-06 12:53 pm");
+INSERT INTO maintenance VALUES("E0001","Import","2018-02-06 12:54 pm");
+INSERT INTO maintenance VALUES("E0001","Export","2018-01-23 08:19 pm");
+INSERT INTO maintenance VALUES("E0001","Export","2018-01-28 10:03 pm");
+INSERT INTO maintenance VALUES("E0001","Import","2018-02-03 01:58 pm");
+INSERT INTO maintenance VALUES("E0001","Export","2018-01-23 08:19 pm");
+INSERT INTO maintenance VALUES("E0001","Export","2018-01-28 10:03 pm");
+INSERT INTO maintenance VALUES("E0001","Export","2018-01-29 08:29 pm");
+INSERT INTO maintenance VALUES("E0001","Export","2018-02-06 12:53 pm");
+INSERT INTO maintenance VALUES("E0001","Export","2018-02-06 12:54 pm");
+INSERT INTO maintenance VALUES("E0001","Export","2018-02-09 04:17 pm");
+INSERT INTO maintenance VALUES("E0001","Export","2018-02-09 04:17 pm");
+INSERT INTO maintenance VALUES("E0001","Export","2018-02-09 04:17 pm");
 INSERT INTO maintenance VALUES("E0001","Export","2018-02-12 07:53 pm");
 INSERT INTO maintenance VALUES("E0001","Export","2018-02-12 07:54 pm");
+INSERT INTO maintenance VALUES("E0001","Export","2018-02-19 06:54 pm");
+INSERT INTO maintenance VALUES("E0001","Export","2018-02-19 06:55 pm");
+INSERT INTO maintenance VALUES("E0001","Export","2018-02-19 06:55 pm");
+INSERT INTO maintenance VALUES("E0001","Export","2018-02-19 06:55 pm");
 
 
 
@@ -487,7 +560,7 @@ CREATE TABLE `nephronotesorder` (
   `notes_order_Id` int(5) NOT NULL AUTO_INCREMENT,
   `Hospital_Id` varchar(30) NOT NULL,
   PRIMARY KEY (`notes_order_Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 INSERT INTO nephronotesorder VALUES("N0001","comfortable 160/80","UF to DW","2017-07-03","1","86-89-17");
 INSERT INTO nephronotesorder VALUES("N0001","Comfortable 
@@ -501,6 +574,7 @@ INSERT INTO nephronotesorder VALUES("N00010","a","a","2017-07-31","6","86-89-17"
 INSERT INTO nephronotesorder VALUES("N00010","a","a","2018-01-22","7","86-89-17");
 INSERT INTO nephronotesorder VALUES("N00010","asdasd","sadasd","2018-01-29","8","01-26-22");
 INSERT INTO nephronotesorder VALUES("N00010","this is a note","this is an order","2018-01-29","9","45-45-24");
+INSERT INTO nephronotesorder VALUES("N00010","asd","asd","2018-02-11","10","A");
 
 
 
@@ -518,7 +592,7 @@ CREATE TABLE `nursenotes` (
   PRIMARY KEY (`nurse_notes_id`),
   KEY `Hospital_Id` (`Hospital_Id`),
   CONSTRAINT `Hospital_Id` FOREIGN KEY (`Hospital_Id`) REFERENCES `patientprofile` (`Hospital_Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
 
 INSERT INTO nursenotes VALUES("For hemodialysis","Recieved ambulatory concious and coherent","Recieved Ambulatory, consent signed, Avf site","Uf goal recieved, Hd assessment done. Post HD weight and vital signs checked. eposino 6000 iu given @ at  R abdominal well","E0001","2017-06-26","1","86-89-17");
 INSERT INTO nursenotes VALUES("For Hemodialysis","Recieved ambulatory concious and coherent","Consent for HD signed 4vf site dressed aseptically, Uf goal set to 3,000ml connulation","Uf goal reacted, HD treatment ended and terminated past HD assessment done, epueno 6,000 is given at abdominal wall","E0001","2017-07-03","2","86-89-17");
@@ -545,6 +619,8 @@ INSERT INTO nursenotes VALUES("a","a","a","a","E0001","2018-01-22","14","86-89-1
 INSERT INTO nursenotes VALUES("for hemodialysis","came in ambulatory ","pre HD consent signed ","12:30pm HD ended","E0001","2018-01-22","15","45-45-24");
 INSERT INTO nursenotes VALUES("sda","sdas","dasda","dasdas","E0001","2018-01-29","16","01-26-22");
 INSERT INTO nursenotes VALUES("for hemodialysis","bp 170/40","give medicine","bp normal","E0001","2018-01-29","17","45-45-24");
+INSERT INTO nursenotes VALUES("as","dasd","asd","asd","E0001","2018-02-11","18","A");
+INSERT INTO nursenotes VALUES("as","sa","sa","sa","E0001","2018-02-12","19","86-89-17");
 
 
 
@@ -566,6 +642,9 @@ CREATE TABLE `patientdrugprofile` (
   PRIMARY KEY (`drugprofile_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=latin1;
 
+INSERT INTO patientdrugprofile VALUES(" s","s","s","s","2018-02-09","s","s","s","N00011","9","01-26-22","2018, February");
+INSERT INTO patientdrugprofile VALUES(" s","s","s","s","2018-02-09","s","a","s","N0002","10","01-26-22","2018, February");
+INSERT INTO patientdrugprofile VALUES(" a","a","a","a","2018-01-12","a","a","a","N00010","11","01-26-22","2018, January");
 INSERT INTO patientdrugprofile VALUES(" 12","45","3 times a day","oral","2017-01-31","deewe","yes","ksfkeer","N0005","12","01-26-22","2017, January");
 INSERT INTO patientdrugprofile VALUES(" 3434","434","434","oral","2018-01-09","34343","no","343434","N0001","13","01-26-22","2018, January");
 INSERT INTO patientdrugprofile VALUES("Fennous sulfate","1 tab","TID","P.O.","2018-02-07","","","","","18","45-42-23","2018, February");
@@ -628,7 +707,7 @@ CREATE TABLE `patientprofile` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 INSERT INTO patientprofile VALUES("01-26-22","Orota","Rosario","Abanilla","1933-09-24","83","Female","F","Dating Daan","Widowed","Comboy St. Phase II St. Francis Subd. Brgy. 5, Silay City, Negros Occidental","09064459636","Comboy St. Phase II St. Francis Subd. Brgy. 5, Silay City, Negros Occidental","09064459636","Jake Joaquin","HDA. Puyas Brgy. IV, Silay City, Negros Occidental","09126634789","83","Eposino 4,000 iu"," ESRD Secondary to Chronic Gromerulonephritis and Hypertensive Nephrosclorosis","1117-5342-4950","Dennis Valladarez","","2017-03-01","0","N0007","1","","");
-INSERT INTO patientprofile VALUES("05-29-07","Cordova","Ronnie Sr.","Dusaran","1959-08-22","58","Male","Filipino","Roman Catholic","Married","HDA. Dacudao, Brgy. Guimbala-on, Silay City, Negros Occidental","09216844881","HDA. Dacudao, Brgy. Guimbala-on, Silay City, Negros Occidental","09216844881","Ronely Gerota","Panaogao 1, Brgy. 4, Silay City, Negros Occidental","09074632447","37","Epoetin Alpha 4,000 ui 2x/week","End Stage Renal Disease Secondary to Obstructive Uropathy","4000-6000-3707","Ma. Nelly Cordova","Wife","1997-09-07","0","N00011","0","","");
+INSERT INTO patientprofile VALUES("05-29-07","Cordova","Ronnie Sr.","Dusaran","1959-08-22","58","Male","Filipino","Roman Catholic","Married","HDA. Dacudao, Brgy. Guimbala-on, Silay City, Negros Occidental","09216844881","HDA. Dacudao, Brgy. Guimbala-on, Silay City, Negros Occidental","09216844881","Ronely Gerota","Panaogao 1, Brgy. 4, Silay City, Negros Occidental","09074632447","37","Epoetin Alpha 4,000 ui 2x/week","ESRD Secondary to Diabetic Nephropathy","4000-6000-3707","Ma. Nelly Cordova","","1997-09-07","0","N00011","1","","");
 INSERT INTO patientprofile VALUES("06-08-23","Ignacio","Rafael","Mayang","1955-10-24","61","Male","Filipino","MCG I","Married","Rizal St., Brgy. 4, Poblacion, Victorias City, Negros Occidental","09094652572","Rizal St., Brgy. 4, Poblacion, Victorias City, Negros Occidental","09466773230","Francisca Ignacio","Rizal St., Brgy. 4, Poblacion, Victorias City, Negros Occidental","09092673505","61","Epoetin Alpha 4,000 ui 2x/week","End Stage Renal Disease Secondary to Diabetic Nephropathy","0802-5420-0615","Josephine Ignacio","Wife","2017-03-17","0","N0001","0","","");
 INSERT INTO patientprofile VALUES("13-18-17","Baroy","Edwin","Canindo","1960-07-19","57","Male","Filipino","Roman Catholic","Single","Antilla Subd., Brgy. 4, Silay City, Negros Occidental","495-4496","Antilla Subd., Brgy. 4, Silay City, Negros Occidental","495-4496","Dolores Baloy","Antilla Subd., Brgy. 4, Silay City, Negros Occidental","495-4496","52","Epoetin Alpha 4,000 ui 2x/week","End Stage Renal Disease Secondary to Hypertensive Neproclerosis","1102-5157-3190","Edwin Baroy","Self","2012-12-27","0","N0009","0","","");
 INSERT INTO patientprofile VALUES("13-38-01","Duyo","Cerezille","Abella","1970-05-15","47","Female","Filipino","Roman Catholic","Married","Purok Acasia, Boulevard, Brgy. Mambulac, Silay City, Negros Occidental","495-6126","Purok Acasia, Boulevard, Brgy. Mambulac, Silay City, Negros Occidental","09462542671","Saturnina Duyo","Purok Acasia, Boulevard, Brgy. Mambulac, Silay City, Negros Occidental","714-5757","38","Epoetin Alpha 4,000 ui 2x/week","End Stage Renal Disease Secondary to Chronic Glomerulonephritis","","Cerezille Duyo","Self","2008-08-26","0","N00012","0","","");
@@ -639,7 +718,7 @@ INSERT INTO patientprofile VALUES("21-26-17","Arboleda","Ma. Theresa","Aldea","1
 INSERT INTO patientprofile VALUES("23-22-02","Medel","Rebecca","Delgado","1956-11-01","61","Female","Filipino","Roman Catholic","Married","HDA. Guadalupe, Brgy. Salvacion, Murcia, Negros Occidental","09292538764","HDA. Guadalupe, Brgy. Salvacion, Murcia, Negros Occidental","09292538764","Archie Marcial","Gardenville Subdivision, Bacolod City, Negros Occidental","09128559773","53","Epoetin Alpha (Eposino) 6,000 ui 2x/week","End Stage Renal Disease Secondary to Diabetic Nephropathy","1120-1295-5017","Rolando Medel","Husband","2017-01-02","0","N00010","0","","");
 INSERT INTO patientprofile VALUES("25-84-10","Nolido","Mario Jr","Jentelizo","1985-11-29","32","Male","Filipino","Born Again Christian","Married","St. Francis De Asissi, Brgy. Lantad, Silay City, Negros Occidetal","09468572829","St. Francis De Asissi, Brgy. Lantad, Silay City, Negros Occidetal","09468572830","Dolores Baroy","Antilla Subd., Brgy. 4, Silay City, Negros Occidetal","495-4496","25","Epoetin Alpha 4,000 ui 2x/week","End Stage Renal Disease Secondary to  Chronic Glomerulonephritis","","Mario Nolido Jr.","Self","2001-10-17","0","N00010","0","","");
 INSERT INTO patientprofile VALUES("31-24-32","Lanada","Fremrose","Gallego","1982-10-05","34","Female","Filipino","Roman Catholic","Single","New Site, Brgy. E Lopez, Silay City, Negros Occidental","09122408667","New Site, Brgy. E Lopez, Silay City, Negros Occidental","09122408667","Ma. Theresa Lanada","New Site, Brgy. E Lopez, Silay City, Negros Occidental","09752975653","33","Epoetin Alpha 4,000 ui 2x/week","End Stage Renal Disease Secondary to Chronic Glomerulonephritis","0202-6170-8907","Fremrose Lanasa","Self","2016-03-29","0","N0007","0","","");
-INSERT INTO patientprofile VALUES("33-42-13","Araneta","Arnold","Lacson","1965-04-09","52","Male","Filipino","Roman Catholic","Married","Lopez Jaena St., Brgy. 5, Silay City, Negros Occidental","714-5557","Lopez Jaena St., Brgy. 5, Silay City, Negros Occidental","09093670837","Allen Parrocho","Carmela Valley Subd., Talisay City, Negros Occidental","702-2017","50","Epoetin Alpha 4,000 ui 2x/week"," ESRD Secondary to Diabetic Nephropathy","1100-0098-8928","Jennifer Araneta","Spouse","2015-08-11","0","N00011","1","","");
+INSERT INTO patientprofile VALUES("33-42-13","Araneta","Arnold","Lacson","1965-04-09","52","Male","Filipino","Roman Catholic","Married","Lopez Jaena St., Brgy. 5, Silay City, Negros Occidental","714-5557","Lopez Jaena St., Brgy. 5, Silay City, Negros Occidental","09093670837","Allen Parrocho","Carmela Valley Subd., Talisay City, Negros Occidental","702-2017","50","Epoetin Alpha 4,000 ui 2x/week","End Stage Renal Disease Secondary to Diabetic Nephropathy","1100-0098-8928","Jennifer Araneta","Wife","2015-08-11","0","N00011","0","","");
 INSERT INTO patientprofile VALUES("37-67-12","Ditchella","Dionisio","Constantino","1949-10-03","68","Male","Fiilipino","Roman Catholic","Married","Yap Quina St., Brgy.4, Victorias City, Negros Occidental","09152910941","Yap Quina St., Brgy.4, Victorias City, Negros Occidental","09152910941","Marilyn Ditchella","Osmena Avenue, Brgy.5, Victorias, Negros Occidental","09152910941","63","Epoetin Alpha 4,000 iu 2x/week","End Stage Renal Disease Secondary to Diabetic Nephropathy","","Teresita Ditchella","Wife","2013-04-23","0","N0005","0","","");
 INSERT INTO patientprofile VALUES("40-24-17","Roa","Corazon","Dionio","1937-09-06","80","Female","Filipino","Roman Catholic","Widowed","361 Quezon Street, Brgy. 5, Victorias City, Negros Occidental","09194040465","361 Quezon Street, Brgy. 5, Victorias City, Negros Occidental","09194040465","Sheila Seballos","Purok 1B, Da-an Banwa, Brgy.9, Victorias City, Negros Occidental","399-2719","76","Epoetin Alfa 4,000 IU 2x/week","ESRD SECONDARY TO HYPERTENSIVE NEPHROSCLEROSIS","1117-5245-5909","Sheila Seballos","Daughter","2013-09-21","0","N0004","0","","");
 INSERT INTO patientprofile VALUES("40-78-21","Mahilum","Edbert","Jamora","1971-12-29","45","Male","Filipino","Roman Catholic","Married","Carmella, Phase I, Brgy. V, Silay City, Negros Occidental","09128338521","Carmella, Phase I, Brgy. V, Silay City, Negros Occidental","09074507590","Eduardo Mahilum Jr.","Buenavista Subd., Phase IV, Brgy.Guinhalaran, Silay City, Negros Occidental","0918662686","36","Epoetin Alfa (Eposino) 6,000 ui 2x/week","ESRD SEC.TO CGN; S/P KT W/ CHRONIC REJECTION (2008)","1102-5121-3933","Almira Mahilum","Wife","2007-05-01","0","N0003","0","","");
@@ -665,7 +744,7 @@ INSERT INTO patientprofile VALUES("93-94-12","Nitro","Jose Marie","Rivas","1968-
 INSERT INTO patientprofile VALUES("96-34-17","Susmiran","Liezl Corazon","Lavadia","1972-03-24","44","Female","Filipino","Born Again","Married","Purok Ipil-ipil, Brgy. Mambulac, Silay City, Negros Occidental","09079749850","Purok Ipil-ipil, Brgy. Mambulac, Silay City, Negros Occidental","09079749850","Mary Jane Lavadia","Purok Paghidaet, Brgy. Mambulac, Silay City, Negros Occidental","09103794462","43","Epoetin Alfa (Esposino 4000 units)","ESRD 2 degree Hypertensive Nephrosclerosis","","Liezl Susmiran","Self","2015-05-25","0","N0004","0","","");
 INSERT INTO patientprofile VALUES("96-52-17","Acosta","Ireneo Jr.","Chavez","1949-02-23","67","Male","Filipino","Roman Catholic","Married","Brgy. 19 Mallorca, Victorias City, Negros Occidental","09064975176","Brgy. 19 Mallorca, Victorias City, Negros Occidental","09064975176","Elena Marinas","Brgy. 19 Mallorca, Victorias City, Negros Occidental","09064975176","65","Eposino 4,000 iu","ESRD Secondary to DM Nephropathy, Urate Nephropathy","1120-0762-8091","Vilma Acosta","Wife","2014-08-01","0","N0007","0","","");
 INSERT INTO patientprofile VALUES("99-06-03","Villarte Sr.","Edwin","Condada","1954-08-19","63","","Filipino","Roman Catholic","","Sampaguita Village, Brgy. Lantad, Silay City, Negros Occidental","09951334869","Sampaguita Village, Brgy. Lantad, Silay City, Negros Occidental","09951334869","Alma Juarez","Sitio Berano, Brgy. Lantad, Silay City, Negross Occidental","09191623435","58","Epoetin Alpha (Renogen) 4,000 iu 2x/week","ESRD Secondary to Hypertensive Nephrosclerosis","1120-1172-3406","Edwin Villarte Sr.","Self","2012-11-24","0","N0005","0","","");
-INSERT INTO patientprofile VALUES("A","A","A","A","2018-01-21","20","Male","A","A","Single","A","a","A","123","A","A","123","12","123","Asd","Asd","Asd","Guardian","2018-01-21","0","N00010","0","","");
+INSERT INTO patientprofile VALUES("A","A","A","A","2018-01-21","20","Male","A","A","Single","A","a","A","123","A","A","123","12","123","","Asd","Asd","Guardian","2018-01-21","0","N00010","1","","");
 INSERT INTO patientprofile VALUES("B","B","B","B","2018-01-21","2","Male","B","B","Married","B","123","B","123","B","B","123","2","Ds","Asd","123","123","Guardian","2018-01-22","0","N00011","0","","");
 INSERT INTO patientprofile VALUES("C","C","C","C","2018-01-21","2","Male","B","B","Married","B","123","B","123","B","B","123","12","Asd","Asd","Asd","Asd","Parent","2018-01-17","0","N00010","0","","");
 
@@ -686,11 +765,11 @@ INSERT INTO patientschedule VALUES("12","86-89-17","Monday","morning");
 INSERT INTO patientschedule VALUES("13","40-89-11","Monday","morning");
 INSERT INTO patientschedule VALUES("14","86-11-12","Monday","morning");
 INSERT INTO patientschedule VALUES("15","93-94-12","Monday","afternoon");
-INSERT INTO patientschedule VALUES("16","05-29-07","Monday","afternoon");
+INSERT INTO patientschedule VALUES("16","05-29-07","Wednesday","morning");
 INSERT INTO patientschedule VALUES("17","40-78-21","Wednesday","morning");
 INSERT INTO patientschedule VALUES("18","01-26-22","Tuesday","morning");
 INSERT INTO patientschedule VALUES("19","45-45-24","Monday","morning");
-INSERT INTO patientschedule VALUES("20","A","Sunday","morning");
+INSERT INTO patientschedule VALUES("20","A","Saturday","morning");
 INSERT INTO patientschedule VALUES("21","45-42-23","Wednesday","morning");
 INSERT INTO patientschedule VALUES("22","33-42-13","Wednesday","morning");
 
@@ -713,6 +792,7 @@ INSERT INTO pneumococcal_vaccine VALUES("qwer","2018-02-10","2018-02-14","2","01
 INSERT INTO pneumococcal_vaccine VALUES("rtys","2018-02-09","2018-02-22","3","01-26-22","");
 INSERT INTO pneumococcal_vaccine VALUES("asd","2018-02-03","2018-02-16","4","01-26-22","");
 INSERT INTO pneumococcal_vaccine VALUES("gr","2018-02-23","2018-02-24","5","01-26-22","");
+INSERT INTO pneumococcal_vaccine VALUES("","0000-00-00","0000-00-00","6","86-89-17","");
 INSERT INTO pneumococcal_vaccine VALUES("c/o TLJPH hemodialysis unit","2017-03-22","2017-08-22","7","33-42-13","");
 
 
@@ -734,8 +814,8 @@ INSERT INTO problemlist VALUES("asda","2018-02-22","2018-02-07","01-26-22","10",
 INSERT INTO problemlist VALUES("gh","2018-02-14","2018-02-14","01-26-22","11","");
 INSERT INTO problemlist VALUES("haha","2018-02-10","2018-02-17","01-26-22","12","2018, February");
 INSERT INTO problemlist VALUES("sample","2018-01-19","2018-02-16","01-26-22","13","2018, January");
-INSERT INTO problemlist VALUES("here","2018-02-12","2018-04-12","01-26-22","14","2018, February");
-INSERT INTO problemlist VALUES("fkeef","2016-02-03","2016-03-02","01-26-22","15","2016, February");
+INSERT INTO problemlist VALUES("asd","2018-02-13","2018-02-13","01-26-22","14","2018, February");
+INSERT INTO problemlist VALUES("asda","2018-02-12","2018-02-12","05-29-07","15","2018, February");
 INSERT INTO problemlist VALUES("here","2018-02-06","2018-02-14","01-26-22","17","2018, February");
 
 
@@ -756,19 +836,19 @@ CREATE TABLE `treatment` (
   `technicianid` varchar(10) NOT NULL,
   `postweight` varchar(10) NOT NULL,
   PRIMARY KEY (`treatment_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=latin1;
 
-INSERT INTO treatment VALUES("1","2017-06-26","350 cc/min","5th Re-use","AVF","0.261 lmwh","5","86-89-17 ","44.2","E0003","E0005","");
-INSERT INTO treatment VALUES("2","2017-07-03","300 cc/min","last use","AVF","0.261 lmwh","5","86-89-17 ","43.9","E0003","E0003","");
-INSERT INTO treatment VALUES("3","2017-10-07","300 cc/min","NEWSET","L AVF","0.261 lmwh","5","86-89-17 ","44.3","E0006","E0003","");
-INSERT INTO treatment VALUES("4","2017-07-10","300 cc/min","NEWSET","L AVF","0.261 lmwh","5","86-89-17 ","44.3","E0003","E0003","");
-INSERT INTO treatment VALUES("5","2017-07-17","300 cc/min","1st reuse","L AVF","0.261 lmwh","5","86-89-17 ","44.7","E0003","E0003","");
-INSERT INTO treatment VALUES("6","2017-07-24","300 cc/min","2nd reuse","L AVF","0.261 lmwh","5","86-89-17 ","44.1","E0008","E0003","");
-INSERT INTO treatment VALUES("7","2017-07-31","300 cc/min","2nd reuse","L AVF","0.261 lmwh","5","86-89-17 ","44.1","E0003","E0003","");
-INSERT INTO treatment VALUES("9","2018-01-29","300cc/min","2nd reuse","R AVF","free","3","01-26-22 ","30","E0001","E0004","31");
+INSERT INTO treatment VALUES("1","2017-06-26","350 cc/min","5th Re-use","AVF","0.261 lmwh","5","86-89-17 ","44.2","E0003","E0005","55");
+INSERT INTO treatment VALUES("2","2017-07-03","300 cc/min","last use","AVF","0.261 lmwh","5","86-89-17 ","43.9","E0003","E0003","41");
+INSERT INTO treatment VALUES("3","2017-10-07","300 cc/min","NEWSET","L AVF","0.261 lmwh","5","86-89-17 ","44.3","E0006","E0003","50");
+INSERT INTO treatment VALUES("4","2017-07-10","300 cc/min","NEWSET","L AVF","0.261 lmwh","5","86-89-17 ","44.3","E0003","E0003","45");
+INSERT INTO treatment VALUES("5","2017-07-17","300 cc/min","1st reuse","L AVF","0.261 lmwh","5","86-89-17 ","44.7","E0003","E0003","50");
+INSERT INTO treatment VALUES("6","2017-07-24","300 cc/min","2nd reuse","L AVF","0.261 lmwh","5","86-89-17 ","44.1","E0008","E0003","44");
+INSERT INTO treatment VALUES("7","2017-07-31","300 cc/min","2nd reuse","L AVF","0.261 lmwh","5","86-89-17 ","44.1","E0003","E0003","50");
+INSERT INTO treatment VALUES("9","2018-01-29","dasd","dasd","R AVF","dsad","3","01-26-22 ","30","E0001","E0004","31");
 INSERT INTO treatment VALUES("10","2018-01-29","300","reuse","L AVF","free","4","45-45-24 ","78","E0001","E00010","73");
-INSERT INTO treatment VALUES("11","2017-06-26","350 cc/min","5th Re-use","AVF","0.261 lmwh","5","33-42-13","44.2","E0003","E0005","");
-INSERT INTO treatment VALUES("12","2017-07-03","300 cc/min","last use","AVF","0.261 lmwh","5","33-42-13","43.9","E0003","E0003","");
+INSERT INTO treatment VALUES("11","2018-02-11","AS","ASD","R AVF","ASD","1","A ","23","E0001","E0001","41");
+INSERT INTO treatment VALUES("12","2018-02-12","1234","123","L AVF","123","4","86-89-17 ","123","E0001","E0002","123");
 INSERT INTO treatment VALUES("13","2017-10-07","300 cc/min","NEWSET","L AVF","0.261 lmwh","5","33-42-13","44.3","E0006","E0003","");
 INSERT INTO treatment VALUES("14","2017-07-10","300 cc/min","NEWSET","L AVF","0.261 lmwh","5","33-42-13","44.3","E0003","E0003","");
 INSERT INTO treatment VALUES("15","2017-07-17","300 cc/min","1st reuse","L AVF","0.261 lmwh","5","33-42-13","44.7","E0003","E0003","");
@@ -785,6 +865,7 @@ INSERT INTO treatment VALUES("25","2017-07-24","300 cc/min","2nd reuse","L AVF",
 INSERT INTO treatment VALUES("26","2017-07-31","300 cc/min","2nd reuse","L AVF","0.261 lmwh","5","01-26-22","44.1","E0003","E0003","");
 INSERT INTO treatment VALUES("27","2018-01-29","300cc/min","2nd reuse","R AVF","free","3","01-26-22","30","E0001","E0004","31");
 INSERT INTO treatment VALUES("28","2018-01-29","300","reuse","L AVF","free","4","01-26-22","78","E0001","E00010","73");
+INSERT INTO treatment VALUES("29","2018-02-17","","","L AVF","","0","A ","70","E0001","E00010","65");
 
 
 

@@ -433,23 +433,19 @@
                                                 <div class="header bg-indigo">
                                                     <h2>
                                                         List of Patients
-
                                                         <a href=""><i class="material-icons pull-right" data-dismiss="modal">clear</i></a>
                                                     </h2>
 
                                                 </div>
                                                 <div class="body">
                                                     <div class="table-responsive">
-                                                        <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                                                        <table class="table table-bordered table-striped table-hover js-exportable dataTable">
                                                             <thead>
                                                                 <tr>
                                                                     <th>Hospital ID</th>
                                                                     <th>Name</th>
                                                                     <th>Address</th>
                                                                     <th>Contact #</th>
-
-
-
                                                                 </tr>
                                                             </thead>
 

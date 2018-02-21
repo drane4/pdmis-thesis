@@ -7,7 +7,8 @@ if(ISSET($_POST['submit'])){
   date_default_timezone_set('Asia/Manila');
   $date1 = date("Y-m-d");
     
-    
+     $pioothers = $_POST['pioothers'];    
+     $pshothers = $_POST['pshothers'];
      $dm = $_POST['dm'];
      $hpn = $_POST['hpn'];
      $ptb = $_POST['ptb'];
@@ -42,12 +43,13 @@ if(ISSET($_POST['submit'])){
     $check = $q1->num_rows;
   
   
-    if($check > 0){
-    $query = $conn->query("UPDATE `diagnostic/examination` SET `DM` = '$dm', `HPN` = '$hpn', `PTB` = '$ptb', `Cancer` = '$cancer', `Asthma` = '$asthma', `Alcoholintake` = '$alcoholintake', `SmokingHistory` = '$smokinghistory', `DrugAllergy` = '$drugallergies', `FoodAllergy` = '$foodallergies', `BP` = '$bp', `CR` = '$cr', `RR` = '$rr', `Skin` = '$skin', `Heent` = '$heent', `Chest/lungs` = '$chestlungs', `Cardiovascular` = '$cardiovascular', `Abdomen` = '$abdomen', `Rectal` = '$rectal', `Extremeties` = '$extremeties', `Neurological` = '$neurological', `Diagnosis` = '$diagnosis', `Historyby` = '$historyby', `Doneon` = '$doneon' WHERE `diagnostic/examination`.`diagnostic/examination_id` = '$id2'") or die(mysqli_error());
-        
+    if($check > 0){ 
+    $query = $conn->query("UPDATE `diagnostic/examination` SET `PSH_others` = '$pshothers',`PIO_others` = '$pioothers',`DM` = '$dm', `HPN` = '$hpn', `PTB` = '$ptb', `Cancer` = '$cancer', `Asthma` = '$asthma', `Alcoholintake` = '$alcoholintake', `SmokingHistory` = '$smokinghistory', `DrugAllergy` = '$drugallergies', `FoodAllergy` = '$foodallergies', `BP` = '$bp', `CR` = '$cr', `RR` = '$rr', `Skin` = '$skin', `Heent` = '$heent', `Chest/lungs` = '$chestlungs', `Cardiovascular` = '$cardiovascular', `Abdomen` = '$abdomen', `Rectal` = '$rectal', `Extremeties` = '$extremeties', `Neurological` = '$neurological', `Diagnosis` = '$diagnosis', `Historyby` = '$historyby', `Doneon` = '$doneon' WHERE `diagnostic/examination`.`diagnostic/examination_id` = '$id2'") or die(mysqli_error());
+    
+        echo "<script type='text/javascript'> alert ('notes/order saved!');</script>";
     }
     else{  
-        $conn->query ("INSERT INTO `diagnostic/examination` (`DM`, `HPN`, `PTB`, `Cancer`, `Asthma`, `Alcoholintake`, `SmokingHistory`, `DrugAllergy`, `FoodAllergy`, `BP`, `CR`, `RR`, `Skin`, `Heent`, `Chest/lungs`, `Cardiovascular`, `Abdomen`, `Rectal`, `Extremeties`, `Neurological`, `Diagnosis`, `Historyby`, `Doneon`, `Hospital_Id`, `diagnostic/examination_id`) VALUES ('$dm', '$hpn', '$ptb', '$cancer', '$asthma', '$alcoholintake', '$smokinghistory', '$drugallergies', '$foodallergies', '$bp', '$cr', '$rr', '$skin', '$heent', '$chestlungs', '$cardiovascular', '$abdomen', '$rectal', '$extremeties', '$neurological', '$diagnosis', '$historyby', '$doneon', '$H_id', '');") or die(mysqli_error());
+        $conn->query ("INSERT INTO `diagnostic/examination` (`PIO_others`, `PSH_others`, `DM`, `HPN`, `PTB`, `Cancer`, `Asthma`, `Alcoholintake`, `SmokingHistory`, `DrugAllergy`, `FoodAllergy`, `BP`, `CR`, `RR`, `Skin`, `Heent`, `Chest/lungs`, `Cardiovascular`, `Abdomen`, `Rectal`, `Extremeties`, `Neurological`, `Diagnosis`, `Historyby`, `Doneon`, `Hospital_Id`, `diagnostic/examination_id`) VALUES ('$pioothers', '$pshothers', '$dm', '$hpn', '$ptb', '$cancer', '$asthma', '$alcoholintake', '$smokinghistory', '$drugallergies', '$foodallergies', '$bp', '$cr', '$rr', '$skin', '$heent', '$chestlungs', '$cardiovascular', '$abdomen', '$rectal', '$extremeties', '$neurological', '$diagnosis', '$historyby', '$doneon', '$H_id', '');") or die(mysqli_error());
       
         echo "<script type='text/javascript'> alert ('notes/order saved!');</script>";
 

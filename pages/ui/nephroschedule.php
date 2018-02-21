@@ -85,7 +85,8 @@
 
                 </div>
                 <div class="collapse navbar-collapse" id="navbar-collapse">
-
+                    
+     
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Call Search -->
 
@@ -141,9 +142,6 @@
                                 <li class="" id="nephrologist">
                                     <a href="nephrologist.php">Nephrologist</a>
                                 </li>
-                                <li id="descriptors">
-                                    <a href="D.php">Descriptors</a>
-                                </li>
                             <li class="active" id="profile">
                             <a href="javascript:void(0);" class="menu-toggle">
                                 <span>Schedule</span>
@@ -188,7 +186,7 @@
                                 </li>
                             </ul>
                         </li>
-                          <li id="reports">
+                         <li id="reports">
                             <a href="javascript:void(0);" class="menu-toggle">
                                 <i class="material-icons">assignment</i>
                                 <span>Reports</span>
@@ -198,7 +196,6 @@
                             <a href="javascript:void(0);" class="menu-toggle">
                                 <span>Statistics</span>
                             </a>
-                                    
                             <ul class="ml-menu">
                                  <li id="genderstat">
                                     <a href="report1.php">Gender Statistics</a>
@@ -209,13 +206,17 @@
                                  <li id="dialysisstat">
                                     <a href="report3.php">Dialysis Statistics</a>
                                 </li>
+                                <li id="esrdstat">
+                                    <a href="report7.php">ESRD Statistics</a>
+                                </li>
                                 </ul>
                                 </li>
                                 <li  id="progressstat">
-                                    <a href="report4.php">Patient Progress Statistics</a>
+                                    <a data-toggle="modal" data-target="#dialysisreport_modal" >
+                                            Patient Reports</a>
                                 </li>
                                 <li id="">
-                                    <a href="report5.php">Employee Performance</a>
+                                    <a data-toggle="modal" data-target="#employee_modal" >Employee Reports</a>
                                 </li>
                             </ul>
                         </li>
@@ -249,7 +250,8 @@
             </aside>
             <!-- #END# Right Sidebar -->
         </section>
-
+ <?php include ('modals/dialysisreport_modal.php')?>
+        <?php include ('modals/employee_modal.php')?>    
         <section class="content">
             <div class="container-fluid">
                 <div class="row clearfix">
@@ -505,7 +507,6 @@
         var module2 ='<?php echo $employeeprofile_a; ?>';
         var module3 ='<?php echo $labtest_a; ?>';
         var module4 ='<?php echo $nephrologist_a; ?>';
-        var module5 ='<?php echo $descriptors_a; ?>';
         var module6 ='<?php echo $userprofile_a; ?>';
         var module7 ='<?php echo $maintenance_a; ?>';
         var module8 ='<?php echo $reports_a; ?>';
@@ -537,12 +538,6 @@
          if(module4 == '0') 
         {                       
             $('#nephrologist').hide(); 
-            
-        }
-      
-         if(module5 == '0') 
-        {                       
-            $('#descriptors').hide(); 
             
         }
    

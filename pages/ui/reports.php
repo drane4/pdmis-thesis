@@ -166,9 +166,7 @@ include('session.php');
                                 <li id="nephrologist">
                                     <a href="nephrologist.php">Nephrologist</a>
                                 </li>
-                                <li id="descriptors">
-                                    <a href="D.php">Descriptors</a>
-                                </li>
+                               
                             </ul>
                         </li>
                         <li id="maintenance">
@@ -376,7 +374,7 @@ include('session.php');
         var module2 ='<?php echo $employeeprofile_a; ?>';
         var module3 ='<?php echo $labtest_a; ?>';
         var module4 ='<?php echo $nephrologist_a; ?>';
-        var module5 ='<?php echo $descriptors_a; ?>';
+     
         var module6 ='<?php echo $userprofile_a; ?>';
         var module7 ='<?php echo $maintenance_a; ?>';
         var module8 ='<?php echo $reports_a; ?>';
@@ -411,11 +409,6 @@ include('session.php');
             
         }
       
-         if(module5 == '0') 
-        {                       
-            $('#descriptors').hide(); 
-            
-        }
    
          if(module6 == '0') 
         {                       

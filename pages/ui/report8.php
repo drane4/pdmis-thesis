@@ -44,8 +44,9 @@ require 'session.php';
 
         <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
         <link href="../../css/themes/theme-indigo.css" rel="stylesheet" />
-
-
+       
+      
+        
     </head>
 
     <body class="theme-indigo">
@@ -128,7 +129,7 @@ require 'session.php';
                 <!-- #User Info -->
                 <!-- Menu -->
                 <div class="menu">
-                  <ul class="list">
+                   <ul class="list">
 
                         <li class="header">MAIN NAVIGATION</li>
 
@@ -166,13 +167,13 @@ require 'session.php';
                                 </li>
                             </ul>
                         </li>
-                      <li id="transaction">
+                       <li id="transaction">
                             <a href="javascript:void(0);" class="menu-toggle">
                                 <i class="material-icons">folder</i>
                                 <span>Transaction</span>
                             </a>
                             <ul class="ml-menu">
-                                <li id="transaction">
+                                <li id="transaction" >
                                     <a href="transaction.php">HemoTreatment</a>
                                 </li>
                             </ul>
@@ -188,7 +189,7 @@ require 'session.php';
                                 <li id="userprofile">
                                     <a href="UserProfile.php">User Profile</a>
                                 </li>
-                                
+                               
                                 <li id="systemmaintenance">
                                     <a href="maintenance.php">System Maintenance</a>
                                 </li>
@@ -206,10 +207,10 @@ require 'session.php';
                                 <span>Statistics</span>
                             </a>
                             <ul class="ml-menu">
-                                 <li id="genderstat">
+                                 <li class="active" id="genderstat">
                                     <a href="report1.php">Gender Statistics</a>
                                 </li>
-                                <li class="active" id="agestat">
+                                <li id="agestat">
                                     <a href="report2.php">Age Statistics</a>
                                 </li>
                                  <li id="dialysisstat">
@@ -263,7 +264,10 @@ require 'session.php';
             </aside>
             <!-- #END# Right Sidebar -->
         </section>
-        <?php include ('modals/dialysisreport_modal.php')?>
+
+        
+
+      <?php include ('modals/dialysisreport_modal.php')?>
         <?php include ('modals/employee_modal.php')?>    
 
         <section class="content">
@@ -273,10 +277,13 @@ require 'session.php';
                         <div class="card">
                             <div class="header bg-indigo">
                                 <h2>
-                                    Hemodialysis Age Statistics
+                                    Hemodialysis Gender Statistics
                                 </h2>
+                                
                             </div>
-                            <div class="body">
+                           <div class="body">
+                                
+
                                 <div class="clearfix row" id="printDiv">
                                     <style type="text/css">
                                         .header{
@@ -285,7 +292,7 @@ require 'session.php';
                                             color: #393938;
                                         }
                                     </style>
-
+                                    
                                     <div class="header">
                                         <span style="font-weight: bold;font-size: 18px;">
                                             TERESITA L. JALANDONI PROVINCIAL HOSPITAL
@@ -294,40 +301,34 @@ require 'session.php';
                                         Tel. No. 495-1704 / 495-1705 / 495-0096<br>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                         <div id="patient_population" style="width: 100%; height: 400px"></div>
+                                         <div id="employee" style="width: 100%; height: 400px"></div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row">
+                               <div class="row">
                                     <div class="col-sm-12 text-right">
                                         <button id="print"><span class="glyphicon glyphicon-print"></span>&nbsp;Print</button>        
                                     </div>
                                 </div>
+                                
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-
-
-
-
-
-
-
         </section>
-       
-          <script>
-            $(document).ready(function() {
-                $("#pyear").on('change', function() {
-                    var year = $(this).val();
-                    window.location = 'index.php?year=' + year;
+        <script>
+            $(document).ready(function(){
+                $("#pyear").on('change', function(){
+                    var year=$(this).val();
+                    window.location = 'index.php?year='+year;
                 });
             });
-
         </script>
 
-        <script src="../../plugins/jquery/jquery.min.js"></script>
+        <!-- Jquery Core Js -->
+
+
         <script src="../../plugins/jquery/jquery.js"></script>
 
         <!-- Bootstrap Core Js -->
@@ -366,7 +367,7 @@ require 'session.php';
         <!-- Sparkline Chart Plugin Js -->
         <script src="../../plugins/jquery-sparkline/jquery.sparkline.js"></script>
 
-
+        
 
         <!-- Custom Js -->
         <script src="../../js/admin.js"></script>
@@ -375,6 +376,7 @@ require 'session.php';
         <!-- Demo Js -->
         <script src="../../js/demo.js"></script>
         <script src = "js/charteasy/printThis/printThis.js"></script>
+
         <script>
             $(window).load(function() {
                 var module = '<?php echo $transaction_a; ?>';
@@ -441,13 +443,11 @@ require 'session.php';
                     canvas: true
                 });
             });
+            
         </script>
-        <script src="js/jquery.canvasjs.min.js"></script>
-        <?php require 'js/charteasy/patient_population.php'?>
+        <script src = "js/jquery.canvasjs.min.js"></script>
+        <?php require 'js/charteasy/patient_treatment.php'?>
        
-        <!-- Jquery Core Js -->
-      
-
     </body>
 
     </html>

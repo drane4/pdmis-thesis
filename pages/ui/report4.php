@@ -40,7 +40,7 @@ require 'session.php';
         <link href="../../plugins/morrisjs/morris.css" rel="stylesheet" />
 
         <!-- Custom Css -->
-        <link href="../../css/style4.css" rel="stylesheet">
+        <link href="../../css/style2.css" rel="stylesheet">
 
         <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
         <link href="../../css/themes/theme-indigo.css" rel="stylesheet" />
@@ -158,9 +158,6 @@ require 'session.php';
                                 <li class="" id="nephrologist">
                                     <a href="nephrologist.php">Nephrologist</a>
                                 </li>
-                                <li id="descriptors">
-                                    <a href="D.php">Descriptors</a>
-                                </li>
                             <li id="profile">
                             <a href="javascript:void(0);" class="menu-toggle">
                                 <span>Schedule</span>
@@ -215,6 +212,9 @@ require 'session.php';
                                 </li>
                                 <li class ="active" id="progressstat">
                                     <a href="report3.php">Patient Progress Statistics</a>
+                                </li>
+                                <li id="esrdstat">
+                                    <a href="bp_report.php">BloodPressure</a>
                                 </li>
                             </ul>
                         </li>
@@ -336,7 +336,6 @@ require 'session.php';
                 var module2 = '<?php echo $employeeprofile_a; ?>';
                 var module3 = '<?php echo $labtest_a; ?>';
                 var module4 = '<?php echo $nephrologist_a; ?>';
-                var module5 = '<?php echo $descriptors_a; ?>';
                 var module6 = '<?php echo $userprofile_a; ?>';
                 var module7 = '<?php echo $maintenance_a; ?>';
                 var module8 = '<?php echo $reports_a; ?>';
@@ -363,11 +362,6 @@ require 'session.php';
 
                 if (module4 == '0') {
                     $('#nephrologist').hide();
-
-                }
-
-                if (module5 == '0') {
-                    $('#descriptors').hide();
 
                 }
 

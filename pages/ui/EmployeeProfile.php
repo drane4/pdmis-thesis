@@ -72,7 +72,8 @@ include('session.php');
         <div class="overlay"></div>
         <!-- #END# Overlay For Sidebars -->
         <!-- Search Bar -->
-
+          <?php include ('modals/dialysisreport_modal.php')?>
+        <?php include ('modals/employee_modal.php')?>    
         <!-- #END# Search Bar -->
         <!-- Top Bar -->
         <nav class="navbar">
@@ -181,7 +182,6 @@ include('session.php');
                                 <li id="userprofile">
                                     <a href="UserProfile.php">User Profile</a>
                                 </li>
-                               
                                 <li id="systemmaintenance">
                                     <a href="maintenance.php">System Maintenance</a>
                                 </li>
@@ -207,16 +207,21 @@ include('session.php');
                                  <li id="dialysisstat">
                                     <a href="report3.php">Dialysis Statistics</a>
                                 </li>
+                                <li id="esrdstat">
+                                    <a href="report7.php">ESRD Statistics</a>
+                                </li>
                                 </ul>
                                 </li>
                                 <li  id="progressstat">
-                                    <a href="report4.php">Patient Progress Statistics</a>
+                                    <a data-toggle="modal" data-target="#dialysisreport_modal" >
+                                            Patient Reports</a>
                                 </li>
                                 <li id="">
-                                    <a href="report5.php">Employee Performance</a>
+                                    <a data-toggle="modal" data-target="#employee_modal" >Employee Reports</a>
                                 </li>
                             </ul>
                         </li>
+
                         <li>
                            <a href="logout.php">
                                 <i class="material-icons">input</i>

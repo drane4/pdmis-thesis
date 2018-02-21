@@ -35,7 +35,7 @@ if(ISSET($_POST['submit'])){
         $largestUID = $row['maxid'] + 1; 
         $id = 'E000' . $largestUID;
         
-        $conn->query ("INSERT INTO `employeeprofile` VALUES('', '$status', '$firstname', '$middlename', '$address', '$telephone', '$mobile', '$position', '$lastname', '$transaction', '$id' ,'' ,'' ,'' ,'' ,'' ,'' ,'' ,'' ,'' ,'' ,'' ,'')") or die(mysqli_error());
+        $conn->query ("INSERT INTO `employeeprofile` VALUES('', '$status', '$firstname', '$middlename', '$address', '$telephone', '$mobile', '$position', '$lastname', '$transaction', '$id' ,'' ,'' ,'' ,'' ,'' ,'' ,'' ,'' ,'' ,'' ,'')") or die(mysqli_error());
         
         echo "<script type='text/javascript'> alert ('Account registered successfully!');</script>";
       

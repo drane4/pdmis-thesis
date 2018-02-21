@@ -23,7 +23,7 @@ $f2 = $q2->fetch_array();
             exportEnabled: true,
 
             title: { 
-                text: "Hemodialysis Age Statistics",
+                text: "Patient Population as of Year ",
                 fontSize: 20
             },
 

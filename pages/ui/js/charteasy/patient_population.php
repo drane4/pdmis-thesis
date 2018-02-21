@@ -82,7 +82,7 @@ $f10 = $q10->fetch_array();
                          { label: "100 years old", y: <?php echo $f10['total']?> }
                     ] 
                 }, { 
-                    type: "line", 
+                    type: "", 
                     toolTipContent: "{label}: {y}", 
                     dataPoints: [ 
                         { label: "10-19 years old", y: <?php echo $f1['total']?> },
