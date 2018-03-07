@@ -1,5 +1,6 @@
 
 <?php include('session.php');?>
+
     <html>
 
     <head>
@@ -219,25 +220,7 @@
                                 <span>Reports</span>
                             </a>
                             <ul class="ml-menu">
-                                <li id="statistics">
-                            <a href="javascript:void(0);" class="menu-toggle">
-                                <span>Statistics</span>
-                            </a>
-                            <ul class="ml-menu">
-                                 <li id="genderstat">
-                                    <a href="report1.php">Gender Statistics</a>
-                                </li>
-                                <li id="agestat">
-                                    <a href="report2.php">Age Statistics</a>
-                                </li>
-                                 <li id="dialysisstat">
-                                    <a href="report3.php">Dialysis Statistics</a>
-                                </li>
-                                <li id="esrdstat">
-                                    <a href="report7.php">ESRD Statistics</a>
-                                </li>
-                                </ul>
-                                </li>
+                                
                                 <li  id="progressstat">
                                     <a data-toggle="modal" data-target="#dialysisreport_modal" >
                                             Patient Reports</a>
@@ -280,15 +263,18 @@
             <!-- #END# Right Sidebar -->
         </section>
         <?php
-            include ('queries/patientprofile_query.php');
-            include ('queries/laboratory_query.php');   
+         
+           include ('queries/patientprofile_query.php');
+            include ('queries/laboratory_query.php');  
+           
+            include ('modals/laboratory_modal.php'); 
             include ('modals/patientprofile_modal.php');  
             include ('modals/immunization_modal.php'); 
-            include ('modals/laboratory_modal.php'); 
+          
                     
      include ('modals/dialysisreport_modal.php');
         include ('modals/employee_modal.php');
-
+        
         ?>
         <section class="content">
             <div class="container-fluid">
@@ -324,7 +310,7 @@
                                         <li role="presentation" <?php if ($id2=='lab' ){?> class="active"
                                             <?php } ?>><a href="#lab" data-toggle="tab">Laboratory</a></li>
                                         <li role="presentation" <?php if ($id2=='weight' ){?> class="active"
-                                            <?php } ?>><a href="#weight" data-toggle="tab">Diagnostic/Examination</a></li>
+                                            <?php } ?>><a href="#weight" data-toggle="tab">Physical Examination</a></li>
                                         <li role="presentation" <?php if ($id2=='drug' ){?> class="active"
                                             <?php } ?>><a href="#drugprofile" data-toggle="tab">Drug Profile</a></li>
                                         <li role="presentation" <?php if ($id2=='hepatitis' ){?> class="active"
@@ -516,7 +502,7 @@
                                                 <div class="col-lg-3 col-md-1 col-sm-2 col-xs-4">
                                                     <div class="form-group">
                                                         <div class="form-line">
-                                                            <input type="text" class="form-control" name="precontactnumber" id="precontactnumber" placeholder="Ex: +00 (000) 000-00-00" value="<?php echo $fetchp['P_ConNum2']?>">
+                                                            <input type="text" class="form-control" name="precontactnumber" id="precontactnumber" placeholder="Optional" value="<?php echo $fetchp['P_ConNum2']?>">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -675,7 +661,7 @@
                                                 <div class="col-lg-3 col-md-1 col-sm-2 col-xs-4">
                                                     <div class="form-group">
                                                         <div class="form-line">
-                                                            <input type="text" class="form-control" name="phnum" id="phnum" onkeyup="capitalize(this.id, this.value);" value="<?php echo $fetchp['P_PhilHealthNum']?>">
+                                                            <input type="text" class="form-control" placeholder="Optional" name="phnum" id="phnum" onkeyup="capitalize(this.id, this.value);" value="<?php echo $fetchp['P_PhilHealthNum']?>">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -767,23 +753,23 @@
                                                         <button class="btn btn-primary btn-sm waves-effect" onclick="location.href='print_transaction.php?id=<?php echo $H_id." | ".$ydate?>'" <?php if($H_id=='' ) {?> disabled="disabled"<?php }  ?>><i class="material-icons">visibility</i>Preview</button>
                                                     </div>
                                                     <hr>
-
+                                               
                                              
-                                                <div id="printableArea">
+                                                <div id="">
                                                     <div class="body">
 
                                                         <div class="row clearfix">
                                                             <div class="col-xs-5">
                                                                 <strong>   Name : <u><?php echo $fetchs['P_Fname'].' '.$fetchs['P_Mname'].' '.$fetchs['P_Lname']?></u>
                                          <br> Sex: <u><?php echo $fetchs['P_Sex']?></u>
-                                        <br>Dry Wt.:<u><?php echo $fetch3['targetwt']." Kg"?></u>
+                                        <br>Dry Wt.:<u><?php echo $fetch3['targetwt']?></u>
                                         <br>Weight Gain :<u> <?php echo $fetch2['preweight']-$fetch3['targetwt']." Kg"?></u>
                                         <br>Pre Dialysis WT. :<u> <?php echo $fetch2['preweight']." Kg"?></u>
                                         <br>Post-Dialysis WT. :<u> <?php echo $fetch2['postweight']." Kg"?></u>
                                         </strong>
                                                             </div>
                                                             <div class="col-xs-3">
-
+                                                                
                                                                 <br>
                                                                 <strong>   Age : <u> <?php echo $fetchs['P_Age'] ?></u>
                                         <br>Duration :<u> <?php echo $HOfetch['duration'] ?></u>
@@ -827,8 +813,9 @@
                                                                     <tbody>
                                                                         <?php   
                                                           //  echo $date = $fetch2['treatment_date']; 
-                                                            $date = $fetch2['treatment_date'];   
-                                                            $tquery2 = $conn->query("SELECT * FROM `nephronotesorder` WHERE `Hospital_Id` = '$H_id' && `notes_order_date` = '$date' ORDER BY `notes_order_id`") or die(mysqli_error());
+                                                            $datet = $fetch2['treatment_date'];  
+                                                              
+                                                            $tquery2 = $conn->query("SELECT * FROM `nephronotesorder` WHERE `Hospital_Id` = '$H_id' && `notes_order_date` = '$datet' ORDER BY `notes_order_id`") or die(mysqli_error());
                                                            while($fetch = $tquery2 ->fetch_array()){
                                                         ?>
                                                                         <tr>
@@ -854,7 +841,7 @@
                                                            }
 
                                                         ?>
-
+                                                                          
                                                                     </tbody>
 
                                                                 </table>
@@ -1092,15 +1079,13 @@
                                                             </div>
                                                                  </form>
                                                         </div>
-                                                        
                                                     
                                                         
-                                                        <button class="btn btn-primary btn-sm waves-effect" onclick="location.href='print/print_order.php?id=<?php echo $H_id ?>'" <?php if($H_id=='' ) {?> disabled="disabled"<?php }  ?>><i class="material-icons">visibility</i>Preview</button>
+                                                        <button class="btn btn-primary btn-sm waves-effect" onclick="location.href='print/print_order.php?id=<?php echo $H_id." | ".$orderdate ?>'" <?php if($H_id=='' ) {?> disabled="disabled"<?php }  ?>><i class="material-icons">visibility</i>Preview</button>
                                                     </div>
                                                     <hr>
 
-                                 
-                               
+
                                   
                                             <form class="form-horizontal" form method="POST" action="save/savehemoorder.php?id=<?php if($HOfetch['order_id'] == '') echo $H_id." | "."001" ?><?php if($HOfetch['order_id'] != '') echo $H_id." | ".$HOfetch['order_id'] ?>">
                                                 <div class="row clearfix">
@@ -1138,8 +1123,8 @@
                                                     </div>
                                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ">
                                                         <div class="form-group">
-                                                            <div class="form-line">
-                                                                <input type="text" class="form-control" name="esrdothers" id="esrdothers" value="<?php echo $HOfetch['esrd_others']?>" >
+                                                            <div class="form-line" >
+                                                                <input type="text" class="form-control" name="esrdothers" id="esrdothers" value="<?php echo $HOfetch['esrd_others']?>"  style="width: 200px;">
                                                             </div>
                                                         </div>
                                                     </div>  
@@ -1214,10 +1199,10 @@
                                                             <input name="access" type="radio" id="Subclavian" class="with-gap" value="1" <?php if ($HOfetch['access']==1 ){?> checked="active"
                                                             <?php } ?>/>
                                                             <label for="Subclavian">Subclavian</label>
-                                                            <input name="access" type="radio" id="Jugular" class="with-gap" value="1" <?php if ($HOfetch['access']==1 ){?> checked="active"
+                                                            <input name="access" type="radio" id="Jugular" class="with-gap" value="2" <?php if ($HOfetch['access']==2 ){?> checked="active"
                                                             <?php } ?>/>
                                                             <label for="Jugular">Internal Jugular</label>
-                                                            <input name="access" type="radio" id="Femoral" class="with-gap" value="1" <?php if ($HOfetch['access']==1 ){?> checked="active"
+                                                            <input name="access" type="radio" id="Femoral" class="with-gap" value="3" <?php if ($HOfetch['access']==3 ){?> checked="active"
                                                             <?php } ?>/>
                                                             <label for="Femoral">Femoral</label>
                                                         </div>
@@ -1240,7 +1225,7 @@
                                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ">
                                                         <div class="form-group">
                                                             <div class="form-line">
-                                                                <input type="text" class="form-control" name="surgeon" id="surgeon" value="<?php echo $HOfetch['surgeon']?>" autofocus required>
+                                                                <input type="text" class="form-control" name="surgeon" id="surgeon" value="<?php echo $HOfetch['surgeon']?>"  >
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1262,7 +1247,7 @@
                                                     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
                                                         <div class="form-group">
                                                             <div class="form-line">
-                                                                <input type="date" class="form-control unstyled" name="avdate" id="avdate" value="<?php echo $HOfetch['avdate']?>" style="padding-right:0" required>
+                                                                <input type="date" class="form-control unstyled" name="avdate" id="avdate" value="<?php echo $HOfetch['avdate']?>" style="padding-right:0" >
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1272,7 +1257,7 @@
                                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ">
                                                         <div class="form-group">
                                                             <div class="form-line">
-                                                                <input type="text" class="form-control" name="avsurgeon" id="avsurgeon" value="<?php echo $HOfetch['avsurgeon']?>" required>
+                                                                <input type="text" class="form-control" name="avsurgeon" id="avsurgeon" value="<?php echo $HOfetch['avsurgeon']?>" >
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1335,7 +1320,7 @@
                                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ">
                                                         <div class="form-group">
                                                             <div class="form-line">
-                                                                <input type="text" class="form-control" name="frequencyothers" id="frequencyothers" value="<?php echo $HOfetch['freq_others']?>" autofocus required>
+                                                                <input type="text" class="form-control" name="frequencyothers" id="frequencyothers" value="<?php echo $HOfetch['freq_others']?>" style="width: 200px;">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1360,7 +1345,7 @@
                                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ">
                                                         <div class="form-group">
                                                             <div class="form-line">
-                                                                <input type="text" class="form-control" name="durationothers" id="durationothers" value="<?php echo $HOfetch['dur_others']?>" required>
+                                                                <input type="text" class="form-control" name="durationothers" id="durationothers" value="<?php echo $HOfetch['dur_others']?>" style="width: 200px;">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1374,6 +1359,9 @@
                                                       <option></option>
                                                     <option value="HIPS-18" <?php if($HOfetch['dialyzer']== 'HIPS-18') echo "selected"; ?>>HIPS 18</option>
                                                     <option value="F8HPS" <?php if($HOfetch['dialyzer']== 'F8HPS') echo "selected"; ?>>F8HPS</option>
+                                                     <option value="ELISIO-190LR" <?php if($HOfetch['dialyzer']== 'ELISIO-190LR') echo "selected"; ?>>ELISIO-190LR</option> 
+                                                    <option value="LOPS - 18" <?php if($HOfetch['dialyzer']== 'LOPS - 18') echo "selected"; ?>>LOPS - 18</option>
+                                                    <option value="F6" <?php if($HOfetch['dialyzer']== 'F6') echo "selected"; ?>>F6</option>          
                                                     </select>
                                                     </div>
                                                     <div class="col-lg-3 col-md-2 col-sm-2 col-xs-2 form-control-label">
@@ -1419,7 +1407,7 @@
                                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ">
                                                         <div class="form-group">
                                                             <div class="form-line">
-                                                                <input type="text" class="form-control" name="hdrug" id="hdrug" value="<?php echo $HOfetch['hdrug']?>" autofocus required>
+                                                                <input type="text" class="form-control" name="hdrug" id="hdrug" value="<?php echo $HOfetch['hdrug']?>"  required>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1429,7 +1417,7 @@
                                                     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 ">
                                                         <div class="form-group">
                                                             <div class="form-line">
-                                                                <input type="text" class="form-control" name="hdose" id="hdose" value="<?php echo $HOfetch['hdose']?>" autofocus required>
+                                                                <input type="text" class="form-control" name="hdose" id="hdose" value="<?php echo $HOfetch['hdose']?>"  required>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1443,7 +1431,7 @@
                                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ">
                                                         <div class="form-group">
                                                             <div class="form-line">
-                                                                <input type="text" class="form-control" name="bloodflow" id="bloodflow" value="<?php echo $HOfetch['bloodflow']?>" autofocus required>
+                                                                <input type="text" class="form-control" name="bloodflow" id="bloodflow" value="<?php echo $HOfetch['bloodflow']?>"  required>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1456,7 +1444,7 @@
                                                     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 ">
                                                         <div class="form-group">
                                                             <div class="form-line">
-                                                                <input type="text" class="form-control" name="targetwt" id="targetwt" value="<?php echo $HOfetch['targetwt']." Kg "?>" maxlength="3" min="2" autofocus required>
+                                                                <input type="text" class="form-control" name="targetwt" id="targetwt" value="<?php echo $HOfetch['targetwt']?>" maxlength="3" min="2"  required>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1476,9 +1464,8 @@
                                                 </div>
                                                 <div class="row clearfix">
                                                     <div class="col-lg-offset-7 col-xs-offset-4">
-                                                        <button type="button" class="btn btn-primary m-t-15 waves-effect" onclick="ClearFields();"> <i class="material-icons">description</i>New</button> &nbsp;
+                                                       <button type="button" class="btn btn-primary m-t-15 waves-effect" onclick="location.href='PatientProfile.php?id=<?php echo $H_id." | order"?>'"> <i class="material-icons">description</i>New</button> &nbsp;
                                                         <button type="submit" class="btn btn-primary m-t-15 waves-effect" button name="submit"><i class="material-icons">save</i>Save</button> &nbsp;
-                                                     
                                                     </div>
 
 
@@ -1489,7 +1476,8 @@
                                     <div role="tabpanel" class="tab-pane fade in <?php if ($id2 == 'lab' )echo active ?>" id="lab">
 
                                     <div class="row clearfix">
-                                            <form method="post" name="filterdate_lab1" id="filterdate_lab1">
+                                    
+                                            <form method="post" name="filterdate_lab1" id="filterdate_lab1" action="patientprofile.php?id=<?php echo $H_id." | "."lab"?>">
                                              <div class="row clearfix">
                                                         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 col-lg-offset-4 form-control-label">
                                                             <label for="">Filter Date</label>
@@ -1544,19 +1532,28 @@
                                                     ?>
                                                                     </ul>
                                                             </select>
+                                                                
                                                             </div>
                                                         </div>
                                                  
                                                  <button type="submit" name="lab" class="btn btn-primary btn-sm waves-effect" ><i class="material-icons">search</i></button>
-                                                        <button class="btn btn-primary btn-sm waves-effect" onclick="location.href='print/print_laboratory.php?id=<?php echo $H_id." | ".$ydate?>'" <?php if($H_id=='' ) {?> disabled="disabled"<?php }  ?>><i class="material-icons">visibility</i>Preview</button>
-                                                    </div>
-                                        </form>
-                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                    <a class="btn btn-primary btn-sm" onclick="printDiv('printableArea')" target="_blank"><i class="material-icons">print</i> Print</a>
+                                                   </div>
+                                                  </form>
+                                                  
+                                                
+                                              
+                                        
+                                                  
+                                       
+                                        <div id="printableArea">
+                                                
+                                            <div class="col-lg-12 col-md-12 col-sm-10 col-xs-12">
                                                 <center>
-                                                    <h3>Laboratory Record
+                                                    <h3>HEMODIALYSIS LABORATORY FLOWSHEET
                                                     </h3>
-                                                </center>
-
+                                                </center><br>
+                                               
                                                 <?php 
                                                     $from = '';
                                                     $to = '';
@@ -1572,6 +1569,28 @@
                                                 ?>
 
                                                 <?php if( !empty($dateArray) ){ ?>
+                                                 <div class="row clearfix">
+                                                 <div class="col-xs-4">
+                                          <strong>   Name : <u><?php echo $fetchs['P_Fname'].' '.$fetchs['P_Mname'].' '.$fetchs['P_Lname']?></u>
+                                         <br> HIV: <u><?php echo $fetchlab['hiv']?></u>
+                                        <br>HCV:<u><?php echo $fetchlab['hcv']?></u>
+                                        </strong>
+                                                </div>
+                                               <div class="col-xs-3">
+                                          <strong>   Age : <u><?php echo $fetchs['P_Age']?></u><br>
+                                        RM# : <u><?php echo $fetchlab['rm']?></u>
+                                         <br> HbAg: <u><?php echo $fetchlab['hbag']?></u>
+                                        <br>Blood Type:<u><?php echo $fetchlab['bloodtype']?></u>
+                                        </strong>
+                                               </div>
+                                           <div class="col-xs-4">
+                                          <strong>   Doctor : <u><?php echo $fetchnephro['n_fname'].' '.$fetchnephro['n_mname'].' '.$fetchnephro['n_lname']?></u>
+                                         <br> AntiHbv: <u><?php echo $fetchlab['antihbv']?></u>
+                                        <br>RhFactor:<u><?php echo $fetchlab['rhfactor']?></u>
+                                        </strong>
+                                                            </div>            
+                                                    
+                                                </div>
                                                  <table id="mainTable" class="table table-bordered ">
                                                     <tr>
                                                         <th>Date</th>
@@ -1641,8 +1660,12 @@
 
 
                                                 </table>
+                                                
+ <br><br>
+                                     <b>Produced By: <u><?php echo $name ?></u></b>
+
                                                     <div class="row clearfix">
-                                            <div class="col-lg-offset-10">
+                                            <div class="col-lg-offset-10 row hidden-print mt-20">
                                              <button type="button" class="btn btn-primary m-t-15 waves-effect" data-toggle="modal" data-target="#laboratory_modal"><i class="material-icons">edit</i>Update</button>&nbsp;
                                             </div>
                                        </div>
@@ -1657,8 +1680,10 @@
                                                 </center>
                                                 <?php } ?>
                                                 
+                                                
                                                
                                             </div>
+                                        </div>
                                         </div>
 
                                     </div>
@@ -1666,7 +1691,7 @@
                                                 <?php 
 	                                                   $found1 = checkproblemlist($H_id);           
                                                     ?>
-
+                                        
                                         <?php if(!empty($found1) ){ ?>
                                             
                                           <div class="row clearfix">
@@ -1683,12 +1708,10 @@
                                                           $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
                                                           $query = $conn->query("SELECT `datenoted`,`problemlist_monthyear` FROM `problemlist` WHERE `Hospital_Id` = '$H_id' GROUP BY `problemlist_monthyear`") or die(mysqli_error());
                                                         while ($row = $query->fetch_array()){
-                                                            
                                                         ?>
                                                         <option value="<?php echo $row['problemlist_monthyear']?>" 
                                                         <?php if($problemfetch['problemlist_monthyear']==$row['problemlist_monthyear']) echo "selected"; ?>>
                                                         <?php
-                                                           
                                                             echo $row['problemlist_monthyear'];
                                                             ?>
                                                         </option>
@@ -1700,10 +1723,9 @@
                                                             </div>
                                                                    </form>
                                                         </div>
-                                                        <button class="btn btn-primary btn-sm waves-effect" onclick="location.href='print/print_problemlist.php?id=<?php echo $H_id ?>'" <?php if($H_id=='' ) {?> disabled="disabled"<?php }  ?>><i class="material-icons">visibility</i>Preview</button>
+                                                        <button class="btn btn-primary btn-sm waves-effect" onclick="location.href='print/print_problemlist.php?id=<?php echo $H_id." | ".$probdate ?>'" <?php if($H_id=='' ) {?> disabled="disabled"<?php }  ?>><i class="material-icons">visibility</i>Preview</button>
                                                     </div>
-                                 
-                                                    <hr>
+                                              <hr>
 
                                         <div class="row clearfix">
                                                 <center>
@@ -1818,7 +1840,7 @@
                                                             </div>
                                                                  </form>
                                                         </div>
-                                                        <button class="btn btn-primary btn-sm waves-effect" onclick="location.href='print/print_confinement.php?id=<?php echo $H_id ?>'" <?php if($H_id=='' ) {?> disabled="disabled"<?php }  ?>><i class="material-icons">visibility</i>Preview</button>
+                                                        <button class="btn btn-primary btn-sm waves-effect" onclick="location.href='print/print_confinement.php?id=<?php echo $H_id." | ".$condate ?>'" <?php if($H_id=='' ) {?> disabled="disabled"<?php }  ?>><i class="material-icons">visibility</i>Preview</button>
                                                     </div>
                                    
                                                     <hr>
@@ -1877,9 +1899,6 @@
                                         </center>
                                         <?php } ?>
                                     </div>
-                                    <div role="tabpanel" class="tab-pane fade in <?php if ($id2 == 'physicalexam' )echo active ?>" id="physicalexam">
-                                        
-                                    </div>
                                     <div role="tabpanel" class="tab-pane fade in <?php if ($id2 == 'weight' )echo active ?>" id="weight">
                                          
                                                     <div class="row clearfix">
@@ -1899,7 +1918,9 @@
                                                         ?>
                                                         <option value="<?php echo $row['Doneon']; ?>" 
                                                         <?php if($examfetch['Doneon']==$row['Doneon']) echo "selected"; ?>>
-                                                        <?php echo $row['Doneon']?>
+                                                            <?php $datedone = strtotime($row['Doneon']);
+                                                        echo date("Y-m-d", $datedone);    
+                                                        ?> 
                                                         </option>
                                                         <?php
                                                         }
@@ -1921,9 +1942,10 @@
                               
                                         <form class="form-horizontal" form method="POST" action="save/savediagnosticphysicalexam.php?id=<?php echo $H_id." | ".$ids ?>">
                                                  
+                                            
                                             <div class="row clearfix">
-                                                <div class="col-md-2 col-sm-5 col-xs-4 form-control-label">
-                                                    <label>A. History</label>
+                                                <div class="col-md-offset-1">
+                                                    <label>History</label>
                                                 </div>
                                             </div>
                                             
@@ -2030,7 +2052,7 @@
 
                                             <div class="row clearfix">
                                                 <div class="col-md-offset-1">
-                                                    <label>B. Physical Examination</label>
+                                                    <label>Physical Examination</label>
                                                 </div>
                                                 <hr>
                                             </div>
@@ -2170,7 +2192,15 @@
                                                 <div class="col-lg-9 col-md-2 col-sm-1 col-xs-1 ">
                                                     <div class="form-group">
                                                         <div class="form-line">
-                                                            <input type="text" class="form-control" name="diagnosis" value="<?php echo $examfetch['Diagnosis']?>" id="diagnosis">
+                                                             <?php 
+	                                                   $found = checkorder($H_id);              
+                                                    ?>
+                                            <?php if( !empty($found) ){ ?>
+                                                       <input type="text" class="form-control" name="diagnosis" id="diagnosis" onkeyup="capitalize(this.id, this.value);" 
+                                                       value="<?php echo $coerd ?>" readonly>       
+                                             <?php }else{ ?>           
+                                                        <input type="text" class="form-control" name="diagnosis" id="diagnosis" readonly>        
+                                                 <?php } ?>                
                                                         </div>
                                                     </div>
                                                 </div>
@@ -2191,17 +2221,17 @@
                                                 <div class="col-md-2 col-sm-5 col-xs-4 form-control-label">
                                                     <label>Done On:</label>
                                                 </div>
-                                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ">
+                                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 ">
                                                     <div class="form-group">
                                                         <div class="form-line">
-                                                            <input type="datetime-local" class="form-control" name="doneon" value="<?php echo date_format($examfetch['Doneon'], 'Y-m-d H:i:s'); ?>" id="doneon">
+                                                            <input type="datetime-local" class="form-control" name="doneon" value="<?php echo $examfetch['Doneon']; ?>" id="doneon">
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row clearfix">
                                                 <div class="col-lg-offset-8 col-xs-offset-7">
-                                                    <button type="button" class="btn btn-primary m-t-15 waves-effect" onclick="ClearFields(weight);"> <i class="material-icons">description</i>New</button> &nbsp;
+                                                    <button type="button" class="btn btn-primary m-t-15 waves-effect" onclick="location.href='PatientProfile.php?id=<?php echo $H_id." | weight"?>'"> <i class="material-icons">description</i>New</button> &nbsp;
                                                     <button type="submit" class="btn btn-primary m-t-15 waves-effect" name="submit"><i class="material-icons">save</i>Save</button> &nbsp;
                                                 </div>
                                             </div>
@@ -2212,7 +2242,7 @@
 	                                             $founddrug = checkdrug($H_id);              
                                                     ?>
                                         <?php if( !empty($founddrug) ){ ?>
-                                         
+                                             
                                                     <div class="row clearfix">
                                                         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 col-lg-offset-6 form-control-label">
                                                             <label for="">Filter Date</label>
@@ -2231,7 +2261,7 @@
                                                             
                                                         ?>
                                                         <option value="<?php echo $row['dateordered']?>" 
-                                                        <?php if($drugfetch['dateordered']==$row['dateordered']) echo "selected"; ?>>
+                                                        <?php if($drugdate == date("m", strtotime($row['dateordered']))) echo "selected"; ?>>
                                                         <?php
                                                            
                                                             echo $row['drugprofile_date'];
@@ -2266,7 +2296,6 @@
                                                             <th>Freq.</th>
                                                             <th>Route of Admin.</th>
                                                             <th>Date Ordered</th>
-                                                            <th>Date Disc.</th>
                                                             <th>PRN</th>
                                                             <th>REMARKS</th>
                                                             <th>Physician</th>
@@ -2303,14 +2332,11 @@
                                                                         <?php echo $fetch['dateordered']?>
                                                                     </a>
                                                                 </td>
+                                    
                                                                 <td>
                                                                     <a href="#drug_modal<?php echo $fetch['drugprofile_id'];?>" data-toggle="modal" data-target="#drug_modal<?php echo $fetch['drugprofile_id'];?>" style="color: black;">
-                                                                        <?php echo $fetch['datediscription']?>
-                                                                    </a>
-                                                                </td>
-                                                                <td>
-                                                                    <a href="#drug_modal<?php echo $fetch['drugprofile_id'];?>" data-toggle="modal" data-target="#drug_modal<?php echo $fetch['drugprofile_id'];?>" style="color: black;">
-                                                                        <?php echo $fetch['PRN']?>
+                                                                        <?php if($fetch['PRN'] == 0) echo "No"?>
+                                                                         <?php if($fetch['PRN'] == 1) echo "Yes"?>
                                                                     </a>
                                                                 </td>
                                                                 <td>
@@ -2416,22 +2442,29 @@
                                                                 </td>
                                                                 <td>
                                                                    <a href="#hepa_modal<?php echo $fetch['hepatitisprofile_id']?>" data-toggle="modal" data-target="#hepa_modal<?php echo $fetch['hepatitisprofile_id']?>" style="color: black;">
-                                                                        <?php echo $fetch['HbsAg']?>
+                                                                        <?php if($fetch['HbsAg'] == 'r') echo "Reactive" ?>
+                                                                       <?php if($fetch['HbsAg'] == 'nr') echo "Non-Reactive" ?>
                                                                     </a>
                                                                 </td>
                                                                 <td>
                                                                     <a href="#hepa_modal<?php echo $fetch['hepatitisprofile_id']?>" data-toggle="modal" data-target="#hepa_modal<?php echo $fetch['hepatitisprofile_id']?>" style="color: black;">
-                                                                        <?php echo $fetch['AntiHBs']?>
+                                                                         <?php if($fetch['AntiHBs'] == 'r') echo "Reactive" ?>
+                                                                       <?php if($fetch['AntiHBs'] == 'nr') echo "Non-Reactive" ?>
+                                                                      
                                                                     </a>
                                                                 </td>
                                                                 <td>
                                                                     <a href="#hepa_modal<?php echo $fetch['hepatitisprofile_id']?>" data-toggle="modal" data-target="#hepa_modal<?php echo $fetch['hepatitisprofile_id']?>" style="color: black;">
-                                                                        <?php echo $fetch['HCV']?>
+                                                                         <?php if($fetch['HCV'] == 'r') echo "Reactive" ?>
+                                                                       <?php if($fetch['HCV'] == 'nr') echo "Non-Reactive" ?>
+                                                               
                                                                     </a>
                                                                 </td>
                                                                 <td>
                                                                    <a href="#hepa_modal<?php echo $fetch['hepatitisprofile_id']?>" data-toggle="modal" data-target="#hepa_modal<?php echo $fetch['hepatitisprofile_id']?>" style="color: black;">
-                                                                        <?php echo $fetch['HIV']?>
+                                                                         <?php if($fetch['HIV'] == 'r') echo "Reactive" ?>
+                                                                       <?php if($fetch['HIV'] == 'nr') echo "Non-Reactive" ?>
+                                                        
                                                                     </a>
                                                                 </td>
                                                             </tr>
@@ -2474,7 +2507,7 @@
                                                         ?>
                                                     
                                                          <option value="<?php echo $row['YEAR']?>" 
-                                                        <?php if($fetch['hepa_year']==$row['YEAR']) echo "selected"; ?>>
+                                                        <?php if($immunedate==$row['YEAR']) echo "selected"; ?>>
                                                         <?php
                                                             echo $row['YEAR'];
                                                             
@@ -2499,7 +2532,6 @@
                                              <h4>Hepatitis B Vaccine</h4>
                                             <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
                                                 
-                                                <?php echo $examdate1 ?>
                                               <table id="mainTable" class="table table-bordered">
                                                     <thead>
                                                         <tr>
@@ -2765,7 +2797,7 @@
                 var module = '<?php echo $transaction_a; ?>';
                 var module1 = '<?php echo $patientprofile_a; ?>';
                 var module2 = '<?php echo $employeeprofile_a; ?>';
-                var module3 = '<?php echo $labtest_a; ?>';
+                var module3 = '<?php echo $schedule_a; ?>';
                 var module4 = '<?php echo $nephrologist_a; ?>';
                 var module5 = '<?php echo $descriptors_a; ?>';
                 var module6 = '<?php echo $userprofile_a; ?>';
@@ -2786,7 +2818,7 @@
                 }
 
                 if (module3 == '0') {
-                    $('#labtest').hide();
+                    $('#schedule').hide();
 
                 }
 
@@ -2882,7 +2914,51 @@
 
             $("#pshothers").easyAutocomplete(options5);
             
+                var options6 = {
+                    data: <?php echo json_encode($list6) ?>,
+                    list: {
+                        match: {
+                            enabled: true	
+                        }
+                    }
+                };
+
+            $("#religion").easyAutocomplete(options6);
+            
+               var options7 = {
+                    data: <?php echo json_encode($list7) ?>,
+                    list: {
+                        match: {
+                            enabled: true	
+                        }
+                    }
+                };
+
+            $("#nationality").easyAutocomplete(options7);
+            
+    </script>
+        <script>
+//    $(document).ready(function(){
+//       $('#listing').DataTable({
+//           dom: 'Bfrtip',
+//           buttons: [ 'copy', 'csv', 'excel',
+//                    {
+//                        extend: 'print',
+//                        title: 'saple',
+//                        responsive: true,
+//                        footer: true,
+//                        className: '',
+//                        customize: function ( win ){
+//                            .prepend('<left><h4></h4></left>');
+//                            $(win.document.body).find('h3').css('font-family','impact');
+//                            $(win.document.body).find( 'table' ).addClass( 'compact' ).css('font-size','inherit')
+//                        }
+//                    }]
+//       }) 
+//    });
+//    
     </script>
     </body>
+        
 
     </html>

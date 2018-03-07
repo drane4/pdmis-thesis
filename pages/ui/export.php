@@ -1,4 +1,6 @@
 
+
+
 <?php
  ini_set('display_errors', 0);
 include('session.php');   
@@ -52,9 +54,10 @@ foreach($tables as $table){
 ";
 }
 //save file
-$handle = fopen('pdmis.sql','w+');
+$handle = fopen('db/pdmis.sql','w+');
 fwrite($handle,$return);
 fclose($handle);
+
 
 echo "<script>alert('Successfully exported database')</script>";
 echo "<script>document.location='maintenance.php'</script>";

@@ -120,47 +120,51 @@ require 'queries/patientprofile_query.php';
                 </div>
                 <!-- #User Info -->
                 <!-- Menu -->
-                <div class="menu">
+                 <div class="menu">
                     <ul class="list">
-
                         <li class="header">MAIN NAVIGATION</li>
-
-                        <li class="active" id="transaction">
-                            <a href="javascript:void(0);" class="menu-toggle">
-                                <i class="material-icons">folder</i>
-                                <span>Transaction</span>
-                            </a>
-                            <ul class="ml-menu">
-                                <li id="transaction" class="active">
-                                    <a href="transaction.php">HemoTreatment</a>
-                                </li>
-                                <li id="Schedule">
-                                    <a href="LT.php">Schedule</a>
-                                </li>
-                                <li id="Immunization">
-                                    <a href="P.php">Immunization</a>
-                                </li>
-                                <li id="PatientMedicalHistory">
-                                    <a href="D.php">Patient Medical History</a>
-                                </li>
-                            </ul>
-
-                        </li>
-                        <li id="profile">
+                        
+                        <li class="active" id="profile">
                             <a href="javascript:void(0);" class="menu-toggle">
                                 <i class="material-icons">people</i>
                                 <span>Profile</span>
                             </a>
                             <ul class="ml-menu">
-                                <li id="patientprofile">
+                                <li class="active" id="patientprofile">
                                     <a href="PatientProfile.php">Patient Profile</a>
                                 </li>
                                 <li id="employeeprofile">
                                     <a href="EmployeeProfile.php">Employee Profile</a>
                                 </li>
-                                <li id="nephrologist">
+                                <li class="" id="nephrologist">
                                     <a href="nephrologist.php">Nephrologist</a>
                                 </li>
+                                <li class="" id="schedule">
+                                    <a href="javascript:void(0);" class="menu-toggle">
+                                <span>Schedule</span>
+                            </a>
+                                    <ul class="ml-menu">
+                                        <li id="descriptors">
+                                            <a href="patientschedule.php">Patient</a>
+                                        </li>
+                                        <li id="descriptors">
+                                            <a href="nephroschedule.php">Nephrologist</a>
+                                        </li>
+
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li id="transaction">
+                            <a href="javascript:void(0);" class="menu-toggle">
+                                 <i class="material-icons">folder</i>
+                                <span>Transaction</span>
+                            </a>
+                            <ul class="ml-menu">
+                                <li id="transaction">
+                                    <a href="transaction.php">HemoTreatment</a>
+                                </li>
+
                             </ul>
                         </li>
                         <li id="maintenance">
@@ -169,25 +173,40 @@ require 'queries/patientprofile_query.php';
                                 <i class="material-icons">settings</i>
                                 <span>Maintenance</span>
                             </a>
+
                             <ul class="ml-menu">
                                 <li id="userprofile">
                                     <a href="UserProfile.php">User Profile</a>
                                 </li>
+
                                 <li id="systemmaintenance">
                                     <a href="maintenance.php">System Maintenance</a>
                                 </li>
                             </ul>
                         </li>
-                        <li id="reports">
-                            <a href="R.php">
+
+                    <li id="reports">
+                            <a href="javascript:void(0);" class="menu-toggle">
                                 <i class="material-icons">assignment</i>
                                 <span>Reports</span>
                             </a>
+                            <ul class="ml-menu">
+                               
+                                <li  id="progressstat">
+                                    <a data-toggle="modal" data-target="#dialysisreport_modal" >
+                                            Patient Reports</a>
+                                </li>
+                                <li id="">
+                                    <a data-toggle="modal" data-target="#employee_modal" >Employee Reports</a>
+                                </li>
+                            </ul>
                         </li>
+
+
                         <li>
                             <a href="logout.php">
                                 <i class="material-icons">input</i>
-                                <span>Exit</span>
+                                <span>Logout</span>
                             </a>
                         </li>
 
@@ -214,6 +233,12 @@ require 'queries/patientprofile_query.php';
             </aside>
             <!-- #END# Right Sidebar -->
         </section>
+          <?php    
+        include ('../modals/dialysisreport_modal.php');
+        include ('../modals/employee_modal.php');
+        ?>
+
+
 
         <section class="content">
             <div class="container-fluid">
@@ -241,7 +266,7 @@ require 'queries/patientprofile_query.php';
                                 <strong> Hospital ID : <u><?php echo $fetch1['Hospital_Id'] ?></u>
                                         <br>
                                         Name : <u><?php echo $fetch1['P_Fname'].' '.$fetch1['P_Mname'].' '.$fetch1['P_Lname']?></u>
-                                        <br> Birthday: <u><?php echo $fetch1['P_Birthdate']?></u>
+                                        <br> Birthday: <u><?php echo $fetch1['P_BirthDate']?></u>
                                         <br> Age : <u> <?php echo $fetch1['P_Age'] ?></u>
                                         <br> Gender : <u> <?php echo $fetch1['P_Sex'] ?></u>
                                         <br> Religion : <u> <?php echo $fetch1['P_Religion']?></u>
@@ -261,7 +286,7 @@ require 'queries/patientprofile_query.php';
                                     </u>
                                     
                                         <br> Erythropoetin: <u> <?php echo $fetch1['P_Erythropoetin']?></u>
-                                        <br> Nephrologist: <u> <?php echo $fetch1['nephrologistid']?></u>
+                                        <br> Nephrologist: <u> <?php echo $fetchnephro['n_fname'].' '.$fetchnephro['n_mname'].' '.$fetchnephro['n_lname']?></u>
                                         <br> Diagnosis: <u> <?php echo $coerd ?></u>
                                         <br> PhilHealth Number: <u> <?php echo $fetch1['P_PhilHealthNum']?></u>
                                         <br> Date Furnished By: <u> <?php echo $fetch1['P_DFBName']?></u>
@@ -366,7 +391,7 @@ require 'queries/patientprofile_query.php';
                 var module = '<?php echo $transaction_a; ?>';
                 var module1 = '<?php echo $patientprofile_a; ?>';
                 var module2 = '<?php echo $employeeprofile_a; ?>';
-                var module3 = '<?php echo $labtest_a; ?>';
+                var module3 = '<?php echo $schedule_a; ?>';
                 var module4 = '<?php echo $nephrologist_a; ?>';
                 var module6 = '<?php echo $userprofile_a; ?>';
                 var module7 = '<?php echo $maintenance_a; ?>';
@@ -388,7 +413,7 @@ require 'queries/patientprofile_query.php';
                 }
 
                 if (module3 == '0') {
-                    $('#labtest').hide();
+                    $('#schedule').hide();
 
                 }
 

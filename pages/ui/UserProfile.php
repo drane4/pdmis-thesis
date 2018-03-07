@@ -151,7 +151,7 @@
                                     <a href="nephrologist.php">Nephrologist</a>
                                 </li>
                                 
-                            <li id="profile">
+                            <li id="schedule">
                             <a href="javascript:void(0);" class="menu-toggle">
                                 <span>Schedule</span>
                             </a>
@@ -202,22 +202,7 @@
                                 <span>Reports</span>
                             </a>
                             <ul class="ml-menu">
-                                <li id="statistics">
-                            <a href="javascript:void(0);" class="menu-toggle">
-                                <span>Statistics</span>
-                            </a>
-                            <ul class="ml-menu">
-                                 <li id="genderstat">
-                                    <a href="report1.php">Gender Statistics</a>
-                                </li>
-                                <li id="agestat">
-                                    <a href="report2.php">Age Statistics</a>
-                                </li>
-                                 <li id="dialysisstat">
-                                    <a href="report3.php">Dialysis Statistics</a>
-                                </li>
-                                </ul>
-                                </li>
+                              
                                 <li  id="progressstat">
                                     <a data-toggle="modal" data-target="#dialysisreport_modal" >
                                             Patient Reports</a>
@@ -333,16 +318,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-3 col-md-1 col-sm-2 col-xs-3 form-control-label">
-                                            <label for="">Verify Password</label>
-                                        </div>
-                                        <div class="col-lg-3 col-md-1 col-sm-2 col-xs-3 col-md-3  form-control-label">
-                                            <div class="form-group">
-                                                <div class="form-line">
-                                                    <input type="password" id="password" name="lastname" class="form-control" placeholder="" value="<?php echo $fetch['password']?>" <?php if ($fetch[ 'employeeid'] !='' ){?> required<?php } ?>>
-                                                </div>
-                                            </div>
-                                        </div>
+                                   
                                     </div>
 
                                     <div class="row clearfix ">
@@ -387,16 +363,17 @@
                                                    <?php if ($fetch[ 'employeeprofile_a']==1 ){?> checked="checked"<?php } ?>/>
                                             <label for="employeeprofile_a">Employee Profile</label>   
                                             </div>
-                                              <div class="form-group input-group">  
-                                            <input type="checkbox" id="labtest_a" name="labtest_a" class="filled-in" value="1"
-                                                   <?php if ($fetch[ 'labtest_a']==1 ){?> checked="checked"<?php } ?>/>
-                                            <label for="labtest_a">Lab Test</label>        
-                                            </div>
-                                              <div class="form-group input-group">
+                                            <div class="form-group input-group">
                                          <input type="checkbox" id="nephrologist_a" name="nephrologist_a" class="filled-in" value="1"
                                                    <?php if ($fetch[ 'nephrologist_a']==1 ){?> checked="checked"<?php } ?>/>
                                             <label for="nephrologist_a">Nephrologist</label>   
                                             </div>
+                                              <div class="form-group input-group">  
+                                            <input type="checkbox" id="schedule_a" name="schedule_a" class="filled-in" value="1"
+                                                   <?php if ($fetch[ 'schedule_a']==1 ){?> checked="checked"<?php } ?>/>
+                                            <label for="schedule_a">Schedule</label>        
+                                            </div>
+                                              
                                                     
                                         </div>                 
                                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
@@ -504,7 +481,7 @@
                 </div>
             </div>
                   <div class="modal fade" id="smallModal" tabindex="-1" role="dialog">
-                <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-dialog modal-default" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
                          
@@ -515,10 +492,10 @@
                                                 <thead>
                                                     <tr>
                                                         <th>Employee Id</th>
-                                                
+                                                        <th>Name</th>
                                                     </tr>
+                                                    
                                                 </thead>
-
                                                 <tbody>
                                                     <?php
                                                             $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
@@ -527,13 +504,16 @@
                                                            while($fetch = $query ->fetch_array()){
                                                         ?>
                                                         <tr>
-
                                                             <td>
                                                                 <a href="UserProfile.php?id=<?php echo $fetch['employeeid']?>">
                                                                     <?php echo $fetch['employeeid']?>
                                                                 </a>
                                                             </td>
-                            
+                                                            <td>
+                                                                <a href="UserProfile.php?id=<?php echo $fetch['employeeid']?>">
+                                                                    <?php echo $fetch['firstname']." ".$fetch['lastname']?>
+                                                                </a>
+                                                            </td>
                                                         </tr>
                                                         <?php
                                                            }
@@ -623,7 +603,7 @@
                 var module = '<?php echo $transaction_a; ?>';
                 var module1 = '<?php echo $patientprofile_a; ?>';
                 var module2 = '<?php echo $employeeprofile_a; ?>';
-                var module3 = '<?php echo $labtest_a; ?>';
+                var module3 = '<?php echo $schedule_a; ?>';
                 var module4 = '<?php echo $nephrologist_a; ?>';
            
                 var module6 = '<?php echo $userprofile_a; ?>';
@@ -646,7 +626,7 @@
                 }
 
                 if (module3 == '0') {
-                    $('#labtest').hide();
+                    $('#schedule').hide();
 
                 }
 
@@ -685,7 +665,7 @@
     jQuery('#radio_3').click(function(){
     jQuery('#transaction_a').prop('checked', true);
     jQuery('#patientprofile_a').prop('checked', true);
-    jQuery('#labtest_a').prop('checked', true);
+    jQuery('#schedule_a').prop('checked', true);
     jQuery('#nephrologist_a').prop('checked', true);
     jQuery('#descriptors_a').prop('checked', true);
     jQuery('#reports_a').prop('checked', true);
@@ -697,7 +677,7 @@
     jQuery('#transaction_a').prop('checked', true);
     jQuery('#patientprofile_a').prop('checked', true);
     jQuery('#employeeprofile_a').prop('checked', true);
-    jQuery('#labtest_a').prop('checked', true);
+    jQuery('#schedule_a').prop('checked', true);
     jQuery('#nephrologist_a').prop('checked', true);
     jQuery('#descriptors_a').prop('checked', true);
     jQuery('#reports_a').prop('checked', true);

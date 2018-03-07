@@ -23,20 +23,19 @@ if(ISSET($_POST['submit'])){
   
     if($check > 0){
     $query = $conn->query("UPDATE `problemlist` SET `problem` = '$problem' WHERE `problemlist`.`problemlist_id` = $id2;") or die(mysqli_error());
-    
+     echo "<script type='text/javascript'> alert ('Problem List Details Updated!');</script>";
     }
     else{   
         $conn->query ("INSERT INTO `problemlist` VALUES ('$problem', '$datenoted', '$dateresolved', '$H_id', NULL, '$date1');") or die(mysqli_error());
    
-        echo "<script type='text/javascript'> alert ('notes/order saved!');</script>";
+        echo "<script type='text/javascript'> alert ('Problem List Details Saved!');</script>";
 
     
     }
 
 }
  
-header("location: ../PatientProfile.php?id=$H_id | problemlist ");
-
+echo "<script>document.location='../PatientProfile.php?id=$H_id | problemlist'</script>"
 
 
 

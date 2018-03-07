@@ -283,7 +283,7 @@ $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
                                         <br> Date of Initial Dialysis was Started: <u> <?php echo $fetch1['P_InDial']?></u>
                                         <br> Type of Dialysis when First Started: <u> <?php echo $fetch1['dialysistype']?></u>
                                         <br> Erythropoetin: <u> <?php echo $fetch1['P_Erythropoetin']?></u>
-                                        <br> Nephrologist: <u> <?php echo $fetch1['nephrologistid']?></u>
+                                        <br> Nephrologist: <u> <?php echo $fetchnephro['n_fname'].' '.$fetchnephro['n_mname'].' '.$fetchnephro['n_lname']?></u>
                                         <br> Diagnosis: <u> <?php echo "" ?></u>
                                         <br> PhilHealth Number: <u> <?php echo $fetch1['P_PhilHealthNum']?></u>
                                         <br> Date Furnished By: <u> <?php echo $fetch1['P_DFBName']?></u>

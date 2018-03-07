@@ -32,7 +32,7 @@
                                                     </div>
                                                     <div class="row clearfix">
                                                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label">
-                                                            <label for="email_address_2">HBsAg</label>
+                                                            <label for="email_address_2">HBs-Ag</label>
                                                         </div>
                                                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ">
                                                             <select class="form-control show-tick" name="hbsag" id="hbsag" value="" required>
@@ -193,7 +193,6 @@
                         <?php }?>
                         <div class="modal fade" id="drug_modal" tabindex="-1" role="dialog">
                             <div class="modal-dialog modal-default" role="document">
-
                                 <div class="modal-content">
                                     <div class="row clearfix">
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -201,10 +200,8 @@
                                                 <div class="header bg-indigo">
                                                     <h2>
                                                         Update Patient Drug Profile
-
                                                         <a href=""><i class="material-icons pull-right" data-dismiss="modal">clear</i></a>
                                                     </h2>
-
                                                 </div>
                                                 <div class="body">
                                                     <form class="form-horizontal page-content" form method="POST" action="save/savedrugprofile.php?id=<?php echo $H_id ?>">
@@ -215,7 +212,7 @@
                                                             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ">
                                                                 <div class="form-group">
                                                                     <div class="form-line">
-                                                                        <input type="text" class="form-control" name="drug" id="drug" value="<?php echo $fetch['']?>" autofocus required>
+                                                                        <input type="text" class="form-control" name="drugname" id="drug" value="<?php echo $fetch['']?>" autofocus required>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -260,24 +257,24 @@
                                                             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ">
                                                                 <div class="form-group">
                                                                     <div class="form-line">
-                                                                        <input type="text" class="form-control" name="roa" id="roa" value="<?php echo $fetch['']?>" required>
+                                                                        <input type="text" class="form-control" name="roa" id="roa" value="<?php echo $fetch['']?>" >
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label">
-                                                                <label for="email_address_2">Date Ordered</label>
-                                                            </div>
-                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ">
-                                                                <div class="form-group">
-                                                                    <div class="form-line">
-                                                                        <input type="date" class="form-control unstyled" name="dateordered" id="dateordered" value="<?php echo $fetch['']?>" style="padding-right:0" required>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
+                                                          <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                                                                  <div class="form-group input-group">
+                                                                      <span class="input-group-addon">
+                                                                          <input type="checkbox" id="PRN" name="PRN" value="1">
+                                                                          <label for="PRN"><b>PRN</b></label>
+                                                                    </span>
+                                                              </div>
+                                                            </div>  
+
 
                                                         </div>
+                                                    
                                                         <div class="row clearfix">
-                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label">
+                                                               <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label">
                                                                 <label for="email_address_2">Remarks</label>
                                                             </div>
                                                             <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 ">
@@ -286,30 +283,8 @@
                                                                         <textarea rows="1" name="remark" id="remark" class="form-control no-resize auto-growth"><?php echo $fetch['']?></textarea>
                                                                     </div>
                                                                 </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row clearfix">
-                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label">
-                                                                <label for="email_address_2">Date Description</label>
-                                                            </div>
-                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ">
-                                                                <div class="form-group">
-                                                                    <div class="form-line">
-                                                                        <input type="text" class="form-control" name="datedesc" id="datedesc" value="<?php echo $fetch['']?>" required>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label">
-                                                                <label for="email_address_2">PRN</label>
-                                                            </div>
-                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ">
-                                                                <div class="form-group">
-                                                                    <div class="form-line">
-                                                                        <input type="text" class="form-control" name="PRN" id="PRN" value="<?php echo $fetch['']?>" required>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
+                                                            </div> 
+                                                            
                                                         </div>
                                                         <div class="row clearfix">
                                                             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label">
@@ -340,6 +315,18 @@
                                             </select>
                                                             </div>
 
+                                                        </div>
+                                                            <div class="row clearfix">
+                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label">
+                                                                <label for="email_address_2">Date Ordered</label>
+                                                            </div>
+                                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 ">
+                                                                <div class="form-group">
+                                                                    <div class="form-line">
+                                                                        <input type="date" class="form-control unstyled" name="dateordered" id="dateordered" value="<?php echo $fetch['']?>" style="padding-right:0" required>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                         <div class="row clearfix">
                                                             <div class="col-lg-offset-7 col-xs-offset-4">
@@ -375,7 +362,7 @@
                                                 </div>
                                                 <div class="body">
                                                     <div class="table-responsive">
-                                                        <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                                                        <table class="table table-bordered table-striped table-hover js-basic-example dataTable" id="listing">
                                                             <thead>
                                                                 <tr>
                                                                     <th>Hospital ID</th>
@@ -438,6 +425,7 @@
 
                                                 </div>
                                                 <div class="body">
+                
                                                     <div class="table-responsive">
                                                         <table class="table table-bordered table-striped table-hover js-exportable dataTable">
                                                             <thead>
@@ -448,9 +436,8 @@
                                                                     <th>Contact #</th>
                                                                 </tr>
                                                             </thead>
-
                                                             <tbody>
-                                                                <?php
+                                                            <?php
                                                             $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
                                                            $query = $conn->query("SELECT * FROM `patientprofile` ORDER BY `Hospital_Id`") or die(mysqli_error());
                                                           // $id = $fetch['Hospital_Id'];
@@ -633,7 +620,6 @@
                                                         ?>
                             <div class="modal fade" id="drug_modal<?php echo $fetchdrug['drugprofile_id']?>" role="dialog">
                                 <div class="modal-dialog modal-default" role="document">
-
                                     <div class="modal-content">
                                         <div class="row clearfix">
                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -652,115 +638,95 @@
                                                     $split = $fetchdrug['drug_strength'];
                                                         list($drug ,$strength) = explode(" ", $split);
                                                     ?>
-                                                            <div class="row clearfix">
-                                                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label">
-                                                                    <label for="email_address_2">Drug</label>
-                                                                </div>
-                                                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ">
-                                                                    <div class="form-group">
-                                                                        <div class="form-line">
-                                                                            <input type="text" class="form-control" name="drug" id="drug" value="<?php echo $drug?>" autofocus required>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label">
-                                                                    <label for="email_address_2">Strength</label>
-                                                                </div>
-                                                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ">
-                                                                    <div class="form-group">
-                                                                        <div class="form-line">
-                                                                            <input type="text" class="form-control" name="strength" id="strength" value="<?php echo $strength?>" required>
-                                                                        </div>
+                                                             <div class="row clearfix">
+                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label">
+                                                                <label for="email_address_2">Drug</label>
+                                                            </div>
+                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ">
+                                                                <div class="form-group">
+                                                                    <div class="form-line">
+                                                                        <input type="text" class="form-control" name="drugname" id="drug" value="<?php echo $drug?>" autofocus required>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="row clearfix">
-                                                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label">
-                                                                    <label for="email_address_2">Dosage</label>
-                                                                </div>
-                                                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ">
-                                                                    <div class="form-group">
-                                                                        <div class="form-line">
-                                                                            <input type="text" class="form-control" name="dosage" id="dosage" value="<?php echo $fetchdrug['dosage']?>" required>
-                                                                        </div>
+                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label">
+                                                                <label for="email_address_2">Strength</label>
+                                                            </div>
+                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ">
+                                                                <div class="form-group">
+                                                                    <div class="form-line">
+                                                                        <input type="text" class="form-control" name="strength" id="strength" value="<?php echo $strength?>" required>
                                                                     </div>
                                                                 </div>
-                                                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label">
-                                                                    <label for="email_address_2">Frequency</label>
-                                                                </div>
-                                                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ">
-                                                                    <div class="form-group">
-                                                                        <div class="form-line">
-                                                                            <input type="text" class="form-control" name="freq" id="freq" value="<?php echo $fetchdrug['frequency']?>" required>
-                                                                        </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row clearfix">
+                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label">
+                                                                <label for="email_address_2">Dosage</label>
+                                                            </div>
+                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ">
+                                                                <div class="form-group">
+                                                                    <div class="form-line">
+                                                                        <input type="text" class="form-control" name="dosage" id="dosage" value="<?php echo $fetchdrug['dosage']?>" required>
                                                                     </div>
                                                                 </div>
+                                                            </div>
+                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label">
+                                                                <label for="email_address_2">Frequency</label>
+                                                            </div>
+                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ">
+                                                                <div class="form-group">
+                                                                    <div class="form-line">
+                                                                        <input type="text" class="form-control" name="freq" id="freq" value="<?php echo $fetchdrug['frequency']?>" required>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
 
+                                                        </div>
+                                                        <div class="row clearfix">
+                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label">
+                                                                <label for="email_address_2">Route of Admin</label>
                                                             </div>
-                                                            <div class="row clearfix">
-                                                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label">
-                                                                    <label for="email_address_2">Route of Admin</label>
-                                                                </div>
-                                                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ">
-                                                                    <div class="form-group">
-                                                                        <div class="form-line">
-                                                                            <input type="text" class="form-control" name="roa" id="roa" value="<?php echo $fetchdrug['ROA']?>" required>
-                                                                        </div>
+                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ">
+                                                                <div class="form-group">
+                                                                    <div class="form-line">
+                                                                        <input type="text" class="form-control" name="roa" id="roa" value="<?php echo $fetchdrug['ROA']?>" >
                                                                     </div>
                                                                 </div>
-                                                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label">
-                                                                    <label for="email_address_2">Date Ordered</label>
-                                                                </div>
-                                                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ">
-                                                                    <div class="form-group">
-                                                                        <div class="form-line">
-                                                                            <input type="date" class="form-control unstyled" name="dateordered" id="dateordered" value="<?php echo $fetchdrug['dateordered']?>" style="padding-right:0" required>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
+                                                            </div>
+                                                          <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                                                                  <div class="form-group input-group">
+                                                                      <span class="input-group-addon">
+                                                                          <input type="checkbox" id="PRN1<?php echo $fetchdrug['drugprofile_id'] ?>" name="PRN" value="1"
+                                                                        <?php if ($fetchdrug['PRN']==1 ){?> checked="checked"<?php } ?>     
+                                                                                 >
+                                                                          <label for="PRN1<?php echo $fetchdrug['drugprofile_id'] ?>"><b>PRN</b></label>
+                                                                    </span>
+                                                              </div>
+                                                            </div>  
 
-                                                            </div>
-                                                            <div class="row clearfix">
-                                                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label">
-                                                                    <label for="email_address_2">Remarks</label>
-                                                                </div>
-                                                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 ">
-                                                                    <div class="form-group">
-                                                                        <div class="form-line">
-                                                                            <textarea rows="1" name="remark" id="remark" class="form-control no-resize auto-growth"><?php echo $fetchdrug['remarks']?></textarea>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row clearfix">
-                                                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label">
-                                                                    <label for="email_address_2">Date Description</label>
-                                                                </div>
-                                                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ">
-                                                                    <div class="form-group">
-                                                                        <div class="form-line">
-                                                                            <input type="text" class="form-control" name="datedesc" id="datedesc" value="<?php echo $fetchdrug['datediscription']?>" required>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label">
-                                                                    <label for="email_address_2">PRN</label>
-                                                                </div>
-                                                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ">
-                                                                    <div class="form-group">
-                                                                        <div class="form-line">
-                                                                            <input type="text" class="form-control" name="PRN" id="PRN" value="<?php echo $fetchdrug['PRN']?>" required>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
 
+                                                        </div>
+                                                    
+                                                        <div class="row clearfix">
+                                                               <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label">
+                                                                <label for="email_address_2">Remarks</label>
                                                             </div>
-                                                            <div class="row clearfix">
-                                                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label">
-                                                                    <label for="email_address_2">Physician</label>
+                                                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 ">
+                                                                <div class="form-group">
+                                                                    <div class="form-line">
+                                                                        <textarea rows="1" name="remark" id="remark" class="form-control no-resize auto-growth"><?php echo $fetchdrug['remarks']?></textarea>
+                                                                    </div>
                                                                 </div>
-                                                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 ">
-                                                                    <select class="form-control show-tick" name="nephrologistid" id="nephrologistid" title="&nbsp" data-live-search="true" required>
+                                                            </div> 
+                                                            
+                                                        </div>
+                                                        <div class="row clearfix">
+                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label">
+                                                                <label for="email_address_2">Physician</label>
+                                                            </div>
+                                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 ">
+                                                                <select class="form-control show-tick" name="nephrologistid" id="nephrologistid" title="&nbsp" data-live-search="true" required>
                                          
                                                         <?php 
 
@@ -782,12 +748,24 @@
                                                         }
                                                     ?>
                                             </select>
-                                                                </div>
-
                                                             </div>
+
+                                                        </div>
+                                                            <div class="row clearfix">
+                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label">
+                                                                <label for="email_address_2">Date Ordered</label>
+                                                            </div>
+                                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 ">
+                                                                <div class="form-group">
+                                                                    <div class="form-line">
+                                                                        <input type="date" class="form-control unstyled" name="dateordered" id="dateordered" value="<?php echo $fetchdrug['dateordered']?>" style="padding-right:0" required>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                             <div class="row clearfix">
                                                                 <div class="col-lg-offset-7 col-xs-offset-4">
-                                                                    <button type="submit" class="btn btn-primary m-t-15 waves-effect" name="submit"><i class="material-icons">save</i>Save</button> &nbsp;
+                                                                    <button type="submit" class="btn btn-primary m-t-15 waves-effect" name="drug"><i class="material-icons">save</i>Save</button> &nbsp;
                                                                 </div>
                                                             </div>
                                                         </form>

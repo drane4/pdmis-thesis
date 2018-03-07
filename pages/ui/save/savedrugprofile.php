@@ -5,14 +5,14 @@
 
 if(ISSET($_POST['drug'])){
  
- 
-     $drugstrength = $_POST['drug']." ".$_POST['strength'];
+    
+     $drugstrength = $_POST['drugname']." ".$_POST['strength'];
      $dosage = $_POST['dosage']; 
      $freq = $_POST['freq'];
      $roa = $_POST['roa'];
      $dateordered = $_POST['dateordered'];
      $remark = $_POST['remark'];
-     $datedescription = $_POST['datedesc'];
+ //    $datedescription = $_POST['datedesc'];
      $PRN = $_POST['PRN'];
      $remark = $_POST['remark'];
      $nephrologistid = $_POST['nephrologistid'];
@@ -27,21 +27,21 @@ if(ISSET($_POST['drug'])){
   
     if($check > 0){
    
-    $query = $conn->query("UPDATE `patientdrugprofile` SET `drug_strength` = '$drugstrength', `dosage` = '$dosage', `frequency` = '$freq', `ROA` = '$roa', `dateordered` = '$dateordered', `datediscription` = '$datedescription', `PRN` = '$PRN', `remarks` = '$remark', `nephrologistid` = '$nephrologistid' WHERE `patientdrugprofile`.`Hospital_Id` = '$H_id' && `drugprofile_id` = '$id2'") or die(mysqli_error());
-    
+    $query = $conn->query("UPDATE `patientdrugprofile` SET `drug_strength` = '$drugstrength', `dosage` = '$dosage', `frequency` = '$freq', `ROA` = '$roa', `dateordered` = '$dateordered', `PRN` = '$PRN', `remarks` = '$remark', `nephrologistid` = '$nephrologistid' WHERE `patientdrugprofile`.`Hospital_Id` = '$H_id' && `drugprofile_id` = '$id2'") or die(mysqli_error());
+     echo "<script type='text/javascript'> alert ('Drug Profile Updated!');</script>";
     }
     else{   
 
-        $conn->query ("INSERT INTO `patientdrugprofile` VALUES ('$drugstrength','$dosage', '$freq', '$roa', '$dateordered', '$datedescription', '$PRN', '$remark', '$nephrologistid', '', '$H_id', '$date1')") or die(mysqli_error());
+        $conn->query ("INSERT INTO `patientdrugprofile` VALUES ('$drugstrength','$dosage', '$freq', '$roa', '$dateordered', '$PRN', '$remark', '$nephrologistid', '', '$H_id', '$date1')") or die(mysqli_error());
       
-        echo "<script type='text/javascript'> alert ('notes/order saved!');</script>";
+        echo "<script type='text/javascript'> alert ('Drug Profile saved!');</script>";
       
     
     }
 
 }
- 
-header("location: ../PatientProfile.php?id=$H_id | drug ");
+
+echo "<script>document.location='../PatientProfile.php?id=$H_id | drug '</script>"
 
 
 

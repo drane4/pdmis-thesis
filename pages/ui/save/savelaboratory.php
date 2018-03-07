@@ -126,6 +126,34 @@ if(ISSET($_POST['others'])){
     }
 
 }
+if(ISSET($_POST['info'])){
+    $hiv = $_POST['hiv'];
+    $hcv = $_POST['hcv'];
+    $rm = $_POST['rm'];
+    $hbag = $_POST['hbag'];
+    $bloodtype = $_POST['bloodtype'];
+    $antihbv = $_POST['antihbv'];
+    $rhfactor = $_POST['rhfactor'];
+
+  
+
+    $conn = new mysqli("localhost", 'root', '', 'pdmis') or die(mysqli_error());
+   $q1 = $conn->query ("SELECT * FROM `laboratory_info` WHERE BINARY `Hospital_Id` = '$H_id'") or die(mysqli_error());
+    $f1 = $q1->fetch_array();
+    $check = $q1->num_rows;
+
+    if($check > 0){
+    $query = $conn->query("UPDATE `laboratory_info` SET `hiv` = '$hiv',`hcv` = '$hcv',`rm` = '$rm',`hbag` = '$hbag',`bloodtype` = '$bloodtype',`antihbv` = '$antihbv',`rhfactor` = '$rhfactor' WHERE `Hospital_id` = '$H_id'") or die(mysqli_error());
+
+    }
+    else{  
+        $conn->query ("INSERT INTO `laboratory_info` VALUES ('$hiv', '$hcv', '$rm', '$hbag', '$bloodtype','$antihbv','$rhfactor','','$H_id')") or die(mysqli_error());
+     
+        echo "<script type='text/javascript'> alert ('notes/order saved!');</script>";
+
+    }
+
+}
  
 header("location: ../PatientProfile.php?id=$H_id | lab ");
 

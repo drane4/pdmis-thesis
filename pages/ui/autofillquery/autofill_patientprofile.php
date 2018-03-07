@@ -25,5 +25,23 @@
                
                    
                 } 
+                  
+                $list6 = array();
+                $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
+                $query2 = $conn->query("SELECT `P_Religion` as `rel` FROM `patientprofile` GROUP BY `rel`") or die(mysqli_error());
+                           
+                while($fetch3 = $query2 ->fetch_array()){
+                    array_push($list6, $fetch3['rel']."");
+  
+                } 
+                $list7 = array();
+                $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
+                $query3 = $conn->query("SELECT `P_nationality` as `nat` FROM `patientprofile` GROUP BY `nat`") or die(mysqli_error());
+                           
+                while($fetch4 = $query3 ->fetch_array()){
+                    array_push($list7, $fetch4['nat']."");
+  
+                } 
+
 
 ?>

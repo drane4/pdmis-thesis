@@ -267,10 +267,11 @@ $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
                                                 </center>
                                         
                                                 
-                                                
+                                                <?php
                                          
-
-                                           
+                                                  $dateArray = getDates($H_id, $from, $to);
+                                                       $columnCount = count($dateArray);
+                                           ?>
                                                  <table id="mainTable" class="table table-bordered">
                                                     <tr>
                                                         <th>Date</th>

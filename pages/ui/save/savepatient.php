@@ -30,9 +30,10 @@ if(ISSET($_POST['submit'])){
     $P_PhilHealthNum = $_POST['phnum'];
     $P_DFBName = $_POST['dfb'];
     $P_DFBRelation = $_POST['relation'];
-    $month = date("M", strtotime("+8 HOURS"));
-    $year = date("Y", strtotime("+8 HOURS"));
-    
+    date_default_timezone_set('Asia/Manila');
+    $date1 = date("Y-m-d");
+    $date2 = date("M");
+    $date3 = date("Y");
 
 
     $conn = new mysqli("localhost", 'root', '', 'pdmis') or die(mysqli_error());
@@ -48,7 +49,7 @@ if(ISSET($_POST['submit'])){
     }
     else{
      
-         $conn->query ("INSERT INTO `patientprofile` VALUES('$Hospital_Id', '$P_Lname', '$P_Fname', '$P_Mname', '$P_BirthDate', '$P_Age', '$P_Sex', '$P_Nationality', '$P_Religion', '$P_CivilStatus', '$P_PermanentAdd', '$P_ConNum1', '$P_PresentAdd', '$P_ConNum2', '$P_Relative', '$P_RelativeAdd', '$P_RelativeConNum', '$P_AgeFD', '$P_Erythropoetin', '$P_Diagnosis', '$P_PhilHealthNum', '$P_DFBName', '$P_DFBRelation', '$P_InDial', '$P_dialysistype', '$P_Nephrologist', '$status', '$month', '$year')") or die(mysqli_error());
+         $conn->query ("INSERT INTO `patientprofile` VALUES('$Hospital_Id', '$P_Lname', '$P_Fname', '$P_Mname', '$P_BirthDate', '$P_Age', '$P_Sex', '$P_Nationality', '$P_Religion', '$P_CivilStatus', '$P_PermanentAdd', '$P_ConNum1', '$P_PresentAdd', '$P_ConNum2', '$P_Relative', '$P_RelativeAdd', '$P_RelativeConNum', '$P_AgeFD', '$P_Erythropoetin', '$P_Diagnosis', '$P_PhilHealthNum', '$P_DFBName', '$P_DFBRelation', '$P_InDial', '$P_dialysistype', '$P_Nephrologist', '$status', '$date1', '$date2', '$date3')") or die(mysqli_error());
          echo "<script type='text/javascript'> alert ('Patient Info Saved!');</script>";
     }
 }

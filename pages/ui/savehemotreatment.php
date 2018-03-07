@@ -164,7 +164,7 @@ if(ISSET($_POST['treatment_infos'])){
     $technician = $_POST['technician'];
     $date2 = $_POST['dates'];
     //$date1 = date("Y-m-d");
-
+    
     $conn = new mysqli("localhost", 'root', '', 'pdmis') or die(mysqli_error());
    $q1 = $conn->query ("SELECT * FROM `treatment` WHERE BINARY `Hospital_Id` = '$H_id' && `treatment_date` = '$date2'") or die(mysqli_error());
     $f1 = $q1->fetch_array();

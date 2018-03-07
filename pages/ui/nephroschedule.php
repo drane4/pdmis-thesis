@@ -142,7 +142,7 @@
                                 <li class="" id="nephrologist">
                                     <a href="nephrologist.php">Nephrologist</a>
                                 </li>
-                            <li class="active" id="profile">
+                            <li class="active" id="schedule">
                             <a href="javascript:void(0);" class="menu-toggle">
                                 <span>Schedule</span>
                             </a>
@@ -192,25 +192,7 @@
                                 <span>Reports</span>
                             </a>
                             <ul class="ml-menu">
-                                <li id="statistics">
-                            <a href="javascript:void(0);" class="menu-toggle">
-                                <span>Statistics</span>
-                            </a>
-                            <ul class="ml-menu">
-                                 <li id="genderstat">
-                                    <a href="report1.php">Gender Statistics</a>
-                                </li>
-                                <li id="agestat">
-                                    <a href="report2.php">Age Statistics</a>
-                                </li>
-                                 <li id="dialysisstat">
-                                    <a href="report3.php">Dialysis Statistics</a>
-                                </li>
-                                <li id="esrdstat">
-                                    <a href="report7.php">ESRD Statistics</a>
-                                </li>
-                                </ul>
-                                </li>
+                              
                                 <li  id="progressstat">
                                     <a data-toggle="modal" data-target="#dialysisreport_modal" >
                                             Patient Reports</a>
@@ -505,7 +487,7 @@
         var module ='<?php echo $transaction_a; ?>';
         var module1 ='<?php echo $patientprofile_a; ?>';
         var module2 ='<?php echo $employeeprofile_a; ?>';
-        var module3 ='<?php echo $labtest_a; ?>';
+        var module3 ='<?php echo $schedule_a; ?>';
         var module4 ='<?php echo $nephrologist_a; ?>';
         var module6 ='<?php echo $userprofile_a; ?>';
         var module7 ='<?php echo $maintenance_a; ?>';
@@ -531,7 +513,7 @@
        
          if(module3 == '0') 
         {                       
-            $('#labtest').hide(); 
+            $('#schedule').hide(); 
             
         }
        

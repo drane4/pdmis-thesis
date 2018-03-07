@@ -1,20 +1,20 @@
 <?php
 
-$year = date('Y');
-if(isset($_GET['year']))
-{
-	$year=$_GET['year'];
-}
+//WHERE `hemo_order`.`order_date` BETWEEN '$from' AND '$to' GROUP BY `hemo_order`.`order_date`
+
 
 $conn = new mysqli("localhost", "root", "", "pdmis") or die(mysqli_error());
-$bs = $conn->query("SELECT COUNT(*) as total FROM `hemo_order` WHERE `esrd_chronic` = 1 ") or die(mysqli_error());
+$bs = $conn->query("SELECT COUNT(*) as total FROM `hemo_order` WHERE `esrd_chronic` = 1 && `order_date` BETWEEN '$from' AND '$to'") or die(mysqli_error());
 $fetch1 = $bs->fetch_array();
-$di = $conn->query("SELECT COUNT(*) as total FROM `hemo_order` WHERE `esrd_diabetic` = '1' ") or die(mysqli_error());
+$di = $conn->query("SELECT COUNT(*) as total FROM `hemo_order` WHERE `esrd_diabetic` = '1' && `order_date` BETWEEN '$from' AND '$to'") or die(mysqli_error());
 $fetch2 = $di->fetch_array();
-$ch = $conn->query("SELECT COUNT(*) as total FROM `hemo_order` WHERE `esrd_others` != '' ") or die(mysqli_error());
+$ch = $conn->query("SELECT COUNT(*) as total FROM `hemo_order` WHERE `esrd_others` != '' && `order_date` BETWEEN '$from' AND '$to'") or die(mysqli_error());
 $fetch3 = $ch->fetch_array();
-$hy = $conn->query("SELECT COUNT(*) as total FROM `hemo_order` WHERE `esrd_hypertensive` = '1' ") or die(mysqli_error());
+$hy = $conn->query("SELECT COUNT(*) as total FROM `hemo_order` WHERE `esrd_hypertensive` = '1' && `order_date` BETWEEN '$from' AND '$to'") or die(mysqli_error());
 $fetch4 = $hy->fetch_array();
+
+
+
 ?>
 <script type="text/javascript"> 
 	window.onload = function() { 
@@ -25,7 +25,7 @@ $fetch4 = $hy->fetch_array();
 			//exportFileName: "Bacteriological Status", 
 			//exportEnabled: true,
 			 title: { 
-                text: "ESRD Cases - Year <?php echo $year?>",
+                text: "<?php if($from == ''){?> Overall ESRD Cases<?php } else{ ?> ESRD Cases <?php echo "("."from ".$from." to ".$to.")" ?><?php } ?>",
                 fontSize: 20
             }, 
             subtitles:[
@@ -39,7 +39,7 @@ $fetch4 = $hy->fetch_array();
 			}, 
 			data: [ 
 				{ 
-					type: "doughnut", 
+					type: "pie", 
 					showInLegend: true, 
 					toolTipContent: "{label} <br/> {y}", 
 					indexLabel: "{y}", 
@@ -80,6 +80,7 @@ $fetch4 = $hy->fetch_array();
 					] 
 				} 
 			] 
+            
 		}); 
 	} 
 </script>

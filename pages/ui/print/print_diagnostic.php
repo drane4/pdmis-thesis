@@ -7,7 +7,7 @@ require '../session.php';
    list($H_id, $examdate) = explode(" | ", $pageid);
  $Wq = $conn->query("SELECT * FROM `diagnostic/examination` WHERE `Hospital_Id` = '$H_id' && `Doneon` = '$examdate'") or die(mysqli_error());
   $examfetch = $Wq ->fetch_array();
-
+require '../queries/patientprofile_query.php';
 
 ?>
 
@@ -82,7 +82,7 @@ require '../session.php';
                     <a href="javascript:void(0);" class="bars"></a>
                     <center>
                         <a class="navbar-brand" href="index.html">
-                            <div class="title">Teresita Jalandoni Provincial Hospital <br> Dialysis Department</div>
+                            <div class="title">Teresita Jalandoni Provincial Hospital <br> Dialysis Department <?php echo $H_id?></div>
                         </a>
                     </center>
 
@@ -128,7 +128,7 @@ require '../session.php';
                 </div>
                 <!-- #User Info -->
                 <!-- Menu -->
-                <div class="menu">
+               <div class="menu">
                     <ul class="list">
                         <li class="header">MAIN NAVIGATION</li>
                         
@@ -139,13 +139,13 @@ require '../session.php';
                             </a>
                             <ul class="ml-menu">
                                 <li class="active" id="patientprofile">
-                                    <a href="PatientProfile.php">Patient Profile</a>
+                                    <a href="../PatientProfile.php">Patient Profile</a>
                                 </li>
                                 <li id="employeeprofile">
-                                    <a href="EmployeeProfile.php">Employee Profile</a>
+                                    <a href="../EmployeeProfile.php">Employee Profile</a>
                                 </li>
                                 <li class="" id="nephrologist">
-                                    <a href="nephrologist.php">Nephrologist</a>
+                                    <a href="../nephrologist.php">Nephrologist</a>
                                 </li>
                                 <li class="" id="schedule">
                                     <a href="javascript:void(0);" class="menu-toggle">
@@ -153,10 +153,10 @@ require '../session.php';
                             </a>
                                     <ul class="ml-menu">
                                         <li id="descriptors">
-                                            <a href="patientschedule.php">Patient</a>
+                                            <a href="../patientschedule.php">Patient</a>
                                         </li>
                                         <li id="descriptors">
-                                            <a href="nephroschedule.php">Nephrologist</a>
+                                            <a href="../nephroschedule.php">Nephrologist</a>
                                         </li>
 
                                     </ul>
@@ -170,7 +170,7 @@ require '../session.php';
                             </a>
                             <ul class="ml-menu">
                                 <li id="transaction">
-                                    <a href="transaction.php">HemoTreatment</a>
+                                    <a href="../transaction.php">HemoTreatment</a>
                                 </li>
 
                             </ul>
@@ -184,46 +184,32 @@ require '../session.php';
 
                             <ul class="ml-menu">
                                 <li id="userprofile">
-                                    <a href="UserProfile.php">User Profile</a>
+                                    <a href="../UserProfile.php">User Profile</a>
                                 </li>
 
                                 <li id="systemmaintenance">
-                                    <a href="maintenance.php">System Maintenance</a>
+                                    <a href="../maintenance.php">System Maintenance</a>
                                 </li>
                             </ul>
                         </li>
 
-                         <li id="reports">
+                    <li id="reports">
                             <a href="javascript:void(0);" class="menu-toggle">
                                 <i class="material-icons">assignment</i>
                                 <span>Reports</span>
                             </a>
                             <ul class="ml-menu">
-                                <li id="statistics">
-                            <a href="javascript:void(0);" class="menu-toggle">
-                                <span>Statistics</span>
-                            </a>
-                            <ul class="ml-menu">
-                                 <li id="genderstat">
-                                    <a href="report1.php">Gender Statistics</a>
-                                </li>
-                                <li id="agestat">
-                                    <a href="report2.php">Age Statistics</a>
-                                </li>
-                                 <li id="dialysisstat">
-                                    <a href="report3.php">Dialysis Statistics</a>
-                                </li>
-                                </ul>
-                                </li>
+                                
                                 <li  id="progressstat">
                                     <a data-toggle="modal" data-target="#dialysisreport_modal" >
-                                            Dialysis Report</a>
+                                            Patient Reports</a>
                                 </li>
                                 <li id="">
-                                    <a href="report5.php">Employee Performance</a>
+                                    <a data-toggle="modal" data-target="#employee_modal" >Employee Reports</a>
                                 </li>
                             </ul>
                         </li>
+
 
                         <li>
                             <a href="logout.php">
@@ -256,6 +242,13 @@ require '../session.php';
             <!-- #END# Right Sidebar -->
         </section>
           <?php  include ('../queries/patientprofile_query.php'); ?>
+          <?php    
+        include ('../modals/dialysisreport_modal.php');
+        include ('../modals/employee_modal.php');
+        ?>
+
+
+
         <section class="content">
             <div class="container-fluid">
                 <div class="row clearfix">
@@ -278,6 +271,22 @@ require '../session.php';
                                         </div>
                                 </div>
                                              
+ <br>
+
+                                            <div class="row clearfix">
+                                                    <div class="col-sm-10" style="margin-left:60px;">
+                                                 
+                                                        <label for="email_address_2">Name: <u><?php echo $fetchs['P_Fname'].' '.$fetchs['P_Mname'].' '.$fetchs['P_Lname']?></u></label>
+                                                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                        <label for="email_address_2">Age: <u><?php echo $fetchs['P_Age']?></u></label>
+                                                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                        <label for="email_address_2">Sex: <u><?php echo $fetchs['P_Sex']?></u></label>
+                                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                        <label for="email_address_2">Hospital ID: <u><?php echo $fetchs['Hospital_Id']?></u></label>
+                                                    </div>
+                                                </div>
+                                    
+
                                                 <div class="row clearfix">
                                                     <div class="col-md-2 col-sm-2 col-xs-2 form-control-label">
                                                         <label>A. History</label>
@@ -314,14 +323,14 @@ require '../session.php';
                                                     </div>
                                                     <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
                                                         <div class="form-group input-group">
-                                                            <input type="checkbox" id="cancer" name="Cancer" class="filled" value="1" <?php if ($examfetch['cancer']==1 ){?> checked="checked"
+                                                            <input type="checkbox" id="cancer" name="Cancer" class="filled" value="1" <?php if ($examfetch['Cancer']==1 ){?> checked="checked"
                                                             <?php } ?>/>
                                                             <label for="cancer">Cancer</label>
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
                                                         <div class="form-group input-group">
-                                                            <input type="checkbox" id="asthma" name="Asthma" class="filled" value="1" <?php if($examfetch[ 'asthma']==1 ){?> checked="checked"
+                                                            <input type="checkbox" id="asthma" name="Asthma" class="filled" value="1" <?php if($examfetch[ 'Asthma']==1 ){?> checked="checked"
                                                             <?php } ?>/>
                                                             <label for="asthma">Asthma</label>
                                                         </div>
@@ -343,7 +352,7 @@ require '../session.php';
                                                     </div>
                                                     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
                                                         <div class="form-group input-group">
-                                                            <input type="checkbox" id="SmokingHistory" name="SmokingHistory" class="filled" value="1" <?php if($examfetch['Smokinghistory']==1 ){?> checked="checked"
+                                                            <input type="checkbox" id="SmokingHistory" name="SmokingHistory" class="filled" value="1" <?php if($examfetch['SmokingHistory']==1 ){?> checked="checked"
                                                             <?php } ?>/>
                                                             <label for="smokinghistory">Smoking History</label>
                                                         </div>
@@ -535,6 +544,10 @@ require '../session.php';
                                                     </div>
                                                 </div>
                                        
+
+ <br><br>
+                                     <b>Produced By: <u><?php echo $name ?></u></b>
+
                                         <div class="row clearfix">
                                             <div class="col-lg-offset-9 col-xs-offset-9">
                                                <div class="row hidden-print mt-20">
@@ -627,7 +640,7 @@ require '../session.php';
                 var module = '<?php echo $transaction_a; ?>';
                 var module1 = '<?php echo $patientprofile_a; ?>';
                 var module2 = '<?php echo $employeeprofile_a; ?>';
-                var module3 = '<?php echo $labtest_a; ?>';
+                var module3 = '<?php echo $schedule_a; ?>';
                 var module4 = '<?php echo $nephrologist_a; ?>';
                 var module5 = '<?php echo $descriptors_a; ?>';
                 var module6 = '<?php echo $userprofile_a; ?>';
@@ -650,7 +663,7 @@ require '../session.php';
                 }
 
                 if (module3 == '0') {
-                    $('#labtest').hide();
+                    $('#schedule').hide();
 
                 }
 

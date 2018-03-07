@@ -35,6 +35,7 @@ header("location: pages/ui/PatientProfile.php");
     <div class="login-box">
         <div class="logo">
             <a href="javascript:void(0);"><b>PDMIS</b></a>
+<!--            <img src="images/P.png" style="width:200px;height:200px;">-->
             <small>Patient Dialysis Monitoring Information System</small>
         </div>
         <div class="card">

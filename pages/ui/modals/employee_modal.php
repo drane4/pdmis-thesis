@@ -39,13 +39,13 @@
                                                     </div>
                                             <div class="row clearfix">
                                                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label">
-                                                    <label for="">Patient Name</label>
+                                                    <label for="">Employee Name</label>
                                                 </div>
                                                 <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
                                                     <div class="form-group">
                                                         <div class="form-line">
                                                             <select class="form-control show-tick" data-live-search="true" name="employeeid" id="employeeid" title="&nbsp">
-                                                                <option></option>
+                                                               <option selected value> -- select an option -- </option>
                                                             <?php 
 
                                                           $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
@@ -58,7 +58,6 @@
                                                         <?php echo $row['firstname']." ".$row['middlename']." ".$row['lastname'] ?>
                                                         </option>
                                                         <?php
-                                                        
                                                         }
                                                     ?>
                                             </select>
@@ -69,7 +68,7 @@
                                                     <div class="row clearfix">
                                                        <div class="col-lg-offset-3 col-md-offset-3 col-sm-offset-3 col-xs-offset-3">
                                                             <button type="submit" class="btn bg-grey m-t-15 waves-effect" name="employeedetail1" style="width:80%; color:black">Employee Attendance</button> <br>
-                                                           <button type="submit" class="btn bg-grey m-t-15 waves-effect" name="employeedetail2" style="width:80%; color:black">Employee Performace</button> <br>
+                                                               <button type="submit" class="btn bg-grey m-t-15 waves-effect" name="employeedetail2" style="width:70%; color:black">Employee Transactions</button>&nbsp;<button class="btn bg-grey m-t-15 waves-effect" name="employeechart"> <i class="material-icons">pie_chart</i></button>
                                                         </div>
                                                     </div>
                                                 </form>

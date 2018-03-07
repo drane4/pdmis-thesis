@@ -65,7 +65,7 @@ date_default_timezone_set('Asia/Manila');
         
         $conn->query ("INSERT INTO `nursenotes` VALUES ('$focus', '$data', '$action', '$resolution', '$id', '$date', '', '$H_id')") or die(mysqli_error());
        
-        
+        $conn->query ("UPDATE `employeeprofile` set `transaction` = '1' WHERE `employeeid` = '$id' ") or die(mysqli_error());
         
         
         
@@ -105,6 +105,9 @@ if(ISSET($_POST['ITest'])){
          
         $conn->query ("INSERT INTO `initialtestresult` VALUES ('$initialtemp', '$bloodpressure','$cardiacrate', '$repulsiverate', '', '$H_id', '$date', '$itest_time')") or die(mysqli_error());
       
+         $conn->query ("UPDATE `treatment` SET `treatment_start` = '$itest_time' WHERE `treatment`.`Hospital_Id` = '$H_id'") or die(mysqli_error());
+        
+        
            echo "<script type='text/javascript'> alert ('Initial Result Saved!');</script>";
       
     
@@ -145,6 +148,8 @@ if(ISSET($_POST['MResult'])){
         
         
         $conn->query ("INSERT INTO `machineresult` VALUES ('$bloodpressure', '$cardiacrate','$bloodflowrate', '$transmembranepressure', '$venuspressure', '', '$H_id', '$date', '$time')") or die(mysqli_error());
+        
+         $conn->query ("UPDATE `treatment` SET `treatment_end` = '$time' WHERE `treatment`.`Hospital_Id` = '$H_id'") or die(mysqli_error());
         echo "<script type='text/javascript'> alert ('Machine Result Saved!');</script>";
         
       
@@ -157,7 +162,7 @@ if(ISSET($_POST['treatment_infos'])){
     $pageid = $_GET[id];
     list($H_id,$id2) = explode("|", $pageid);
     
-     $pw = $_POST['preweight'];
+    $pw = $_POST['preweight'];
     list($preweight ,$id2) = explode(" ", $pw);
     $postw = $_POST['postweight'];
     list($postweight ,$id2) = explode(" ", $postw);
@@ -166,12 +171,15 @@ if(ISSET($_POST['treatment_infos'])){
     $bfr = $_POST['bfr'];
     $dialyzer = $_POST['dialyzer'];
     $access = $_POST['access'];
+    $drywt = $_POST['drywt'];
     $dialyzeruse = $_POST['dialyzeruse'];
     $heparin = $_POST['heparin'];
     $machinenum = $_POST['machinenum'];
     $technician = $_POST['technician'];
     $date = date("Y-m-d");
-
+    
+    list($drywt1) = explode("Kg", $drywt);
+    
     $conn = new mysqli("localhost", 'root', '', 'pdmis') or die(mysqli_error());
    $q1 = $conn->query ("SELECT * FROM `treatment` WHERE BINARY `Hospital_Id` = '$H_id' && `treatment_date` = '$date'") or die(mysqli_error());
     $f1 = $q1->fetch_array();
@@ -186,13 +194,14 @@ if(ISSET($_POST['treatment_infos'])){
     else{
         
     
-        $conn->query ("INSERT INTO `treatment` VALUES ('', '$date', '$bfr', '$dialyzeruse', '$access', '$heparin', '$machinenum', '$H_id', '$preweight', '$id', '$technician', $postweight)") or die(mysqli_error());
+        $conn->query ("INSERT INTO `treatment` VALUES ('', '$date', '$bfr', '$dialyzeruse', '$access', '$heparin', '$machinenum', '$H_id', '$preweight', '$id', '$technician', '$postweight', '', '', '$drywt1', '$dialyzer')") or die(mysqli_error());
       
         echo "<script type='text/javascript'> alert ('Treatment Info Saved!');</script>";
       
     
     }
 }
+
 
 echo "<script>document.location='../transaction.php?id=$H_id'</script>"
 ?>

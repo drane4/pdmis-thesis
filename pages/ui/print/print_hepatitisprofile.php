@@ -1,10 +1,10 @@
 <?php
 require '../session.php';
-include ('../queries/patientprofile_query.php');
+
   ini_set('display_errors', 0);
    $pageid = $_GET[id];
-   list($H_id ,$ydate) = explode(" | ", $pageid);
-
+   list($H_id ,$hepadate1) = explode(" | ", $pageid);
+include ('../queries/patientprofile_query.php');
 ?>
 
 
@@ -124,50 +124,51 @@ include ('../queries/patientprofile_query.php');
                 </div>
                 <!-- #User Info -->
                 <!-- Menu -->
-                <div class="menu">
+                  <div class="menu">
                     <ul class="list">
-
                         <li class="header">MAIN NAVIGATION</li>
-
-                        <li class="active" id="transaction">
-                            <a href="javascript:void(0);" class="menu-toggle">
-                                <i class="material-icons">folder</i>
-                                <span>Transaction</span>
-                            </a>
-                            <ul class="ml-menu">
-                                <li id="transaction" class="active">
-                                    <a href="transaction.php">HemoTreatment</a>
-                                </li>
-                                <li id="Schedule">
-                                    <a href="LT.php">Schedule</a>
-                                </li>
-                                <li id="Immunization">
-                                    <a href="P.php">Immunization</a>
-                                </li>
-                                <li id="PatientMedicalHistory">
-                                    <a href="D.php">Patient Medical History</a>
-                                </li>
-                            </ul>
-
-                        </li>
-                        <li id="profile">
+                        
+                        <li class="active" id="profile">
                             <a href="javascript:void(0);" class="menu-toggle">
                                 <i class="material-icons">people</i>
                                 <span>Profile</span>
                             </a>
                             <ul class="ml-menu">
-                                <li id="patientprofile">
-                                    <a href="PatientProfile.php">Patient Profile</a>
+                                <li class="active" id="patientprofile">
+                                    <a href="../PatientProfile.php">Patient Profile</a>
                                 </li>
                                 <li id="employeeprofile">
-                                    <a href="EmployeeProfile.php">Employee Profile</a>
+                                    <a href="../EmployeeProfile.php">Employee Profile</a>
                                 </li>
-                                <li id="nephrologist">
-                                    <a href="nephrologist.php">Nephrologist</a>
+                                <li class="" id="nephrologist">
+                                    <a href="../nephrologist.php">Nephrologist</a>
                                 </li>
-                                <li id="descriptors">
-                                    <a href="D.php">Descriptors</a>
+                                <li class="" id="schedule">
+                                    <a href="javascript:void(0);" class="menu-toggle">
+                                <span>Schedule</span>
+                            </a>
+                                    <ul class="ml-menu">
+                                        <li id="descriptors">
+                                            <a href="../patientschedule.php">Patient</a>
+                                        </li>
+                                        <li id="descriptors">
+                                            <a href="../nephroschedule.php">Nephrologist</a>
+                                        </li>
+
+                                    </ul>
                                 </li>
+                            </ul>
+                        </li>
+                        <li id="transaction">
+                            <a href="javascript:void(0);" class="menu-toggle">
+                                 <i class="material-icons">folder</i>
+                                <span>Transaction</span>
+                            </a>
+                            <ul class="ml-menu">
+                                <li id="transaction">
+                                    <a href="../transaction.php">HemoTreatment</a>
+                                </li>
+
                             </ul>
                         </li>
                         <li id="maintenance">
@@ -176,25 +177,40 @@ include ('../queries/patientprofile_query.php');
                                 <i class="material-icons">settings</i>
                                 <span>Maintenance</span>
                             </a>
+
                             <ul class="ml-menu">
                                 <li id="userprofile">
-                                    <a href="UserProfile.php">User Profile</a>
+                                    <a href="../UserProfile.php">User Profile</a>
                                 </li>
+
                                 <li id="systemmaintenance">
-                                    <a href="maintenance.php">System Maintenance</a>
+                                    <a href="../maintenance.php">System Maintenance</a>
                                 </li>
                             </ul>
                         </li>
-                        <li id="reports">
-                            <a href="R.php">
+
+                    <li id="reports">
+                            <a href="javascript:void(0);" class="menu-toggle">
                                 <i class="material-icons">assignment</i>
                                 <span>Reports</span>
                             </a>
+                            <ul class="ml-menu">
+                               
+                                <li  id="progressstat">
+                                    <a data-toggle="modal" data-target="#dialysisreport_modal" >
+                                            Patient Reports</a>
+                                </li>
+                                <li id="">
+                                    <a data-toggle="modal" data-target="#employee_modal" >Employee Reports</a>
+                                </li>
+                            </ul>
                         </li>
+
+
                         <li>
                             <a href="logout.php">
                                 <i class="material-icons">input</i>
-                                <span>Exit</span>
+                                <span>Logout</span>
                             </a>
                         </li>
 
@@ -221,6 +237,12 @@ include ('../queries/patientprofile_query.php');
             </aside>
             <!-- #END# Right Sidebar -->
         </section>
+        <?php    
+        include ('../modals/dialysisreport_modal.php');
+        include ('../modals/employee_modal.php');
+        ?>
+
+
 
         <section class="content">
             <div class="container-fluid">
@@ -239,10 +261,20 @@ include ('../queries/patientprofile_query.php');
                                         <h5>Tel. No. 495-1704 / 495-1705 / 495-0096</h5>
                                         <h4>HEMODIALYSIS PATIENT HEPATITIS PROFILE</h4>
 
-
                                         </center>
                                         </div>
-                                </div>
+                                </div><br>
+                                     <div class="row clearfix">
+                                                    <div class="col-sm-10" >
+                                                        <label for="email_address_2">Name: <u><?php echo $fetchs['P_Fname'].' '.$fetchs['P_Mname'].' '.$fetchs['P_Lname']?></u></label>
+                                                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                        <label for="email_address_2">Age: <u><?php echo $fetchs['P_Age']?></u></label>
+                                                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                        <label for="email_address_2">Sex: <u><?php echo $fetchs['P_Sex']?></u></label>
+                                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                        <label for="email_address_2">Hospital ID: <u><?php echo $fetchs['Hospital_Id']?></u></label>
+                                                    </div>
+                                                </div>
                                                <div class="row">
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
@@ -261,7 +293,7 @@ include ('../queries/patientprofile_query.php');
                                                 
                                                  <tbody>
                                                             <?php
-                                                                 while($fetch = $hepaquery1 ->fetch_array()){
+                                                                 while($fetch = $hepaquery2 ->fetch_array()){
                                                                 ?>
                                                             <tr>
                                                                 <td>
@@ -270,22 +302,25 @@ include ('../queries/patientprofile_query.php');
                                                                 </td>
                                                                 <td>
                                                                  
-                                                                        <?php echo $fetch['HbsAg']?>
+                                                                      <?php if($fetch['HbsAg'] == 'r') echo "Reactive" ?>
+                                                                       <?php if($fetch['HbsAg'] == 'nr') echo "Non-Reactive" ?>
                                                                   
                                                                 </td>
                                                                 <td>
                                                                   
-                                                                        <?php echo $fetch['AntiHBs']?>
+                                                                         <?php if($fetch['AntiHBs'] == 'r') echo "Reactive" ?>
+                                                                       <?php if($fetch['AntiHBs'] == 'nr') echo "Non-Reactive" ?>
                                                              
                                                                 </td>
                                                                 <td>
                                                                   
-                                                                        <?php echo $fetch['HCV']?>
+                                                                        <?php if($fetch['HCV'] == 'r') echo "Reactive" ?>
+                                                                       <?php if($fetch['HCV'] == 'nr') echo "Non-Reactive" ?>
                                                              
                                                                 </td>
                                                                 <td>
-                                                                   
-                                                                        <?php echo $fetch['HIV']?>
+                                                                     <?php if($fetch['HIV'] == 'r') echo "Reactive" ?>
+                                                                       <?php if($fetch['HIV'] == 'nr') echo "Non-Reactive" ?>
                                                             
                                                                 </td>
                                                             </tr>
@@ -298,12 +333,14 @@ include ('../queries/patientprofile_query.php');
                                                 </table>
 
                                         </div>
+                                                    <br><br>&nbsp;&nbsp;&nbsp;&nbsp;
+                                     <b>Produced By: <u><?php echo $name ?></u></b>
                                         <div class="row clearfix">
                                             <div class="col-lg-offset-9 col-xs-offset-9">
                                                <div class="row hidden-print mt-20">
                                                  
                                                    <a class="btn btn-primary btn-xs" onclick="printDiv('printableArea')" target="_blank"><i class="material-icons">print</i> Print</a>
-                                                   <button class="btn btn-primary btn-sm" onclick="location.href='../patientprofile.php?id=<?php echo $H_id." | "."hepatitis"." | "."$hepadate"?>'">cancel</button>
+                                                   <button class="btn btn-primary btn-sm" onclick="location.href='../patientprofile.php?id=<?php echo $H_id." | "."hepatitis"." | "."$hepadate1"?>'">cancel</button>
                                                    
                                               </div>
                                          </div>
@@ -390,7 +427,7 @@ include ('../queries/patientprofile_query.php');
                 var module = '<?php echo $transaction_a; ?>';
                 var module1 = '<?php echo $patientprofile_a; ?>';
                 var module2 = '<?php echo $employeeprofile_a; ?>';
-                var module3 = '<?php echo $labtest_a; ?>';
+                var module3 = '<?php echo $schedule_a; ?>';
                 var module4 = '<?php echo $nephrologist_a; ?>';
                 var module5 = '<?php echo $descriptors_a; ?>';
                 var module6 = '<?php echo $userprofile_a; ?>';
@@ -413,7 +450,7 @@ include ('../queries/patientprofile_query.php');
                 }
 
                 if (module3 == '0') {
-                    $('#labtest').hide();
+                    $('#schedule').hide();
 
                 }
 

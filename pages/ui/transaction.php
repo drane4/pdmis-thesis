@@ -130,7 +130,7 @@ require 'queries/treatment_query.php'
                                     <a href="nephrologist.php">Nephrologist</a>
                                 </li>
                     
-                            <li id="profile">
+                            <li id="schedule">
                             <a href="javascript:void(0);" class="menu-toggle">
                                 <span>Schedule</span>
                             </a>
@@ -180,25 +180,7 @@ require 'queries/treatment_query.php'
                                 <span>Reports</span>
                             </a>
                             <ul class="ml-menu">
-                                <li id="statistics">
-                            <a href="javascript:void(0);" class="menu-toggle">
-                                <span>Statistics</span>
-                            </a>
-                            <ul class="ml-menu">
-                                 <li id="genderstat">
-                                    <a href="report1.php">Gender Statistics</a>
-                                </li>
-                                <li id="agestat">
-                                    <a href="report2.php">Age Statistics</a>
-                                </li>
-                                 <li id="dialysisstat">
-                                    <a href="report3.php">Dialysis Statistics</a>
-                                </li>
-                                <li id="esrdstat">
-                                    <a href="report7.php">ESRD Statistics</a>
-                                </li>
-                                </ul>
-                                </li>
+                                
                                 <li  id="progressstat">
                                     <a data-toggle="modal" data-target="#dialysisreport_modal" >
                                             Patient Reports</a>
@@ -355,7 +337,7 @@ require 'queries/treatment_query.php'
                                         <div class="col-lg-2 col-md-2 col-sm-1 col-xs-1 ">
                                             <div class="form-group">
                                                 <div class="form-line">
-                                                    <input type="text" class="form-control" name="" value="<?php if($_GET[id] != '' && $fetch3['targetwt'] != '') echo $fetch3['targetwt']." Kg"?>" id="" readonly>
+                                                    <input type="text" class="form-control" name="drywt" value="<?php if($_GET[id] != '' && $fetch3['targetwt'] != '') echo $fetch3['targetwt']?>" id="" readonly>
                                                 </div>
                                             </div>
                                         </div>
@@ -397,7 +379,7 @@ require 'queries/treatment_query.php'
                                         <div class="col-lg-2 col-md-2 col-sm-1 col-xs-1 ">
                                             <div class="form-group">
                                                 <div class="form-line">
-                                                    <input type="text" class="form-control" name="bfr" value="<?php echo $fetch2['BFR']?>" id="bloodflowrate">
+                                                    <input type="text" class="form-control" name="bfr" value="<?php echo $fetch3['bloodflow']?>" id="bloodflowrate" readonly>
                                                 </div>
                                             </div>
                                         </div>
@@ -419,7 +401,7 @@ require 'queries/treatment_query.php'
                                         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 ">
                                             <div class="form-group">
                                                 <div class="form-line">
-                                                    <input type="text" class="form-control" name="preweight" value="<?php if($fetch2['preweight'] != '') echo $fetch2['preweight']." Kg"?>" id="predialysiswt">
+                                                    <input type="text" class="form-control" name="preweight" value="<?php if($fetch2['preweight'] != '') echo $fetch2['preweight']." Kg"?>" id="predialysiswt" required>
                                                 </div>
                                             </div>
                                         </div>
@@ -980,9 +962,9 @@ require 'queries/treatment_query.php'
                                                     </div>
                                                     <div class="row clearfix">
                                                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 form-control-label">
-                                                            <label>Repulsive Rate</label>
+                                                            <label>Respiratory Rate</label>
                                                         </div>
-                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 col-md-3  form-control-label">
+                                                        <div class="col-lg-3 col-sm-3 col-xs-3 col-md-3  form-control-label">
                                                            
                                                                 <div class="form-line">
                                                                     <input type="text" id="repulsiverate" name="repulsiverate" class="form-control" placeholder="" value="<?php echo $fetch5['repulsiverate']?>">
@@ -1326,7 +1308,7 @@ require 'queries/treatment_query.php'
                                                     </div>
                                                     <div class="row clearfix">
                                                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 form-control-label">
-                                                            <label>Repulsive Rate</label>
+                                                            <label>Respiratory Rate</label>
                                                         </div>
                                                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 col-md-3  form-control-label">
                                                             <div class="form-group">
@@ -1662,7 +1644,7 @@ require 'queries/treatment_query.php'
                 var module = '<?php echo $transaction_a; ?>';
                 var module1 = '<?php echo $patientprofile_a; ?>';
                 var module2 = '<?php echo $employeeprofile_a; ?>';
-                var module3 = '<?php echo $labtest_a; ?>';
+                var module3 = '<?php echo $schedule_a; ?>';
                 var module4 = '<?php echo $nephrologist_a; ?>';
             
                 var module6 = '<?php echo $userprofile_a; ?>';
@@ -1685,7 +1667,7 @@ require 'queries/treatment_query.php'
                 }
 
                 if (module3 == '0') {
-                    $('#labtest').hide();
+                    $('#schedule').hide();
 
                 }
 
