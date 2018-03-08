@@ -42,7 +42,7 @@
         
             <?php 
             $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
-             $queryp = $conn->query("SELECT `Hospital_Id`,`P_Date`,`P_Diagnosis`,`nephrologistid`, `P_Lname`, `P_Fname`, `P_Mname`, `Hospital_Id` FROM `patientprofile` WHERE `Hospital_Id` = '$pname'") or die(mysqli_error());
+             $queryp = $conn->query("SELECT `Hospital_Id`,`P_Date`,`P_Diagnosis`,`nephrologistid`, `P_Lname`, `P_Fname`, `P_Mname`, `Hospital_Id`, `P_Status` FROM `patientprofile` WHERE `Hospital_Id` = '$pname'") or die(mysqli_error());
             $fetchp = $queryp ->fetch_array();
             $nid = $fetchp['nephrologistid'];
             $hid = $fetchp['Hospital_Id'];
@@ -1482,6 +1482,182 @@
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
                                          <div id="access" style="width: 100%; height: 400px"></div>
+                                    </div>
+                                    <div>
+                                    <b>Produced By: <u><?php echo $name ?></u></b>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12 text-right">
+                                        <button id="printthis"><span class="glyphicon glyphicon-print"></span>&nbsp;Print</button>   
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+            <?php } ?>  
+          <?php if(isset($_POST['dialysisdetail8'])){ ?>
+         <?php if(empty($_POST['patientid'])){ ?>
+             <div id="printableArea">
+                        
+                            <div class="body">
+                            
+                                    <div class="row clearfix">
+                                         <div class="col-lg-12 col-md-12 center">
+                                        <center>
+                                        <h4>TERESITA L. JALANDONI PROVINCIAL HOSPITAL</h4>
+                                        <h5>Rizal St, Silay City, Neg. Occ.</h5>
+                                        <h5>Tel. No. 495-1704 / 495-1705 / 495-0096</h5>
+                                        <h4>HEMODIALYSIS PATIENT POPULATION RECORD</h4>
+                                        </center>
+                                        </div>
+                                </div>
+                                           <div class="row clearfix">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="card">
+                                                <div class="header bg-indigo">
+                                                    <h4>
+                                                        <b>List of Patients</b>
+                                                    </h4>
+                                                </div>
+                                                <div class="body">
+                                                    <div class="table-responsive">
+                                                        <table class="table table-bordered table-striped table-hover js-basic-example">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Status</th>
+                                                                    <th>Patient Name</th>
+                                                                </tr>
+                                                            </thead>    
+                                                            <tbody>
+                                                        <?php
+                                                        
+                                                            $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
+                                                           $query = $conn->query("SELECT `P_Lname`,`P_Mname`,`P_Fname`,`P_Status` FROM `patientprofile` WHERE `P_Date` BETWEEN '$from' AND '$to'") or die(mysqli_error());
+                                                                            
+                                                           while($fetch = $query ->fetch_array()){
+                                                              
+                                                        ?>
+                                                                   <tr>
+                                                                        <td>
+                                                                        <?php if($fetch['P_Status']==1)echo "Active" ?>
+                                                                        <?php if($fetch['P_Status']==0)echo "Not Active" ?>
+                                                                        </td>
+                                                                        <td>
+                                                                        <?php echo $fetch['P_Fname']. " " .$fetch['P_Mname']. " " .$fetch['P_Lname']?>
+                                                                        </td>
+                                                                  </tr>
+                                                            
+                                                                        
+                                                                    <?php
+                                                           }
+
+                                                        ?>
+
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                 <?php if($from != ''){?>
+                                <b>Date: <u><?php echo $from." - ".$to?></u></b><br>
+                                <?php } ?>
+                                <b>Produced By: <u><?php echo $name ?></u></b>
+                           
+                            </div>
+                                   <div class="row clearfix">
+                                            <div class="col-lg-offset-10 col-xs-offset-10">
+                                               <div class="row hidden-print mt-20">
+                                                 
+                                                   <a class="btn btn-primary btn-xs" onclick="printDiv('printableArea')" target="_blank"><i class="material-icons">print</i> Print</a>
+                                                
+                                                   
+                                              </div>
+                                         </div>
+                                    </div>
+                    
+                         </div>
+            <?php }else{ ?>
+            <div id="printableArea">
+                            <div class="body">
+                            
+                                    <div class="row clearfix">
+                                         <div class="col-lg-12 col-md-12 center">
+                                        <center>
+                                        <h4>TERESITA L. JALANDONI PROVINCIAL HOSPITAL</h4>
+                                        <h5>Rizal St, Silay City, Neg. Occ.</h5>
+                                        <h5>Tel. No. 495-1704 / 495-1705 / 495-0096</h5>
+                                        <h4>HEMODIALYSIS PATIENT POPULATION RECORD</h4>
+                                        </center>
+                                        </div>
+                                    </div>
+                                
+                                        <div>
+                                                    <h4><br><br>
+                                                        <p>
+                                                        Status: <?php if($fetchp['P_Status']==1)echo "active"?><?php if($fetchp['P_Status']==0)echo "Not Active"?><br>
+                                                        Date Entered The Dialysis: <?php echo $fetchp['P_Date']?><br>
+                                                        Hospital ID: <?php echo $fetchp['Hospital_Id']?><br>
+                                                        Patient Name: <?php echo $fetchp['P_Fname']." ".$fetchp['P_Mname']." ".$fetchp['P_Lname'] ?><br>
+                                                        Nephrologist: <?php echo $fetchn['n_fname']." ".$fetchn['n_mname']." ".$fetchn['n_lname']?><br>
+                                                        Diagnosis: <?php echo $fetchp['P_Diagnosis']?> <br>
+                                                        Dialysis Schedule: <?php echo $fetchs['treatment_day']?>
+                                                        Time: <?php echo $fetchs['treatment_time']?>    
+                                                        </p>
+                                                        
+                                                    </h4>
+                                                </div>
+                                       
+                                  <?php if($from != ''){?>
+                                <b>Date: <u><?php echo $from." - ".$to?></u></b><br>
+                                <?php } ?>
+                                <b>Produced By: <u><?php echo $name ?></u></b>
+                           
+                            </div>
+                                   <div class="row clearfix">
+                                            <div class="col-lg-offset-10 col-xs-offset-10">
+                                               <div class="row hidden-print mt-20">
+                                                 
+                                                   <a class="btn btn-primary btn-xs" onclick="printDiv('printableArea')" target="_blank"><i class="material-icons">print</i> Print</a>
+                                                
+                                                   
+                                              </div>
+                                         </div>
+                                    </div>
+                    
+                         </div>
+        <?php }?>
+        <?php }?>
+          <?php if(isset($_POST['statuschart'])){ ?>
+             <?php require '../js/charteasy/status.php'?>
+           <section class="content">
+            <div class="container-fluid">
+                <div class="row clearfix">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="card">
+                            <div class="body">
+                                <div class="clearfix row" id="printthisDiv">
+                                    <style type="text/css">
+                                        .header{
+                                            text-align: center;
+                                            font-family: “Calibri, Optima, Candara, Verdana, Geneva, sans-serif”;
+                                            color: #393938;
+                                        }
+                                    </style>
+                                    <div class="header">
+                                        <span style="font-weight: bold;font-size: 18px;">
+                                            TERESITA L. JALANDONI PROVINCIAL HOSPITAL
+                                        </span><br>
+                                        Rizal St, Silay City, Neg. Occ.<br>
+                                        Tel. No. 495-1704 / 495-1705 / 495-0096<br>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
+                                         <div id="statuschart" style="width: 100%; height: 400px"></div>
                                     </div>
                                     <div>
                                     <b>Produced By: <u><?php echo $name ?></u></b>

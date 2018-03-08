@@ -452,7 +452,7 @@ include('session.php');
                                         </div>
                                         <div class="body">
                                             <div class="table-responsive">
-                                                <table class="table table-bordered table-striped table-hover js-exportable dataTable">
+                                                <table id="employeeprofiletable" class="table table-bordered table-striped table-hover dataTable">
                                                     <thead>
                                                         <tr>
 
@@ -567,7 +567,7 @@ include('session.php');
 
         <script src="../../plugins/jquery-inputmask/jquery.inputmask.bundle.js"></script>
 
-
+        
         <!-- Jquery DataTable Plugin Js -->
         <script src="../../plugins/jquery-datatable/jquery.dataTables.js"></script>
         <script src="../../plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
@@ -578,7 +578,7 @@ include('session.php');
         <script src="../../plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>
         <script src="../../plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
         <script src="../../plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
-
+        <?php include('queries/headers_query.php'); ?>
         <!-- Custom Js -->
         <script src="../../js/admin.js"></script>
         <script src="../../js/pages/tables/jquery-datatable.js"></script>

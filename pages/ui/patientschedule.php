@@ -1,6 +1,7 @@
 <?php
  include('session.php'); 
-  require 'queries/schedule_query.php';                                 
+  require 'queries/schedule_query.php';           
+ require 'queries/patientschedule_query.php';  
    date_default_timezone_set('Asia/Manila');                                 
 ?>
 
@@ -247,7 +248,7 @@
                             <ul class="nav nav-tabs tab-nav-right" role="tablist">
                          
                                 <li role="presentation"><a href="#All" data-toggle="tab">All</a></li>
-                                <li role="presentation" <?php if(date("l") =='Monday' ) {?> class="active"<?php }  ?>><a href="#Monday" data-toggle="tab">Monday</a></li>
+                                <li role="presentation"<?php if(date("l") =='Monday' ) {?> class="active"<?php }  ?>><a href="#Monday" data-toggle="tab">Monday</a></li>
                                 <li role="presentation" <?php if(date("l") =='Tuesday' ) {?> class="active"<?php }  ?>><a href="#Tuesday" data-toggle="tab">Tuesday</a></li>
                                  <li role="presentation" <?php if(date("l") =='Wednesday' ) {?> class="active"<?php }  ?>><a href="#Wednesday" data-toggle="tab">Wednesday</a></li>
                                  <li role="presentation" <?php if(date("l") =='Thursday' ) {?> class="active"<?php }  ?>><a href="#Thursday" data-toggle="tab">Thursday</a></li>
@@ -260,7 +261,7 @@
                             <div class="tab-content">
                                 <div role="tabpanel" class="tab-pane fade in" id="All">
                             
-                                     <table id="mainTable" class="table table-bordered table-striped table-hover js-exportable dataTable">
+                                     <table id="patientsched1" class="table table-bordered table-striped table-hover dataTable">
                                                 <thead>
                                                     <tr>
                                              
@@ -274,11 +275,13 @@
                                                 </thead>
                                                 <tbody>
                                                     <?php
+                                                            $count = 0;
                                                             $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
                                                            $query = $conn->query("SELECT `patientprofile`.`P_Fname`,`patientprofile`.`P_Mname`,`patientprofile`.`P_Lname`,`patientprofile`.`Hospital_Id`,`patientschedule`.`treatment_day`,`patientschedule`.`treatment_time`,`patientprofile`.`P_Status`
                                                            FROM `patientprofile` INNER JOIN `patientschedule` ON `patientprofile`.`Hospital_Id` = `patientschedule`.`Hospital_Id` WHERE `patientprofile`.`P_Status` = 1") or die(mysqli_error());
                                                   
-                                                           while($fetch = $query ->fetch_array()){        
+                                                           while($fetch = $query ->fetch_array()){     
+                                                               $count = $count + 1;
                                                         ?>
                                                     <tr>
                                                          <td>
@@ -302,7 +305,8 @@
                                                     <?php } ?>
                                                 </tbody>
                                             </table>
-                               
+                                    <b>Overall Total Number of Patients: <u><?php echo $count ?></u></b>   
+                         
                                         <div class="col-lg-offset-10 col-xs-offset-3">
                                             <button type="button" class="btn btn-primary m-t-15 waves-effect" data-toggle="modal" data-target="#manageschedule"> <i class="material-icons">date_range</i> Manage</button> &nbsp;
                                     </div>
@@ -311,24 +315,23 @@
                                        <?php if(date("l") =='Monday' ) {?> class="tab-pane fade in active"<?php }  ?>
                                         <?php if(date("l") !='Monday' ) {?> class="tab-pane fade in"<?php }  ?>                                       id="Monday">
                             
-                                     <table id="mainTable" class="table table-bordered table-striped table-hover js-exportable dataTable">
+                                     <table id="patientsched2" class="table table-bordered table-striped table-hover dataTable">
                                                 <thead>
                                                     <tr>
-                                             
                                                         <th>Hospital ID</th>
                                                         <th>Name</th>
-                                                        <th>Day</th>
                                                         <th>Time</th>
                                                          <th>Status</th>
-                                                       
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <?php
+                                                            $count1 = 0;
                                                             $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
                                                            $query = $conn->query("SELECT * FROM `patientprofile` INNER JOIN `patientschedule` ON `patientprofile`.`Hospital_Id` = `patientschedule`.`Hospital_Id` WHERE `patientschedule`.`treatment_day` = 'monday' && `patientprofile`.`P_Status` = 1") or die(mysqli_error());
                                                   
-                                                           while($fetch = $query ->fetch_array()){        
+                                                           while($fetch = $query ->fetch_array()){ 
+                                                               $count1 = $count1 + 1;
                                                         ?>
                                                     <tr>
                                                          <td>
@@ -338,10 +341,6 @@
                                                         </td>
                                                           <td>
                                                               <?php echo $fetch['P_Fname'].' '.$fetch['P_Mname'].' '.$fetch['P_Lname']?>
-                                                        </td>
-                                                       
-                                                          <td>
-                                                            <?php echo $fetch['treatment_day'] ?>
                                                         </td>
                                                           <td>
                                                              <?php echo $fetch['treatment_time'] ?>
@@ -355,7 +354,8 @@
                                                 </tbody>
 
                                             </table>
-                               
+                                         <b>Overall Total Number of Patients: <u><?php echo $count1 ?></u></b><br>
+                                       <b>Status: <u><?php if($count1 <= 3 && $count1 >=1) echo "Low"?><?php if($count1 <= 7 && $count1 >=4) echo "Average"?><?php if($count1 == 14) echo "Full"?></u></b>   
                                         <div class="col-lg-offset-10 col-xs-offset-3">
                                             <button type="button" class="btn btn-primary m-t-15 waves-effect" data-toggle="modal" data-target="#manageschedule"> <i class="material-icons">date_range</i> Manage</button> &nbsp;
                                     </div>
@@ -363,13 +363,12 @@
                                 <div role="tabpanel" <?php if(date("l") =='Tuesday' ) {?> class="tab-pane fade in active"<?php }  ?>
                                         <?php if(date("l") !='Tuesday' ) {?> class="tab-pane fade in"<?php }  ?>                                        id="Tuesday">
                             
-                                     <table id="mainTable" class="table table-bordered table-striped table-hover js-exportable dataTable">
+                                     <table id="patientsched3" class="table table-bordered table-striped table-hover dataTable">
                                                 <thead>
                                                     <tr>
                                              
                                                         <th>Hospital ID</th>
                                                         <th>Name</th>
-                                                        <th>Day</th>
                                                         <th>Time</th>
                                                          <th>Status</th>
                                                        
@@ -377,11 +376,13 @@
                                                 </thead>
                                                 <tbody>
                                                     <?php
+                                                            $count2 = 0;
                                                             $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
                                                            $query = $conn->query("SELECT `patientprofile`.`P_Fname`,`patientprofile`.`P_Mname`,`patientprofile`.`P_Lname`,`patientprofile`.`Hospital_Id`,`patientschedule`.`treatment_day`,`patientschedule`.`treatment_time`,`patientprofile`.`P_Status`
                                                            FROM `patientprofile` INNER JOIN `patientschedule` ON `patientprofile`.`Hospital_Id` = `patientschedule`.`Hospital_Id` WHERE `patientschedule`.`treatment_day` = 'tuesday' && `patientprofile`.`P_Status` = 1") or die(mysqli_error());
                                                   
-                                                           while($fetch = $query ->fetch_array()){        
+                                                           while($fetch = $query ->fetch_array()){      
+                                                               $count2 = $count2 + 1;
                                                         ?>
                                                     <tr>
                                                          <td>
@@ -389,10 +390,6 @@
                                                         </td>
                                                           <td>
                                                               <?php echo $fetch['P_Fname'].' '.$fetch['P_Mname'].' '.$fetch['P_Lname']?>
-                                                        </td>
-                                                       
-                                                          <td>
-                                                            <?php echo $fetch['treatment_day'] ?>
                                                         </td>
                                                           <td>
                                                              <?php echo $fetch['treatment_time'] ?>
@@ -405,6 +402,8 @@
                                                     <?php } ?>
                                                 </tbody>
                                             </table>
+                                      <b>Overall Total Number of Patients: <u><?php echo $count2 ?></u></b><br>
+                                       <b>Status: <u><?php if($count2 <= 3 && $count2 >=1) echo "Low"?><?php if($count2 <= 7 && $count2 >=4) echo "Average"?><?php if($count2 == 14) echo "Full"?></u></b>   
                                         <div class="col-lg-offset-10 col-xs-offset-3">
                                             <button type="button" class="btn btn-primary m-t-15 waves-effect" data-toggle="modal" data-target="#manageschedule"> <i class="material-icons">date_range</i> Manage</button> &nbsp;
                                     </div>
@@ -412,13 +411,12 @@
                                 <div role="tabpanel" <?php if(date("l") =='Wednesday' ) {?> class="tab-pane fade in active"<?php }  ?>
                                         <?php if(date("l") !='Wednesday' ) {?> class="tab-pane fade in"<?php }  ?>                                        id="Wednesday">
                             
-                                     <table id="mainTable" class="table table-bordered table-striped table-hover js-exportable dataTable">
+                                     <table id="patientsched4" class="table table-bordered table-striped table-hover dataTable">
                                                 <thead>
                                                     <tr>
                                              
                                                         <th>Hospital ID</th>
                                                         <th>Name</th>
-                                                        <th>Day</th>
                                                         <th>Time</th>
                                                          <th>Status</th>
                                                        
@@ -426,11 +424,13 @@
                                                 </thead>
                                                 <tbody>
                                                     <?php
+                                                            $count3 = 0;
                                                             $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
                                                            $query = $conn->query("SELECT `patientprofile`.`P_Fname`,`patientprofile`.`P_Mname`,`patientprofile`.`P_Lname`,`patientprofile`.`Hospital_Id`,`patientschedule`.`treatment_day`,`patientschedule`.`treatment_time`,`patientprofile`.`P_Status`
                                                             FROM `patientprofile` INNER JOIN `patientschedule` ON `patientprofile`.`Hospital_Id` = `patientschedule`.`Hospital_Id` WHERE `patientschedule`.`treatment_day` = 'wednesday' && `patientprofile`.`P_Status` = 1") or die(mysqli_error());
                                                   
                                                            while($fetch = $query ->fetch_array()){        
+                                                               $count3 = $count3 + 1;
                                                         ?>
                                                     <tr>
                                                          <td>
@@ -438,10 +438,6 @@
                                                         </td>
                                                           <td>
                                                               <?php echo $fetch['P_Fname'].' '.$fetch['P_Mname'].' '.$fetch['P_Lname']?>
-                                                        </td>
-                                                       
-                                                          <td>
-                                                            <?php echo $fetch['treatment_day'] ?>
                                                         </td>
                                                           <td>
                                                              <?php echo $fetch['treatment_time'] ?>
@@ -455,7 +451,8 @@
                                                 </tbody>
 
                                             </table>
-                               
+                                          <b>Overall Total Number of Patients: <u><?php echo $count3 ?></u></b><br>
+                                       <b>Status: <u><?php if($count3 <= 3 && $count3 >=1) echo "Low"?><?php if($count3 <= 7 && $count3 >=4) echo "Average"?><?php if($count3 == 14) echo "Full"?></u></b>   
                                         <div class="col-lg-offset-10 col-xs-offset-3">
                                             <button type="button" class="btn btn-primary m-t-15 waves-effect" data-toggle="modal" data-target="#manageschedule"> <i class="material-icons">date_range</i> Manage</button> &nbsp;
                                     </div>
@@ -463,13 +460,12 @@
                                 <div role="tabpanel" <?php if(date("l") =='Thursday' ) {?> class="tab-pane fade in active"<?php }  ?>
                                         <?php if(date("l") !='Thursday' ) {?> class="tab-pane fade in"<?php }  ?>                                        id="Thursday">
                             
-                                     <table id="mainTable" class="table table-bordered table-striped table-hover js-exportable dataTable">
+                                     <table id="patientsched5" class="table table-bordered table-striped table-hover dataTable">
                                                 <thead>
                                                     <tr>
                                              
                                                         <th>Hospital ID</th>
                                                         <th>Name</th>
-                                                        <th>Day</th>
                                                         <th>Time</th>
                                                          <th>Status</th>
                                                        
@@ -477,11 +473,13 @@
                                                 </thead>
                                                 <tbody>
                                                     <?php
+                                                            $count4 = 0;
                                                             $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
                                                            $query = $conn->query("SELECT `patientprofile`.`P_Fname`,`patientprofile`.`P_Mname`,`patientprofile`.`P_Lname`,`patientprofile`.`Hospital_Id`,`patientschedule`.`treatment_day`,`patientschedule`.`treatment_time`,`patientprofile`.`P_Status`
                                                            FROM `patientprofile` INNER JOIN `patientschedule` ON `patientprofile`.`Hospital_Id` = `patientschedule`.`Hospital_Id` WHERE `patientschedule`.`treatment_day` = 'thursday' && `patientprofile`.`P_Status` = 1") or die(mysqli_error());
                                                   
-                                                           while($fetch = $query ->fetch_array()){        
+                                                           while($fetch = $query ->fetch_array()){      
+                                                               $count4 = $count4 + 1;
                                                         ?>
                                                     <tr>
                                                          <td>
@@ -489,10 +487,6 @@
                                                         </td>
                                                           <td>
                                                               <?php echo $fetch['P_Fname'].' '.$fetch['P_Mname'].' '.$fetch['P_Lname']?>
-                                                        </td>
-                                                       
-                                                          <td>
-                                                            <?php echo $fetch['treatment_day'] ?>
                                                         </td>
                                                           <td>
                                                              <?php echo $fetch['treatment_time'] ?>
@@ -509,7 +503,8 @@
                                                 </tbody>
 
                                             </table>
-                               
+                                 <b>Overall Total Number of Patients: <u><?php echo $count4 ?></u></b><br>
+                                       <b>Status: <u><?php if($count4 <= 3 && $count4 >=1) echo "Low"?><?php if($count4 <= 7 && $count4 >=4) echo "Average"?><?php if($count4 == 14) echo "Full"?></u></b>   
                                         <div class="col-lg-offset-10 col-xs-offset-3">
                                             <button type="button" class="btn btn-primary m-t-15 waves-effect" data-toggle="modal" data-target="#manageschedule"> <i class="material-icons">date_range</i> Manage</button> &nbsp;
                                     </div>
@@ -517,13 +512,12 @@
                                 <div role="tabpanel" <?php if(date("l") =='Friday' ) {?> class="tab-pane fade in active"<?php }  ?>
                                         <?php if(date("l") !='Friday' ) {?> class="tab-pane fade in"<?php }  ?>                                        id="Friday">
                             
-                                     <table id="mainTable" class="table table-bordered table-striped table-hover js-exportable dataTable">
+                                     <table id="patientsched6" class="table table-bordered table-striped table-hover dataTable">
                                                 <thead>
                                                     <tr>
                                              
                                                         <th>Hospital ID</th>
                                                         <th>Name</th>
-                                                        <th>Day</th>
                                                         <th>Time</th>
                                                          <th>Status</th>
                                                        
@@ -531,10 +525,12 @@
                                                 </thead>
                                                 <tbody>
                                                     <?php
+                                                            $count5 = 0;
                                                             $conn = new mysqli("localhost", "root", "", "PDMIS") or die(mysqli_error());
                                                            $query = $conn->query("SELECT * FROM `patientprofile` INNER JOIN `patientschedule` ON `patientprofile`.`Hospital_Id` = `patientschedule`.`Hospital_Id` WHERE `patientschedule`.`treatment_day` = 'friday' && `patientprofile`.`P_Status` = 1") or die(mysqli_error());
                                                   
-                                                           while($fetch = $query ->fetch_array()){        
+                                                           while($fetch = $query ->fetch_array()){ 
+                                                               $count5 = $count5 + 1;
                                                         ?>
                                                     <tr>
                                                          <td>
@@ -542,10 +538,6 @@
                                                         </td>
                                                           <td>
                                                               <?php echo $fetch['P_Fname'].' '.$fetch['P_Mname'].' '.$fetch['P_Lname']?>
-                                                        </td>
-                                                       
-                                                          <td>
-                                                            <?php echo $fetch['treatment_day'] ?>
                                                         </td>
                                                           <td>
                                                              <?php echo $fetch['treatment_time'] ?>
@@ -556,13 +548,12 @@
                                                         </td>
                                                     </tr>
                                                     <?php } ?>
-                                                  
-                                                           
-                                            
+
                                                 </tbody>
 
                                             </table>
-                               
+                                 <b>Overall Total Number of Patients: <u><?php echo $count5 ?></u></b><br>
+                                       <b>Status: <u><?php if($count5 <= 3 && $count5 >=1) echo "Low"?><?php if($count5 <= 7 && $count5 >=4) echo "Average"?><?php if($count5 == 14) echo "Full"?></u></b>   
                                         <div class="col-lg-offset-10 col-xs-offset-3">
                                             <button type="button" class="btn btn-primary m-t-15 waves-effect" data-toggle="modal" data-target="#manageschedule"> <i class="material-icons">date_range</i> Manage</button> &nbsp;
                                     </div>
@@ -707,7 +698,7 @@
                                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 form-control-label">
                                             <label for="email_address_2">Patient Name</label>
                                         </div>
-                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
                                             <select class="form-control show-tick" name="patient_S" id="patient_S" title="&nbsp" data-live-search="true" required>
                                                         
                                                         <?php 
@@ -724,33 +715,31 @@
                                                         </option>
 
                                                         <?php
-                                                        
                                                         }
                                                     ?>
                                             </select>
                                         </div>
                                          
-                                             
           
                                     </div>
                                               <div class="row clearfix">
                                         <div class="col-lg-3 col-md-1 col-sm-2 col-xs-3 form-control-label">
                                             <label for="email_address_2">Day</label>
                                         </div>
-                                        <div class="col-lg-3 col-md-1 col-sm-2 col-xs-3">
+                                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
 
                                             <select class="form-control show-tick" name="day_S" id="day_S" title="&nbsp;" >
                                                 <option value="#">&nbsp;</option>
-                                                <option value="Monday" <?php if($fetch['']== 'monday') echo "selected"; ?>
-                                                        >Monday</option>
-                                                 <option value="Tuesday" <?php if($fetch['']== 'tuesday') echo "selected"; ?>
-                                                        >Tuesday</option>
-                                                 <option value="Wednesday" <?php if($fetch['']== 'wednesday') echo "selected"; ?>
-                                                        >Wednesday</option>
-                                                 <option value="Thursday" <?php if($fetch['']== 'thursday') echo "selected"; ?>
-                                                        >Thursday</option>
-                                                 <option value="Friday" <?php if($fetch['']== 'friday') echo "selected"; ?>
-                                                        >Friday</option>
+                                                <option value="Monday"  <?php if($total =='14' ) {?> disabled style="color:red"<?php }  ?><?php if($fetch['']== 'monday') echo "selected"; ?>
+                                                        >Monday<?php if($total =='14' ) {?> (Full)<?php }  ?></option>
+                                                 <option value="Tuesday" <?php if($total1 =='14' ) {?> disabled style="color:red"<?php }  ?><?php if($fetch['']== 'tuesday') echo "selected"; ?>
+                                                        >Tuesday<?php if($total1 =='14' ) {?> (Full)<?php }  ?></option>
+                                                 <option value="Wednesday" <?php if($total2 =='14' ) {?> disabled style="color:red"<?php }  ?><?php if($fetch['']== 'wednesday') echo "selected"; ?>
+                                                        >Wednesday<?php if($total2 =='14' ) {?> (Full)<?php }  ?></option>
+                                                 <option value="Thursday" <?php if($total3 =='14' ) {?> disabled style="color:red"<?php }  ?><?php if($fetch['']== 'thursday') echo "selected"; ?>
+                                                        >Thursday<?php if($total3 =='14' ) {?> (Full)<?php }  ?></option>
+                                                 <option value="Friday" <?php if($total4 =='14' ) {?> disabled style="color:red"<?php }  ?><?php if($fetch['']== 'friday') echo "selected"; ?>
+                                                        >Friday<?php if($total4 =='14' ) {?> (Full)<?php }  ?></option>
                                             </select>
                                         </div>
                                     </div>
@@ -758,19 +747,17 @@
                                         <div class="col-lg-3 col-md-1 col-sm-2 col-xs-3 form-control-label">
                                             <label for="email_address_2">Time</label>
                                         </div>
-                                        <div class="col-lg-3 col-md-1 col-sm-2 col-xs-3">
+                                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
 
                                             <select class="form-control show-tick" name="time_S" id="time_S" title="&nbsp;" >
                                                 <option value="#">&nbsp;</option>
-                                                <option value="morning" <?php if($fetch['']== 'morning') echo "selected"; ?>
-                                                        >Morning</option>
-                                                 <option value="afternoon" <?php if($fetch['']== 'afternoon') echo "selected"; ?>
-                                                        >Afternoon</option>
+                                                <option value="7:30 AM - 11:30 AM" <?php if($fetch['']== '7:30 AM - 11:30 AM') echo "selected"; ?>
+                                                        >7:30 AM - 11:30 AM</option>
+                                                 <option value="11:30 AM - 4:30 PM" <?php if($fetch['']== '11:30 AM - 4:30 PM') echo "selected"; ?>
+                                                        >11:30 AM - 4:30 PM</option>
                                             </select>
                                         </div>
                                     </div>
-                                              
-                                              
                                               <div class="row clearfix">
                                         <div class="col-lg-offset-6 col-xs-offset-3">
                                           
@@ -829,7 +816,7 @@
         <script src="../../plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>
         <script src="../../plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
         <script src="../../plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
-        
+        <?php include('queries/headers_query.php'); ?>
         <!-- Custom Js -->
         <script src="../../js/admin.js"></script>
         <script src="../../js/pages/tables/jquery-datatable.js"></script>
@@ -915,6 +902,7 @@
         
         
     </script>  
+       
     </body>
 
     </html>

@@ -77,6 +77,7 @@
                                                             <button type="submit" class="btn bg-grey m-t-15 waves-effect" name="dialysisdetail5" style="width:70%; color:black">ESRD Causes</button>&nbsp;<button class="btn bg-grey m-t-15 waves-effect" name="esrdstat"> <i class="material-icons">pie_chart</i></button><br>
                                                             <button type="submit" class="btn bg-grey m-t-15 waves-effect" name="dialysisdetail6" style="width:70%; color:black">Access</button>&nbsp;<button class="btn bg-grey m-t-15 waves-effect" name="access"> <i class="material-icons">pie_chart</i></button><br>
                                                            <button type="submit" class="btn bg-grey m-t-15 waves-effect" name="dialysisdetail7" style="width:70%; color:black">Patient Population Statistics</button>&nbsp;<button class="btn bg-grey m-t-15 waves-effect" name="populationstat"> <i class="material-icons">trending_up</i></button><br>
+                                                            <button type="submit" class="btn bg-grey m-t-15 waves-effect" name="dialysisdetail8" style="width:70%; color:black">Active / Inactive Patients</button>&nbsp;<button class="btn bg-grey m-t-15 waves-effect" name="statuschart"> <i class="material-icons">pie_chart</i></button><br>
                                                         </div>
                                                     </div>
                                                 </form>

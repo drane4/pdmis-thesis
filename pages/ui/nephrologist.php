@@ -429,7 +429,7 @@
                                     <div class="card">
                                         <div class="header bg-indigo">
                                             <h2>
-                                                List of Employees
+                                                List of Nephrologist
 
                                                 <a href=""><i class="material-icons pull-right" data-dismiss="modal">clear</i></a>
                                             </h2>
@@ -437,7 +437,7 @@
                                         </div>
                                         <div class="body">
                                             <div class="table-responsive">
-                                                <table class="table table-bordered table-striped table-hover  js-exportable dataTable">
+                                                <table id="example" class="table table-bordered table-striped table-hover dataTable">
                                                     <thead>
                                                         <tr>
 
@@ -558,13 +558,14 @@
         <script src="../../plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>
         <script src="../../plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
         <script src="../../plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
-
+        
+        <?php include('queries/headers_query.php'); ?>
         <!-- Custom Js -->
         <script src="../../js/admin.js"></script>
         <script src="../../js/pages/tables/jquery-datatable.js"></script>
         <script src="../../js/pages/forms/advanced-form-elements.js"></script>
 
-
+        
         <!-- Demo Js -->
         <script src="../../js/demo.js"></script>
         <script>
@@ -637,6 +638,7 @@
         
         
     </script>  
+        
     </body>
 
     </html>

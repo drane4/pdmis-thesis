@@ -7,6 +7,54 @@ include('session.php');
                                     $fetch = $query ->fetch_array();
                                     $id = $fetch['employeeid'];
 
+if(isset($_POST['import']))
+{
+	if($_FILES['database']['name'] != '')
+	{
+		$array = explode(".", $_FILES['database']['name']);
+		$extension = end($array);
+		if($extension == 'sql'){
+			$connect = mysqli_connect("localhost", "root", "", "pdmis");
+			$output = '';
+			$count = 0;
+			$file_data = file($_FILES['database']['tmp_name']);
+			foreach($file_data as $row){
+				$start_character = substr(trim($row), 0, 2);
+				if($start_character != '--' || $start_character != '/*'
+				   || $start_character != '//' || $row != ''){
+					$output = $output . $row;
+					$end_character = substr(trim($row), -1, 1);
+					if($end_character == ';'){
+						if(!mysqli_query($connect, $output)){
+							$count++;
+						}
+						$output = '';
+					}
+				}
+			}
+			if($count > 0) {
+				$message = 'Error occurred';
+			}
+			else {
+				
+				echo "<script>alert('Successfully imported database!')</script>";
+				echo "<script>document.location='maintenance.php'</script>";  
+			}
+		}
+		else {
+			echo "<script type='text/javascript'>alert('You must upload SQL file only!');</script>";
+			echo "<script>document.location='maintenance.php'</script>";
+		}
+	}
+	else {
+		$message = 'Select SQL File.';
+	}
+
+
+}
+
+
+
 ?>
 
     <html>
@@ -250,8 +298,8 @@ include('session.php');
                          
                             <div class="body">
                                 
-                                <button name="export" id="export" type="button" class="btn btn-primary m-t-15 waves-effect" onclick="location.href='export.php'"> <i class="material-icons">cloud_download</i>Export</button>
-                                   <button type="button" name="import" class="btn btn-primary m-t-15 waves-effect" onclick="location.href='import.php'" id="import"> <i class="material-icons" >cloud_upload</i>Import</button>
+                                <button name="export" id="export" type="button" class="btn btn-primary m-t-15 waves-effect" onclick="location.href='db/export.php'"> <i class="material-icons">cloud_download</i>Export</button>
+                                   <button type="button" class="btn btn-primary m-t-15 waves-effect" data-toggle="modal" data-target="#import"> <i class="material-icons" >cloud_upload</i>Import</button>
                        
                                 <div class="header">
                                     <h2> 
@@ -303,7 +351,8 @@ include('session.php');
                                 
                                 
                             </div>
-                            
+                
+
                             
                             
                             
@@ -315,11 +364,47 @@ include('session.php');
                     </div>
                 </div>
 
+            </div>
+                         <div class="modal fade" id="import" role="dialog">
+                <div class="modal-dialog modal-default" role="document">
 
-              
-             
+                     <div class="modal-content">
+                                <div class="row clearfix">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="card">
+                                            <div class="header bg-indigo">
+                                                <h2>
+                                                   Select Database File
+                                                    <a href=""><i class="material-icons pull-right" data-dismiss="modal">clear</i></a>
+                                                </h2>
 
+                                            </div>
+                                            <div class="body">
+                                                <form class="form-horizontal page-content" method="POST" enctype="multipart/form-data">
+                                                    <div class="row clearfix">
+                                                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-control-label">
+                                                            <label for="email_address_2">Database File</label>
+                                                        </div>
+                                                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                                                                        <input type="file" class="form-control unstyled" name="database"  style="padding-right:0">
+                                                           
+                                                        </div>
+                                                    
 
+                                                    </div>
+                                  
+                                                    <div class="row clearfix">
+                                                       <div class="col-lg-offset-3 col-md-offset-3 col-sm-offset-3 col-xs-offset-3">
+                                                               <button type="submit" class="btn bg-grey m-t-15 waves-effect" name="import" style="width:70%; color:black">Import</button>&nbsp;
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                </div>
             </div>
         </section>
 

@@ -266,7 +266,6 @@
          
            include ('queries/patientprofile_query.php');
             include ('queries/laboratory_query.php');  
-           
             include ('modals/laboratory_modal.php'); 
             include ('modals/patientprofile_modal.php');  
             include ('modals/immunization_modal.php'); 
@@ -502,7 +501,7 @@
                                                 <div class="col-lg-3 col-md-1 col-sm-2 col-xs-4">
                                                     <div class="form-group">
                                                         <div class="form-line">
-                                                            <input type="text" class="form-control" name="precontactnumber" id="precontactnumber" placeholder="Optional" value="<?php echo $fetchp['P_ConNum2']?>">
+                                                            <input type="text" class="form-control" name="precontactnumber" id="precontactnumber" placeholder="Ex: +00 (000) 000-00-00" value="<?php echo $fetchp['P_ConNum2']?>">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -661,7 +660,7 @@
                                                 <div class="col-lg-3 col-md-1 col-sm-2 col-xs-4">
                                                     <div class="form-group">
                                                         <div class="form-line">
-                                                            <input type="text" class="form-control" placeholder="Optional" name="phnum" id="phnum" onkeyup="capitalize(this.id, this.value);" value="<?php echo $fetchp['P_PhilHealthNum']?>">
+                                                            <input type="text" class="form-control" name="phnum" id="phnum" onkeyup="capitalize(this.id, this.value);" value="<?php echo $fetchp['P_PhilHealthNum']?>">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -814,7 +813,7 @@
                                                                         <?php   
                                                           //  echo $date = $fetch2['treatment_date']; 
                                                             $datet = $fetch2['treatment_date'];  
-                                                              
+                                                            echo "haha"; echo $datet;       
                                                             $tquery2 = $conn->query("SELECT * FROM `nephronotesorder` WHERE `Hospital_Id` = '$H_id' && `notes_order_date` = '$datet' ORDER BY `notes_order_id`") or die(mysqli_error());
                                                            while($fetch = $tquery2 ->fetch_array()){
                                                         ?>
@@ -2779,12 +2778,12 @@
         <script src="../../plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>
         <script src="../../plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
         <script src="../../plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
-
+        <?php include('queries/headers_query.php'); ?>
         <!-- Custom Js -->
         <script src="../../js/admin.js"></script>
         <script src="../../js/pages/tables/jquery-datatable.js"></script>
         <script src="../../js/pages/forms/advanced-form-elements1.js"></script>
-        
+    
         <!-- Demo Js -->
         <script src="../../js/demo.js"></script>
         

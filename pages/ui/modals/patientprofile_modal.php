@@ -427,7 +427,7 @@
                                                 <div class="body">
                 
                                                     <div class="table-responsive">
-                                                        <table class="table table-bordered table-striped table-hover js-exportable dataTable">
+                                                        <table id="patienttable" class="table table-bordered table-striped table-hover dataTable">
                                                             <thead>
                                                                 <tr>
                                                                     <th>Hospital ID</th>
